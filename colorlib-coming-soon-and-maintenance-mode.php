@@ -90,10 +90,22 @@ function colorlibStyleEnqueue( $styles ) {
 function colorlibScriptEnqueue( $scripts ) {
 	if ( is_array( $scripts ) ) {
 		foreach ( $scripts as $script ) {
-			$fileLocation = $script['location'];
-			$fileName     = $script['name'];
-			$templateName = $script['template'];
-			wp_enqueue_script( $templateName . '-' . $fileName, CSMM_URL . 'templates/template_files/' . $templateName . '/' . $fileLocation );
+			if ( $script['location'] != null ) {
+				$fileLocation = $script['location'];
+			}
+			if ( $script['name'] != null ) {
+				$fileName = $script['name'];
+			}
+			if ( $script['template'] != null ) {
+				$templateName = $script['template'];
+			}
+
+			if ( $templateName != null ) {
+				wp_enqueue_script( $templateName . '-' . $fileName, CSMM_URL . 'templates/template_files/' . $templateName . '/' . $fileLocation );
+			} else {
+				wp_enqueue_script( $templateName . '-' . $fileName, CSMM_URL . 'assets/' . $fileLocation );
+			}
+
 		}
 	}
 }
@@ -105,7 +117,7 @@ function colorlibCounterDates( $timerDate ) {
 
 	$date = DateTime::createFromFormat( 'Y-m-d', $timerDate );
 
-	$fDAte = new DateTime( $timerDate );
+	$fDAte    = new DateTime( $timerDate );
 	$cDate    = new DateTime( date( 'Y-m-d H:i:s' ) );
 	$interval = $cDate->diff( $fDAte );
 	//template needed info
@@ -132,4 +144,11 @@ function colorlibCounterDates( $timerDate ) {
 	);
 
 	return $dates;
+}
+
+//Enqueue scripts needed for admin customization
+add_action( 'admin_enqueue_scripts', 'colorlib_enqueue' );
+function colorlib_enqueue() {
+	wp_enqueue_editor();
+	wp_enqueue_script('colorlib-csmm-admin-script',CSMM_URL.'assets/js/admin.js');
 }

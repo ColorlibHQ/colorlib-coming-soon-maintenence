@@ -121,29 +121,29 @@ class Colorlib_CSMM {
 				'type'     => 'select',
 				'priority' => 30,
 				'choices'  => array(
-					'template_01' => esc_html__('Template 1','colorlib-coming-soon'),
-					'template_02' => esc_html__('Template 2','colorlib-coming-soon'),
-					'template_03' => esc_html__('Template 3','colorlib-coming-soon'),
-					'template_04' => esc_html__('Template 4','colorlib-coming-soon'),
-					'template_05' => esc_html__('Template 5','colorlib-coming-soon'),
-					'template_06' => esc_html__('Template 6','colorlib-coming-soon'),
-					'template_07' => esc_html__('Template 7','colorlib-coming-soon'),
-					'template_08' => esc_html__('Template 8','colorlib-coming-soon'),
-					'template_09' => esc_html__('Template 9','colorlib-coming-soon'),
-					'template_10' => esc_html__('Template 10','colorlib-coming-soon'),
-					'template_11' => esc_html__('Template 11','colorlib-coming-soon'),
-					'template_12' => esc_html__('Template 12','colorlib-coming-soon'),
-					'template_13' => esc_html__('Template 13','colorlib-coming-soon'),
-					'template_14' => esc_html__('Template 14','colorlib-coming-soon'),
-					'template_15' => esc_html__('Template 15','colorlib-coming-soon'),
-					'template_16' => esc_html__('Template 16','colorlib-coming-soon'),
-					'template_17' => esc_html__('Template 17','colorlib-coming-soon'),
-					'template_18' => esc_html__('Template 18','colorlib-coming-soon'),
-					'template_19' => esc_html__('Template 19','colorlib-coming-soon'),
-					'template_20' => esc_html__('Template 20','colorlib-coming-soon'),
-					'template_21' => esc_html__('Template 21','colorlib-coming-soon'),
-					'template_22' => esc_html__('Template 22','colorlib-coming-soon'),
-					'template_23' => esc_html__('Template 23','colorlib-coming-soon'),
+					'template_01' => esc_html__( 'Template 1', 'colorlib-coming-soon' ),
+					'template_02' => esc_html__( 'Template 2', 'colorlib-coming-soon' ),
+					'template_03' => esc_html__( 'Template 3', 'colorlib-coming-soon' ),
+					'template_04' => esc_html__( 'Template 4', 'colorlib-coming-soon' ),
+					'template_05' => esc_html__( 'Template 5', 'colorlib-coming-soon' ),
+					'template_06' => esc_html__( 'Template 6', 'colorlib-coming-soon' ),
+					'template_07' => esc_html__( 'Template 7', 'colorlib-coming-soon' ),
+					'template_08' => esc_html__( 'Template 8', 'colorlib-coming-soon' ),
+					'template_09' => esc_html__( 'Template 9', 'colorlib-coming-soon' ),
+					'template_10' => esc_html__( 'Template 10', 'colorlib-coming-soon' ),
+					'template_11' => esc_html__( 'Template 11', 'colorlib-coming-soon' ),
+					'template_12' => esc_html__( 'Template 12', 'colorlib-coming-soon' ),
+					'template_13' => esc_html__( 'Template 13', 'colorlib-coming-soon' ),
+					'template_14' => esc_html__( 'Template 14', 'colorlib-coming-soon' ),
+					'template_15' => esc_html__( 'Template 15', 'colorlib-coming-soon' ),
+					'template_16' => esc_html__( 'Template 16', 'colorlib-coming-soon' ),
+					'template_17' => esc_html__( 'Template 17', 'colorlib-coming-soon' ),
+					'template_18' => esc_html__( 'Template 18', 'colorlib-coming-soon' ),
+					'template_19' => esc_html__( 'Template 19', 'colorlib-coming-soon' ),
+					'template_20' => esc_html__( 'Template 20', 'colorlib-coming-soon' ),
+					'template_21' => esc_html__( 'Template 21', 'colorlib-coming-soon' ),
+					'template_22' => esc_html__( 'Template 22', 'colorlib-coming-soon' ),
+					'template_23' => esc_html__( 'Template 23', 'colorlib-coming-soon' ),
 				),
 			)
 		);
@@ -255,18 +255,6 @@ class Colorlib_CSMM {
 			)
 		);
 
-		/* Setting - Coming Soon - Page Content */
-		$wp_customize->add_setting( 'colorlib_coming_soon_percentage_completed', array(
-			'default'           => '75',
-			'sanitize_callback' => 'colorlib_coming_soon_sanitize_text',
-		) );
-		$wp_customize->add_control( 'colorlib_coming_soon_percentage_completed', array(
-				'label'    => esc_html__( 'Percentage Completed', 'colorlib-coming-soon' ),
-				'section'  => 'colorlib_coming_soon_section_page_settings',
-				'type'     => 'text',
-				'priority' => 10,
-			)
-		);
 
 		/* Setting - Coming Soon - Page Content */
 		$wp_customize->add_setting( 'colorlib_coming_soon_page_heading', array(

@@ -1,25 +1,25 @@
-
 /***********************************************************************************
 
-Animations
+ Animations
 
-************************************************************************************/
+ ************************************************************************************/
 
-jQuery(document).ready(function($) {
-	$(function() {
-		$('#header').delay(100).fadeIn(1000);
-		$('#intro').delay(300).fadeIn(500);
-	});
+jQuery(document).ready(function ($) {
+    $(function () {
+        $('#header').delay(100).fadeIn(1000);
+        $('#intro').delay(300).fadeIn(500);
+    });
+    alert('soemthing');
 });
 
 
 /***********************************************************************************
 
-Mailchimp Form Processing
+ Mailchimp Form Processing
 
-************************************************************************************/
+ ************************************************************************************/
 
-$(function() {
+$(function () {
 
     // Get the form.
     var form = $('#mailchimp');
@@ -29,7 +29,7 @@ $(function() {
     var formMessages = $('#loading .status');
 
     // Set up an event listener for the subscribe form.
-    $(form).submit(function(e) {
+    $(form).submit(function (e) {
 
         // Stop the browser from submitting the form.
         e.preventDefault();
@@ -48,15 +48,31 @@ $(function() {
             dataType: 'json'
         })
 
-        .done(function(response) {
-            //console.log(response);
-            if ( response.status == 'redirect') {
-                window.location.replace( response.url );
-            }
-            else {
-                // Make sure that the formMessages div has the 'success' class.
-                $(formMessages).removeClass('error');
-                $(formMessages).addClass('success');
+            .done(function (response) {
+                //console.log(response);
+                if (response.status == 'redirect') {
+                    window.location.replace(response.url);
+                }
+                else {
+                    // Make sure that the formMessages div has the 'success' class.
+                    $(formMessages).removeClass('error');
+                    $(formMessages).addClass('success');
+                    $(formMessages).fadeIn(100);
+                    $(formMessages).delay(1000).fadeOut(500);
+                    $(formLoading).delay(1000).fadeOut(500);
+
+                    // Clear the form.
+                    $('#first').val('');
+                    $('#last').val('');
+                    $('#email').val('');
+                }
+            })
+
+            .fail(function (data) {
+
+                // Make sure that the formMessages div has the 'error' class.
+                $(formMessages).removeClass('success');
+                $(formMessages).addClass('error');
                 $(formMessages).fadeIn(100);
                 $(formMessages).delay(1000).fadeOut(500);
                 $(formLoading).delay(1000).fadeOut(500);
@@ -65,22 +81,6 @@ $(function() {
                 $('#first').val('');
                 $('#last').val('');
                 $('#email').val('');
-            }
-        })
-
-        .fail(function(data) {
-
-            // Make sure that the formMessages div has the 'error' class.
-            $(formMessages).removeClass('success');
-            $(formMessages).addClass('error');
-            $(formMessages).fadeIn(100);
-            $(formMessages).delay(1000).fadeOut(500);
-            $(formLoading).delay(1000).fadeOut(500);
-
-            // Clear the form.
-            $('#first').val('');
-            $('#last').val('');
-            $('#email').val('');
-        });
+            });
     });
 });

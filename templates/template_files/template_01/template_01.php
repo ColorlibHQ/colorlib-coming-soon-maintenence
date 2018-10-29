@@ -1,12 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <title><?php bloginfo( 'name' );
-		$site_description = get_bloginfo( 'description' ); ?></title>
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 	<?php
-
+#TODO find solution to include a general resource, not depending on template in areas where same resource
 	$styles = array(
 		array(
 			'name'     => 'animate',
@@ -49,9 +42,7 @@
     <link rel="icon" type="image/png"
           href="<?php echo CSMM_URL . 'templates/template_files/' . get_theme_mod( 'colorlib_coming_soon_template_selection' ); ?>/images/icons/favicon.ico"/>
 	<?php wp_head(); ?>
-</head>
 
-<body>
 <div class="size1 bg0 where1-parent">
     <!-- Countdown -->
     <div class="flex-c-m bg-img1 size2 where1 overlay1 where2 respon2"
@@ -135,7 +126,7 @@ $scripts = array(
 	array(
 		'name'     => 'popper',
 		'location' => 'vendor/bootstrap/js/popper.js',
-		'template' => 'template_01'
+		'template' => 'template_01',
 	),
 	array(
 		'name'     => 'bootstrap',
@@ -208,7 +199,3 @@ wp_footer();
         scale: 1.1
     })
 </script>
-<!--===============================================================================================-->
-
-</body>
-</html>
