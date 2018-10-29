@@ -55,7 +55,7 @@
       <!-- Intro: Your intro text and MailChimp form. -->
       <div class="row" id="intro">
 			<div class="content">
-				
+				<?php echo get_theme_mod('colorlib_coming_soon_timer_option'); ?>
             <!-- Pre-Submission: This is what's displayed before the subscription form has been submitted. -->
             <div id="pre-subscribe">
                 <div class="row" id="copy">
