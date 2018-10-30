@@ -31,8 +31,8 @@ add_action( 'plugins_loaded', 'colorlib_coming_soon_load_plugin_textdomain' );
 
 
 //Loading Plugin Theme Customizer Options
-require_once( 'includes/colorlib-custom-controls.php' );
 require_once( 'templates/colorlib-customizer.php' );
+
 
 /* Redirect code that checks if on WP login page */
 add_action( 'init', 'colorlib_coming_soon_skip_redirect_on_login' );

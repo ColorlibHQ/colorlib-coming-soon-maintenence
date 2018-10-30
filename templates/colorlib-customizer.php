@@ -80,6 +80,7 @@ class Colorlib_CSMM {
 
 	public function colorlib_coming_soon_customizer( $wp_customize ) {
 
+		require_once( CSMM_PATH.'includes/colorlib-custom-controls.php' );
 
 		/* Setting - Coming Soon - General */
 		$wp_customize->add_setting( 'colorlib_coming_soon_preview', array(
@@ -115,7 +116,7 @@ class Colorlib_CSMM {
 			'sanitize_callback' => 'colorlib_coming_soon_sanitize_text',
 		) );
 
-		$wp_customize->add_control( new colorlib_template_selection_radio( 'colorlib_coming_soon_template_selection', array(
+		$wp_customize->add_control( new colorlib_template_selection_radio( $wp_customize,'colorlib_coming_soon_template_selection', array(
 				'label'    => esc_html__( 'Select Template', 'colorlib-coming-soon' ),
 				'section'  => 'colorlib_coming_soon_section_templates',
 				'type'     => 'select',

@@ -5,7 +5,7 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
 		/**
 		 * The type of control being rendered
 		 */
-		public $type = 'select';
+		public $type = 'template_select';
 
 		/**
 		 * Enqueue our scripts and styles
