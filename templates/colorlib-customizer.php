@@ -115,7 +115,7 @@ class Colorlib_CSMM {
 			'sanitize_callback' => 'colorlib_coming_soon_sanitize_text',
 		) );
 
-		$wp_customize->add_control( 'colorlib_coming_soon_template_selection', array(
+		$wp_customize->add_control( new colorlib_template_selection_radio( 'colorlib_coming_soon_template_selection', array(
 				'label'    => esc_html__( 'Select Template', 'colorlib-coming-soon' ),
 				'section'  => 'colorlib_coming_soon_section_templates',
 				'type'     => 'select',
@@ -146,7 +146,7 @@ class Colorlib_CSMM {
 					'template_23' => esc_html__( 'Template 23', 'colorlib-coming-soon' ),
 				),
 			)
-		);
+		) );
 
 		/*Settings - General - Timer*/
 		$wp_customize->add_setting( 'colorlib_coming_soon_timer_option', array(
@@ -166,11 +166,11 @@ class Colorlib_CSMM {
 			'default'           => plugin_dir_url( __FILE__ ) . '../assets/images/bg.jpg',
 			'sanitize_callback' => 'colorlib_coming_soon_sanitize_text',
 		) );
-		$wp_customize->add_control( new WP_Customize_Image_Control( $wp_customize, 'colorlib_coming_soon_background_image', array(
+		$wp_customize->add_control( $wp_customize, 'colorlib_coming_soon_background_image', array(
 				'label'    => esc_html__( 'Background Image', 'colorlib-coming-soon' ),
 				'section'  => 'colorlib_coming_soon_section_background',
 				'priority' => 20,
-			) )
+			)
 		);
 
 		/* Setting - Coming Soon - Background */
@@ -238,12 +238,12 @@ class Colorlib_CSMM {
 			'default'           => plugin_dir_url( __FILE__ ) . '../assets/images/logo.png',
 			'sanitize_callback' => 'colorlib_coming_soon_sanitize_text',
 		) );
-		$wp_customize->add_control( new WP_Customize_Image_Control( $wp_customize, 'colorlib_coming_soon_plugin_logo', array(
+		$wp_customize->add_control( $wp_customize, 'colorlib_coming_soon_plugin_logo', array(
 				'label'       => esc_html__( 'Logo Image', 'colorlib-coming-soon' ),
 				'description' => esc_html__( 'Recommended size: 80px by 80px', 'colorlib-coming-soon' ),
 				'section'     => 'colorlib_coming_soon_section_logo',
 				'priority'    => 10,
-			) )
+			)
 		);
 
 
