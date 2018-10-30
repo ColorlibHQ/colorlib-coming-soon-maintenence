@@ -10,34 +10,24 @@
 	$styles = array(
 		array(
 			'name'     => 'animate',
-			'location' => 'vendor/animate/animate.css',
-			'template' => 'template_01',
-		),
-		array(
-			'name'     => 'main',
-			'location' => 'css/main.css',
-			'template' => 'template_01',
+			'location' => 'css/vendor/animate/animate.css',
+			'template' => 'global',
 		),
 		array(
 			'name'     => 'bootstrap',
-			'location' => 'vendor/bootstrap/css/bootstrap.min.css',
-			'template' => 'template_01',
+			'location' => 'css/vendor/bootstrap/css/bootstrap.min.css',
+			'template' => 'global',
 		),
 		array(
 			'name'     => 'font-awesome',
 			'location' => 'fonts/font-awesome-4.7.0/css/font-awesome.min.css',
-			'template' => 'template_01'
+			'template' => 'global'
 		),
 		array(
 			'name'     => 'select-2',
-			'location' => 'vendor/select2/select2.min.css',
-			'template' => 'template_01'
+			'location' => 'css/vendor/select2/select2.min.css',
+			'template' => 'global'
 		),
-		array(
-			'name'     => 'util',
-			'location' => 'css/util.css',
-			'template' => 'template_01'
-		)
 	);
 
 	colorlibStyleEnqueue( $styles );

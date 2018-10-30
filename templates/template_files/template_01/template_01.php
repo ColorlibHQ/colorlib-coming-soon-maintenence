@@ -1,48 +1,27 @@
-	<?php
-#TODO find solution to include a general resource, not depending on template in areas where same resource
-	$styles = array(
-		array(
-			'name'     => 'animate',
-			'location' => 'vendor/animate/animate.css',
-			'template' => 'template_01',
-		),
-		array(
-			'name'     => 'main',
-			'location' => 'css/main.css',
-			'template' => 'template_01',
-		),
-		array(
-			'name'     => 'bootstrap',
-			'location' => 'vendor/bootstrap/css/bootstrap.min.css',
-			'template' => 'template_01',
-		),
-		array(
-			'name'     => 'font-awesome',
-			'location' => 'fonts/font-awesome-4.7.0/css/font-awesome.min.css',
-			'template' => 'template_01'
-		),
-		array(
-			'name'     => 'select-2',
-			'location' => 'vendor/select2/select2.min.css',
-			'template' => 'template_01'
-		),
-		array(
-			'name'     => 'util',
-			'location' => 'css/util.css',
-			'template' => 'template_01'
-		)
-	);
+<?php
+$template = get_theme_mod( 'colorlib_coming_soon_template_selection' );
 
-	colorlibStyleEnqueue( $styles );
+$styles = array(
 
-	$counter = get_theme_mod( 'colorlib_coming_soon_timer_option' );
-	$dates = colorlibCounterDates($counter);
+	array(
+		'name'     => 'main',
+		'location' => 'css/main.css',
+		'template' => $template
+	),
+	array(
+		'name'     => 'util',
+		'location' => 'css/util.css',
+		'template' => $template
+	)
+);
 
-	?>
-    <link rel="icon" type="image/png"
-          href="<?php echo CSMM_URL . 'templates/template_files/' . get_theme_mod( 'colorlib_coming_soon_template_selection' ); ?>/images/icons/favicon.ico"/>
-	<?php wp_head(); ?>
+colorlibStyleEnqueue( $styles );
+wp_head();
 
+$counter = get_theme_mod( 'colorlib_coming_soon_timer_option' );
+$dates   = colorlibCounterDates( $counter );
+
+?>
 <div class="size1 bg0 where1-parent">
     <!-- Countdown -->
     <div class="flex-c-m bg-img1 size2 where1 overlay1 where2 respon2"
@@ -50,22 +29,22 @@
         <div class="wsize2 flex-w flex-c-m cd100 js-tilt">
             <div class="flex-col-c-m size6 bor2 m-l-10 m-r-10 m-t-15">
                 <span class="l2-txt1 p-b-9 days"><?php echo $dates['template']['days']; ?></span>
-                <span class="s2-txt4"><?php _e('Days','colorlib-coming-soon'); ?></span>
+                <span class="s2-txt4"><?php _e( 'Days', 'colorlib-coming-soon' ); ?></span>
             </div>
 
             <div class="flex-col-c-m size6 bor2 m-l-10 m-r-10 m-t-15">
                 <span class="l2-txt1 p-b-9 hours"><?php echo $dates['template']['hours']; ?></span>
-                <span class="s2-txt4"><?php _e('Hours','colorlib-coming-soon'); ?></span>
+                <span class="s2-txt4"><?php _e( 'Hours', 'colorlib-coming-soon' ); ?></span>
             </div>
 
             <div class="flex-col-c-m size6 bor2 m-l-10 m-r-10 m-t-15">
                 <span class="l2-txt1 p-b-9 minutes"><?php echo $dates['template']['minutes']; ?></span>
-                <span class="s2-txt4"><?php _e('Minutes','colorlib-coming-soon'); ?></span>
+                <span class="s2-txt4"><?php _e( 'Minutes', 'colorlib-coming-soon' ); ?></span>
             </div>
 
             <div class="flex-col-c-m size6 bor2 m-l-10 m-r-10 m-t-15">
                 <span class="l2-txt1 p-b-9 seconds"><?php echo $dates['template']['seconds']; ?></span>
-                <span class="s2-txt4"><?php _e('Seconds','colorlib-coming-soon'); ?></span>
+                <span class="s2-txt4"><?php _e( 'Seconds', 'colorlib-coming-soon' ); ?></span>
             </div>
         </div>
     </div>
@@ -125,61 +104,57 @@
 $scripts = array(
 	array(
 		'name'     => 'popper',
-		'location' => 'vendor/bootstrap/js/popper.js',
-		'template' => 'template_01',
+		'location' => 'js/vendor/bootstrap/js/popper.js',
+		'template' => 'global',
 	),
 	array(
 		'name'     => 'bootstrap',
-		'location' => 'vendor/bootstrap/js/bootstrap.min.js',
-		'template' => 'template_01'
+		'location' => 'js/vendor/bootstrap/js/bootstrap.min.js',
+		'template' => 'global'
 	),
 	array(
 		'name'     => 'popper',
-		'location' => 'vendor/bootstrap/js/popper.js',
-		'template' => 'template_01'
+		'location' => 'js/vendor/bootstrap/js/popper.js',
+		'template' => 'global'
 	),
 	array(
 		'name'     => 'select2',
-		'location' => 'vendor/select2/select2.min.js',
-		'template' => 'template_01'
+		'location' => 'js/vendor/select2/select2.min.js',
+		'template' => 'global'
 	),
 	array(
 		'name'     => 'moment',
-		'location' => 'vendor/countdowntime/moment.min.js',
-		'template' => 'template_01'
+		'location' => 'js/vendor/countdowntime/moment.min.js',
+		'template' => 'global'
 	),
 	array(
 		'name'     => 'timezone',
-		'location' => 'vendor/countdowntime/moment-timezone-with-data.min.js',
-		'template' => 'template_01'
+		'location' => 'js/vendor/countdowntime/moment-timezone-with-data.min.js',
+		'template' => 'global'
 	),
 	array(
 		'name'     => 'coutdowntime',
-		'location' => 'vendor/countdowntime/countdowntime.js',
-		'template' => 'template_01'
+		'location' => 'js/vendor/countdowntime/countdowntime.js',
+		'template' => 'global'
 	),
 	array(
 		'name'     => 'tilt',
-		'location' => 'vendor/tilt/tilt.jquery.min.js',
-		'template' => 'template_01'
+		'location' => 'js/vendor/tilt/tilt.jquery.min.js',
+		'template' => 'global'
 	),
 	array(
 		'name'     => 'main',
 		'location' => 'js/main.js',
-		'template' => 'template_01'
+		'template' => $template
 	),
 
 );
 
 colorlibScriptEnqueue( $scripts );
-
 wp_footer();
-
 ?>
-
-
 <script>
-    $('.cd100').countdown100({
+    jQuery('.cd100').countdown100({
         /*Set Endtime here*/
         /*Endtime must be > current time*/
         endtimeYear: <?php echo $dates['script']['year']; ?>,
@@ -195,7 +170,7 @@ wp_footer();
 </script>
 
 <script>
-    $('.js-tilt').tilt({
+    jQuery('.js-tilt').tilt({
         scale: 1.1
     })
 </script>

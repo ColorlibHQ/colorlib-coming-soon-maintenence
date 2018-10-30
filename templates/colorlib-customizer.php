@@ -286,7 +286,7 @@ class Colorlib_CSMM {
 
 		/* Setting - Coming Soon - Page Content */
 		$wp_customize->add_setting( 'colorlib_coming_soon_page_footer', array(
-			'default'           => 'Designed by <a href="http://www.leeflets.com" rel="nofollow" target="_blank">Jason Schuller</a> & Developed by <a href="http://www.wpkube.com/" rel="nofollow" target="_blank">WP Kube</a>',
+			'default'           => 'And don\'t worry, we hate spam too! You can unsubscribe at any time.',
 			'sanitize_callback' => 'colorlib_coming_soon_sanitize_text',
 		) );
 		$wp_customize->add_control( 'colorlib_coming_soon_page_footer', array(
@@ -363,6 +363,45 @@ class Colorlib_CSMM {
 				'section'  => 'colorlib_coming_soon_section_social_settings',
 				'type'     => 'text',
 				'priority' => 30,
+			)
+		);
+
+		/* Setting - Coming Soon - Social Links */
+		$wp_customize->add_setting( 'colorlib_coming_soon_social_youtube', array(
+			'default'           => 'youtube.com',
+			'sanitize_callback' => 'colorlib_coming_soon_sanitize_text',
+		) );
+		$wp_customize->add_control( 'colorlib_coming_soon_social_youtube', array(
+				'label'    => esc_html__( 'Youtube', 'colorlib-coming-soon' ),
+				'section'  => 'colorlib_coming_soon_section_social_settings',
+				'type'     => 'text',
+				'priority' => 40,
+			)
+		);
+
+		/* Setting - Coming Soon - Social Links */
+		$wp_customize->add_setting( 'colorlib_coming_soon_social_pinteres', array(
+			'default'           => 'pinterest.com',
+			'sanitize_callback' => 'colorlib_coming_soon_sanitize_text',
+		) );
+		$wp_customize->add_control( 'colorlib_coming_soon_social_pinteres', array(
+				'label'    => esc_html__( 'Pinterest', 'colorlib-coming-soon' ),
+				'section'  => 'colorlib_coming_soon_section_social_settings',
+				'type'     => 'text',
+				'priority' => 50,
+			)
+		);
+
+		/* Setting - Coming Soon - Social Links */
+		$wp_customize->add_setting( 'colorlib_coming_soon_social_instagram', array(
+			'default'           => 'instagram.com',
+			'sanitize_callback' => 'colorlib_coming_soon_sanitize_text',
+		) );
+		$wp_customize->add_control( 'colorlib_coming_soon_social_instagram', array(
+				'label'    => esc_html__( 'Instagram', 'colorlib-coming-soon' ),
+				'section'  => 'colorlib_coming_soon_section_social_settings',
+				'type'     => 'text',
+				'priority' => 60,
 			)
 		);
 

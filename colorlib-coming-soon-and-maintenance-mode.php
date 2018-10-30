@@ -17,13 +17,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-/*define( 'FBFW_VERSION', '3.0.14' );*/
 define( 'CSMM_PATH', plugin_dir_path( __FILE__ ) );
 define( 'CSMM_URL', plugin_dir_url( __FILE__ ) );
 define( 'CSMM_PLUGIN_BASE', plugin_basename( __FILE__ ) );
-/*define( 'FBFW_PREVIOUS_PLUGIN_VERSION', '3.0.10' );*/
 define( 'CSMM_FILE_', __FILE__ );
-/*define( 'PLUGIN_NAME', 'fancybox-for-wordpress' );*/
 
 //loads the text domain for translation
 function colorlib_coming_soon_load_plugin_textdomain() {
@@ -76,17 +73,26 @@ function colorlib_coming_soon_settings_link() {
 }
 
 
+// Function to enqueue template styles
 function colorlibStyleEnqueue( $styles ) {
 	if ( is_array( $styles ) ) {
 		foreach ( $styles as $style ) {
 			$fileLocation = $style['location'];
 			$fileName     = $style['name'];
 			$templateName = $style['template'];
-			wp_enqueue_style( $templateName . '-' . $fileName, CSMM_URL . 'templates/template_files/' . $templateName . '/' . $fileLocation );
+
+			if ( $templateName == 'global' ) {
+				wp_enqueue_style( $templateName . '-' . $fileName, CSMM_URL . 'assets/' . $fileLocation );
+			} else {
+				wp_enqueue_style( $templateName . '-' . $fileName, CSMM_URL . 'templates/template_files/' . $templateName . '/' . $fileLocation );
+			}
+
 		}
 	}
 }
 
+
+// Function to enqueue template scripts
 function colorlibScriptEnqueue( $scripts ) {
 	if ( is_array( $scripts ) ) {
 		foreach ( $scripts as $script ) {
@@ -99,8 +105,7 @@ function colorlibScriptEnqueue( $scripts ) {
 			if ( $script['template'] != null ) {
 				$templateName = $script['template'];
 			}
-
-			if ( $templateName != null ) {
+			if ( $templateName != 'global' ) {
 				wp_enqueue_script( $templateName . '-' . $fileName, CSMM_URL . 'templates/template_files/' . $templateName . '/' . $fileLocation );
 			} else {
 				wp_enqueue_script( $templateName . '-' . $fileName, CSMM_URL . 'assets/' . $fileLocation );
@@ -113,6 +118,8 @@ function colorlibScriptEnqueue( $scripts ) {
 add_action( 'wp_enqueue_style', 'colorlibStyleEnqueue' );
 add_action( 'wp_enqueue_scripts', 'colorlibScriptEnqueue' );
 
+
+// Timer and countdown date display function
 function colorlibCounterDates( $timerDate ) {
 
 	$date = DateTime::createFromFormat( 'Y-m-d', $timerDate );
@@ -146,9 +153,10 @@ function colorlibCounterDates( $timerDate ) {
 	return $dates;
 }
 
+
 //Enqueue scripts needed for admin customization
 add_action( 'admin_enqueue_scripts', 'colorlib_enqueue' );
 function colorlib_enqueue() {
-	wp_enqueue_editor();
-	wp_enqueue_script('colorlib-csmm-admin-script',CSMM_URL.'assets/js/admin.js');
+	/*wp_enqueue_editor();*/
+	wp_enqueue_script( 'colorlib-csmm-admin-script', CSMM_URL . 'assets/js/admin.js' );
 }
