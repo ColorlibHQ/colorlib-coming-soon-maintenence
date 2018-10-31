@@ -25,7 +25,7 @@ $dates   = colorlibCounterDates( $counter );
 <div class="size1 bg0 where1-parent">
     <!-- Countdown -->
     <div class="flex-c-m bg-img1 size2 where1 overlay1 where2 respon2"
-         style="background-image: url('images/bg01.jpg');">
+         style="background-image: url('<?php echo CSMM_URL.'templates/'.$template; ?>/images/bg01.jpg');">
         <div class="wsize2 flex-w flex-c-m cd100 js-tilt">
             <div class="flex-col-c-m size6 bor2 m-l-10 m-r-10 m-t-15">
                 <span class="l2-txt1 p-b-9 days"><?php echo $dates['template']['days']; ?></span>

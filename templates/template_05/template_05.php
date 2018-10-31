@@ -24,23 +24,23 @@ wp_head();
 <div class="bg-g1 size1 flex-w flex-col-c-sb p-l-15 p-r-15 p-b-30">
     <div class="flex-w flex-c cd100 wsize1 bor1">
         <div class="flex-col-c-m size2 bg0 bor2">
-            <span class="l1-txt3 p-b-7 days">35</span>
-            <span class="s1-txt1">Days</span>
+            <span class="l1-txt3 p-b-7 days"><?php echo $dates['template']['days']; ?></span>
+            <span class="s1-txt1"><?php echo _e('Days','colorlib-coming-soon'); ?></span>
         </div>
 
         <div class="flex-col-c-m size2 bg0 bor2">
-            <span class="l1-txt3 p-b-7 hours">17</span>
-            <span class="s1-txt1">Hours</span>
+            <span class="l1-txt3 p-b-7 hours"><?php echo $dates['template']['hours']; ?></span>
+            <span class="s1-txt1"><?php echo _e('Hours','colorlib-coming-soon'); ?></span>
         </div>
 
         <div class="flex-col-c-m size2 bg0 bor2">
-            <span class="l1-txt3 p-b-7 minutes">50</span>
-            <span class="s1-txt1">Minutes</span>
+            <span class="l1-txt3 p-b-7 minutes"><?php echo $dates['template']['minutes']; ?></span>
+            <span class="s1-txt1"><?php echo _e('Minutes','colorlib-coming-soon'); ?></span>
         </div>
 
         <div class="flex-col-c-m size2 bg0">
-            <span class="l1-txt3 p-b-7 seconds">39</span>
-            <span class="s1-txt1">Seconds</span>
+            <span class="l1-txt3 p-b-7 seconds"><?php echo $dates['template']['seconds']; ?></span>
+            <span class="s1-txt1"><?php echo _e('Seconds','colorlib-coming-soon'); ?></span>
         </div>
     </div>
 
@@ -81,42 +81,42 @@ wp_head();
 $scripts = array(
 	array(
 		'name'     => 'popper',
-		'location' => 'vendor/bootstrap/js/popper.js',
+		'location' => 'js/vendor/bootstrap/js/popper.js',
 		'template' => 'global',
 	),
 	array(
 		'name'     => 'bootstrap',
-		'location' => 'vendor/bootstrap/js/bootstrap.min.js',
+		'location' => 'js/vendor/bootstrap/js/bootstrap.min.js',
 		'template' => 'global'
 	),
 	array(
 		'name'     => 'popper',
-		'location' => 'vendor/bootstrap/js/popper.js',
+		'location' => 'js/vendor/bootstrap/js/popper.js',
 		'template' => 'global'
 	),
 	array(
 		'name'     => 'select2',
-		'location' => 'vendor/select2/select2.min.js',
+		'location' => 'js/vendor/select2/select2.min.js',
 		'template' => 'global'
 	),
 	array(
 		'name'     => 'moment',
-		'location' => 'vendor/countdowntime/moment.min.js',
+		'location' => 'js/vendor/countdowntime/moment.min.js',
 		'template' => 'global'
 	),
 	array(
 		'name'     => 'timezone',
-		'location' => 'vendor/countdowntime/moment-timezone-with-data.min.js',
+		'location' => 'js/vendor/countdowntime/moment-timezone-with-data.min.js',
 		'template' => 'global'
 	),
 	array(
 		'name'     => 'coutdowntime',
-		'location' => 'vendor/countdowntime/countdowntime.js',
+		'location' => 'js/vendor/countdowntime/countdowntime.js',
 		'template' => 'global'
 	),
 	array(
 		'name'     => 'tilt',
-		'location' => 'vendor/tilt/tilt.jquery.min.js',
+		'location' => 'js/vendor/tilt/tilt.jquery.min.js',
 		'template' => 'global'
 	),
 	array(

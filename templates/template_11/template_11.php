@@ -22,10 +22,10 @@ wp_head();
 ?>
 
 <div class="simpleslide100">
-	<div class="simpleslide100-item bg-img1" style="background-image: url('images/bg01.jpg');"></div>
-	<div class="simpleslide100-item bg-img1" style="background-image: url('images/bg02.jpg');"></div>
-	<div class="simpleslide100-item bg-img1" style="background-image: url('images/bg03.jpg');"></div>
-	<div class="simpleslide100-item bg-img1" style="background-image: url('images/bg04.jpg');"></div>
+	<div class="simpleslide100-item bg-img1" style="background-image: url('<?php echo CSMM_URL.'templates/'.$template; ?>/images/bg01.jpg');"></div>
+	<div class="simpleslide100-item bg-img1" style="background-image: url('<?php echo CSMM_URL.'templates/'.$template; ?>/images/bg02.jpg');"></div>
+	<div class="simpleslide100-item bg-img1" style="background-image: url('<?php echo CSMM_URL.'templates/'.$template; ?>/images/bg03.jpg');"></div>
+	<div class="simpleslide100-item bg-img1" style="background-image: url('<?php echo CSMM_URL.'templates/'.$template; ?>/images/bg04.jpg');"></div>
 </div>
 
 <div class="flex-col-c-sb size1 overlay1">
@@ -50,29 +50,29 @@ wp_head();
 
 		<div class="flex-w flex-c cd100 respon2">
 			<div class="flex-col-c wsize1 m-b-30">
-				<span class="l1-txt2 p-b-37 days">35</span>
-				<span class="m1-txt2 p-r-20">Days</span>
+				<span class="l1-txt2 p-b-37 days"><?php echo $dates['template']['days']; ?></span>
+				<span class="m1-txt2 p-r-20"><?php echo _e('Days','colorlib-coming-soon'); ?></span>
 			</div>
 
 			<span class="l1-txt2 p-t-15 dis-none-sm">:</span>
 
 			<div class="flex-col-c wsize1 m-b-30">
-				<span class="l1-txt2 p-b-37 hours">17</span>
-				<span class="m1-txt2 p-r-20">Hr</span>
+				<span class="l1-txt2 p-b-37 hours"><?php echo $dates['template']['hours']; ?></span>
+				<span class="m1-txt2 p-r-20"><?php echo _e('Hr','colorlib-coming-soon'); ?></span>
 			</div>
 
 			<span class="l1-txt2 p-t-15 dis-none-lg">:</span>
 
 			<div class="flex-col-c wsize1 m-b-30">
-				<span class="l1-txt2 p-b-37 minutes">50</span>
-				<span class="m1-txt2 p-r-20">Min</span>
+				<span class="l1-txt2 p-b-37 minutes"><?php echo $dates['template']['minutes']; ?></span>
+				<span class="m1-txt2 p-r-20"><?php echo _e('Min','colorlib-coming-soon'); ?></span>
 			</div>
 
 			<span class="l1-txt2 p-t-15 dis-none-sm">:</span>
 
 			<div class="flex-col-c wsize1 m-b-30">
-				<span class="l1-txt2 p-b-37 seconds">39</span>
-				<span class="m1-txt2 p-r-20">Sec</span>
+				<span class="l1-txt2 p-b-37 seconds"><?php echo $dates['template']['seconds']; ?></span>
+				<span class="m1-txt2 p-r-20"><?php echo _e('Sec','colorlib-coming-soon'); ?></span>
 			</div>
 		</div>
 	</div>
@@ -97,42 +97,42 @@ wp_head();
 $scripts = array(
 	array(
 		'name'     => 'popper',
-		'location' => 'vendor/bootstrap/js/popper.js',
+		'location' => 'js/vendor/bootstrap/js/popper.js',
 		'template' => 'global',
 	),
 	array(
 		'name'     => 'bootstrap',
-		'location' => 'vendor/bootstrap/js/bootstrap.min.js',
+		'location' => 'js/vendor/bootstrap/js/bootstrap.min.js',
 		'template' => 'global'
 	),
 	array(
 		'name'     => 'popper',
-		'location' => 'vendor/bootstrap/js/popper.js',
+		'location' => 'js/vendor/bootstrap/js/popper.js',
 		'template' => 'global'
 	),
 	array(
 		'name'     => 'select2',
-		'location' => 'vendor/select2/select2.min.js',
+		'location' => 'js/vendor/select2/select2.min.js',
 		'template' => 'global'
 	),
 	array(
 		'name'     => 'moment',
-		'location' => 'vendor/countdowntime/moment.min.js',
+		'location' => 'js/vendor/countdowntime/moment.min.js',
 		'template' => 'global'
 	),
 	array(
 		'name'     => 'timezone',
-		'location' => 'vendor/countdowntime/moment-timezone-with-data.min.js',
+		'location' => 'js/vendor/countdowntime/moment-timezone-with-data.min.js',
 		'template' => 'global'
 	),
 	array(
 		'name'     => 'coutdowntime',
-		'location' => 'vendor/countdowntime/countdowntime.js',
+		'location' => 'js/vendor/countdowntime/countdowntime.js',
 		'template' => 'global'
 	),
 	array(
 		'name'     => 'tilt',
-		'location' => 'vendor/tilt/tilt.jquery.min.js',
+		'location' => 'js/vendor/tilt/tilt.jquery.min.js',
 		'template' => 'global'
 	),
 	array(

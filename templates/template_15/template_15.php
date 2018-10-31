@@ -22,11 +22,11 @@ wp_head();
 ?>
 
 <div class="simpleslide100">
-    <div class="simpleslide100-item bg-img1" style="background-image: url('images/bg01.jpg');"></div>
-    <div class="simpleslide100-item bg-img1" style="background-image: url('images/bg02.jpg');"></div>
-    <div class="simpleslide100-item bg-img1" style="background-image: url('images/bg03.jpg');"></div>
-    <div class="simpleslide100-item bg-img1" style="background-image: url('images/bg04.jpg');"></div>
-</div>
+    <div class="simpleslide100-item bg-img1" style="background-image: url('<?php echo CSMM_URL.'templates/'.$template; ?>/images/bg01.jpg');"></div>
+    <div class="simpleslide100-item bg-img1" style="background-image: url('<?php echo CSMM_URL.'templates/'.$template; ?>/images/bg02.jpg');"></div>
+    <div class="simpleslide100-item bg-img1" style="background-image: url('<?php echo CSMM_URL.'templates/'.$template; ?>/images/bg03.jpg');"></div>
+    <div class="simpleslide100-item bg-img1" style="background-image: url('<?php echo CSMM_URL.'templates/'.$template; ?>/images/bg04.jpg');"></div>
+</div>/
 
 <div class="bg-img1 size1 overlay1 p-b-35 p-l-15 p-r-15" style="background-image: url('images/bg01.jpg');">
     <div class="flex-col-c p-t-160 p-b-215 respon1">
@@ -64,42 +64,42 @@ wp_head();
 $scripts = array(
 	array(
 		'name'     => 'popper',
-		'location' => 'vendor/bootstrap/js/popper.js',
+		'location' => 'js/vendor/bootstrap/js/popper.js',
 		'template' => 'global',
 	),
 	array(
 		'name'     => 'bootstrap',
-		'location' => 'vendor/bootstrap/js/bootstrap.min.js',
+		'location' => 'js/vendor/bootstrap/js/bootstrap.min.js',
 		'template' => 'global'
 	),
 	array(
 		'name'     => 'popper',
-		'location' => 'vendor/bootstrap/js/popper.js',
+		'location' => 'js/vendor/bootstrap/js/popper.js',
 		'template' => 'global'
 	),
 	array(
 		'name'     => 'select2',
-		'location' => 'vendor/select2/select2.min.js',
+		'location' => 'js/vendor/select2/select2.min.js',
 		'template' => 'global'
 	),
 	array(
 		'name'     => 'moment',
-		'location' => 'vendor/countdowntime/moment.min.js',
+		'location' => 'js/vendor/countdowntime/moment.min.js',
 		'template' => 'global'
 	),
 	array(
 		'name'     => 'timezone',
-		'location' => 'vendor/countdowntime/moment-timezone-with-data.min.js',
+		'location' => 'js/vendor/countdowntime/moment-timezone-with-data.min.js',
 		'template' => 'global'
 	),
 	array(
 		'name'     => 'coutdowntime',
-		'location' => 'vendor/countdowntime/countdowntime.js',
+		'location' => 'js/vendor/countdowntime/countdowntime.js',
 		'template' => 'global'
 	),
 	array(
 		'name'     => 'tilt',
-		'location' => 'vendor/tilt/tilt.jquery.min.js',
+		'location' => 'js/vendor/tilt/tilt.jquery.min.js',
 		'template' => 'global'
 	),
 	array(
