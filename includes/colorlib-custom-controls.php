@@ -1,11 +1,11 @@
 <?php
 if ( class_exists( 'WP_Customize_Control' ) ) {
 
-	class Colorlib_Template_Selection_Radio extends WP_Customize_Control {
+	class Colorlib_Template_Selection extends WP_Customize_Control {
 		/**
 		 * The type of control being rendered
 		 */
-		public $type = 'template_select';
+		public $type = 'template_select_radio';
 
 		/**
 		 * Enqueue our scripts and styles
@@ -19,23 +19,6 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
 		 * Render the control in the customizer
 		 */
 		public function render_content() {
-			/*$templates = array(
-				'template_01' => 'Template 1',
-				'template_02' => 'Template 2',
-				'template_03' => 'Template 3',
-				'template_04' => 'Template 4',
-				'template_05' => 'Template 5',
-				'template_06' => 'Template 6',
-				'template_07' => 'Template 7',
-				'template_08' => 'Template 8',
-				'template_09' => 'Template 9',
-				'template_10' => 'Template 10',
-				'template_11' => 'Template 11',
-				'template_12' => 'Template 12',
-				'template_13' => 'Template 13',
-				'template_14' => 'Template 14',
-				'template_15' => 'Template 15',
-			);*/
 			?>
             <div class="colorlib_template_selection_radio">
 				<?php if ( ! empty( $this->label ) ) { ?>
@@ -45,9 +28,10 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
                     <span class="customize-control-description"><?php echo esc_html( $this->description ); ?></span>
 				<?php } ?>
 
-                <div class="radio-buttons">
+                <div class="templates-wrapper">
 					<?php foreach ( $this->choices as $key => $value ) { ?>
-                        <label class="radio-button-label">
+                        <label class="single-template-wrapper">
+                            <img src="<?php echo CSMM_URL. 'templates/'. esc_attr( $key ).'/images/'.esc_attr( $key ).'.jpg' ?>">
                             <input type="radio" name="<?php echo esc_attr( $this->id ); ?>"
                                    value="<?php echo esc_attr( $key ); ?>" <?php $this->link(); ?> <?php checked( esc_attr( $key ), $this->value() ); ?>/>
                             <span><?php echo esc_attr( $value ); ?></span>

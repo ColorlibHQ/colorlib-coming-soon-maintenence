@@ -31,7 +31,7 @@ add_action( 'plugins_loaded', 'colorlib_coming_soon_load_plugin_textdomain' );
 
 
 //Loading Plugin Theme Customizer Options
-require_once( 'templates/colorlib-customizer.php' );
+require_once( 'includes/colorlib-customizer.php' );
 
 
 /* Redirect code that checks if on WP login page */
@@ -54,7 +54,7 @@ function colorlib_coming_soon_template_redirect() {
 
 		$templateFile = get_theme_mod( 'colorlib_coming_soon_template_selection' );
 
-		$file = plugin_dir_path( __FILE__ ) . 'templates/template_files/' . $templateFile . '/' . $templateFile . '.php'; //get path of our coming soon display page and redirecting
+		$file = plugin_dir_path( __FILE__ ) . 'includes/colorlib-template.php'; //get path of our coming soon display page and redirecting
 		include( $file );
 
 		exit();
@@ -85,7 +85,7 @@ function colorlibStyleEnqueue( $styles ) {
 			if ( $templateName == 'global' ) {
 				wp_enqueue_style( $templateName . '-' . $fileName, CSMM_URL . 'assets/' . $fileLocation );
 			} else {
-				wp_enqueue_style( $templateName . '-' . $fileName, CSMM_URL . 'templates/template_files/' . $templateName . '/' . $fileLocation );
+				wp_enqueue_style( $templateName . '-' . $fileName, CSMM_URL . 'templates/' . $templateName . '/' . $fileLocation );
 			}
 
 		}
@@ -107,7 +107,7 @@ function colorlibScriptEnqueue( $scripts ) {
 				$templateName = $script['template'];
 			}
 			if ( $templateName != 'global' ) {
-				wp_enqueue_script( $templateName . '-' . $fileName, CSMM_URL . 'templates/template_files/' . $templateName . '/' . $fileLocation );
+				wp_enqueue_script( $templateName . '-' . $fileName, CSMM_URL . 'templates/' . $templateName . '/' . $fileLocation );
 			} else {
 				wp_enqueue_script( $templateName . '-' . $fileName, CSMM_URL . 'assets/' . $fileLocation );
 			}
