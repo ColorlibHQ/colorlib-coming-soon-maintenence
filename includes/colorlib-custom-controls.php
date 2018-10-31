@@ -12,8 +12,8 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
 		 */
 		public function enqueue() {
 			wp_enqueue_style( 'colorlib-custom-controls-css', CSMM_URL . 'css/custom-controls.css', array(), '1.0', 'all' );
+			wp_enqueue_editor();
 		}
-
 
 		/**
 		 * Render the control in the customizer
@@ -31,7 +31,7 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
                 <div class="colorlib-templates-wrapper">
 					<?php foreach ( $this->choices as $key => $value ) { ?>
                         <label class="colorlib-single-template-wrapper">
-                            <img src="<?php echo CSMM_URL. 'templates/'. esc_attr( $key ).'/'.esc_attr( $key ).'.jpg' ?>">
+                            <img src="<?php echo CSMM_URL . 'templates/' . esc_attr( $key ) . '/' . esc_attr( $key ) . '.jpg' ?>">
                             <input type="radio" name="<?php echo esc_attr( $this->id ); ?>"
                                    value="<?php echo esc_attr( $key ); ?>" <?php $this->link(); ?> <?php checked( esc_attr( $key ), $this->value() ); ?>/>
                             <span><?php echo esc_attr( $value ); ?></span>

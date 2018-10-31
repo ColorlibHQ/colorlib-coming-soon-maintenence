@@ -1,5 +1,8 @@
-jQuery(document).ready(function () {
+jQuery(window).load(function () {
     jQuery('textarea').each(function () {
-        wp.editor.initialize(jQuery(this));
+        var textID = jQuery(this).attr('id');
+        if (textID.length) {
+           // wp.editor.initialize(textID);
+        }
     });
 });

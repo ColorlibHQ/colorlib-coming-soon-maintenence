@@ -160,4 +160,5 @@ add_action( 'admin_enqueue_scripts', 'colorlib_enqueue' );
 function colorlib_enqueue() {
 	/*wp_enqueue_editor();*/
 	wp_enqueue_script( 'colorlib-csmm-admin-script', CSMM_URL . 'assets/js/admin.js' );
+	wp_enqueue_script( 'skyrocket-customizer-preview', CSMM_URL . 'assets/js/customizer-preview.js', array( 'customize-preview', 'jquery' ) );
 }
