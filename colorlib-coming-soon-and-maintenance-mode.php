@@ -116,6 +116,11 @@ function colorlibScriptEnqueue( $scripts ) {
 	}
 }
 
+function colorlib_customizer_preview_scripts(){
+	wp_enqueue_script( 'colorlib-customizer-preview', CSMM_URL. 'assets/js/customizer-preview.js', array( 'customize-preview', 'jquery' ) );
+
+}
+add_action( 'customize_preview_init', 'colorlib_customizer_preview_scripts' );
 add_action( 'wp_enqueue_style', 'colorlibStyleEnqueue' );
 add_action( 'wp_enqueue_scripts', 'colorlibScriptEnqueue' );
 
@@ -154,11 +159,3 @@ function colorlibCounterDates( $timerDate ) {
 	return $dates;
 }
 
-
-//Enqueue scripts needed for admin customization
-add_action( 'admin_enqueue_scripts', 'colorlib_enqueue' );
-function colorlib_enqueue() {
-	/*wp_enqueue_editor();*/
-	wp_enqueue_script( 'colorlib-csmm-admin-script', CSMM_URL . 'assets/js/admin.js' );
-	wp_enqueue_script( 'skyrocket-customizer-preview', CSMM_URL . 'assets/js/customizer-preview.js', array( 'customize-preview', 'jquery' ) );
-}
