@@ -116,10 +116,14 @@ function colorlibScriptEnqueue( $scripts ) {
 	}
 }
 
-function colorlib_customizer_preview_scripts(){
-	wp_enqueue_script( 'colorlib-customizer-preview', CSMM_URL. 'assets/js/customizer-preview.js', array( 'customize-preview', 'jquery' ) );
+function colorlib_customizer_preview_scripts() {
+	wp_enqueue_script( 'colorlib-customizer-preview', CSMM_URL . 'assets/js/customizer-preview.js', array(
+		'customize-preview',
+		'jquery'
+	) );
 
 }
+
 add_action( 'customize_preview_init', 'colorlib_customizer_preview_scripts' );
 add_action( 'wp_enqueue_style', 'colorlibStyleEnqueue' );
 add_action( 'wp_enqueue_scripts', 'colorlibScriptEnqueue' );

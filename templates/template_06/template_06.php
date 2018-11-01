@@ -24,7 +24,7 @@ $dates   = colorlibCounterDates( $counter );
 <div class="bg-img1 size1 overlay1 p-t-24" style="background-image: url('images/bg01.jpg');">
     <div class="flex-w flex-sb-m p-l-80 p-r-74 p-b-175 respon5">
         <div class="wrappic1 m-r-30 m-t-10 m-b-10">
-            <a href="#"><img src="images/icons/logo.png" alt="LOGO"></a>
+            <a href="#"><img src="<?php echo get_theme_mod('colorlib_coming_soon_plugin_logo'); ?>" alt="Logo"></a>
         </div>
 
         <div class="flex-w m-t-10 m-b-10">

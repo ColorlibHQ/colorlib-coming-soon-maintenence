@@ -36,7 +36,7 @@ $dates   = colorlibCounterDates( $counter );
     <div class="flex-col-c p-t-160 p-b-215 respon1">
         <div class="wrappic1">
             <a href="#">
-                <img src="images/icons/logo.png" alt="IMG">
+                <img src="<?php echo get_theme_mod('colorlib_coming_soon_plugin_logo'); ?>" alt="Logo">
             </a>
         </div>
 

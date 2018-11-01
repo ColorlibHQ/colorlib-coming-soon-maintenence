@@ -1,0 +1,11 @@
+.colorlib-template-radio {
+    visibility: hidden;
+}
+
+.colorlib-single-template-wrapper img {
+    border: 1px solid transparent;
+}
+
+.colorlib-single-template-wrapper.active img {
+    border: 1px solid #0000cc;
+}

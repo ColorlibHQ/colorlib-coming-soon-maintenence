@@ -11,7 +11,7 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
 		 * Enqueue our scripts and styles
 		 */
 		public function enqueue() {
-			wp_enqueue_style( 'colorlib-custom-controls-css', CSMM_URL . 'css/custom-controls.css', array(), '1.0', 'all' );
+			wp_enqueue_style( 'colorlib-custom-controls-css', CSMM_URL . 'assets/css/custom-controls.css', array(), '1.0', 'all' );
 			wp_enqueue_editor();
 		}
 
@@ -32,7 +32,8 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
 					<?php foreach ( $this->choices as $key => $value ) { ?>
                         <label class="colorlib-single-template-wrapper">
                             <img src="<?php echo CSMM_URL . 'templates/' . esc_attr( $key ) . '/' . esc_attr( $key ) . '.jpg' ?>">
-                            <input type="radio" name="<?php echo esc_attr( $this->id ); ?>"
+                            <input class="colorlib-template-radio" type="radio"
+                                   name="<?php echo esc_attr( $this->id ); ?>"
                                    value="<?php echo esc_attr( $key ); ?>" <?php $this->link(); ?> <?php checked( esc_attr( $key ), $this->value() ); ?>/>
                             <span><?php echo esc_attr( $value ); ?></span>
                         </label>
@@ -43,7 +44,7 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
 		}
 	}
 
-	if ( !class_exists( 'Colorlib_Control_Text_Editor' ) ) {
+	if ( ! class_exists( 'Colorlib_Control_Text_Editor' ) ) {
 
 		class Colorlib_Control_Text_Editor extends WP_Customize_Control {
 
@@ -89,6 +90,7 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
 			public
 			function enqueue() {
 				wp_enqueue_script( 'colorlib-customizer-js', CSMM_URL . 'assets/js/customizer.js', array( 'jquery' ), '1.0', true );
+				wp_enqueue_script( 'colorlib-cmmm-main-js', CSMM_URL . 'assets/js/main.js', array( 'jquery' ), '1.0', true );
 
 				if ( function_exists( 'wp_enqueue_editor' ) ) {
 					wp_enqueue_editor();
