@@ -89,8 +89,6 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
 			 */
 			public
 			function enqueue() {
-				wp_enqueue_script( 'colorlib-customizer-js', CSMM_URL . 'assets/js/customizer.js', array( 'jquery' ), '1.0', true );
-				wp_enqueue_script( 'colorlib-cmmm-main-js', CSMM_URL . 'assets/js/main.js', array( 'jquery' ), '1.0', true );
 
 				if ( function_exists( 'wp_enqueue_editor' ) ) {
 					wp_enqueue_editor();

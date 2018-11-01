@@ -18,8 +18,10 @@ colorlibStyleEnqueue( $styles );
 
 $counter = get_theme_mod( 'colorlib_coming_soon_timer_option' );
 $dates   = colorlibCounterDates( $counter );
-//wp_head();
+wp_head();
 ?>
+</head>
+<body>
 
 <div class="bg-g1 size1 flex-w flex-col-c-sb p-l-15 p-r-15 p-t-55 p-b-35 respon1">
     <span></span>
@@ -79,7 +81,7 @@ $dates   = colorlibCounterDates( $counter );
                 </h3>
 
                 <p class="m1-txt2 txt-center p-b-40">
-                    Follow us for update now!
+                    <?php echo _e('Follow us for update now!','colorlib-coming-soon'); ?>
                 </p>
 
                 <form class="contact100-form validate-form">

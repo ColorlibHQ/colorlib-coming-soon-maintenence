@@ -8,6 +8,7 @@ class Colorlib_CSMM {
 
 		add_action( 'customize_register', array( $this, 'colorlib_coming_soon_customizer' ) );
 		add_action( 'customize_register', array( $this, 'colorlib_comin_soon_panels' ) );
+
 	}
 
 	public function colorlib_comin_soon_panels( $wp_customize ) {

@@ -74,6 +74,23 @@ function colorlib_coming_soon_settings_link() {
 }
 
 
+// add the action
+add_action( 'wp_enqueue_scripts', 'remove_default_styles' );
+
+function remove_default_styles() {
+	// get all styles data
+	//global $wp_styles;
+	$stylesss = array('');
+
+	// loop over all of the registered scripts
+	foreach ( $stylesss as $handle => $data ) {
+		// remove it
+		//wp_deregister_style( $handle );
+		//wp_dequeue_style( $handle );
+	}
+}
+
+
 // Function to enqueue template styles
 function colorlibStyleEnqueue( $styles ) {
 	if ( is_array( $styles ) ) {
@@ -95,6 +112,8 @@ function colorlibStyleEnqueue( $styles ) {
 
 // Function to enqueue template scripts
 function colorlibScriptEnqueue( $scripts ) {
+	//wp_enqueue_script( 'jquery', 'https://code.jquery.com/jquery-3.3.1.min.js' );
+	wp_enqueue_script( 'colorlib-cmmm-main-js', CSMM_URL . 'assets/js/main.js', array( 'jquery' ), '1.0', true );
 	if ( is_array( $scripts ) ) {
 		foreach ( $scripts as $script ) {
 			if ( $script['location'] != null ) {
@@ -116,6 +135,8 @@ function colorlibScriptEnqueue( $scripts ) {
 	}
 }
 
+
+//add customizer preview script
 function colorlib_customizer_preview_scripts() {
 	wp_enqueue_script( 'colorlib-customizer-preview', CSMM_URL . 'assets/js/customizer-preview.js', array(
 		'customize-preview',
@@ -124,14 +145,19 @@ function colorlib_customizer_preview_scripts() {
 
 }
 
-add_action( 'customize_preview_init', 'colorlib_customizer_preview_scripts' );
+//add customizer script
+function customizer_scripts() {
+	wp_enqueue_script( 'colorlib-customizer-js', CSMM_URL . 'assets/js/customizer.js', array( 'jquery' ), '1.0', true );
+}
+
+add_action( 'customize_controls_enqueue_scripts', 'customizer_scripts' );
 add_action( 'wp_enqueue_style', 'colorlibStyleEnqueue' );
 add_action( 'wp_enqueue_scripts', 'colorlibScriptEnqueue' );
+add_action( 'customize_preview_init', 'colorlib_customizer_preview_scripts' );
 
 
 // Timer and countdown date display function
 function colorlibCounterDates( $timerDate ) {
-
 	$date = DateTime::createFromFormat( 'Y-m-d H:i:s', $timerDate );
 
 	//$fDAte    = new DateTime( $timerDate );

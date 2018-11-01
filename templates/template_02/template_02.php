@@ -19,9 +19,10 @@ colorlibStyleEnqueue( $styles );
 
 $counter = get_theme_mod( 'colorlib_coming_soon_timer_option' );
 $dates   = colorlibCounterDates( $counter );
-//wp_head();
+wp_head();
 ?>
-
+</head>
+<body>
 <!--  -->
 <div class="simpleslide100">
     <div class="simpleslide100-item bg-img1"

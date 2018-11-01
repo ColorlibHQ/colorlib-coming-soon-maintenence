@@ -1,7 +1,7 @@
 <?php
-$template = get_theme_mod( 'colorlib_coming_soon_template_selection' );
 
-$styles = array(
+$template = get_theme_mod( 'colorlib_coming_soon_template_selection' );
+$styles   = array(
 
 	array(
 		'name'     => 'main',
@@ -19,8 +19,10 @@ colorlibStyleEnqueue( $styles );
 
 $counter = get_theme_mod( 'colorlib_coming_soon_timer_option' );
 $dates   = colorlibCounterDates( $counter );
-//wp_head();
+wp_head();
 ?>
+</head>
+<body>
 <div class="size1 bg0 where1-parent">
     <!-- Countdown -->
     <div class="flex-c-m bg-img1 size2 where1 overlay1 where2 respon2"
@@ -71,26 +73,29 @@ $dates   = colorlibCounterDates( $counter );
 
                 <div class="w-full">
                     <button class="flex-c-m s2-txt2 size4 bg1 bor1 hov1 trans-04">
-                        <?php echo _e('Subscribe','colorlib-coming-soon'); ?>
+						<?php echo _e( 'Subscribe', 'colorlib-coming-soon' ); ?>
                     </button>
                 </div>
             </form>
 
             <p class="s2-txt3 p-t-18" id="colorlib_coming_soon_page_footer">
-                <?php echo get_theme_mod('colorlib_coming_soon_page_footer'); ?>
+				<?php echo get_theme_mod( 'colorlib_coming_soon_page_footer' ); ?>
             </p>
         </div>
 
         <div class="flex-w">
-            <a href="#" class="flex-c-m size5 bg3 how1 trans-04 m-r-5">
+            <a href="<?php echo get_theme_mod( 'colorlib_coming_soon_social_facebook' ); ?>"
+               id="colorlib_coming_soon_social_facebook" class="flex-c-m size5 bg3 how1 trans-04 m-r-5">
                 <i class="fa fa-facebook"></i>
             </a>
 
-            <a href="#" class="flex-c-m size5 bg4 how1 trans-04 m-r-5">
+            <a href="<?php echo get_theme_mod( 'colorlib_coming_soon_social_twitter' ); ?>"
+               id="colorlib_coming_soon_social_twitter" class="flex-c-m size5 bg4 how1 trans-04 m-r-5">
                 <i class="fa fa-twitter"></i>
             </a>
 
-            <a href="#" class="flex-c-m size5 bg5 how1 trans-04 m-r-5">
+            <a href="<?php echo get_theme_mod( 'colorlib_coming_soon_social_youtube' ); ?>"
+               id="colorlib_coming_soon_social_youtube" class="flex-c-m size5 bg5 how1 trans-04 m-r-5">
                 <i class="fa fa-youtube-play"></i>
             </a>
         </div>

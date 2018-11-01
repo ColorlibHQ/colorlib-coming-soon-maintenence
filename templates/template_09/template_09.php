@@ -18,8 +18,10 @@ colorlibStyleEnqueue( $styles );
 
 $counter = get_theme_mod( 'colorlib_coming_soon_timer_option' );
 $dates   = colorlibCounterDates( $counter );
-//wp_head();
+wp_head();
 ?>
+</head>
+<body>
 
 <div class="simpleslide100">
     <div class="simpleslide100-item bg-img1"
@@ -73,15 +75,15 @@ $dates   = colorlibCounterDates( $counter );
 
     <!--  -->
     <div class="flex-w flex-c-m p-b-35">
-        <a href="#" class="size3 flex-c-m how-social trans-04 m-r-3 m-l-3 m-b-5">
+        <a href="<?php echo get_theme_mod('colorlib_coming_soon_social_facebook'); ?>" id="colorlib_coming_soon_social_facebook" class="size3 flex-c-m how-social trans-04 m-r-3 m-l-3 m-b-5">
             <i class="fa fa-facebook"></i>
         </a>
 
-        <a href="#" class="size3 flex-c-m how-social trans-04 m-r-3 m-l-3 m-b-5">
+        <a href="<?php echo get_theme_mod('colorlib_coming_soon_social_twitter'); ?>" id="colorlib_coming_soon_social_twiiter" class="size3 flex-c-m how-social trans-04 m-r-3 m-l-3 m-b-5">
             <i class="fa fa-twitter"></i>
         </a>
 
-        <a href="#" class="size3 flex-c-m how-social trans-04 m-r-3 m-l-3 m-b-5">
+        <a href="<?php echo get_theme_mod('colorlib_coming_soon_social_youtube'); ?>" id="colrlib_coming_soon_social_youtube" class="size3 flex-c-m how-social trans-04 m-r-3 m-l-3 m-b-5">
             <i class="fa fa-youtube-play"></i>
         </a>
     </div>

@@ -32,18 +32,17 @@
 
 	colorlibStyleEnqueue( $styles );
 
-	$counter = get_theme_mod( 'colorlib_coming_soon_timer_option' );
-	$dates   = colorlibCounterDates( $counter );
+	$counter  = get_theme_mod( 'colorlib_coming_soon_timer_option' );
+	$dates    = colorlibCounterDates( $counter );
 	$template = get_theme_mod( 'colorlib_coming_soon_template_selection' );
 
 	?>
     <link rel="icon" type="image/png"
           href="<?php echo CSMM_URL . 'templates/' . $template; ?>/images/icons/favicon.ico"/>
-</head>
 
-<body>
-<?php
-include( CSMM_PATH . 'templates/'.$template .'/' . $template . '.php' );
-?>
-</body>
+	<?php
+	include( CSMM_PATH . 'templates/' . $template . '/' . $template . '.php' );
+	?>
+
+    </body>
 </html>

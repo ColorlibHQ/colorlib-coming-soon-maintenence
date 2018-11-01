@@ -18,8 +18,10 @@ colorlibStyleEnqueue( $styles );
 
 $counter = get_theme_mod( 'colorlib_coming_soon_timer_option' );
 $dates   = colorlibCounterDates( $counter );
-//wp_head();
+wp_head();
 ?>
+</head>
+<body>
 
 <div class="bg-img1 size1 flex-w flex-c-m p-t-55 p-b-55 p-l-15 p-r-15"
      style="background-image: url('<?php echo CSMM_URL.'templates/'.$template; ?>/images/bg01.jpg');">
@@ -29,7 +31,7 @@ $dates   = colorlibCounterDates( $counter );
         </div>
 
         <p class="txt-center m1-txt1 p-t-33 p-b-68" id="colorlib_coming_soon_page_content">
-            <?php echo get-theme_mod('colorlib_coming_soon_page_heading'); ?>
+            <?php echo get_theme_mod('colorlib_coming_soon_page_heading'); ?>
         </p>
 
         <div class="wsize2 flex-w flex-c hsize1 cd100">
