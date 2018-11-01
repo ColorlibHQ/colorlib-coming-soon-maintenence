@@ -13,22 +13,22 @@ Primary use:
 
 @font-face {
   font-family: Montserrat-Regular;
-  src: url('../fonts/Montserrat/Montserrat-Regular.ttf'); 
+  src: url('../../../assets/fonts/Montserrat/Montserrat-Regular.ttf');
 }
 
 @font-face {
   font-family: Montserrat-Thin;
-  src: url('../fonts/Montserrat/Montserrat-Thin.ttf'); 
+  src: url('../../../assets/fonts/Montserrat/Montserrat-Thin.ttf');
 }
 
 @font-face {
   font-family: Montserrat-Bold;
-  src: url('../fonts/Montserrat/Montserrat-Bold.ttf'); 
+  src: url('../../../assets/fonts/Montserrat/Montserrat-Bold.ttf');
 }
 
 @font-face {
   font-family: Quantico-Regular;
-  src: url('../fonts/Quantico/Quantico-Regular.ttf'); 
+  src: url('../../../assets/fonts/Quantico/Quantico-Regular.ttf');
 }
 
 

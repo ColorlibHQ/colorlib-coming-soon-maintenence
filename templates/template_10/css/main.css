@@ -13,42 +13,42 @@ Primary use:
 
 @font-face {
   font-family: Poppins-Regular;
-  src: url('../fonts/Poppins/Poppins-Regular.ttf'); 
+  src: url('../../../assets/fonts/Poppins/Poppins-Regular.ttf');
 }
 
 @font-face {
   font-family: Poppins-Bold;
-  src: url('../fonts/Poppins/Poppins-Bold.ttf'); 
+  src: url('../../../assets/fonts/Poppins/Poppins-Bold.ttf');
 }
 
 @font-face {
   font-family: Poppins-Thin;
-  src: url('../fonts/Poppins/Poppins-Thin.ttf'); 
+  src: url('../../../assets/fonts/Poppins/Poppins-Thin.ttf');
 }
 
 @font-face {
   font-family: Poppins-Black;
-  src: url('../fonts/Poppins/Poppins-Black.ttf'); 
+  src: url('../../../assets/fonts/Poppins/Poppins-Black.ttf');
 }
 
 @font-face {
   font-family: Poppins-Medium;
-  src: url('../fonts/Poppins/Poppins-Medium.ttf'); 
+  src: url('../../../assets/fonts/Poppins/Poppins-Medium.ttf');
 }
 
 @font-face {
   font-family: PlayfairDisplay-Italic;
-  src: url('../fonts/PlayfairDisplay/PlayfairDisplay-Italic.ttf'); 
+  src: url('../../../assets/fonts/PlayfairDisplay/PlayfairDisplay-Italic.ttf');
 }
 
 @font-face {
   font-family: PlayfairDisplay-BlackItalic;
-  src: url('../fonts/PlayfairDisplay/PlayfairDisplay-BlackItalic.ttf'); 
+  src: url('../../../assets/fonts/PlayfairDisplay/PlayfairDisplay-BlackItalic.ttf');
 }
 
 @font-face {
   font-family: PlayfairDisplay-Bold;
-  src: url('../fonts/PlayfairDisplay/PlayfairDisplay-Bold.ttf'); 
+  src: url('../../../assets/fonts/PlayfairDisplay/PlayfairDisplay-Bold.ttf');
 }
 
 

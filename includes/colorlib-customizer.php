@@ -192,7 +192,7 @@ class Colorlib_CSMM {
 
 		/* Setting - Coming Soon - Page Content */
 		$wp_customize->add_setting( 'colorlib_coming_soon_page_content', array(
-			'default'           => 'If you have something new you’re looking to launch, you’re going to want to start building a community of people interested in what you’re launching. The Launch template by is the best way to do just that.',
+			'default'           => 'If you have something new you’re looking to launch, you’re going to want to start building a community of people interested in what you’re launching.',
 			'sanitize_callback' => 'colorlib_coming_soon_sanitize_text',
 			'transport'         => 'postMessage',
 		) );

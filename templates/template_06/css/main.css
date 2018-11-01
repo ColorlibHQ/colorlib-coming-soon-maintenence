@@ -13,17 +13,17 @@ Primary use:
 
 @font-face {
   font-family: Poppins-Regular;
-  src: url('../fonts/Poppins/Poppins-Regular.ttf'); 
+  src: url('../../../assets/fonts/Poppins/Poppins-Regular.ttf');
 }
 
 @font-face {
   font-family: Poppins-Bold;
-  src: url('../fonts/Poppins/Poppins-Bold.ttf'); 
+  src: url('../../../assets/fonts/Poppins/Poppins-Bold.ttf');
 }
 
 @font-face {
   font-family: Aldrich-Regular;
-  src: url('../fonts/Aldrich/Aldrich-Regular.ttf'); 
+  src: url('../../../assets/fonts/Aldrich/Aldrich-Regular.ttf');
 }
 
 

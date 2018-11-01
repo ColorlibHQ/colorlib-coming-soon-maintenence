@@ -13,17 +13,17 @@ Primary use:
 
 @font-face {
   font-family: Lato-Regular;
-  src: url('../fonts/Lato/Lato-Regular.ttf'); 
+  src: url('../../../assets/fonts/Lato/Lato-Regular.ttf');
 }
 
 @font-face {
   font-family: Lato-Hairline;
-  src: url('../fonts/Lato/Lato-Hairline.ttf'); 
+  src: url('../../../assets/fonts/Lato/Lato-Hairline.ttf');
 }
 
 @font-face {
   font-family: PlayfairDisplay-Italic;
-  src: url('../fonts/PlayfairDisplay/PlayfairDisplay-Italic.ttf'); 
+  src: url('../../../assets/fonts/PlayfairDisplay/PlayfairDisplay-Italic.ttf');
 }
 
 

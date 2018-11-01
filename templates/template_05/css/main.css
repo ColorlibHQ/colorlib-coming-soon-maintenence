@@ -13,12 +13,12 @@ Primary use:
 
 @font-face {
   font-family: Ubuntu-Regular;
-  src: url('../fonts/Ubuntu/Ubuntu-Regular.ttf'); 
+  src: url('../../../assets/fonts/Ubuntu/Ubuntu-Regular.ttf');
 }
 
 @font-face {
   font-family: Ubuntu-Bold;
-  src: url('../fonts/Ubuntu/Ubuntu-Bold.ttf'); 
+  src: url('../../../assets/fonts/Ubuntu/Ubuntu-Bold.ttf');
 }
 
 
