@@ -19,7 +19,7 @@ colorlibStyleEnqueue( $styles );
 
 $counter = get_theme_mod( 'colorlib_coming_soon_timer_option' );
 $dates   = colorlibCounterDates( $counter );
-wp_head();
+//wp_head();
 ?>
 
 <!--  -->
@@ -35,12 +35,12 @@ wp_head();
 <div class="size1 overlay1">
     <!--  -->
     <div class="size1 flex-col-c-m p-l-15 p-r-15 p-t-50 p-b-50">
-        <h3 class="l1-txt1 txt-center p-b-25">
-            Coming Soon
+        <h3 class="l1-txt1 txt-center p-b-25" id="colorlib_coming_soon_page_heading">
+            <?php echo get_theme_mod('colorlib_coming_soon_page_heading'); ?>
         </h3>
 
-        <p class="m2-txt1 txt-center p-b-48">
-            Our website is under construction, follow us for update now!
+        <p class="m2-txt1 txt-center p-b-48" id="colorlib_coming_soon_page_content">
+            <?php echo get_theme_mod('colorlib_coming_soon_page_content'); ?>
         </p>
 
         <div class="flex-w flex-c-m cd100 p-b-33">

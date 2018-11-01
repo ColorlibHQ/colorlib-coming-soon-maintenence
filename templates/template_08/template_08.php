@@ -18,7 +18,7 @@ colorlibStyleEnqueue( $styles );
 
 $counter = get_theme_mod( 'colorlib_coming_soon_timer_option' );
 $dates   = colorlibCounterDates( $counter );
-wp_head();
+//wp_head();
 ?>
 
 <div class="bg-img1 overlay1 size1 flex-w flex-c-m p-t-55 p-b-55 p-l-15 p-r-15"
@@ -28,12 +28,12 @@ wp_head();
             <i class="zmdi zmdi-card-giftcard cl0 fs-60"></i>
         </p>
 
-        <h3 class="l1-txt1 txt-center p-b-22">
-            Coming Soon
+        <h3 class="l1-txt1 txt-center p-b-22" id="colorlib_coming_soon_page_heading">
+			<?php echo get_theme_mod( 'colorlib_coming_soon_page_heading' ); ?>
         </h3>
 
         <p class="txt-center m2-txt1 p-b-67">
-            Our website is under construction, follow us for update now!
+			<?php echo get_theme_mod( 'colorlib_coming_soon_page_content' ); ?>
         </p>
 
         <div class="flex-w flex-sa-m cd100 bor1 p-t-42 p-b-22 p-l-50 p-r-50 respon1">
@@ -71,7 +71,7 @@ wp_head();
             </div>
 
             <button class="flex-c-m s1-txt1 size2 how-btn trans-04 where1">
-                Notify Me
+                <?php echo _e('Notify Me','colorlib-coming-soon'); ?>
             </button>
         </form>
     </div>
@@ -133,24 +133,24 @@ wp_footer();
 
 ?>
 
-<script>
-    jQuery('.cd100').countdown100({
-        /*Set Endtime here*/
-        /*Endtime must be > current time*/
-        endtimeYear: <?php echo $dates['script']['year']; ?>,
-        endtimeMonth: <?php echo $dates['script']['month']; ?>,
-        endtimeDate: <?php echo $dates['script']['day']; ?>,
-        endtimeHours: 23,
-        endtimeMinutes: 0,
-        endtimeSeconds: 0,
-        timeZone: ""
-        // ex:  timeZone: "America/New_York"
-        //go to " http://momentjs.com/timezone/ " to get timezone
-    });
-</script>
+                <script>
+                    jQuery('.cd100').countdown100({
+                        /*Set Endtime here*/
+                        /*Endtime must be > current time*/
+                        endtimeYear: <?php echo $dates['script']['year']; ?>,
+                        endtimeMonth: <?php echo $dates['script']['month']; ?>,
+                        endtimeDate: <?php echo $dates['script']['day']; ?>,
+                        endtimeHours: 23,
+                        endtimeMinutes: 0,
+                        endtimeSeconds: 0,
+                        timeZone: ""
+                        // ex:  timeZone: "America/New_York"
+                        //go to " http://momentjs.com/timezone/ " to get timezone
+                    });
+                </script>
 
-<script>
-    jQuery('.js-tilt').tilt({
-        scale: 1.1
-    })
-</script>
+                <script>
+                    jQuery('.js-tilt').tilt({
+                        scale: 1.1
+                    })
+                </script>

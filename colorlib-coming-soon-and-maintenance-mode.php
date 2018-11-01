@@ -128,11 +128,12 @@ add_action( 'wp_enqueue_scripts', 'colorlibScriptEnqueue' );
 // Timer and countdown date display function
 function colorlibCounterDates( $timerDate ) {
 
-	$date = DateTime::createFromFormat( 'Y-m-d', $timerDate );
+	$date = DateTime::createFromFormat( 'Y-m-d H:i:s', $timerDate );
 
-	$fDAte    = new DateTime( $timerDate );
+	//$fDAte    = new DateTime( $timerDate );
 	$cDate    = new DateTime( date( 'Y-m-d H:i:s' ) );
-	$interval = $cDate->diff( $fDAte );
+	$interval = $cDate->diff( $date );
+
 	//template needed info
 	$days    = $interval->format( '%a' );
 	$hours   = $interval->format( '%H' );
@@ -155,6 +156,7 @@ function colorlibCounterDates( $timerDate ) {
 		'month' => $month,
 		'day'   => $day
 	);
+
 
 	return $dates;
 }

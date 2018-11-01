@@ -16,11 +16,10 @@ $styles = array(
 );
 
 colorlibStyleEnqueue( $styles );
-wp_head();
 
 $counter = get_theme_mod( 'colorlib_coming_soon_timer_option' );
 $dates   = colorlibCounterDates( $counter );
-
+//wp_head();
 ?>
 <div class="size1 bg0 where1-parent">
     <!-- Countdown -->
@@ -56,11 +55,9 @@ $dates   = colorlibCounterDates( $counter );
         </div>
 
         <div class="p-t-50 p-b-60">
-            <p class="m1-txt1 p-b-36">
-            <div id="colorlib_coming_soon_page_heading"><?php echo get_theme_mod('colorlib_coming_soon_page_heading'); ?></div>
-                Our website is <span class="m1-txt2">Coming Soon</span>, follow us for update now!
-            </>
-
+            <p class="m1-txt1 p-b-36" id="colorlib_coming_soon_page_heading">
+				<?php echo get_theme_mod( 'colorlib_coming_soon_page_heading' ); ?>
+            </p>
             <form class="contact100-form validate-form">
                 <div class="wrap-input100 m-b-10 validate-input" data-validate="Name is required">
                     <input class="s2-txt1 placeholder0 input100" type="text" name="name" placeholder="Your Name">
@@ -74,13 +71,13 @@ $dates   = colorlibCounterDates( $counter );
 
                 <div class="w-full">
                     <button class="flex-c-m s2-txt2 size4 bg1 bor1 hov1 trans-04">
-                        Subscribe
+                        <?php echo _e('Subscribe','colorlib-coming-soon'); ?>
                     </button>
                 </div>
             </form>
 
-            <p class="s2-txt3 p-t-18">
-                And don’t worry, we hate spam too! You can unsubcribe at anytime.
+            <p class="s2-txt3 p-t-18" id="colorlib_coming_soon_page_footer">
+                <?php echo get_theme_mod('colorlib_coming_soon_page_footer'); ?>
             </p>
         </div>
 

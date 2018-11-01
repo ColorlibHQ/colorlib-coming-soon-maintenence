@@ -18,7 +18,7 @@ colorlibStyleEnqueue( $styles );
 
 $counter = get_theme_mod( 'colorlib_coming_soon_timer_option' );
 $dates   = colorlibCounterDates( $counter );
-wp_head();
+//wp_head();
 ?>
 
 <div class="bg-img1 size1 flex-w flex-c-m p-t-55 p-b-55 p-l-15 p-r-15"
@@ -28,8 +28,8 @@ wp_head();
             <img src="images/icons/logo.png" alt="LOGO">
         </div>
 
-        <p class="txt-center m1-txt1 p-t-33 p-b-68">
-            Our website is under construction
+        <p class="txt-center m1-txt1 p-t-33 p-b-68" id="colorlib_coming_soon_page_content">
+            <?php echo get-theme_mod('colorlib_coming_soon_page_heading'); ?>
         </p>
 
         <div class="wsize2 flex-w flex-c hsize1 cd100">
@@ -67,8 +67,8 @@ wp_head();
 
         </form>
 
-        <p class="s1-txt4 txt-center p-t-10">
-            I promise to <span class="bor2">never</span> spam
+        <p class="s1-txt4 txt-center p-t-10" id="colorlib_coming_soon_page_footer">
+            <?php echo get_theme_mod('colorlib_coming_soon_page_footer'); ?>
         </p>
 
     </div>

@@ -18,7 +18,7 @@ colorlibStyleEnqueue( $styles );
 
 $counter = get_theme_mod( 'colorlib_coming_soon_timer_option' );
 $dates   = colorlibCounterDates( $counter );
-wp_head();
+//wp_head();
 ?>
 
 <div class="simpleslide100">
@@ -63,7 +63,7 @@ wp_head();
 
         <div class="m-t-10 m-b-10">
             <a href="#" class="size2 s1-txt1 flex-c-m how-btn1 trans-04">
-                Sign Up
+                <?php echo _e('Sign Up','colorlib-coming-soon'); ?>
             </a>
         </div>
     </div>
@@ -71,7 +71,7 @@ wp_head();
     <!--  -->
     <div class="flex-col-c-m p-l-15 p-r-15 p-t-80 p-b-90">
         <h3 class="l1-txt2 txt-center p-b-55 respon1">
-            Coming Soon
+            <?php echo get_theme_mod('colorlib_coming_soon_page_heading'); ?>
         </h3>
 
         <div>

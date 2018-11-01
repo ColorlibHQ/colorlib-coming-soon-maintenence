@@ -18,18 +18,18 @@ colorlibStyleEnqueue( $styles );
 
 $counter = get_theme_mod( 'colorlib_coming_soon_timer_option' );
 $dates   = colorlibCounterDates( $counter );
-wp_head();
+//wp_head();
 ?>
 
 <div class="bg-g1 size1 flex-w flex-col-c-sb p-l-15 p-r-15 p-t-55 p-b-35 respon1">
     <span></span>
     <div class="flex-col-c p-t-50 p-b-50">
-        <h3 class="l1-txt1 txt-center p-b-10">
-            Coming Soon
+        <h3 class="l1-txt1 txt-center p-b-10" id="colorlib_coming_soon_page_heading">
+            <?php echo get_theme_mod('colorlib_coming_soon_page_heading'); ?>
         </h3>
 
-        <p class="txt-center l1-txt2 p-b-60">
-            Our website is under construction
+        <p class="txt-center l1-txt2 p-b-60" id="colorlib_coming_soon_page_content">
+            <?php echo get_theme_mod('colorlib_coming_soon_page_content'); ?>
         </p>
 
         <div class="flex-w flex-c cd100 p-b-82">
@@ -54,8 +54,8 @@ wp_head();
             </div>
         </div>
 
-        <button class="flex-c-m s1-txt2 size3 how-btn" data-toggle="modal" data-target="#subscribe">
-            Follow us for update now!
+        <button class="flex-c-m s1-txt2 size3 how-btn" data-toggle="modal" data-target="#subscribe" id="colorlib_coming_soon_page_footer">
+            <?php echo get_theme_mod('colorlib_coming_soon_page_footer'); ?>
         </button>
     </div>
 
@@ -75,7 +75,7 @@ wp_head();
 
             <div class="wsize1 m-lr-auto">
                 <h3 class="m1-txt1 txt-center p-b-36">
-                    <span class="bor1 p-b-6">Subscribe</span>
+                    <span class="bor1 p-b-6"><?php echo _e('Subscribe','colorlib-coming-soon'); ?></span>
                 </h3>
 
                 <p class="m1-txt2 txt-center p-b-40">

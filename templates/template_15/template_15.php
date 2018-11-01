@@ -18,7 +18,7 @@ colorlibStyleEnqueue( $styles );
 
 $counter = get_theme_mod( 'colorlib_coming_soon_timer_option' );
 $dates   = colorlibCounterDates( $counter );
-wp_head();
+//wp_head();
 ?>
 
 <div class="simpleslide100">
@@ -40,8 +40,8 @@ wp_head();
             </a>
         </div>
 
-        <h3 class="l1-txt1 txt-center p-t-30 p-b-100">
-            Coming Soon
+        <h3 class="l1-txt1 txt-center p-t-30 p-b-100" id="colorlib_coming_soon_page_heading">
+            <?php echo get_theme_mod('colorlib_coming_soon_page_heading'); ?>
         </h3>
 
         <div class="cd100"></div>

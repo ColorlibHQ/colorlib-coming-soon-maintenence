@@ -18,7 +18,7 @@ colorlibStyleEnqueue( $styles );
 
 $counter = get_theme_mod( 'colorlib_coming_soon_timer_option' );
 $dates   = colorlibCounterDates( $counter );
-wp_head();
+//wp_head();
 ?>
 
 <div class="simpleslide100">
@@ -42,12 +42,12 @@ wp_head();
 
         <div class="w-full p-t-100 p-b-90 p-l-48 p-l-0-md">
 
-            <h3 class="l1-txt1 p-b-34 respon3">
-                Coming Soon
+            <h3 class="l1-txt1 p-b-34 respon3" id="colorlib_coming_soon_page_heading">
+                <?php echo get_theme_mod('colorlib_coming_soon_page_heading'); ?>
             </h3>
 
-            <p class="m2-txt1 p-b-46">
-                Follow us for update now!
+            <p class="m2-txt1 p-b-46" id="colorlib_coming_soon_page_content">
+                <?php echo get_theme_mod('colorlib_coming_soon_page_content'); ?>
             </p>
 
             <form class="contact100-form validate-form m-t-10 m-b-10">
@@ -60,7 +60,7 @@ wp_head();
                     </button>
 
                     <div class="flex-c-m ab-t-l s2-txt1 size4 bor1 respon4">
-                        <span>Subcribe Now:</span>
+                        <span><?php echo _e('Subcribe Now','colorlib-coming-soon'); ?>:</span>
                     </div>
                 </div>
             </form>
@@ -69,7 +69,7 @@ wp_head();
 
         <div class="flex-w flex-m">
 				<span class="m2-txt2 p-r-40">
-					Follow us
+					<?php echo _e('Follow us','colorlib-coming-soon'); ?>
 				</span>
 
             <a href="#" class="size3 flex-c-m how-social trans-04 m-r-15 m-b-5 m-t-5">

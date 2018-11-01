@@ -18,7 +18,7 @@ colorlibStyleEnqueue( $styles );
 
 $counter = get_theme_mod( 'colorlib_coming_soon_timer_option' );
 $dates   = colorlibCounterDates( $counter );
-wp_head();
+//wp_head();
 ?>
 
 <div class="bg-img1 size1 overlay1"
@@ -45,8 +45,8 @@ wp_head();
         </div>
 
         <div class="wsize1 m-lr-auto">
-            <p class="txt-center l1-txt1 p-b-60">
-                Our website is <span class="l1-txt2">Coming Soon</span>, follow us for update now!
+            <p class="txt-center l1-txt1 p-b-60" id="colorlib_coming_soon_page_heading">
+                <?php echo get_theme_mod('colorlib_coming_soon_page_heading'); ?>
             </p>
 
             <form class="w-full flex-w flex-c-m validate-form">
@@ -58,12 +58,12 @@ wp_head();
 
 
                 <button class="flex-c-m size3 m1-txt2 how-btn1 trans-04 m-b-20">
-                    Subscribe
+                    <?php echo _e('Subscribe','colorlib-coming-soon'); ?>
                 </button>
             </form>
 
             <p class="txt-center s1-txt1 p-t-5">
-                And don’t worry, we hate spam too! You can unsubcribe at anytime.
+                <?php echo get_theme_mod('colorlib_coming_soon_page_footer'); ?>
             </p>
         </div>
 
