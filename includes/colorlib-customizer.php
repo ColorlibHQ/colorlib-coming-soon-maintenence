@@ -143,7 +143,7 @@ class Colorlib_CSMM {
 
 		/*Settings - General - Timer*/
 		$wp_customize->add_setting( 'colorlib_coming_soon_timer_option', array(
-			'default'           => date( 'Y-m-d', strtotime( '+1 month' ) ),
+			'default'           => date( 'Y-m-d H:i:s', strtotime( '+1 month' ) ),
 			'sanitize_callback' => 'colorlib_coming_soon_sanitize_text',
 		) );
 

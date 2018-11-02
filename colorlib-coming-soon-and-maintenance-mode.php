@@ -143,10 +143,15 @@ add_action( 'customize_preview_init', 'colorlib_customizer_preview_scripts' );
 
 // Timer and countdown date display function
 function colorlibCounterDates( $timerDate ) {
-	$date = DateTime::createFromFormat( 'Y-m-d H:i:s', $timerDate );
+
+	if ( $timerDate instanceof DateTime ) {
+		$date = date( 'Y-m-d H:i:s', strtotime( '+1 month' ) );
+	} else {
+		$date = DateTime::createFromFormat( 'Y-m-d H:i:s', $timerDate );
+	}
 
 	//$fDAte    = new DateTime( $timerDate );
-	$cDate    = new DateTime( date( 'Y-m-d H:i:s' ) );
+	$cDate = new DateTime( date( 'Y-m-d H:i:s' ) );
 	$interval = $cDate->diff( $date );
 
 	//template needed info

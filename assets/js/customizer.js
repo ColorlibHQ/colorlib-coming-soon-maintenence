@@ -19,7 +19,7 @@ jQuery(window).load(function () {
             quicktags: true
         });
     });
-   // wp.codeEditor.initialize('_customize-input-colorlib_coming_soon_page_custom_css');
+    wp.codeEditor.initialize('_customize-input-colorlib_coming_soon_page_custom_css');
 });
 
 
