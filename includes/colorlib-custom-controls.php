@@ -11,8 +11,7 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
 		 * Enqueue our scripts and styles
 		 */
 		public function enqueue() {
-			wp_enqueue_style( 'colorlib-custom-controls-css', CSMM_URL . 'assets/css/custom-controls.css', array(), '1.0', 'all' );
-			wp_enqueue_editor();
+
 		}
 
 		/**

@@ -34,7 +34,7 @@ wp_head();
     <!--  -->
     <div class="w-full flex-w flex-sb-m p-l-80 p-r-80 p-t-22 p-lr-15-sm">
         <div class="wrappic1 m-r-30 m-t-10 m-b-10">
-            <a href="#"><img src="images/icons/logo.png" alt="LOGO"></a>
+            <a href="#"><img src="<?php echo get_theme_mod( 'colorlib_coming_soon_plugin_logo' ); ?>" alt="LOGO"></a>
         </div>
 
         <div class="flex-w m-t-10 m-b-10">
@@ -47,7 +47,7 @@ wp_head();
     <!--  -->
     <div class="flex-col-c-m p-l-15 p-r-15 p-t-50 p-b-120">
         <h3 class="l1-txt1 txt-center p-b-40 respon1" id="colorlib_coming_soon_page_heading">
-            <?php echo get-theme_mod('colorlib_coming_soon_page_heading'); ?>
+            <?php echo get_theme_mod('colorlib_coming_soon_page_heading'); ?>
         </h3>
 
         <div class="flex-w flex-c-m cd100">
@@ -102,11 +102,6 @@ $scripts = array(
 		'template' => 'global'
 	),
 	array(
-		'name'     => 'popper',
-		'location' => 'js/vendor/bootstrap/js/popper.js',
-		'template' => 'global'
-	),
-	array(
 		'name'     => 'select2',
 		'location' => 'js/vendor/select2/select2.min.js',
 		'template' => 'global'
@@ -114,6 +109,11 @@ $scripts = array(
 	array(
 		'name'     => 'moment',
 		'location' => 'js/vendor/countdowntime/moment.min.js',
+		'template' => 'global'
+	),
+	array(
+		'name'     => 'moment-timezone',
+		'location' => 'js/vendor/countdowntime/moment-timezone.min.js',
 		'template' => 'global'
 	),
 	array(
@@ -152,9 +152,9 @@ wp_footer();
         endtimeYear: <?php echo $dates['script']['year']; ?>,
         endtimeMonth: <?php echo $dates['script']['month']; ?>,
         endtimeDate: <?php echo $dates['script']['day']; ?>,
-        endtimeHours: 23,
-        endtimeMinutes: 0,
-        endtimeSeconds: 0,
+        endtimeHours: <?php echo $dates['script']['hour']; ?>,
+        endtimeMinutes: <?php echo $dates['script']['minute']; ?>,
+        endtimeSeconds: <?php echo $dates['script']['second']; ?>,
         timeZone: ""
         // ex:  timeZone: "America/New_York"
         //go to " http://momentjs.com/timezone/ " to get timezone

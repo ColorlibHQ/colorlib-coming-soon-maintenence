@@ -125,11 +125,6 @@ $scripts = array(
 		'template' => 'global'
 	),
 	array(
-		'name'     => 'popper',
-		'location' => 'js/vendor/bootstrap/js/popper.js',
-		'template' => 'global'
-	),
-	array(
 		'name'     => 'select2',
 		'location' => 'js/vendor/select2/select2.min.js',
 		'template' => 'global'
@@ -137,6 +132,11 @@ $scripts = array(
 	array(
 		'name'     => 'moment',
 		'location' => 'js/vendor/countdowntime/moment.min.js',
+		'template' => 'global'
+	),
+	array(
+		'name'     => 'moment-timezone',
+		'location' => 'js/vendor/countdowntime/moment-timezone.min.js',
 		'template' => 'global'
 	),
 	array(
@@ -175,9 +175,9 @@ wp_footer();
         endtimeYear: <?php echo $dates['script']['year']; ?>,
         endtimeMonth: <?php echo $dates['script']['month']; ?>,
         endtimeDate: <?php echo $dates['script']['day']; ?>,
-        endtimeHours: 23,
-        endtimeMinutes: 0,
-        endtimeSeconds: 0,
+        endtimeHours: <?php echo $dates['script']['hour']; ?>,
+        endtimeMinutes: <?php echo $dates['script']['minute']; ?>,
+        endtimeSeconds: <?php echo $dates['script']['Second']; ?>,
         timeZone: ""
         // ex:  timeZone: "America/New_York"
         //go to " http://momentjs.com/timezone/ " to get timezone

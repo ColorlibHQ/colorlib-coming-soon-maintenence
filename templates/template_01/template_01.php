@@ -116,18 +116,13 @@ $scripts = array(
 		'template' => 'global'
 	),
 	array(
-		'name'     => 'popper',
-		'location' => 'js/vendor/bootstrap/js/popper.js',
-		'template' => 'global'
-	),
-	array(
-		'name'     => 'select2',
-		'location' => 'js/vendor/select2/select2.min.js',
-		'template' => 'global'
-	),
-	array(
 		'name'     => 'moment',
 		'location' => 'js/vendor/countdowntime/moment.min.js',
+		'template' => 'global'
+	),
+	array(
+		'name'     => 'moment-timezone',
+		'location' => 'js/vendor/countdowntime/moment-timezone.min.js',
 		'template' => 'global'
 	),
 	array(

@@ -19,19 +19,8 @@ jQuery(window).load(function () {
             quicktags: true
         });
     });
+   // wp.codeEditor.initialize('_customize-input-colorlib_coming_soon_page_custom_css');
 });
 
-wp.customize.bind( 'preview-ready', function() {
 
-    wp.customize.preview.bind( 'login-designer-open-designer', function( data ) {
-        // When the section is expanded, open the login designer page specified via localization.
-        if ( true === data.expanded ) {
-            wp.customize.preview.send( 'url', login_designer_script.login_designer_page );
-        }
-    });
 
-    wp.customize.preview.bind( 'login-designer-back-to-home', function( data ) {
-        // Go back to home, if the section is closed.
-        wp.customize.preview.send( 'url', data.home_url );
-    });
-});

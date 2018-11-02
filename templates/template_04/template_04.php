@@ -175,9 +175,9 @@ wp_footer();
         endtimeYear: <?php echo $dates['script']['year']; ?>,
         endtimeMonth: <?php echo $dates['script']['month']; ?>,
         endtimeDate: <?php echo $dates['script']['day']; ?>,
-        endtimeHours: 23,
-        endtimeMinutes: 0,
-        endtimeSeconds: 0,
+        endtimeHours: <?php echo $dates['script']['hour']; ?>,
+        endtimeMinutes: <?php echo $dates['script']['minute']; ?>,
+        endtimeSeconds: <?php echo $dates['script']['second']; ?>,
         timeZone: ""
         // ex:  timeZone: "America/New_York"
         //go to " http://momentjs.com/timezone/ " to get timezone

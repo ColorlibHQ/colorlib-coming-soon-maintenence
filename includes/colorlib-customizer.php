@@ -70,9 +70,10 @@ class Colorlib_CSMM {
 
 		/* Section - Coming Soon - Custom CSS */
 		$wp_customize->add_section( 'colorlib_coming_soon_custom_css_settings', array(
-				'title'    => esc_html__( 'Add custom CSS', 'colorlib-coming-soon' ),
-				'panel'    => 'colorlib_coming_soon_general_panel',
-				'priority' => 70,
+				'title'     => esc_html__( 'Add custom CSS', 'colorlib-coming-soon' ),
+				'panel'     => 'colorlib_coming_soon_general_panel',
+				'priority'  => 70,
+				'code_type' => 'text/css',
 			)
 		);
 
@@ -178,7 +179,7 @@ class Colorlib_CSMM {
 
 		/* Setting - Coming Soon - Page Content */
 		$wp_customize->add_setting( 'colorlib_coming_soon_page_heading', array(
-			'default'           => '<h1>Something <strong>really good</strong> is coming <strong>very soon</strong>.</h1>',
+			'default'           => 'Something <strong>really good</strong> is coming <strong>very soon</strong>',
 			'sanitize_callback' => 'colorlib_coming_soon_sanitize_text',
 			'transport'         => 'postMessage',
 		) );
