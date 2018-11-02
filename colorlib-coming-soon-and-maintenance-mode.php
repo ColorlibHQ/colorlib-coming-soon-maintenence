@@ -128,11 +128,11 @@ function colorlib_customizer_preview_scripts() {
 
 
 function customizer_scripts() {
+	wp_enqueue_editor();
+	wp_enqueue_code_editor( array( 'type' => 'text/css' ) );
 	wp_enqueue_script( 'colorlib-customizer-js', CSMM_URL . 'assets/js/customizer.js' );
 	wp_enqueue_script( 'colorlib-cmmm-main-js', CSMM_URL . 'assets/js/main.js' );
 	wp_enqueue_style( 'colorlib-custom-controls-css', CSMM_URL . 'assets/css/custom-controls.css', array(), '1.0', 'all' );
-	wp_enqueue_editor();
-	//wp_enqueue_code_editor( array( 'type' => 'text/css' ) );
 }
 
 add_action( 'customize_controls_enqueue_scripts', 'customizer_scripts' );
@@ -151,7 +151,7 @@ function colorlibCounterDates( $timerDate ) {
 	}
 
 	//$fDAte    = new DateTime( $timerDate );
-	$cDate = new DateTime( date( 'Y-m-d H:i:s' ) );
+	$cDate    = new DateTime( date( 'Y-m-d H:i:s' ) );
 	$interval = $cDate->diff( $date );
 
 	//template needed info

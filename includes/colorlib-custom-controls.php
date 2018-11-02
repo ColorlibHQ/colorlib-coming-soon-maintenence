@@ -8,13 +8,6 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
 		public $type = 'template_select_radio';
 
 		/**
-		 * Enqueue our scripts and styles
-		 */
-		public function enqueue() {
-
-		}
-
-		/**
 		 * Render the control in the customizer
 		 */
 		public function render_content() {
@@ -123,6 +116,27 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
 			public
 			function render_content() {
 			}
+		}
+	}
+
+	class Colorlib_CSMM_Control_Toggle extends WP_Customize_Control {
+
+		public $type = 'checkbox';
+
+		public function render_content() {
+			?>
+            <div class="colorlib_csmm">
+                <div class="checkbox_switch">
+                    <div>
+                        <input type="checkbox" class="onoffswitch-checkbox" name="<?php echo $this->id; ?>"
+                               id="<?php echo $this->id; ?>" <?php echo ($this->value() == '1') ? 'checked="yes"' : ''; ?>/>
+	                    <?php echo $this->label; ?>
+                        <label for="<?php echo $this->id; ?>"
+                               class="onoffswitch-label"></label>
+                    </div>
+                </div>
+            </div>
+			<?php
 		}
 	}
 }
