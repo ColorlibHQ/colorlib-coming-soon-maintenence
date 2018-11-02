@@ -95,7 +95,8 @@ function colorlibStyleEnqueue( $styles ) {
 
 // Function to enqueue template scripts
 function colorlibScriptEnqueue( $scripts ) {
-	//wp_enqueue_script( 'jquery', 'https://code.jquery.com/jquery-3.3.1.min.js' );
+	
+	wp_enqueue_script( 'jquery', 'https://code.jquery.com/jquery-3.3.1.min.js' );
 	if ( is_array( $scripts ) ) {
 		foreach ( $scripts as $script ) {
 			if ( $script['location'] != null ) {
