@@ -18,7 +18,6 @@ colorlibStyleEnqueue( $styles );
 
 $counter = get_theme_mod( 'colorlib_coming_soon_timer_option' );
 $dates   = colorlibCounterDates( $counter );
-wp_head();
 ?>
 </head>
 <body>
