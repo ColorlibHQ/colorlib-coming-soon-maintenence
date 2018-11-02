@@ -26,7 +26,7 @@ wp_head();
 <div class="size1 bg0 where1-parent">
     <!-- Countdown -->
     <div class="flex-c-m bg-img1 size2 where1 overlay1 where2 respon2"
-         style="background-image: url('<?php echo CSMM_URL . 'templates/' . $template; ?>/images/bg01.jpg');">
+         style="wrap-pic1background-image: url('<?php echo CSMM_URL . 'templates/' . $template; ?>/images/bg01.jpg');">
         <div class="wsize2 flex-w flex-c-m cd100 js-tilt">
             <div class="flex-col-c-m size6 bor2 m-l-10 m-r-10 m-t-15">
                 <span class="l2-txt1 p-b-9 days"><?php echo $dates['template']['days']; ?></span>
@@ -163,9 +163,9 @@ wp_footer();
         endtimeYear: <?php echo $dates['script']['year']; ?>,
         endtimeMonth: <?php echo $dates['script']['month']; ?>,
         endtimeDate: <?php echo $dates['script']['day']; ?>,
-        endtimeHours: 23,
-        endtimeMinutes: 0,
-        endtimeSeconds: 0,
+        endtimeHours: <?php echo $dates['script']['hour']; ?>,
+        endtimeMinutes: <?php echo $dates['script']['minute']; ?>,
+        endtimeSeconds: <?php echo $dates['script']['second']; ?>,
         timeZone: ""
         // ex:  timeZone: "America/New_York"
         //go to " http://momentjs.com/timezone/ " to get timezone

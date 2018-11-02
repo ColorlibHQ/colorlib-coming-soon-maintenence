@@ -6,6 +6,11 @@
     border: 1px solid transparent;
 }
 
-.colorlib-single-template-wrapper.active img {
-    border: 1px solid #0000cc;
+.colorlib-single-template-wrapper.active img,
+.colorlib-single-template-wrapper:hover img {
+    box-shadow: 0 0 0 1px #5b9dd9, 0 0 3px rgba(0, 115, 170, 0.8);
+}
+
+#accordion-section-colorlib_coming_soon_section_templates {
+    display: block !important;
 }

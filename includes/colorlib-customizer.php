@@ -27,11 +27,12 @@ class Colorlib_CSMM {
 			)
 		);
 
-		/* Section - Coming Soon - Background */
+		/* Section - Coming Soon - Templates */
 		$wp_customize->add_section( 'colorlib_coming_soon_section_templates', array(
 				'title'    => esc_html__( 'Templates', 'colorlib-coming-soon' ),
 				'panel'    => 'colorlib_coming_soon_general_panel',
 				'priority' => 10,
+				'type'     => 'outer'
 			)
 		);
 
@@ -154,7 +155,7 @@ class Colorlib_CSMM {
 
 		/* Setting - General - Site Logo */
 		$wp_customize->add_setting( 'colorlib_coming_soon_plugin_logo', array(
-			'default'           => plugin_dir_url( __FILE__ ) . '../assets/images/logo.png',
+			'default'           => CSMM_URL . 'assets/images/logo.png',
 			'sanitize_callback' => 'colorlib_coming_soon_sanitize_text',
 		) );
 		$wp_customize->add_control( new WP_Customize_Image_Control( $wp_customize, 'colorlib_coming_soon_plugin_logo', array(
