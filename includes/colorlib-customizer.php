@@ -26,11 +26,13 @@ class ccsm_customizer {
 			)
 		);
 
-		/* Section - Coming Soon - Page Content */
-		$wp_customize->add_section( 'colorlib_coming_soon_section_page_settings', array(
-				'title'    => esc_html__( 'Page Content', 'colorlib-coming-soon' ),
-				'panel'    => 'colorlib_coming_soon_general_panel', // Not typically needed.
-				'priority' => 30,
+
+		/* Section - Coming Soon - Templates */
+		$wp_customize->add_section( 'colorlib_coming_soon_section_templates', array(
+				'title'    => esc_html__( 'Templates', 'colorlib-coming-soon' ),
+				'panel'    => 'colorlib_coming_soon_general_panel',
+				'priority' => 5,
+				'type'     => 'outer'
 			)
 		);
 
@@ -38,16 +40,7 @@ class ccsm_customizer {
 		$wp_customize->add_section( 'colorlib_coming_soon_section_general', array(
 				'title'    => esc_html__( 'General', 'colorlib-coming-soon' ),
 				'panel'    => 'colorlib_coming_soon_general_panel',
-				'priority' => 5,
-			)
-		);
-
-		/* Section - Coming Soon - Templates */
-		$wp_customize->add_section( 'colorlib_coming_soon_section_templates', array(
-				'title'    => esc_html__( 'Templates', 'colorlib-coming-soon' ),
-				'panel'    => 'colorlib_coming_soon_general_panel',
 				'priority' => 10,
-				'type'     => 'outer'
 			)
 		);
 
@@ -55,24 +48,16 @@ class ccsm_customizer {
 		$wp_customize->add_section( 'colorlib_coming_soon_section_logo', array(
 				'title'    => esc_html__( 'Site Logo', 'colorlib-coming-soon' ),
 				'panel'    => 'colorlib_coming_soon_general_panel',
-				'priority' => 20,
+				'priority' => 15,
 				'type'     => 'option'
 			)
 		);
 
-		/* Section - Coming Soon - Mailchimp */
-		$wp_customize->add_section( 'colorlib_coming_soon_mailchimp_key', array(
-				'title'    => esc_html__( 'MailChimp Form', 'colorlib-coming-soon' ),
-				'panel'    => 'colorlib_coming_soon_general_panel',
-				'priority' => 40,
-			)
-		);
-
-		/* Section - Coming Soon - Social Links */
-		$wp_customize->add_section( 'colorlib_coming_soon_section_social_settings', array(
-				'title'    => esc_html__( 'Social Links', 'colorlib-coming-soon' ),
-				'panel'    => 'colorlib_coming_soon_general_panel',
-				'priority' => 50,
+		/* Section - Coming Soon - Page Content */
+		$wp_customize->add_section( 'colorlib_coming_soon_section_page_settings', array(
+				'title'    => esc_html__( 'Page Content', 'colorlib-coming-soon' ),
+				'panel'    => 'colorlib_coming_soon_general_panel', // Not typically needed.
+				'priority' => 20,
 			)
 		);
 
@@ -80,15 +65,34 @@ class ccsm_customizer {
 		$wp_customize->add_section( 'colorlib_coming_soon_timer_settings', array(
 				'title'    => esc_html__( 'Chose timer settings', 'colorlib-coming-soon' ),
 				'panel'    => 'colorlib_coming_soon_general_panel',
-				'priority' => 60,
+				'priority' => 25,
 			)
 		);
 
+
+		/* Section - Coming Soon - Subscribe Form */
+		$wp_customize->add_section( 'colorlib_coming_soon_subscribe_form', array(
+				'title'    => esc_html__( 'Subscribe Form', 'colorlib-coming-soon' ),
+				'panel'    => 'colorlib_coming_soon_general_panel',
+				'priority' => 30,
+			)
+		);
+
+		/* Section - Coming Soon - Social Links */
+		$wp_customize->add_section( 'colorlib_coming_soon_section_social_settings', array(
+				'title'    => esc_html__( 'Social Links', 'colorlib-coming-soon' ),
+				'panel'    => 'colorlib_coming_soon_general_panel',
+				'priority' => 35,
+			)
+		);
+
+
+
 		/* Section - Coming Soon - Custom CSS */
 		$wp_customize->add_section( 'colorlib_coming_soon_custom_css_settings', array(
-				'title'     => esc_html__( 'Add custom CSS', 'colorlib-coming-soon' ),
+				'title'     => esc_html__( 'Custom CSS', 'colorlib-coming-soon' ),
 				'panel'     => 'colorlib_coming_soon_general_panel',
-				'priority'  => 70,
+				'priority'  => 40,
 				'code_type' => 'text/css',
 			)
 		);
@@ -112,6 +116,7 @@ class ccsm_customizer {
 				'section'     => 'colorlib_coming_soon_section_general',
 				'type'        => 'checkbox',
 				'priority'    => 10,
+				'transport' => 'postMessage'
 			) )
 		);
 
@@ -245,14 +250,14 @@ class ccsm_customizer {
 
 
 		/* Setting - Coming Soon - Page Content */
-		$wp_customize->add_setting( 'colorlib_coming_soon_mailchimp_form', array(
+		$wp_customize->add_setting( 'colorlib_coming_soon_subscribe', array(
 			'sanitize_callback' => 'ccsm_sanitize_text',
 			'type'              => 'option'
 		) );
 
-		$wp_customize->add_control( new ccsm_Control_Toggle( $wp_customize, 'colorlib_coming_soon_mailchimp_form', array(
-				'label'    => esc_html__( 'Disable MailChimp Form', 'colorlib-coming-soon' ),
-				'section'  => 'colorlib_coming_soon_mailchimp_key',
+		$wp_customize->add_control( new ccsm_Control_Toggle( $wp_customize, 'colorlib_coming_soon_subscribe', array(
+				'label'    => esc_html__( 'Disable Subscribe Form', 'colorlib-coming-soon' ),
+				'section'  => 'colorlib_coming_soon_subscribe_form',
 				'type'     => 'checkbox',
 				'priority' => 10,
 			) )
@@ -260,15 +265,15 @@ class ccsm_customizer {
 
 
 		/* Setting - Coming Soon - Page Content */
-		$wp_customize->add_setting( 'colorlib_coming_soon_mailchimp_form_url', array(
+		$wp_customize->add_setting( 'colorlib_coming_soon_subscribe_form_url', array(
 			'sanitize_callback' => 'ccsm_sanitize_text',
 			'type'              => 'option'
 		) );
 
-		$wp_customize->add_control( 'colorlib_coming_soon_mailchimp_form_url', array(
-				'label'       => esc_html__( 'MailChimp Form Action URL', 'colorlib-coming-soon' ),
+		$wp_customize->add_control( 'colorlib_coming_soon_subscribe_form_url', array(
+				'label'       => esc_html__( 'Subscribe Form Action URL', 'colorlib-coming-soon' ),
 				'description' => __( 'You can get your form action URL by creating a sign-up form and copying the form action="" field.: <a href="http://kb.mailchimp.com/lists/signup-forms/add-a-signup-form-to-your-website" target="_blank">http://kb.mailchimp.com/lists/signup-forms/add-a-signup-form-to-your-website</a>', 'colorlib-coming-soon' ),
-				'section'     => 'colorlib_coming_soon_mailchimp_key',
+				'section'     => 'colorlib_coming_soon_subscribe_form',
 				'type'        => 'text',
 				'priority'    => 10,
 			)
