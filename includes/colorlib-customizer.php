@@ -101,7 +101,9 @@ class ccsm_customizer {
 
 	public function ccsm_customizer_controls( $wp_customize ) {
 
-		require_once( CSMM_PATH . 'includes/colorlib-custom-controls.php' );
+		require_once( CSMM_PATH . 'includes/controls/class-ccsm-control-text-editor.php' );
+		require_once( CSMM_PATH . 'includes/controls/class-ccsm-control-toggle.php' );
+		require_once( CSMM_PATH . 'includes/controls/class-ccsm-template-selection.php' );
 
 		/* Setting - Coming Soon - General */
 		$wp_customize->add_setting( 'colorlib_coming_soon_preview', array(
@@ -110,13 +112,11 @@ class ccsm_customizer {
 			'type'              => 'option'
 		) );
 
-		$wp_customize->add_control( new ccsm_Control_Toggle ( $wp_customize, 'colorlib_coming_soon_preview', array(
+		$wp_customize->add_control( new CCSM_Control_Toggle ( $wp_customize, 'colorlib_coming_soon_preview', array(
 				'label'       => esc_html__( 'Preview Coming Soon Page?', 'colorlib-coming-soon' ),
 				'description' => esc_html__( 'Refresh this page page after saving in order to see the change.  This is used to preview your coming soon page in the theme customizer.', 'colorlib-coming-soon' ),
 				'section'     => 'colorlib_coming_soon_section_general',
-				'type'        => 'checkbox',
 				'priority'    => 10,
-				'transport' => 'postMessage'
 			) )
 		);
 
@@ -146,7 +146,7 @@ class ccsm_customizer {
 			'type'              => 'option'
 		) );
 
-		$wp_customize->add_control( new ccsm_Template_Selection( $wp_customize, 'colorlib_coming_soon_template_selection', array(
+		$wp_customize->add_control( new CCSM_Template_Selection( $wp_customize, 'colorlib_coming_soon_template_selection', array(
 				'label'    => esc_html__( 'Select Template', 'colorlib-coming-soon' ),
 				'section'  => 'colorlib_coming_soon_section_templates',
 				'priority' => 30,
@@ -207,7 +207,7 @@ class ccsm_customizer {
 			'type'              => 'option'
 		) );
 
-		$wp_customize->add_control( new ccsm_Control_Text_Editor( $wp_customize, 'colorlib_coming_soon_page_heading', array(
+		$wp_customize->add_control( new CCSM_Control_Text_Editor( $wp_customize, 'colorlib_coming_soon_page_heading', array(
 				'label'    => esc_html__( 'Heading', 'colorlib-coming-soon' ),
 				'section'  => 'colorlib_coming_soon_section_page_settings',
 				'type'     => 'epsilon-text-editor',
@@ -224,7 +224,7 @@ class ccsm_customizer {
 			'type'              => 'option'
 		) );
 
-		$wp_customize->add_control( new ccsm_Control_Text_Editor( $wp_customize, 'colorlib_coming_soon_page_content', array(
+		$wp_customize->add_control( new CCSM_Control_Text_Editor( $wp_customize, 'colorlib_coming_soon_page_content', array(
 				'label'    => esc_html__( 'Main Content', 'colorlib-coming-soon' ),
 				'section'  => 'colorlib_coming_soon_section_page_settings',
 				'type'     => 'epsilon-text-editor',
@@ -240,7 +240,7 @@ class ccsm_customizer {
 			'type'              => 'option'
 		) );
 
-		$wp_customize->add_control( new ccsm_Control_Text_Editor( $wp_customize, 'colorlib_coming_soon_page_footer', array(
+		$wp_customize->add_control( new CCSM_Control_Text_Editor( $wp_customize, 'colorlib_coming_soon_page_footer', array(
 				'label'    => esc_html__( 'Footer Text', 'colorlib-coming-soon' ),
 				'section'  => 'colorlib_coming_soon_section_page_settings',
 				'type'     => 'epsilon-text-editor',
@@ -255,10 +255,9 @@ class ccsm_customizer {
 			'type'              => 'option'
 		) );
 
-		$wp_customize->add_control( new ccsm_Control_Toggle( $wp_customize, 'colorlib_coming_soon_subscribe', array(
+		$wp_customize->add_control( new CCSM_Control_Toggle( $wp_customize, 'colorlib_coming_soon_subscribe', array(
 				'label'    => esc_html__( 'Disable Subscribe Form', 'colorlib-coming-soon' ),
 				'section'  => 'colorlib_coming_soon_subscribe_form',
-				'type'     => 'checkbox',
 				'priority' => 10,
 			) )
 		);
