@@ -13,10 +13,10 @@ $styles   = array(
 	)
 );
 
-styleEnqueue( $styles );
+style_enqueue( $styles );
 
 $counter = get_option( 'colorlib_coming_soon_timer_option' );
-$dates   = counterDates( $counter );
+$dates   = counter_dates( $counter );
 ?>
 </head>
 <body>
@@ -37,7 +37,7 @@ $dates   = counterDates( $counter );
 
         <div class="flex-w m-t-10 m-b-10">
             <a href="#" class="size2 m1-txt1 flex-c-m how-btn1 trans-04">
-                <?php echo _e('Sign Up','colorlib-coming-soon'); ?>
+				<?php echo _e( 'Sign Up', 'colorlib-coming-soon' ); ?>
             </a>
         </div>
     </div>
@@ -45,7 +45,7 @@ $dates   = counterDates( $counter );
     <!--  -->
     <div class="flex-col-c-m p-l-15 p-r-15 p-t-50 p-b-120">
         <h3 class="l1-txt1 txt-center p-b-40 respon1" id="colorlib_coming_soon_page_heading">
-            <?php echo get_option('colorlib_coming_soon_page_heading'); ?>
+			<?php echo get_option( 'colorlib_coming_soon_page_heading' ); ?>
         </h3>
 
         <div class="flex-w flex-c-m cd100">
@@ -73,17 +73,56 @@ $dates   = counterDates( $counter );
 
     <!--  -->
     <div class="flex-w flex-c-m p-b-35">
-        <a href="<?php echo get_option('colorlib_coming_soon_social_facebook'); ?>" id="colorlib_coming_soon_social_facebook" class="size3 flex-c-m how-social trans-04 m-r-3 m-l-3 m-b-5">
-            <i class="fa fa-facebook"></i>
-        </a>
+		<?php if ( get_option( 'colorlib_coming_soon_social_facebook' ) ) {
+			?>
+            <a href="<?php echo get_option( 'colorlib_coming_soon_social_facebook' ); ?>"
+               id="colorlib_coming_soon_social_facebook" class="size3 flex-c-m how-social trans-04 m-r-3 m-l-3 m-b-5">
+                <i class="fa fa-facebook"></i>
+            </a>
+			<?php
+		}
+		if ( get_option( 'colorlib_coming_soon_social_twitter' ) ) {
+			?>
+            <a href="<?php echo get_option( 'colorlib_coming_soon_social_twitter' ); ?>"
+               id="colorlib_coming_soon_social_twiiter" class="size3 flex-c-m how-social trans-04 m-r-3 m-l-3 m-b-5">
+                <i class="fa fa-twitter"></i>
+            </a>
+			<?php
+		}
+		if ( get_option( 'colorlib_coming_soon_social_youtube' ) ) {
+			?>
+            <a href="<?php echo get_option( 'colorlib_coming_soon_social_youtube' ); ?>"
+               id="colrlib_coming_soon_social_youtube" class="size3 flex-c-m how-social trans-04 m-r-3 m-l-3 m-b-5">
+                <i class="fa fa-youtube-play"></i>
+            </a>
+			<?php
+		}
+		if ( get_option( 'colorlib_coming_soon_social_email' ) ) {
+			?>
+            <a href="mailto:<?php echo get_option( 'colorlib_coming_soon_social_email' ); ?>"
+               id="colrlib_coming_soon_social_email" class="size3 flex-c-m how-social trans-04 m-r-3 m-l-3 m-b-5">
+                <i class="fa fa-envelope"></i>
+            </a>
+			<?php
+		}
+		if ( get_option( 'colorlib_coming_soon_social_pinterest' ) ) {
+			?>
+            <a href="<?php echo get_option( 'colorlib_coming_soon_social_pinterest' ); ?>"
+               id="colrlib_coming_soon_social_pinterest" class="size3 flex-c-m how-social trans-04 m-r-3 m-l-3 m-b-5">
+                <i class="fa fa-pinterest"></i>
+            </a>
+			<?php
+		}
+		if ( get_option( 'colorlib_coming_soon_social_instagram' ) ) {
+			?>
+            <a href="<?php echo get_option( 'colorlib_coming_soon_social_instagram' ); ?>"
+               id="colrlib_coming_soon_social_instagram" class="size3 flex-c-m how-social trans-04 m-r-3 m-l-3 m-b-5">
+                <i class="fa fa-instagram"></i>
+            </a>
+			<?php
+		}
+		?>
 
-        <a href="<?php echo get_option('colorlib_coming_soon_social_twitter'); ?>" id="colorlib_coming_soon_social_twiiter" class="size3 flex-c-m how-social trans-04 m-r-3 m-l-3 m-b-5">
-            <i class="fa fa-twitter"></i>
-        </a>
-
-        <a href="<?php echo get_option('colorlib_coming_soon_social_youtube'); ?>" id="colrlib_coming_soon_social_youtube" class="size3 flex-c-m how-social trans-04 m-r-3 m-l-3 m-b-5">
-            <i class="fa fa-youtube-play"></i>
-        </a>
     </div>
 </div>
 <?php
@@ -137,7 +176,7 @@ $scripts = array(
 
 );
 
-scriptEnqueue( $scripts );
+script_enqueue( $scripts );
 
 wp_footer();
 

@@ -14,10 +14,10 @@ $styles   = array(
 	)
 );
 
-styleEnqueue( $styles );
+style_enqueue( $styles );
 
 $counter = get_option( 'colorlib_coming_soon_timer_option' );
-$dates   = counterDates( $counter );
+$dates   = counter_dates( $counter );
 ?>
 </head>
 <body>
@@ -28,42 +28,88 @@ $dates   = counterDates( $counter );
             <div class="wrappic1 m-r-30 m-t-10 m-b-10">
                 <a href="#"><img src="<?php echo get_option( 'colorlib_coming_soon_plugin_logo' ); ?>" alt="LOGO"></a>
             </div>
-
             <div class="flex-w m-t-10 m-b-10">
-                <a href="<?php echo get_option('colorlib_coming_soon_social_facebook'); ?>" id="colorlib_coming_soon_social_facebook" class="size4 flex-c-m how-social trans-04 m-r-5 m-b-3 m-t-3">
-                    <i class="fa fa-facebook"></i>
-                </a>
+				<?php if ( get_option( 'colorlib_coming_soon_social_facebook' ) ) {
+					?>
+                    <a href="<?php echo get_option( 'colorlib_coming_soon_social_facebook' ); ?>"
+                       id="colorlib_coming_soon_social_facebook"
+                       class="size4 flex-c-m how-social trans-04 m-r-5 m-b-3 m-t-3">
+                        <i class="fa fa-facebook"></i>
+                    </a>
+					<?php
+				}
+				if ( get_option( 'colorlib_coming_soon_social_twitter' ) ) {
+					?>
+                    <a href="<?php echo get_option( 'colorlib_coming_soon_social_twitter' ); ?>"
+                       id="colorlib_coming_soon_social_twitter"
+                       class="size4 flex-c-m how-social trans-04 m-r-5 m-b-3 m-t-3">
+                        <i class="fa fa-twitter"></i>
+                    </a>
+					<?php
+				}
+				if ( get_option( 'colorlib_coming_soon_social_youtube' ) ) {
+					?>
+                    <a href="<?php echo get_option( 'colorlib_coming_soon_social_youtube' ); ?>"
+                       id="colorlib_coming_soon_social_youtube"
+                       class="size4 flex-c-m how-social trans-04 m-r-5 m-b-3 m-t-3">
+                        <i class="fa fa-youtube-play"></i>
+                    </a>
+					<?php
+				}
+				if ( get_option( 'colorlib_coming_soon_social_email' ) ) {
+					?>
+                    <a href="mailto:<?php echo get_option( 'colorlib_coming_soon_social_email' ); ?>"
+                       id="colorlib_coming_soon_social_email"
+                       class="size4 flex-c-m how-social trans-04 m-r-5 m-b-3 m-t-3">
+                        <i class="fa fa-envelope"></i>
+                    </a>
+					<?php
+				}
+				if ( get_option( 'colorlib_coming_soon_social_pinterest' ) ) {
+					?>
+                    <a href="<?php echo get_option( 'colorlib_coming_soon_social_pinterest' ); ?>"
+                       id="colorlib_coming_soon_social_pinterest"
+                       class="size4 flex-c-m how-social trans-04 m-r-5 m-b-3 m-t-3">
+                        <i class="fa fa-pinterest"></i>
+                    </a>
+					<?php
+				}
+				if ( get_option( 'colorlib_coming_soon_social_instagram' ) ) {
+					?>
+                    <a href="<?php echo get_option( 'colorlib_coming_soon_social_instagram' ); ?>"
+                       id="colorlib_coming_soon_social_instagram"
+                       class="size4 flex-c-m how-social trans-04 m-r-5 m-b-3 m-t-3">
+                        <i class="fa fa-instagram"></i>
+                    </a>
+					<?php
+				}
+				?>
 
-                <a href="<?php echo get_option('colorlib_coming_soon_social_twitter'); ?>" id="colorlib_coming_soon_social_twitter" class="size4 flex-c-m how-social trans-04 m-r-5 m-b-3 m-t-3">
-                    <i class="fa fa-twitter"></i>
-                </a>
-
-                <a href="<?php echo get_option('colorlib_coming_soon_social_youtube'); ?>" id="colorlib_coming_soon_social_youtube" class="size4 flex-c-m how-social trans-04 m-r-5 m-b-3 m-t-3">
-                    <i class="fa fa-youtube-play"></i>
-                </a>
             </div>
         </div>
 
         <div class="wsize1 m-lr-auto">
             <p class="txt-center l1-txt1 p-b-60" id="colorlib_coming_soon_page_heading">
-                <?php echo get_option('colorlib_coming_soon_page_heading'); ?>
+				<?php echo get_option( 'colorlib_coming_soon_page_heading' ); ?>
             </p>
 
             <form class="w-full flex-w flex-c-m validate-form">
 
-                <div class="wrap-input100 validate-input m-b-20" data-validate="Valid email is required: ex@abc.xyz">
-                    <input class="input100 placeholder0 m1-txt1" type="text" name="email" placeholder="Email Address">
+                <div class="wrap-input100 validate-input m-b-20"
+                     data-validate="Valid email is required: ex@abc.xyz">
+                    <input class="input100 placeholder0 m1-txt1" type="text" name="email"
+                           placeholder="Email Address">
                     <span class="focus-input100"></span>
                 </div>
 
 
                 <button class="flex-c-m size3 m1-txt2 how-btn1 trans-04 m-b-20">
-                    <?php echo _e('Subscribe','colorlib-coming-soon'); ?>
+					<?php echo _e( 'Subscribe', 'colorlib-coming-soon' ); ?>
                 </button>
             </form>
 
             <p class="txt-center s1-txt1 p-t-5">
-                <?php echo get_option('colorlib_coming_soon_page_footer'); ?>
+				<?php echo get_option( 'colorlib_coming_soon_page_footer' ); ?>
             </p>
         </div>
 
@@ -142,7 +188,7 @@ $scripts = array(
 
 );
 
-scriptEnqueue( $scripts );
+script_enqueue( $scripts );
 
 wp_footer();
 
