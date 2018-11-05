@@ -1,6 +1,6 @@
 <?php
 
-$template = get_theme_mod( 'colorlib_coming_soon_template_selection' );
+$template = get_option( 'colorlib_coming_soon_template_selection' );
 $styles   = array(
 	array(
 		'name'     => 'main',
@@ -16,7 +16,7 @@ $styles   = array(
 
 colorlibStyleEnqueue( $styles );
 
-$counter = get_theme_mod( 'colorlib_coming_soon_timer_option' );
+$counter = get_option( 'colorlib_coming_soon_timer_option' );
 $dates   = colorlibCounterDates( $counter );
 ?>
 </head>
@@ -26,7 +26,7 @@ $dates   = colorlibCounterDates( $counter );
      style="background-image: url('<?php echo CSMM_URL . 'templates/' . $template; ?>/images/bg01.jpg');">
     <div class="flex-w flex-sb-m p-l-80 p-r-74 p-b-175 respon5">
         <div class="wrappic1 m-r-30 m-t-10 m-b-10">
-            <a href="#"><img src="<?php echo get_theme_mod( 'colorlib_coming_soon_plugin_logo' ); ?>" alt="Logo"></a>
+            <a href="#"><img src="<?php echo get_option( 'colorlib_coming_soon_plugin_logo' ); ?>" alt="Logo"></a>
         </div>
 
         <div class="flex-w m-t-10 m-b-10">
@@ -47,11 +47,11 @@ $dates   = colorlibCounterDates( $counter );
     <div class="flex-w flex-sa p-r-200 respon1">
         <div class="p-t-34 p-b-60 respon3">
             <p class="l1-txt1 p-b-10 respon2" id="colorlib_coming_soon_page_heading">
-				<?php echo get_theme_mod( 'colorlib_coming_soon_page_heading' ); ?>
+				<?php echo get_option( 'colorlib_coming_soon_page_heading' ); ?>
             </p>
 
             <h3 class="l1-txt2 p-b-45 respon2 respon4" id="colorlib_coming_soon_page_content">
-				<?php echo get_theme_mod( 'colorlib_coming_soon_page_content' ); ?>
+				<?php echo get_option( 'colorlib_coming_soon_page_content' ); ?>
             </h3>
 
             <div class="cd100"></div>
@@ -81,7 +81,7 @@ $dates   = colorlibCounterDates( $counter );
             </form>
 
             <p class="s1-txt3 txt-center p-l-15 p-r-15 p-t-25">
-				<?php echo get_theme_mod( 'colorlib_coming_soon_page_footer' ); ?>
+				<?php echo get_option( 'colorlib_coming_soon_page_footer' ); ?>
             </p>
         </div>
     </div>

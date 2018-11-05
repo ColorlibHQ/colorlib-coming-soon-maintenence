@@ -1,6 +1,6 @@
 <?php
 
-$template = get_theme_mod( 'colorlib_coming_soon_template_selection' );
+$template = get_option( 'colorlib_coming_soon_template_selection' );
 $styles   = array(
 	array(
 		'name'     => 'main',
@@ -16,7 +16,7 @@ $styles   = array(
 
 colorlibStyleEnqueue( $styles );
 
-$counter = get_theme_mod( 'colorlib_coming_soon_timer_option' );
+$counter = get_option( 'colorlib_coming_soon_timer_option' );
 $dates   = colorlibCounterDates( $counter );
 ?>
 </head>
@@ -26,11 +26,11 @@ $dates   = colorlibCounterDates( $counter );
     <span></span>
     <div class="flex-col-c p-t-50 p-b-50">
         <h3 class="l1-txt1 txt-center p-b-10" id="colorlib_coming_soon_page_heading">
-            <?php echo get_theme_mod('colorlib_coming_soon_page_heading'); ?>
+            <?php echo get_option('colorlib_coming_soon_page_heading'); ?>
         </h3>
 
         <p class="txt-center l1-txt2 p-b-60" id="colorlib_coming_soon_page_content">
-            <?php echo get_theme_mod('colorlib_coming_soon_page_content'); ?>
+            <?php echo get_option('colorlib_coming_soon_page_content'); ?>
         </p>
 
         <div class="flex-w flex-c cd100 p-b-82">
@@ -56,7 +56,7 @@ $dates   = colorlibCounterDates( $counter );
         </div>
 
         <button class="flex-c-m s1-txt2 size3 how-btn" data-toggle="modal" data-target="#subscribe" id="colorlib_coming_soon_page_footer">
-            <?php echo get_theme_mod('colorlib_coming_soon_page_footer'); ?>
+            <?php echo get_option('colorlib_coming_soon_page_footer'); ?>
         </button>
     </div>
 

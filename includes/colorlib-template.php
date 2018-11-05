@@ -32,9 +32,8 @@
 
 	colorlibStyleEnqueue( $styles );
 
-	$counter  = get_theme_mod( 'colorlib_coming_soon_timer_option' );
-	$dates    = colorlibCounterDates( $counter );
-	$template = get_theme_mod( 'colorlib_coming_soon_template_selection' );
+	$counter  = get_option( 'colorlib_coming_soon_timer_option' );
+	$template = get_option( 'colorlib_coming_soon_template_selection' );
 
 	?>
     <link rel="icon" type="image/png"

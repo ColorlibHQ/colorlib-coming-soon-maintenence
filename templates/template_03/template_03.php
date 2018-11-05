@@ -1,6 +1,6 @@
 <?php
 
-$template = get_theme_mod( 'colorlib_coming_soon_template_selection' );
+$template = get_option( 'colorlib_coming_soon_template_selection' );
 $styles   = array(
 	array(
 		'name'     => 'main',
@@ -16,7 +16,7 @@ $styles   = array(
 
 colorlibStyleEnqueue( $styles );
 
-$counter = get_theme_mod( 'colorlib_coming_soon_timer_option' );
+$counter = get_option( 'colorlib_coming_soon_timer_option' );
 $dates   = colorlibCounterDates( $counter );
 ?>
 </head>
@@ -26,11 +26,11 @@ $dates   = colorlibCounterDates( $counter );
      style="background-image: url('<?php echo CSMM_URL . 'templates/' . $template; ?>/images/bg01.jpg');">
     <div class="wsize1 bor1 bg1 p-t-175 p-b-45 p-l-15 p-r-15 respon1">
         <div class="wrappic1">
-            <img src="<?php echo get_theme_mod( 'colorlib_coming_soon_plugin_logo' ); ?>" alt="Logo">
+            <img src="<?php echo get_option( 'colorlib_coming_soon_plugin_logo' ); ?>" alt="Logo">
         </div>
 
         <p class="txt-center m1-txt1 p-t-33 p-b-68" id="colorlib_coming_soon_page_content">
-			<?php echo get_theme_mod( 'colorlib_coming_soon_page_heading' ); ?>
+			<?php echo get_option( 'colorlib_coming_soon_page_heading' ); ?>
         </p>
 
         <div class="wsize2 flex-w flex-c hsize1 cd100">
@@ -69,7 +69,7 @@ $dates   = colorlibCounterDates( $counter );
         </form>
 
         <p class="s1-txt4 txt-center p-t-10" id="colorlib_coming_soon_page_footer">
-			<?php echo get_theme_mod( 'colorlib_coming_soon_page_footer' ); ?>
+			<?php echo get_option( 'colorlib_coming_soon_page_footer' ); ?>
         </p>
 
     </div>

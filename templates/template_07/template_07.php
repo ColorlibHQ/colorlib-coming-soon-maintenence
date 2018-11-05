@@ -1,6 +1,6 @@
 <?php
 
-$template = get_theme_mod( 'colorlib_coming_soon_template_selection' );
+$template = get_option( 'colorlib_coming_soon_template_selection' );
 $styles   = array(
 	array(
 		'name'     => 'main',
@@ -16,7 +16,7 @@ $styles   = array(
 
 colorlibStyleEnqueue( $styles );
 
-$counter = get_theme_mod( 'colorlib_coming_soon_timer_option' );
+$counter = get_option( 'colorlib_coming_soon_timer_option' );
 $dates   = colorlibCounterDates( $counter );
 ?>
 </head>
@@ -26,19 +26,19 @@ $dates   = colorlibCounterDates( $counter );
     <div class="size1 p-l-15 p-r-15 p-t-30 p-b-50">
         <div class="flex-w flex-sb-m p-l-75 p-r-60 p-b-165 respon1">
             <div class="wrappic1 m-r-30 m-t-10 m-b-10">
-                <a href="#"><img src="<?php echo get_theme_mod( 'colorlib_coming_soon_plugin_logo' ); ?>" alt="LOGO"></a>
+                <a href="#"><img src="<?php echo get_option( 'colorlib_coming_soon_plugin_logo' ); ?>" alt="LOGO"></a>
             </div>
 
             <div class="flex-w m-t-10 m-b-10">
-                <a href="<?php echo get_theme_mod('colorlib_coming_soon_social_facebook'); ?>" id="colorlib_coming_soon_social_facebook" class="size4 flex-c-m how-social trans-04 m-r-5 m-b-3 m-t-3">
+                <a href="<?php echo get_option('colorlib_coming_soon_social_facebook'); ?>" id="colorlib_coming_soon_social_facebook" class="size4 flex-c-m how-social trans-04 m-r-5 m-b-3 m-t-3">
                     <i class="fa fa-facebook"></i>
                 </a>
 
-                <a href="<?php echo get_theme_mod('colorlib_coming_soon_social_twitter'); ?>" id="colorlib_coming_soon_social_twitter" class="size4 flex-c-m how-social trans-04 m-r-5 m-b-3 m-t-3">
+                <a href="<?php echo get_option('colorlib_coming_soon_social_twitter'); ?>" id="colorlib_coming_soon_social_twitter" class="size4 flex-c-m how-social trans-04 m-r-5 m-b-3 m-t-3">
                     <i class="fa fa-twitter"></i>
                 </a>
 
-                <a href="<?php echo get_theme_mod('colorlib_coming_soon_social_youtube'); ?>" id="colorlib_coming_soon_social_youtube" class="size4 flex-c-m how-social trans-04 m-r-5 m-b-3 m-t-3">
+                <a href="<?php echo get_option('colorlib_coming_soon_social_youtube'); ?>" id="colorlib_coming_soon_social_youtube" class="size4 flex-c-m how-social trans-04 m-r-5 m-b-3 m-t-3">
                     <i class="fa fa-youtube-play"></i>
                 </a>
             </div>
@@ -46,7 +46,7 @@ $dates   = colorlibCounterDates( $counter );
 
         <div class="wsize1 m-lr-auto">
             <p class="txt-center l1-txt1 p-b-60" id="colorlib_coming_soon_page_heading">
-                <?php echo get_theme_mod('colorlib_coming_soon_page_heading'); ?>
+                <?php echo get_option('colorlib_coming_soon_page_heading'); ?>
             </p>
 
             <form class="w-full flex-w flex-c-m validate-form">
@@ -63,7 +63,7 @@ $dates   = colorlibCounterDates( $counter );
             </form>
 
             <p class="txt-center s1-txt1 p-t-5">
-                <?php echo get_theme_mod('colorlib_coming_soon_page_footer'); ?>
+                <?php echo get_option('colorlib_coming_soon_page_footer'); ?>
             </p>
         </div>
 

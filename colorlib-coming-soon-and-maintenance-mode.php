@@ -50,9 +50,9 @@ function colorlib_coming_soon_skip_redirect_on_login() {
 /* Coming Soon Redirect to Template */
 function colorlib_coming_soon_template_redirect() {
 	global $wp_customize;
-	if ( ! is_user_logged_in() || isset( $wp_customize ) && get_theme_mod( 'colorlib_coming_soon_preview', '1' ) == 1 ) { //Checks for if user is logged in OR if customizer is open and customizer preview option is checked
+	if ( ! is_user_logged_in() || isset( $wp_customize ) && get_option( 'colorlib_coming_soon_preview', '1' ) == 1 ) { //Checks for if user is logged in OR if customizer is open and customizer preview option is checked
 
-		$templateFile = get_theme_mod( 'colorlib_coming_soon_template_selection' );
+		$templateFile = get_option( 'colorlib_coming_soon_template_selection' );
 
 		$file = plugin_dir_path( __FILE__ ) . 'includes/colorlib-template.php'; //get path of our coming soon display page and redirecting
 		include( $file );
@@ -145,13 +145,16 @@ add_action( 'customize_preview_init', 'colorlib_customizer_preview_scripts' );
 function colorlibCounterDates( $timerDate ) {
 
 	if ( $timerDate instanceof DateTime ) {
-		$date = date( 'Y-m-d H:i:s', strtotime( '+1 month' ) );
+		$date = DateTime::createFromFormat( 'Y-m-d H:i:s', '2018-12-25 00:00:00' );
+		//$date = date( 'Y-m-d H:i:s', strtotime( '+1 month' ) );
 	} else {
-		$date = DateTime::createFromFormat( 'Y-m-d H:i:s', $timerDate );
+		$date = DateTime::createFromFormat( 'Y-m-d H:i:s', '2018-12-25 00:00:00' );
 	}
+
 
 	//$fDAte    = new DateTime( $timerDate );
 	$cDate    = new DateTime( date( 'Y-m-d H:i:s' ) );
+
 	$interval = $cDate->diff( $date );
 
 	//template needed info
