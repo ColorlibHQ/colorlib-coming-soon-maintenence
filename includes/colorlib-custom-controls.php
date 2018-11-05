@@ -1,7 +1,7 @@
 <?php
 if ( class_exists( 'WP_Customize_Control' ) ) {
 
-	class Colorlib_Template_Selection extends WP_Customize_Control {
+	class ccsm_Template_Selection extends WP_Customize_Control {
 		/**
 		 * The type of control being rendered
 		 */
@@ -28,9 +28,9 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
 		}
 	}
 
-	if ( ! class_exists( 'Colorlib_Control_Text_Editor' ) ) {
+	if ( ! class_exists( 'ccsm_Control_Text_Editor' ) ) {
 
-		class Colorlib_Control_Text_Editor extends WP_Customize_Control {
+		class ccsm_Control_Text_Editor extends WP_Customize_Control {
 
 			/**
 			 * @since 1.0.0
@@ -51,7 +51,7 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
 				WP_Customize_Manager $manager, $id, array $args = array()
 			) {
 				parent::__construct( $manager, $id, $args );
-				$manager->register_control_type( 'Colorlib_Control_Text_Editor' );
+				$manager->register_control_type( 'ccsm_Control_Text_Editor' );
 			}
 
 			/**
@@ -119,7 +119,7 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
 		}
 	}
 
-	class Colorlib_CSMM_Control_Toggle extends WP_Customize_Control {
+	class ccsm_Control_Toggle extends WP_Customize_Control {
 
 		public $type = 'checkbox';
 

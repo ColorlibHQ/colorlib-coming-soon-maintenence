@@ -2,16 +2,16 @@
 /* Colorlib Coming Soon Customizer Options */
 
 
-class Colorlib_CSMM {
+class ccsm_customizer {
 
 	public function __construct() {
 
-		add_action( 'customize_register', array( $this, 'colorlib_coming_soon_customizer' ) );
-		add_action( 'customize_register', array( $this, 'colorlib_comin_soon_panels' ) );
+		add_action( 'customize_register', array( $this, 'ccsm_customizer_controls' ) );
+		add_action( 'customize_register', array( $this, 'ccsm_panels_initialize' ) );
 
 	}
 
-	public function colorlib_comin_soon_panels( $wp_customize ) {
+	public function ccsm_panels_initialize( $wp_customize ) {
 
 		$wp_customize->add_panel( 'colorlib_coming_soon_general_panel', array(
 				'priority' => 1,
@@ -88,18 +88,18 @@ class Colorlib_CSMM {
 
 	}
 
-	public function colorlib_coming_soon_customizer( $wp_customize ) {
+	public function ccsm_customizer_controls( $wp_customize ) {
 
 		require_once( CSMM_PATH . 'includes/colorlib-custom-controls.php' );
 
 		/* Setting - Coming Soon - General */
 		$wp_customize->add_setting( 'colorlib_coming_soon_preview', array(
 			'default'           => '1',
-			'sanitize_callback' => 'colorlib_coming_soon_sanitize_text',
+			'sanitize_callback' => 'ccsm_sanitize_text',
 			'type' => 'option'
 		) );
 
-		$wp_customize->add_control( new Colorlib_CSMM_Control_Toggle ( $wp_customize, 'colorlib_coming_soon_preview', array(
+		$wp_customize->add_control( new ccsm_Control_Toggle ( $wp_customize, 'colorlib_coming_soon_preview', array(
 				'label'       => esc_html__( 'Preview Coming Soon Page?', 'colorlib-coming-soon' ),
 				'description' => esc_html__( 'Refresh this page page after saving in order to see the change.  This is used to preview your coming soon page in the theme customizer.', 'colorlib-coming-soon' ),
 				'section'     => 'colorlib_coming_soon_section_general',
@@ -111,7 +111,7 @@ class Colorlib_CSMM {
 
 		/* Setting - Coming Soon - General */
 		$wp_customize->add_setting( 'colorlib_coming_soon_page_custom_css', array(
-			'sanitize_callback' => 'colorlib_coming_soon_sanitize_text',
+			'sanitize_callback' => 'ccsm_sanitize_text',
 			'type' => 'option'
 		) );
 
@@ -130,11 +130,11 @@ class Colorlib_CSMM {
 		/* Setting - Coming Soon - Templates Selection */
 		$wp_customize->add_setting( 'colorlib_coming_soon_template_selection', array(
 			'default'           => 'template_01',
-			'sanitize_callback' => 'colorlib_coming_soon_sanitize_text',
+			'sanitize_callback' => 'ccsm_sanitize_text',
 			'type' => 'option'
 		) );
 
-		$wp_customize->add_control( new Colorlib_Template_Selection( $wp_customize, 'colorlib_coming_soon_template_selection', array(
+		$wp_customize->add_control( new ccsm_Template_Selection( $wp_customize, 'colorlib_coming_soon_template_selection', array(
 				'label'    => esc_html__( 'Select Template', 'colorlib-coming-soon' ),
 				'section'  => 'colorlib_coming_soon_section_templates',
 				'priority' => 30,
@@ -161,7 +161,7 @@ class Colorlib_CSMM {
 		/*Settings - General - Timer*/
 		$wp_customize->add_setting( 'colorlib_coming_soon_timer_option', array(
 			'default'           => date( 'Y-m-d H:i:s', strtotime( '+1 month' ) ),
-			'sanitize_callback' => 'colorlib_coming_soon_sanitize_text',
+			'sanitize_callback' => 'ccsm_sanitize_text',
 			'type' => 'option'
 		) );
 
@@ -175,7 +175,7 @@ class Colorlib_CSMM {
 		/* Setting - General - Site Logo */
 		$wp_customize->add_setting( 'colorlib_coming_soon_plugin_logo', array(
 			'default'           => CSMM_URL . 'assets/images/logo.png',
-			'sanitize_callback' => 'colorlib_coming_soon_sanitize_text',
+			'sanitize_callback' => 'ccsm_sanitize_text',
 			'type' => 'option'
 		) );
 
@@ -190,12 +190,12 @@ class Colorlib_CSMM {
 		/* Setting - Coming Soon - Page Content */
 		$wp_customize->add_setting( 'colorlib_coming_soon_page_heading', array(
 			'default'           => 'Something <strong>really good</strong> is coming <strong>very soon</strong>',
-			'sanitize_callback' => 'colorlib_coming_soon_sanitize_text',
+			'sanitize_callback' => 'ccsm_sanitize_text',
 			'transport'         => 'postMessage',
 			'type' => 'option'
 		) );
 
-		$wp_customize->add_control( new Colorlib_Control_Text_Editor( $wp_customize, 'colorlib_coming_soon_page_heading', array(
+		$wp_customize->add_control( new ccsm_Control_Text_Editor( $wp_customize, 'colorlib_coming_soon_page_heading', array(
 				'label'    => esc_html__( 'Heading', 'colorlib-coming-soon' ),
 				'section'  => 'colorlib_coming_soon_section_page_settings',
 				'type'     => 'epsilon-text-editor',
@@ -207,12 +207,12 @@ class Colorlib_CSMM {
 		/* Setting - Coming Soon - Page Content */
 		$wp_customize->add_setting( 'colorlib_coming_soon_page_content', array(
 			'default'           => 'If you have something new you’re looking to launch, you’re going to want to start building a community of people interested in what you’re launching.',
-			'sanitize_callback' => 'colorlib_coming_soon_sanitize_text',
+			'sanitize_callback' => 'ccsm_sanitize_text',
 			'transport'         => 'postMessage',
 			'type' => 'option'
 		) );
 
-		$wp_customize->add_control( new Colorlib_Control_Text_Editor( $wp_customize, 'colorlib_coming_soon_page_content', array(
+		$wp_customize->add_control( new ccsm_Control_Text_Editor( $wp_customize, 'colorlib_coming_soon_page_content', array(
 				'label'    => esc_html__( 'Main Content', 'colorlib-coming-soon' ),
 				'section'  => 'colorlib_coming_soon_section_page_settings',
 				'type'     => 'epsilon-text-editor',
@@ -223,12 +223,12 @@ class Colorlib_CSMM {
 		/* Setting - Coming Soon - Page Content */
 		$wp_customize->add_setting( 'colorlib_coming_soon_page_footer', array(
 			'default'           => 'And don\'t worry, we hate spam too! You can unsubscribe at any time.',
-			'sanitize_callback' => 'colorlib_coming_soon_sanitize_text',
+			'sanitize_callback' => 'ccsm_sanitize_text',
 			'transport'         => 'postMessage',
 			'type' => 'option'
 		) );
 
-		$wp_customize->add_control( new Colorlib_Control_Text_Editor( $wp_customize, 'colorlib_coming_soon_page_footer', array(
+		$wp_customize->add_control( new ccsm_Control_Text_Editor( $wp_customize, 'colorlib_coming_soon_page_footer', array(
 				'label'    => esc_html__( 'Footer Text', 'colorlib-coming-soon' ),
 				'section'  => 'colorlib_coming_soon_section_page_settings',
 				'type'     => 'epsilon-text-editor',
@@ -239,11 +239,11 @@ class Colorlib_CSMM {
 
 		/* Setting - Coming Soon - Page Content */
 		$wp_customize->add_setting( 'colorlib_coming_soon_mailchimp_form', array(
-			'sanitize_callback' => 'colorlib_coming_soon_sanitize_text',
+			'sanitize_callback' => 'ccsm_sanitize_text',
 			'type' => 'option'
 		) );
 
-		$wp_customize->add_control( new Colorlib_CSMM_Control_Toggle( $wp_customize, 'colorlib_coming_soon_mailchimp_form', array(
+		$wp_customize->add_control( new ccsm_Control_Toggle( $wp_customize, 'colorlib_coming_soon_mailchimp_form', array(
 				'label'    => esc_html__( 'Disable MailChimp Form', 'colorlib-coming-soon' ),
 				'section'  => 'colorlib_coming_soon_mailchimp_key',
 				'type'     => 'checkbox',
@@ -254,7 +254,7 @@ class Colorlib_CSMM {
 
 		/* Setting - Coming Soon - Page Content */
 		$wp_customize->add_setting( 'colorlib_coming_soon_mailchimp_form_url', array(
-			'sanitize_callback' => 'colorlib_coming_soon_sanitize_text',
+			'sanitize_callback' => 'ccsm_sanitize_text',
 			'type' => 'option'
 		) );
 
@@ -270,7 +270,7 @@ class Colorlib_CSMM {
 		/* Setting - Coming Soon - Social Links */
 		$wp_customize->add_setting( 'colorlib_coming_soon_social_facebook', array(
 			'default'           => 'https://www.facebook.com/',
-			'sanitize_callback' => 'colorlib_coming_soon_sanitize_text',
+			'sanitize_callback' => 'ccsm_sanitize_text',
 			'type' => 'option'
 		) );
 
@@ -286,7 +286,7 @@ class Colorlib_CSMM {
 		/* Setting - Coming Soon - Social Links */
 		$wp_customize->add_setting( 'colorlib_coming_soon_social_twitter', array(
 			'default'           => 'https://www.twitter.com/',
-			'sanitize_callback' => 'colorlib_coming_soon_sanitize_text',
+			'sanitize_callback' => 'ccsm_sanitize_text',
 			'type' => 'option'
 		) );
 
@@ -301,7 +301,7 @@ class Colorlib_CSMM {
 		/* Setting - Coming Soon - Social Links */
 		$wp_customize->add_setting( 'colorlib_coming_soon_social_email', array(
 			'default'           => 'you@domain.com',
-			'sanitize_callback' => 'colorlib_coming_soon_sanitize_text',
+			'sanitize_callback' => 'ccsm_sanitize_text',
 			'type' => 'option'
 		) );
 
@@ -316,7 +316,7 @@ class Colorlib_CSMM {
 		/* Setting - Coming Soon - Social Links */
 		$wp_customize->add_setting( 'colorlib_coming_soon_social_youtube', array(
 			'default'           => 'https://youtube.com/',
-			'sanitize_callback' => 'colorlib_coming_soon_sanitize_text',
+			'sanitize_callback' => 'ccsm_sanitize_text',
 			'type' => 'option'
 		) );
 
@@ -331,7 +331,7 @@ class Colorlib_CSMM {
 		/* Setting - Coming Soon - Social Links */
 		$wp_customize->add_setting( 'colorlib_coming_soon_social_pinterest', array(
 			'default'           => 'https://pinterest.com/',
-			'sanitize_callback' => 'colorlib_coming_soon_sanitize_text',
+			'sanitize_callback' => 'ccsm_sanitize_text',
 			'type' => 'option'
 		) );
 
@@ -346,7 +346,7 @@ class Colorlib_CSMM {
 		/* Setting - Coming Soon - Social Links */
 		$wp_customize->add_setting( 'colorlib_coming_soon_social_instagram', array(
 			'default'           => 'https://instagram.com/',
-			'sanitize_callback' => 'colorlib_coming_soon_sanitize_text',
+			'sanitize_callback' => 'ccsm_sanitize_text',
 			'type' => 'option'
 		) );
 
@@ -360,9 +360,9 @@ class Colorlib_CSMM {
 	}
 }
 
-$cl = new Colorlib_CSMM();
+$cl = new ccsm_customizer();
 
-function colorlib_coming_soon_sanitize_text( $input ) {
+function ccsm_sanitize_text( $input ) {
 	return wp_kses_post( force_balance_tags( $input ) );
 }
 

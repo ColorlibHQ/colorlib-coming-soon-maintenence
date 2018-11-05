@@ -30,11 +30,10 @@
 		),
 	);
 
-	colorlibStyleEnqueue( $styles );
+	styleEnqueue( $styles );
 
 	$counter  = get_option( 'colorlib_coming_soon_timer_option' );
 	$template = get_option( 'colorlib_coming_soon_template_selection' );
-
 	?>
     <link rel="icon" type="image/png"
           href="<?php echo CSMM_URL . 'templates/' . $template; ?>/images/icons/favicon.ico"/>

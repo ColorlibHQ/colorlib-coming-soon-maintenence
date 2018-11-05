@@ -14,10 +14,10 @@ $styles   = array(
 	)
 );
 
-colorlibStyleEnqueue( $styles );
+styleEnqueue( $styles );
 
 $counter = get_option( 'colorlib_coming_soon_timer_option' );
-$dates   = colorlibCounterDates( $counter );
+$dates   = counterDates( $counter );
 ?>
 </head>
 <body>
@@ -162,7 +162,7 @@ $scripts = array(
 
 );
 
-colorlibScriptEnqueue( $scripts );
+scriptEnqueue( $scripts );
 
 wp_footer();
 

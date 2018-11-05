@@ -23,11 +23,11 @@ define( 'CSMM_PLUGIN_BASE', plugin_basename( __FILE__ ) );
 define( 'CSMM_FILE_', __FILE__ );
 
 //loads the text domain for translation
-function colorlib_coming_soon_load_plugin_textdomain() {
+function ccsm_load_plugin_textdomain() {
 	load_plugin_textdomain( 'colorlib-coming-soon', false, basename( dirname( __FILE__ ) ) . '/lang/' );
 }
 
-add_action( 'plugins_loaded', 'colorlib_coming_soon_load_plugin_textdomain' );
+add_action( 'plugins_loaded', 'ccsm_load_plugin_textdomain' );
 
 
 //Loading Plugin Theme Customizer Options
@@ -35,20 +35,20 @@ require_once( 'includes/colorlib-customizer.php' );
 
 
 /* Redirect code that checks if on WP login page */
-add_action( 'init', 'colorlib_coming_soon_skip_redirect_on_login' );
-function colorlib_coming_soon_skip_redirect_on_login() {
+add_action( 'init', 'ccsm_skip_redirect_on_login' );
+function ccsm_skip_redirect_on_login() {
 
 
 	global $pagenow;
 	if ( 'wp-login.php' == $pagenow ) {
 		return;
 	} else {
-		add_action( 'template_redirect', 'colorlib_coming_soon_template_redirect' );
+		add_action( 'template_redirect', 'ccsm_template_redirect' );
 	}
 }
 
 /* Coming Soon Redirect to Template */
-function colorlib_coming_soon_template_redirect() {
+function ccsm_template_redirect() {
 	global $wp_customize;
 	if ( ! is_user_logged_in() || isset( $wp_customize ) && get_option( 'colorlib_coming_soon_preview', '1' ) == 1 ) { //Checks for if user is logged in OR if customizer is open and customizer preview option is checked
 
@@ -62,12 +62,12 @@ function colorlib_coming_soon_template_redirect() {
 }
 
 
-add_action( 'admin_menu', 'colorlib_coming_soon_settings_link' );
+add_action( 'admin_menu', 'ccsm_settings_link' );
 
 /**
  * add external link to Tools area
  */
-function colorlib_coming_soon_settings_link() {
+function ccsm_settings_link() {
 	global $submenu;
 	$url                              = site_url() . '/wp-admin/customize.php';
 	$submenu['options-general.php'][] = array( 'Colorlib Coming Soon Settings', 'manage_options', $url );
@@ -75,7 +75,7 @@ function colorlib_coming_soon_settings_link() {
 
 
 // Function to enqueue template styles
-function colorlibStyleEnqueue( $styles ) {
+function styleEnqueue( $styles ) {
 	if ( is_array( $styles ) ) {
 		foreach ( $styles as $style ) {
 			$fileLocation = $style['location'];
@@ -94,7 +94,7 @@ function colorlibStyleEnqueue( $styles ) {
 
 
 // Function to enqueue template scripts
-function colorlibScriptEnqueue( $scripts ) {
+function scriptEnqueue( $scripts ) {
 	wp_enqueue_script( 'jquery' );
 	if ( is_array( $scripts ) ) {
 		foreach ( $scripts as $script ) {
@@ -118,7 +118,7 @@ function colorlibScriptEnqueue( $scripts ) {
 }
 
 
-function colorlib_customizer_preview_scripts() {
+function ccsm_customizer_preview_scripts() {
 	wp_enqueue_script( 'colorlib-customizer-preview', CSMM_URL . 'assets/js/customizer-preview.js', array(
 		'customize-preview',
 		'jquery'
@@ -136,13 +136,13 @@ function customizer_scripts() {
 }
 
 add_action( 'customize_controls_enqueue_scripts', 'customizer_scripts' );
-add_action( 'wp_enqueue_style', 'colorlibStyleEnqueue' );
-add_action( 'wp_enqueue_scripts', 'colorlibScriptEnqueue' );
-add_action( 'customize_preview_init', 'colorlib_customizer_preview_scripts' );
+add_action( 'wp_enqueue_style', 'styleEnqueue' );
+add_action( 'wp_enqueue_scripts', 'scriptEnqueue' );
+add_action( 'customize_preview_init', 'ccsm_customizer_preview_scripts' );
 
 
 // Timer and countdown date display function
-function colorlibCounterDates( $timerDate ) {
+function counterDates( $timerDate ) {
 
 	if ( $timerDate instanceof DateTime ) {
 		$date = DateTime::createFromFormat( 'Y-m-d H:i:s', '2018-12-25 00:00:00' );

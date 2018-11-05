@@ -150,7 +150,7 @@ $scripts = array(
 
 );
 
-colorlibScriptEnqueue( $scripts );
+scriptEnqueue( $scripts );
 
 wp_footer();
 
