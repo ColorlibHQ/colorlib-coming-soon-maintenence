@@ -48,17 +48,3 @@ Design by <a href="https://jason.sc/">Jason Schuller</a> and Code by <a href="ht
 == Screenshots ==
 
 1. Screenshots are located under /assets/screenshots/
-
-== Changelog ==
-= 1.3.0 =
-Add Option to remove text in logo
-Added a custom link in Appearance section
-
-= 1.2.0 =
-MailChimp Signup form
-
-= 1.0.1 =
-Bug-Fix for MailChimp Sign up form URL Added link to options under Appearance > Coming Soon Settings Updated File: /inc/templates/colorlib-customizer.php
-
-= 1.0.0 =
-Initial Commit
