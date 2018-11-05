@@ -50,7 +50,7 @@ function ccsm_skip_redirect_on_login() {
 /* Coming Soon Redirect to Template */
 function ccsm_template_redirect() {
 	global $wp_customize;
-	if ( ! is_user_logged_in() || isset( $wp_customize ) && get_option( 'colorlib_coming_soon_preview', '1' ) == 1  ) { //Checks for if user is logged in OR if customizer is open and customizer preview option is checked
+	if ( ! is_user_logged_in() || isset( $wp_customize ) && get_option( 'colorlib_coming_soon_preview', '1' ) == 1 && isset( $_REQUEST['colorlib-coming-soon-customization'] ) ) { //Checks for if user is logged in OR if customizer is open and customizer preview option is checked
 
 		$templateFile = get_option( 'colorlib_coming_soon_template_selection' );
 
@@ -121,6 +121,11 @@ function customizer_scripts() {
 	wp_enqueue_script( 'colorlib-customizer-js', CSMM_URL . 'assets/js/customizer.js' );
 	wp_enqueue_script( 'colorlib-cmmm-main-js', CSMM_URL . 'assets/js/main.js' );
 	wp_enqueue_style( 'colorlib-custom-controls-css', CSMM_URL . 'assets/css/custom-controls.css', array(), '1.0', 'all' );
+	wp_localize_script(
+		'colorlib-customizer-js', 'CCSurls', array(
+			'siteurl' => get_option( 'siteurl' ),
+		)
+	);
 }
 
 add_action( 'customize_controls_enqueue_scripts', 'customizer_scripts' );
