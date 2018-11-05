@@ -36,6 +36,7 @@ require_once( 'includes/colorlib-customizer.php' );
 
 /* Redirect code that checks if on WP login page */
 add_action( 'init', 'ccsm_skip_redirect_on_login' );
+
 function ccsm_skip_redirect_on_login() {
 
 
@@ -50,7 +51,11 @@ function ccsm_skip_redirect_on_login() {
 /* Coming Soon Redirect to Template */
 function ccsm_template_redirect() {
 	global $wp_customize;
-	if ( ! is_user_logged_in() && get_option('colorlib_coming_soon_activation') == 1 || isset( $wp_customize )  && isset( $_REQUEST['colorlib-coming-soon-customization'] ) ) { //Checks for if user is logged in and CCSM is activated  OR if customizer is open on CCSM customization panel
+
+	if ( ! is_user_logged_in() && get_option( 'colorlib_coming_soon_activation' ) == 1 || is_customize_preview() && isset( $_REQUEST['colorlib-coming-soon-customization'] ) ) { //Checks for if user is logged in and CCSM is activated  OR if customizer is open on CCSM customization panel
+
+		/*print_r( 'somesome' );
+		die();*/
 
 		$templateFile = get_option( 'colorlib_coming_soon_template_selection' );
 
@@ -137,18 +142,15 @@ add_action( 'customize_preview_init', 'ccsm_customizer_preview_scripts' );
 // Timer and countdown date display function
 function counter_dates( $timerDate ) {
 
-	if ( $timerDate instanceof DateTime ) {
-		$date = DateTime::createFromFormat( 'Y-m-d H:i:s', '2018-12-25 00:00:00' );
-		//$date = date( 'Y-m-d H:i:s', strtotime( '+1 month' ) );
+	if ( $timerDate ) {
+		$date = DateTime::createFromFormat( 'Y-m-d H:i:s', $timerDate );
 	} else {
-		$date = DateTime::createFromFormat( 'Y-m-d H:i:s', '2018-12-25 00:00:00' );
+		$date = DateTime::createFromFormat( 'Y-m-d H:i:s', date( 'Y-m-d H:i:s', strtotime( '+1 month' ) ) );
 	}
-
-
-	//$fDAte    = new DateTime( $timerDate );
-	$cDate = new DateTime( date( 'Y-m-d H:i:s' ) );
-
+	
+	$cDate    = new DateTime( date( 'Y-m-d H:i:s' ) );
 	$interval = $cDate->diff( $date );
+
 
 	//template needed info
 	$days    = $interval->format( '%a' );
