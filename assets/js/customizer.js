@@ -19,6 +19,19 @@ jQuery(window).load(function () {
             quicktags: true
         });
     });
+
+    wp.customize.panel( 'colorlib_coming_soon_general_panel', function( section ) {
+        section.expanded.bind( function( isExpanding ) {
+            var loginURL = CLCUrls.siteurl + '?colorlib-coming-soon-customization=true';
+
+            // Value of isExpanding will = true if you're entering the section, false if you're leaving it.
+            if ( isExpanding ) {
+                wp.customize.previewer.previewUrl.set( loginURL );
+            } else {
+                wp.customize.previewer.previewUrl.set( CLCUrls.siteurl );
+            }
+        });
+    });
 });
 
 
