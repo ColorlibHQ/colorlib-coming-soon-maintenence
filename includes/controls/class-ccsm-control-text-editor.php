@@ -76,7 +76,7 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
 					<span class="description customize-control-description">{{{ data.description }}}</span>
 				<# } #>
 			</span>
-                    <textarea id="{{{ data.id }}}-editor" class="widefat text wp-editor-area" {{{ data.link }}}>{{{ data.value }}}</textarea>
+                    <textarea id="{{{ data.id }}}-editor" class="widefat text wp-editor-area js-ccs-editor" {{{ data.link }}}>{{{ data.value }}}</textarea>
                 </label>
 				<?php //@formatter:on
 			}

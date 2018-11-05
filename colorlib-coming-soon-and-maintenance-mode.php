@@ -50,7 +50,7 @@ function ccsm_skip_redirect_on_login() {
 /* Coming Soon Redirect to Template */
 function ccsm_template_redirect() {
 	global $wp_customize;
-	if ( ! is_user_logged_in() || isset( $wp_customize ) && get_option( 'colorlib_coming_soon_preview', '1' ) == 1 && isset( $_REQUEST['colorlib-coming-soon-customization'] ) ) { //Checks for if user is logged in OR if customizer is open and customizer preview option is checked
+	if ( ! is_user_logged_in() && get_option('colorlib_coming_soon_activation') == 1 || isset( $wp_customize )  && isset( $_REQUEST['colorlib-coming-soon-customization'] ) ) { //Checks for if user is logged in and CCSM is activated  OR if customizer is open on CCSM customization panel
 
 		$templateFile = get_option( 'colorlib_coming_soon_template_selection' );
 

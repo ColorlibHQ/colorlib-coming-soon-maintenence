@@ -30,7 +30,7 @@
 		),
 	);
 
-	styleEnqueue( $styles );
+	style_enqueue( $styles );
 
 	$counter  = get_option( 'colorlib_coming_soon_timer_option' );
 	$template = get_option( 'colorlib_coming_soon_template_selection' );
