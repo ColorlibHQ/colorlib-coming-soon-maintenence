@@ -61,19 +61,6 @@ function ccsm_template_redirect() {
 	}
 }
 
-
-add_action( 'admin_menu', 'ccsm_settings_link' );
-
-/**
- * add external link to Tools area
- */
-function ccsm_settings_link() {
-	global $submenu;
-	$url                              = site_url() . '/wp-admin/customize.php';
-	$submenu['options-general.php'][] = array( 'Colorlib Coming Soon Settings', 'manage_options', $url );
-}
-
-
 // Function to enqueue template styles
 function styleEnqueue( $styles ) {
 	if ( is_array( $styles ) ) {
