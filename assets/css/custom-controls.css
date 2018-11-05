@@ -1,3 +1,21 @@
+.cf:before,
+.cf:after {
+    content: " "; /* 1 */
+    display: table; /* 2 */
+}
+
+.cf:after {
+    clear: both;
+}
+
+/**
+ * For IE 6/7 only
+ * Include this rule to trigger hasLayout and contain floats.
+ */
+.cf {
+    *zoom: 1;
+}
+
 .colorlib-template-radio {
     visibility: hidden;
 }
@@ -74,7 +92,7 @@
     right: 6px
 }
 
-.colorlib_csmm.onoffswitch-checkbox:checked + .onoffswitch-label {
+.colorlib_csmm .onoffswitch-checkbox:checked + .onoffswitch-label {
     background-color: #3caf0e
 }
 
@@ -83,11 +101,19 @@ input[type=checkbox]:checked + .onoffswitch-label:before {
     border-color: #3caf0e
 }
 
-.colorlib_csmm.onoffswitch-checkbox:checked + .onoffswitch-label:before {
+.colorlib_csmm .onoffswitch-checkbox:checked + .onoffswitch-label:before {
     right: 2px
 }
 
 .colorlib_csmm .onoffswitch-checkbox:checked + .onoffswitch-label:after {
     content: "ON";
     right: 27px
+}
+
+.colorlib_csmm .left-toggle {
+    float: left;
+}
+
+.colorlib_csmm .right-toggle {
+    float: right;
 }

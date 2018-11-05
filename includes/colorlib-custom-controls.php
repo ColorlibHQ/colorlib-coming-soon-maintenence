@@ -128,11 +128,19 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
             <div class="colorlib_csmm">
                 <div class="checkbox_switch">
                     <div>
-                        <input type="checkbox" class="onoffswitch-checkbox" name="<?php echo $this->id; ?>"
-                               id="<?php echo $this->id; ?>" <?php echo ($this->value() == '1') ? 'checked="yes"' : ''; ?>/>
-	                    <?php echo $this->label; ?>
-                        <label for="<?php echo $this->id; ?>"
-                               class="onoffswitch-label"></label>
+                        <div class="cf toggle-wrapper">
+                            <div class="left-toggle">
+								<?php echo $this->label; ?>
+                            </div>
+                            <div class="right-toggle">
+                                <input type="checkbox" class="onoffswitch-checkbox" name="<?php echo $this->id; ?>"
+                                       id="<?php echo $this->id; ?>" <?php echo ( $this->value() == '1' ) ? 'checked="yes"' : ''; ?>/>
+                                <label for="<?php echo $this->id; ?>"
+                                       class="onoffswitch-label">
+
+                                </label>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
