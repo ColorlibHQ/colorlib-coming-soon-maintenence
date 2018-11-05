@@ -50,7 +50,7 @@ function ccsm_skip_redirect_on_login() {
 /* Coming Soon Redirect to Template */
 function ccsm_template_redirect() {
 	global $wp_customize;
-	if ( ! is_user_logged_in() || isset( $wp_customize ) && get_option( 'colorlib_coming_soon_preview', '1' ) == 1 && isset( $_REQUEST['colorlib-coming-soon-customization'] ) ) { //Checks for if user is logged in OR if customizer is open and customizer preview option is checked
+	if ( ! is_user_logged_in() || isset( $wp_customize ) && get_option( 'colorlib_coming_soon_preview', '1' ) == 1  ) { //Checks for if user is logged in OR if customizer is open and customizer preview option is checked
 
 		$templateFile = get_option( 'colorlib_coming_soon_template_selection' );
 
@@ -62,7 +62,7 @@ function ccsm_template_redirect() {
 }
 
 // Function to enqueue template styles
-function styleEnqueue( $styles ) {
+function style_enqueue( $styles ) {
 	if ( is_array( $styles ) ) {
 		foreach ( $styles as $style ) {
 			$fileLocation = $style['location'];
@@ -81,8 +81,9 @@ function styleEnqueue( $styles ) {
 
 
 // Function to enqueue template scripts
-function scriptEnqueue( $scripts ) {
+function script_enqueue( $scripts ) {
 	wp_enqueue_script( 'jquery' );
+
 	if ( is_array( $scripts ) ) {
 		foreach ( $scripts as $script ) {
 			if ( $script['location'] != null ) {
@@ -123,13 +124,13 @@ function customizer_scripts() {
 }
 
 add_action( 'customize_controls_enqueue_scripts', 'customizer_scripts' );
-add_action( 'wp_enqueue_style', 'styleEnqueue' );
-add_action( 'wp_enqueue_scripts', 'scriptEnqueue' );
+add_action( 'wp_enqueue_style', 'style_enqueue' );
+add_action( 'wp_enqueue_scripts', 'script_enqueue' );
 add_action( 'customize_preview_init', 'ccsm_customizer_preview_scripts' );
 
 
 // Timer and countdown date display function
-function counterDates( $timerDate ) {
+function counter_dates( $timerDate ) {
 
 	if ( $timerDate instanceof DateTime ) {
 		$date = DateTime::createFromFormat( 'Y-m-d H:i:s', '2018-12-25 00:00:00' );
@@ -140,7 +141,7 @@ function counterDates( $timerDate ) {
 
 
 	//$fDAte    = new DateTime( $timerDate );
-	$cDate    = new DateTime( date( 'Y-m-d H:i:s' ) );
+	$cDate = new DateTime( date( 'Y-m-d H:i:s' ) );
 
 	$interval = $cDate->diff( $date );
 

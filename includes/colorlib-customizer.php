@@ -2,7 +2,7 @@
 /* Colorlib Coming Soon Customizer Options */
 
 
-class ccsm_customizer {
+class CCSM_Customizer {
 
 	public function __construct() {
 
@@ -85,7 +85,6 @@ class ccsm_customizer {
 				'priority' => 35,
 			)
 		);
-
 
 
 		/* Section - Coming Soon - Custom CSS */
@@ -418,7 +417,7 @@ class ccsm_customizer {
 
 }
 
-$cl = new ccsm_customizer();
+$cl = new CCSM_Customizer();
 
 function ccsm_sanitize_text( $input ) {
 	return wp_kses_post( force_balance_tags( $input ) );
