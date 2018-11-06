@@ -180,7 +180,6 @@ class CCSM_Customizer {
 		$wp_customize->add_control( new CCSM_Control_Text_Editor( $wp_customize, 'ccsm_settings[colorlib_coming_soon_page_heading]', array(
 				'label'    => esc_html__( 'Heading', 'colorlib-coming-soon' ),
 				'section'  => 'colorlib_coming_soon_section_general',
-				'type'     => 'epsilon-text-editor',
 				'priority' => 20,
 			) )
 		);
@@ -197,7 +196,6 @@ class CCSM_Customizer {
 		$wp_customize->add_control( new CCSM_Control_Text_Editor( $wp_customize, 'ccsm_settings[colorlib_coming_soon_page_content]', array(
 				'label'    => esc_html__( 'Main Content', 'colorlib-coming-soon' ),
 				'section'  => 'colorlib_coming_soon_section_general',
-				'type'     => 'epsilon-text-editor',
 				'priority' => 30,
 			) )
 		);
@@ -213,7 +211,6 @@ class CCSM_Customizer {
 		$wp_customize->add_control( new CCSM_Control_Text_Editor( $wp_customize, 'ccsm_settings[colorlib_coming_soon_page_footer]', array(
 				'label'    => esc_html__( 'Footer Text', 'colorlib-coming-soon' ),
 				'section'  => 'colorlib_coming_soon_section_general',
-				'type'     => 'epsilon-text-editor',
 				'priority' => 40,
 			) )
 		);

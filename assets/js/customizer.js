@@ -1,7 +1,8 @@
 jQuery(window).load(function () {
-    jQuery('textarea.js-ccs-editor').each(function () {
+    jQuery('textarea.js-ccsm-editor').each(function () {
         var textareaId = jQuery(this).attr('id');
         var textareaEditor = jQuery(this);
+
         wp.editor.initialize(textareaId, {
             tinymce: {
                 wpautop: true,

@@ -74,7 +74,7 @@ function ccsm_template_redirect() {
 	global $wp_customize;
 	$ccsm_options = get_option( 'ccsm_settings' );
 	if ( ! is_user_logged_in() && $ccsm_options['colorlib_coming_soon_activation'] == 1 || is_customize_preview() && isset( $_REQUEST['colorlib-coming-soon-customization'] ) ) { //Checks for if user is logged in and CCSM is activated  OR if customizer is open on CCSM customization panel
-		
+
 		$file = plugin_dir_path( __FILE__ ) . 'includes/colorlib-template.php'; //get path of our coming soon display page and redirecting
 		include( $file );
 
@@ -138,7 +138,7 @@ function ccsm_customizer_preview_scripts() {
 
 function customizer_scripts() {
 	wp_enqueue_editor();
-	wp_enqueue_code_editor( array( 'type' => 'text/css' ) );
+	//wp_enqueue_code_editor( array( 'type' => 'text/css' ) );
 	wp_enqueue_script( 'colorlib-customizer-js', CSMM_URL . 'assets/js/customizer.js' );
 	wp_enqueue_script( 'colorlib-cmmm-main-js', CSMM_URL . 'assets/js/main.js' );
 	wp_enqueue_style( 'colorlib-custom-controls-css', CSMM_URL . 'assets/css/custom-controls.css', array(), '1.0', 'all' );

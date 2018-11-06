@@ -5,89 +5,19 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
 
 		class CCSM_Control_Text_Editor extends WP_Customize_Control {
 
-			/**
-			 * @since 1.0.0
-			 * @var string
-			 */
-			public
-				$type = 'epsilon-text-editor';
+		    public $type = 'ccsm-editor';
 
-			/**
-			 * Epsilon_Control_Text_Editor constructor.
-			 *
-			 * @param WP_Customize_Manager $manager
-			 * @param string $id
-			 * @param array $args
-			 */
-			public
-			function __construct(
-				WP_Customize_Manager $manager, $id, array $args = array()
-			) {
-				parent::__construct( $manager, $id, $args );
-				$manager->register_control_type( 'ccsm_Control_Text_Editor' );
-			}
-
-			/**
-			 * @since 1.0.0
-			 * @return array
-			 */
-			public
-			function json() {
-				$json          = parent::json();
-				$json['id']    = $this->id;
-				$json['link']  = $this->get_link();
-				$json['value'] = $this->value();
-
-				return $json;
-			}
-
-			/**
-			 * @since 1.0.0
-			 */
-			public
-			function enqueue() {
-
-				if ( function_exists( 'wp_enqueue_editor' ) ) {
-					wp_enqueue_editor();
-				} else {
-					if ( ! class_exists( '_WP_Editors', false ) ) {
-						require( ABSPATH . WPINC . '/class-wp-editor.php' );
-					}
-
-					_WP_Editors::enqueue_scripts();
-				}
-
-			}
-
-			/**
-			 * @since 1.0.0
-			 * Display the control's content
-			 */
-			public
-			function content_template() {
-				//@formatter:off ?>
-                <label>
-			<span class="customize-control-title">
-				<# if( data.label ){ #>
-					<span class="customize-control-title">{{{ data.label }}}</span>
-				<# } #>
-
-				<# if( data.description ){ #>
-					<span class="description customize-control-description">{{{ data.description }}}</span>
-				<# } #>
-			</span>
-                    <textarea id="{{{ data.id }}}-editor" class="widefat text wp-editor-area js-ccs-editor" {{{ data.link }}}>{{{ data.value }}}</textarea>
-                </label>
-				<?php //@formatter:on
-			}
-
-			/**
-			 * Empty, as it should be
-			 *
-			 * @since 1.0.0
-			 */
 			public
 			function render_content() {
+				$id = str_replace( '[', '', $this->id );
+				$id = str_replace( ']', '', $id );
+				?>
+                <label><?php echo $this->label; ?></label>
+                <span class="description customize-control-description"><?php echo $this->description; ?></span>
+                </span>
+                <textarea id="<?php echo $id ?>"
+                          class="widefat text wp-editor-area js-ccsm-editor" <?php echo $this->link(); ?><?php echo $this->value(); ?></textarea>
+				<?php
 			}
 		}
 	}
