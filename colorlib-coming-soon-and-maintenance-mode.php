@@ -33,6 +33,27 @@ add_action( 'plugins_loaded', 'ccsm_load_plugin_textdomain' );
 //Loading Plugin Theme Customizer Options
 require_once( 'includes/colorlib-customizer.php' );
 
+add_filter( 'plugin_action_links', 'add_settings_link', 10, 5 );
+
+function add_settings_link( $actions, $plugin_file ) {
+
+	static $plugin;
+
+	if ( ! isset( $plugin ) ) {
+		$plugin = plugin_basename( __FILE__ );
+	}
+	if ( $plugin == $plugin_file ) {
+
+		$settings  = array( 'settings' => '<a href="options-general.php?page=ccsm_settings">' . __( 'Settings', 'colorlib-coming-soon' ) . '</a>' );
+		$site_link = array( 'support' => '<a href="http://colorlib.com" target="_blank">Support</a>' );
+
+		$actions = array_merge( $settings, $actions );
+		$actions = array_merge( $site_link, $actions );
+	}
+
+	return $actions;
+}
+
 
 /* Redirect code that checks if on WP login page */
 add_action( 'init', 'ccsm_skip_redirect_on_login' );
@@ -147,7 +168,7 @@ function counter_dates( $timerDate ) {
 	} else {
 		$date = DateTime::createFromFormat( 'Y-m-d H:i:s', date( 'Y-m-d H:i:s', strtotime( '+1 month' ) ) );
 	}
-	
+
 	$cDate    = new DateTime( date( 'Y-m-d H:i:s' ) );
 	$interval = $cDate->diff( $date );
 
