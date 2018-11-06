@@ -23,7 +23,7 @@ $dates   = counter_dates( $counter );
 <body>
 
 <div class="bg-img1 overlay1 size1 flex-w flex-c-m p-t-55 p-b-55 p-l-15 p-r-15"
-     style="background-image: url('<?php echo CSMM_URL . 'templates/' . $template; ?>/images/bg01.jpg');">
+     style="background-image: url('<?php echo CCSM_URL . 'templates/' . $template; ?>/images/bg01.jpg');">
     <div class="wsize1">
         <p class="txt-center p-b-23">
             <i class="zmdi zmdi-card-giftcard cl0 fs-60"></i>

@@ -41,10 +41,10 @@
 
 	?>
     <link rel="icon" type="image/png"
-          href="<?php echo CSMM_URL . 'templates/' . $template; ?>/images/icons/favicon.ico"/>
+          href="<?php echo CCSM_URL . 'templates/' . $template; ?>/images/icons/favicon.ico"/>
 
 	<?php
-	include( CSMM_PATH . 'templates/' . $template . '/' . $template . '.php' );
+	include( CCSM_PATH . 'templates/' . $template . '/' . $template . '.php' );
 	?>
 
     </body>

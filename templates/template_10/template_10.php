@@ -24,11 +24,11 @@ $dates    = counter_dates( $counter );
 
 <div class="simpleslide100">
     <div class="simpleslide100-item bg-img1"
-         style="background-image: url('<?php echo CSMM_URL . 'templates/' . $template; ?>/images/bg01.jpg');"></div>
+         style="background-image: url('<?php echo CCSM_URL . 'templates/' . $template; ?>/images/bg01.jpg');"></div>
     <div class="simpleslide100-item bg-img1"
-         style="background-image: url('<?php echo CSMM_URL . 'templates/' . $template; ?>/images/bg02.jpg');"></div>
+         style="background-image: url('<?php echo CCSM_URL . 'templates/' . $template; ?>/images/bg02.jpg');"></div>
     <div class="simpleslide100-item bg-img1"
-         style="background-image: url('<?php echo CSMM_URL . 'templates/' . $template; ?>/images/bg03.jpg');"></div>
+         style="background-image: url('<?php echo CCSM_URL . 'templates/' . $template; ?>/images/bg03.jpg');"></div>
 </div>
 
 <div class="size1 overlay1">

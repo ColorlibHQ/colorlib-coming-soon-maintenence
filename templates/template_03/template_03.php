@@ -23,7 +23,7 @@ $dates    = counter_dates( $counter );
 <body>
 
 <div class="bg-img1 size1 flex-w flex-c-m p-t-55 p-b-55 p-l-15 p-r-15"
-     style="background-image: url('<?php echo CSMM_URL . 'templates/' . $template; ?>/images/bg01.jpg');">
+     style="background-image: url('<?php echo CCSM_URL . 'templates/' . $template; ?>/images/bg01.jpg');">
     <div class="wsize1 bor1 bg1 p-t-175 p-b-45 p-l-15 p-r-15 respon1">
         <div class="wrappic1">
 			<?php if ( $ccsm_options['colorlib_coming_soon_plugin_logo'] ) {

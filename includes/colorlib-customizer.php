@@ -71,9 +71,9 @@ class CCSM_Customizer {
 
 	public function ccsm_customizer_controls( $wp_customize ) {
 
-		require_once( CSMM_PATH . 'includes/controls/class-ccsm-control-text-editor.php' );
-		require_once( CSMM_PATH . 'includes/controls/class-ccsm-control-toggle.php' );
-		require_once( CSMM_PATH . 'includes/controls/class-ccsm-template-selection.php' );
+		require_once( CCSM_PATH . 'includes/controls/class-ccsm-control-text-editor.php' );
+		require_once( CCSM_PATH . 'includes/controls/class-ccsm-control-toggle.php' );
+		require_once( CCSM_PATH . 'includes/controls/class-ccsm-template-selection.php' );
 
 		/* Setting - Coming Soon - Activation */
 		$wp_customize->add_setting( 'ccsm_settings[colorlib_coming_soon_activation]', array(
@@ -156,7 +156,7 @@ class CCSM_Customizer {
 
 		/* Setting - General - Site Logo */
 		$wp_customize->add_setting( 'ccsm_settings[colorlib_coming_soon_plugin_logo]', array(
-			'default'           => CSMM_URL . 'assets/images/logo.png',
+			'default'           => CCSM_URL . 'assets/images/logo.png',
 			'sanitize_callback' => 'ccsm_sanitize_text',
 			'type'              => 'option'
 		) );

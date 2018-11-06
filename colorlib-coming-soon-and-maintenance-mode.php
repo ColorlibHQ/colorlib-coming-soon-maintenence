@@ -3,7 +3,7 @@
   Plugin Name: Colorlib Coming Soon and Maintenance plugin for WordPress
   Plugin URI: https://colorlib.com/
   Description: Colorlib Coming Soon and Maintenance is a responsive coming soon WordPress plugin that comes with well designed coming soon page and lots of useful features including customization via Live Customizer, MailChimp integration, custom forms, and more.
-  Version: 1.3.0
+  Version: 1.0.0
   Author: Colorlib
   Author URI: https://colorlib.com/
   License: GPL V3
@@ -17,10 +17,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'CSMM_PATH', plugin_dir_path( __FILE__ ) );
-define( 'CSMM_URL', plugin_dir_url( __FILE__ ) );
-define( 'CSMM_PLUGIN_BASE', plugin_basename( __FILE__ ) );
-define( 'CSMM_FILE_', __FILE__ );
+define( 'CCSM_PATH', plugin_dir_path( __FILE__ ) );
+define( 'CCSM_URL', plugin_dir_url( __FILE__ ) );
+define( 'CCSM_PLUGIN_BASE', plugin_basename( __FILE__ ) );
+define( 'CCSM_FILE_', __FILE__ );
 
 //loads the text domain for translation
 function ccsm_load_plugin_textdomain() {
@@ -91,9 +91,9 @@ function style_enqueue( $styles ) {
 			$templateName = $style['template'];
 
 			if ( $templateName == 'global' ) {
-				wp_enqueue_style( $templateName . '-' . $fileName, CSMM_URL . 'assets/' . $fileLocation );
+				wp_enqueue_style( $templateName . '-' . $fileName, CCSM_URL . 'assets/' . $fileLocation );
 			} else {
-				wp_enqueue_style( $templateName . '-' . $fileName, CSMM_URL . 'templates/' . $templateName . '/' . $fileLocation );
+				wp_enqueue_style( $templateName . '-' . $fileName, CCSM_URL . 'templates/' . $templateName . '/' . $fileLocation );
 			}
 
 		}
@@ -117,9 +117,9 @@ function script_enqueue( $scripts ) {
 				$templateName = $script['template'];
 			}
 			if ( $templateName != 'global' ) {
-				wp_enqueue_script( $templateName . '-' . $fileName, CSMM_URL . 'templates/' . $templateName . '/' . $fileLocation );
+				wp_enqueue_script( $templateName . '-' . $fileName, CCSM_URL . 'templates/' . $templateName . '/' . $fileLocation );
 			} else {
-				wp_enqueue_script( $templateName . '-' . $fileName, CSMM_URL . 'assets/' . $fileLocation );
+				wp_enqueue_script( $templateName . '-' . $fileName, CCSM_URL . 'assets/' . $fileLocation );
 			}
 
 		}
@@ -128,7 +128,7 @@ function script_enqueue( $scripts ) {
 
 
 function ccsm_customizer_preview_scripts() {
-	wp_enqueue_script( 'colorlib-customizer-preview', CSMM_URL . 'assets/js/customizer-preview.js', array(
+	wp_enqueue_script( 'colorlib-customizer-preview', CCSM_URL . 'assets/js/customizer-preview.js', array(
 		'customize-preview',
 		'jquery'
 	) );
@@ -139,9 +139,9 @@ function ccsm_customizer_preview_scripts() {
 function customizer_scripts() {
 	wp_enqueue_editor();
 	//wp_enqueue_code_editor( array( 'type' => 'text/css' ) );
-	wp_enqueue_script( 'colorlib-customizer-js', CSMM_URL . 'assets/js/customizer.js' );
-	wp_enqueue_script( 'colorlib-cmmm-main-js', CSMM_URL . 'assets/js/main.js' );
-	wp_enqueue_style( 'colorlib-custom-controls-css', CSMM_URL . 'assets/css/custom-controls.css', array(), '1.0', 'all' );
+	wp_enqueue_script( 'colorlib-customizer-js', CCSM_URL . 'assets/js/customizer.js' );
+	wp_enqueue_script( 'colorlib-cmmm-main-js', CCSM_URL . 'assets/js/main.js' );
+	wp_enqueue_style( 'colorlib-custom-controls-css', CCSM_URL . 'assets/css/custom-controls.css', array(), '1.0', 'all' );
 	wp_localize_script(
 		'colorlib-customizer-js', 'CCSurls', array(
 			'siteurl' => get_option( 'siteurl' ),
