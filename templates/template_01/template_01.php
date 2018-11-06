@@ -52,7 +52,13 @@ $dates   = counter_dates( $counter );
     <!-- Form -->
     <div class="size3 flex-col-sb flex-w p-l-75 p-r-75 p-t-45 p-b-45 respon1">
         <div class="wrap-pic1">
-            <img src="<?php echo get_option( 'colorlib_coming_soon_plugin_logo' ); ?>" alt="LOGO">
+	        <?php if ( get_option( 'colorlib_coming_soon_plugin_logo' ) ) {
+		        ?>
+                <a href="#"><img src="<?php echo get_option( 'colorlib_coming_soon_plugin_logo' ); ?>"
+                                 alt="LOGO"></a>
+		        <?php
+	        }
+	        ?>
         </div>
 
         <div class="p-t-50 p-b-60">
@@ -189,9 +195,7 @@ $scripts = array(
 );
 
 script_enqueue( $scripts );
-if ( is_customize_preview() ) {
-	wp_footer();
-}
+wp_footer();
 ?>
 <script>
     jQuery('.cd100').countdown100({

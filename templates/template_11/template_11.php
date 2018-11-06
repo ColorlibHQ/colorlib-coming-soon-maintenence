@@ -36,7 +36,13 @@ $dates   = counter_dates( $counter );
     <!--  -->
     <div class="w-full flex-w flex-sb-m p-l-80 p-r-80 p-t-22 p-lr-15-sm">
         <div class="wrappic1 m-r-30 m-t-10 m-b-10">
-            <a href="#"><img src="<?php echo get_option( 'colorlib_coming_soon_plugin_logo' ); ?>" alt="LOGO"></a>
+			<?php if ( get_option( 'colorlib_coming_soon_plugin_logo' ) ) {
+				?>
+                <a href="#"><img src="<?php echo get_option( 'colorlib_coming_soon_plugin_logo' ); ?>"
+                                 alt="LOGO"></a>
+				<?php
+			}
+			?>
         </div>
 
         <div class="flex-w m-t-10 m-b-10">

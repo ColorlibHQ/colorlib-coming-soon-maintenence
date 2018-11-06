@@ -25,9 +25,13 @@ $dates   = counter_dates( $counter );
 <div class="flex-w flex-str size1 overlay1">
     <div class="flex-w flex-col-sb wsize1 bg0 p-l-65 p-t-37 p-b-50 p-r-80 respon1">
         <div class="wrappic1">
-            <a href="#">
-                <img src="<?php echo get_option( 'colorlib_coming_soon_plugin_logo' ); ?>" alt="LOGO">
-            </a>
+			<?php if ( get_option( 'colorlib_coming_soon_plugin_logo' ) ) {
+				?>
+                <a href="#"><img src="<?php echo get_option( 'colorlib_coming_soon_plugin_logo' ); ?>"
+                                 alt="LOGO"></a>
+				<?php
+			}
+			?>
         </div>
 
         <div class="w-full flex-c-m p-t-80 p-b-90">

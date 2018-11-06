@@ -26,7 +26,13 @@ $dates   = counter_dates( $counter );
      style="background-image: url('<?php echo CSMM_URL . 'templates/' . $template; ?>/images/bg01.jpg');">
     <div class="wsize1 bor1 bg1 p-t-175 p-b-45 p-l-15 p-r-15 respon1">
         <div class="wrappic1">
-            <img src="<?php echo get_option( 'colorlib_coming_soon_plugin_logo' ); ?>" alt="Logo">
+	        <?php if ( get_option( 'colorlib_coming_soon_plugin_logo' ) ) {
+		        ?>
+                <a href="#"><img src="<?php echo get_option( 'colorlib_coming_soon_plugin_logo' ); ?>"
+                                 alt="LOGO"></a>
+		        <?php
+	        }
+	        ?>
         </div>
 
         <p class="txt-center m1-txt1 p-t-33 p-b-68" id="colorlib_coming_soon_page_content">
