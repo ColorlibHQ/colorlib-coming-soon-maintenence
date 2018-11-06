@@ -33,9 +33,9 @@ add_action( 'plugins_loaded', 'ccsm_load_plugin_textdomain' );
 //Loading Plugin Theme Customizer Options
 require_once( 'includes/colorlib-customizer.php' );
 
-add_filter( 'plugin_action_links', 'add_settings_link', 10, 5 );
+add_filter( 'plugin_action_links', 'ccsm_add_settings_link', 10, 5 );
 
-function add_settings_link( $actions, $plugin_file ) {
+function ccsm_add_settings_link( $actions, $plugin_file ) {
 
 	static $plugin;
 
@@ -83,7 +83,7 @@ function ccsm_template_redirect() {
 }
 
 // Function to enqueue template styles
-function style_enqueue( $styles ) {
+function ccsm_style_enqueue( $styles ) {
 	if ( is_array( $styles ) ) {
 		foreach ( $styles as $style ) {
 			$fileLocation = $style['location'];
@@ -101,7 +101,7 @@ function style_enqueue( $styles ) {
 }
 
 // Function to enqueue template scripts
-function script_enqueue( $scripts ) {
+function ccsm_script_enqueue( $scripts ) {
 	remove_all_actions( 'wp_enqueue_scripts' );
 	wp_enqueue_script( 'jquery' );
 
@@ -136,7 +136,7 @@ function ccsm_customizer_preview_scripts() {
 }
 
 
-function customizer_scripts() {
+function ccsm_customizer_scripts() {
 	wp_enqueue_editor();
 	//wp_enqueue_code_editor( array( 'type' => 'text/css' ) );
 	wp_enqueue_script( 'colorlib-customizer-js', CCSM_URL . 'assets/js/customizer.js' );
@@ -149,14 +149,14 @@ function customizer_scripts() {
 	);
 }
 
-add_action( 'customize_controls_enqueue_scripts', 'customizer_scripts' );
-add_action( 'wp_enqueue_style', 'style_enqueue' );
-add_action( 'wp_enqueue_scripts', 'script_enqueue' );
+add_action( 'customize_controls_enqueue_scripts', 'ccsm_customizer_scripts' );
+add_action( 'wp_enqueue_style', 'ccsm_style_enqueue' );
+add_action( 'wp_enqueue_scripts', 'ccsm_script_enqueue' );
 add_action( 'customize_preview_init', 'ccsm_customizer_preview_scripts' );
 
 
 // Timer and countdown date display function
-function counter_dates( $timerDate ) {
+function ccsm_counter_dates( $timerDate ) {
 
 	if ( $timerDate ) {
 		$date = DateTime::createFromFormat( 'Y-m-d H:i:s', $timerDate );
@@ -199,9 +199,9 @@ function counter_dates( $timerDate ) {
 }
 
 //check if default settings are stored in db, else store them
-register_activation_hook( __FILE__, 'check_on_activation' );
+register_activation_hook( __FILE__, 'ccsm_check_on_activation' );
 
-function check_on_activation() {
+function ccsm_check_on_activation() {
 	if ( get_option( 'ccsm_settings' ) == null ) {
 		$defaultSets = array(
 			'colorlib_coming_soon_activation'         => '1',

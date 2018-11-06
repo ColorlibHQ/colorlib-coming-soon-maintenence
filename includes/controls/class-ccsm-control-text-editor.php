@@ -1,7 +1,7 @@
 <?php
 if ( class_exists( 'WP_Customize_Control' ) ) {
 
-	if ( ! class_exists( 'ccsm_Control_Text_Editor' ) ) {
+	if ( ! class_exists( 'CCSM_Control_Text_Editor' ) ) {
 
 		class CCSM_Control_Text_Editor extends WP_Customize_Control {
 

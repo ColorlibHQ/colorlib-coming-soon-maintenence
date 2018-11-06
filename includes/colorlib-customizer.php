@@ -8,9 +8,8 @@ class CCSM_Customizer {
 
 		add_action( 'customize_register', array( $this, 'ccsm_customizer_controls' ) );
 		add_action( 'customize_register', array( $this, 'ccsm_panels_initialize' ) );
-		add_action( 'admin_menu', array( $this, 'add_menu_item' ) );
-		add_action( 'admin_init', array( $this, 'redirect_customizer' ) );
-
+		add_action( 'admin_menu', array( $this, 'ccsm_add_menu_item' ) );
+		add_action( 'admin_init', array( $this, 'ccsm_redirect_customizer' ) );
 	}
 
 	public function ccsm_panels_initialize( $wp_customize ) {
@@ -337,7 +336,7 @@ class CCSM_Customizer {
 		);
 	}
 
-	public function add_menu_item() {
+	public function ccsm_add_menu_item() {
 		$page = add_menu_page(
 			esc_html__( 'Colorlib Coming Soon', 'colorlib-comin-soon' ), esc_html__( 'Coming Soon', 'colorlib-coming-soon' ), 'manage_options', 'ccsm_settings', array(
 			$this,
@@ -353,7 +352,7 @@ class CCSM_Customizer {
 	 *
 	 * @return array        Modified links
 	 */
-	public function add_settings_link( $links ) {
+	public function ccsm_add_settings_link( $links ) {
 		$settings_link = '<a href="options-general.php?page=ccsm__settings">' . __( 'Settings', 'colorlib-coming-soon' ) . '</a>';
 		array_push( $links, $settings_link );
 
@@ -366,7 +365,7 @@ class CCSM_Customizer {
 	 * @access public
 	 * @return void
 	 */
-	public function redirect_customizer() {
+	public function ccsm_redirect_customizer() {
 		if ( ! empty( $_GET['page'] ) ) { // Input var okay.
 			if ( 'ccsm_settings' === $_GET['page'] ) { // Input var okay.
 

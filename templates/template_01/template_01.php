@@ -14,11 +14,11 @@ $styles       = array(
 	)
 );
 
-style_enqueue( $styles );
+ccsm_style_enqueue( $styles );
 
 $template = $ccsm_potions['colorlib_coming_soon_template_selection'];
 $counter  = $ccsm_potions['colorlib_coming_soon_timer_option'];
-$dates    = counter_dates( $counter );
+$dates    = ccsm_counter_dates( $counter );
 ?>
 </head>
 <body>
@@ -194,7 +194,7 @@ $scripts = array(
 
 );
 
-script_enqueue( $scripts );
+ccsm_script_enqueue( $scripts );
 wp_footer();
 ?>
 <script>

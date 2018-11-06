@@ -30,7 +30,7 @@
 		),
 	);
 
-	style_enqueue( $styles );
+	ccsm_style_enqueue( $styles );
 
 	$ccsm_options = get_option( 'ccsm_settings' );
 

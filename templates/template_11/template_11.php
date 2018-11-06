@@ -13,7 +13,7 @@ $styles       = array(
 	)
 );
 
-style_enqueue( $styles );
+ccsm_style_enqueue( $styles );
 
 $template = $ccsm_options['colorlib_coming_soon_template_selection'];
 $counter  = $ccsm_options['colorlib_coming_soon_timer_option'];
@@ -193,7 +193,7 @@ $scripts = array(
 
 );
 
-script_enqueue( $scripts );
+ccsm_script_enqueue( $scripts );
 
 wp_footer();
 
