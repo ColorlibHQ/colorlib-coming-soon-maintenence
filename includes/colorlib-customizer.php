@@ -10,8 +10,8 @@ class CCSM_Customizer {
 		add_action( 'customize_register', array( $this, 'ccsm_panels_initialize' ) );
 		add_action( 'admin_menu', array( $this, 'add_menu_item' ) );
 		add_action( 'admin_init', array( $this, 'redirect_customizer' ) );
-	}
 
+	}
 
 	public function ccsm_panels_initialize( $wp_customize ) {
 
