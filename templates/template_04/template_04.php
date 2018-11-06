@@ -1,7 +1,7 @@
 <?php
+$ccsm_options = get_option( 'ccsm_settings' );
 
-$template = get_option( 'colorlib_coming_soon_template_selection' );
-$styles   = array(
+$styles = array(
 	array(
 		'name'     => 'main',
 		'location' => 'css/main.css',
@@ -16,8 +16,9 @@ $styles   = array(
 
 style_enqueue( $styles );
 
-$counter = get_option( 'colorlib_coming_soon_timer_option' );
-$dates   = counter_dates( $counter );
+$template = $ccsm_options['colorlib_coming_soon_template_selection'];
+$counter  = $ccsm_options['colorlib_coming_soon_timer_option'];
+$dates    = counter_dates( $counter );
 ?>
 </head>
 <body>
@@ -26,11 +27,11 @@ $dates   = counter_dates( $counter );
     <span></span>
     <div class="flex-col-c p-t-50 p-b-50">
         <h3 class="l1-txt1 txt-center p-b-10" id="colorlib_coming_soon_page_heading">
-            <?php echo get_option('colorlib_coming_soon_page_heading'); ?>
+			<?php echo $ccsm_options['colorlib_coming_soon_page_heading']; ?>
         </h3>
 
         <p class="txt-center l1-txt2 p-b-60" id="colorlib_coming_soon_page_content">
-            <?php echo get_option('colorlib_coming_soon_page_content'); ?>
+			<?php echo $ccsm_options['colorlib_coming_soon_page_content']; ?>
         </p>
 
         <div class="flex-w flex-c cd100 p-b-82">
@@ -55,8 +56,9 @@ $dates   = counter_dates( $counter );
             </div>
         </div>
 
-        <button class="flex-c-m s1-txt2 size3 how-btn" data-toggle="modal" data-target="#subscribe" id="colorlib_coming_soon_page_footer">
-            <?php echo get_option('colorlib_coming_soon_page_footer'); ?>
+        <button class="flex-c-m s1-txt2 size3 how-btn" data-toggle="modal" data-target="#subscribe"
+                id="colorlib_coming_soon_page_footer">
+			<?php echo $ccsm_options['colorlib_coming_soon_page_footer']; ?>
         </button>
     </div>
 
@@ -76,11 +78,11 @@ $dates   = counter_dates( $counter );
 
             <div class="wsize1 m-lr-auto">
                 <h3 class="m1-txt1 txt-center p-b-36">
-                    <span class="bor1 p-b-6"><?php echo _e('Subscribe','colorlib-coming-soon'); ?></span>
+                    <span class="bor1 p-b-6"><?php echo _e( 'Subscribe', 'colorlib-coming-soon' ); ?></span>
                 </h3>
 
                 <p class="m1-txt2 txt-center p-b-40">
-                    <?php echo _e('Follow us for update now!','colorlib-coming-soon'); ?>
+					<?php echo _e( 'Follow us for update now!', 'colorlib-coming-soon' ); ?>
                 </p>
 
                 <form class="contact100-form validate-form">

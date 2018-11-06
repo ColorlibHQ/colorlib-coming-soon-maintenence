@@ -1,7 +1,6 @@
 <?php
-
-$template = get_option( 'colorlib_coming_soon_template_selection' );
-$styles   = array(
+$ccsm_potions = get_option( 'ccsm_settings' );
+$styles       = array(
 
 	array(
 		'name'     => 'main',
@@ -17,8 +16,9 @@ $styles   = array(
 
 style_enqueue( $styles );
 
-$counter = get_option( 'colorlib_coming_soon_timer_option' );
-$dates   = counter_dates( $counter );
+$template = $ccsm_potions['colorlib_coming_soon_template_selection'];
+$counter  = $ccsm_potions['colorlib_coming_soon_timer_option'];
+$dates    = counter_dates( $counter );
 ?>
 </head>
 <body>
@@ -52,18 +52,18 @@ $dates   = counter_dates( $counter );
     <!-- Form -->
     <div class="size3 flex-col-sb flex-w p-l-75 p-r-75 p-t-45 p-b-45 respon1">
         <div class="wrap-pic1">
-	        <?php if ( get_option( 'colorlib_coming_soon_plugin_logo' ) ) {
-		        ?>
-                <a href="#"><img src="<?php echo get_option( 'colorlib_coming_soon_plugin_logo' ); ?>"
+			<?php if ( get_option( 'colorlib_coming_soon_plugin_logo' ) ) {
+				?>
+                <a href="#"><img src="<?php echo $ccsm_potions['colorlib_coming_soon_plugin_logo']; ?>"
                                  alt="LOGO"></a>
-		        <?php
-	        }
-	        ?>
+				<?php
+			}
+			?>
         </div>
 
         <div class="p-t-50 p-b-60">
             <p class="m1-txt1 p-b-36" id="colorlib_coming_soon_page_heading">
-				<?php echo get_option( 'colorlib_coming_soon_page_heading' ); ?>
+				<?php echo $ccsm_potions['colorlib_coming_soon_page_heading']; ?>
             </p>
             <form class="contact100-form validate-form">
                 <div class="wrap-input100 m-b-10 validate-input" data-validate="Name is required">
@@ -90,9 +90,9 @@ $dates   = counter_dates( $counter );
 
         <div class="flex-w">
 			<?php
-			if ( get_option( 'colorlib_coming_soon_social_facebook' ) ) {
+			if ( $ccsm_potions['colorlib_coming_soon_social_facebook'] ) {
 				?>
-                <a href="<?php echo get_option( 'colorlib_coming_soon_social_facebook' ); ?>"
+                <a href="<?php echo $ccsm_potions['colorlib_coming_soon_social_facebook']; ?>"
                    id="colorlib_coming_soon_social_facebook" class="flex-c-m size5 bg3 how1 trans-04 m-r-5">
                     <i class="fa fa-facebook"></i>
                 </a>
@@ -100,7 +100,7 @@ $dates   = counter_dates( $counter );
 			}
 			?>
 			<?php
-			if ( get_option( 'colorlib_coming_soon_social_twitter' ) ) {
+			if ( $ccsm_potions['colorlib_coming_soon_social_twitter'] ) {
 				?>
                 <a href="<?php echo get_option( 'colorlib_coming_soon_social_twitter' ); ?>"
                    id="colorlib_coming_soon_social_twitter" class="flex-c-m size5 bg4 how1 trans-04 m-r-5">
@@ -109,25 +109,25 @@ $dates   = counter_dates( $counter );
 				<?php
 			}
 
-			if ( get_option( 'colorlib_coming_soon_social_youtube' ) ) {
+			if ( $ccsm_potions['colorlib_coming_soon_social_youtube'] ) {
 				?>
-                <a href="<?php echo get_option( 'colorlib_coming_soon_social_youtube' ); ?>"
+                <a href="<?php echo $ccsm_potions['colorlib_coming_soon_social_youtube']; ?>"
                    id="colorlib_coming_soon_social_youtube" class="flex-c-m size5 bg5 how1 trans-04 m-r-5">
                     <i class="fa fa-youtube-play"></i>
                 </a>
 				<?php
 			}
 
-			if ( get_option( 'colorlib_coming_soon_social_email' ) ) {
+			if ( $ccsm_potions['colorlib_coming_soon_social_email'] ) {
 				?>
-                <a href="mailto:<?php echo get_option( 'colorlib_coming_soon_social_email' ); ?>"
+                <a href="mailto:<?php echo $ccsm_potions['colorlib_coming_soon_social_email']; ?>"
                    id="colorlib_coming_soon_social_email" class="flex-c-m size5 bg3 how1 trans-04 m-r-5">
                     <i class="fa fa-envelope"></i>
-                </a>s
+                </a>
 				<?php
 			}
 
-			if ( get_option( 'colorlib_coming_soon_social_pinterest' ) ) {
+			if ( $ccsm_potions['colorlib_coming_soon_social_pinterest'] ) {
 				?>
                 <a href="<?php echo get_option( 'colorlib_coming_soon_social_pinterest' ); ?>"
                    id="colorlib_coming_soon_social_pinterest" class="flex-c-m size5 bg3 how1 trans-04 m-r-5">
@@ -135,9 +135,9 @@ $dates   = counter_dates( $counter );
                 </a>
 				<?php
 			}
-			if ( get_option( 'colorlib_coming_soon_social_instagram' ) ) {
+			if ( $ccsm_potions['colorlib_coming_soon_social_instagram'] ) {
 				?>
-                <a href="<?php echo get_option( 'colorlib_coming_soon_social_instagram' ); ?>"
+                <a href="<?php echo $ccsm_potions['colorlib_coming_soon_social_instagram']; ?>"
                    id="colorlib_coming_soon_social_instagram" class="flex-c-m size5 bg3 how1 trans-04 m-r-5">
                     <i class="fa fa-instagram"></i>
                 </a>

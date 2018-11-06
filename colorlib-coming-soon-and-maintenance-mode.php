@@ -72,14 +72,9 @@ function ccsm_skip_redirect_on_login() {
 /* Coming Soon Redirect to Template */
 function ccsm_template_redirect() {
 	global $wp_customize;
-
-	if ( ! is_user_logged_in() && get_option( 'colorlib_coming_soon_activation' ) == 1 || is_customize_preview() && isset( $_REQUEST['colorlib-coming-soon-customization'] ) ) { //Checks for if user is logged in and CCSM is activated  OR if customizer is open on CCSM customization panel
-
-		/*print_r( 'somesome' );
-		die();*/
-
-		$templateFile = get_option( 'colorlib_coming_soon_template_selection' );
-
+	$ccsm_options = get_option( 'ccsm_settings' );
+	if ( ! is_user_logged_in() && $ccsm_options['colorlib_coming_soon_activation'] == 1 || is_customize_preview() && isset( $_REQUEST['colorlib-coming-soon-customization'] ) ) { //Checks for if user is logged in and CCSM is activated  OR if customizer is open on CCSM customization panel
+		
 		$file = plugin_dir_path( __FILE__ ) . 'includes/colorlib-template.php'; //get path of our coming soon display page and redirecting
 		include( $file );
 
@@ -105,9 +100,9 @@ function style_enqueue( $styles ) {
 	}
 }
 
-
 // Function to enqueue template scripts
 function script_enqueue( $scripts ) {
+	remove_all_actions( 'wp_enqueue_scripts' );
 	wp_enqueue_script( 'jquery' );
 
 	if ( is_array( $scripts ) ) {

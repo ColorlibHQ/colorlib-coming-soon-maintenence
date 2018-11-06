@@ -1,6 +1,5 @@
 <?php
-
-$template = get_option( 'colorlib_coming_soon_template_selection' );
+$ccsm_options = get_option('ccsm_settings');
 $styles   = array(
 	array(
 		'name'     => 'main',
@@ -16,7 +15,8 @@ $styles   = array(
 
 style_enqueue( $styles );
 
-$counter = get_option( 'colorlib_coming_soon_timer_option' );
+$template = $ccsm_options['colorlib_coming_soon_template_selection'];
+$counter = $ccsm_options['colorlib_coming_soon_timer_option'];
 $dates   = counter_dates( $counter );
 ?>
 </head>
@@ -30,11 +30,11 @@ $dates   = counter_dates( $counter );
         </p>
 
         <h3 class="l1-txt1 txt-center p-b-22" id="colorlib_coming_soon_page_heading">
-			<?php echo get_option( 'colorlib_coming_soon_page_heading' ); ?>
+			<?php echo $ccsm_options['colorlib_coming_soon_page_heading']; ?>
         </h3>
 
         <p class="txt-center m2-txt1 p-b-67">
-			<?php echo get_option( 'colorlib_coming_soon_page_content' ); ?>
+			<?php echo $ccsm_options['colorlib_coming_soon_page_content']; ?>
         </p>
 
         <div class="flex-w flex-sa-m cd100 bor1 p-t-42 p-b-22 p-l-50 p-r-50 respon1">
