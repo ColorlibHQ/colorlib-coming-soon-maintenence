@@ -19,6 +19,7 @@ ccsm_style_enqueue( $styles );
 $template = $ccsm_potions['colorlib_coming_soon_template_selection'];
 $counter  = $ccsm_potions['colorlib_coming_soon_timer_option'];
 $dates    = ccsm_counter_dates( $counter );
+wp_head();
 ?>
 </head>
 <body>
@@ -52,7 +53,7 @@ $dates    = ccsm_counter_dates( $counter );
     <!-- Form -->
     <div class="size3 flex-col-sb flex-w p-l-75 p-r-75 p-t-45 p-b-45 respon1">
         <div class="wrap-pic1">
-			<?php if ( get_option( 'colorlib_coming_soon_plugin_logo' ) ) {
+			<?php if ( $ccsm_potions['colorlib_coming_soon_plugin_logo'] ) {
 				?>
                 <a href="#"><img src="<?php echo $ccsm_potions['colorlib_coming_soon_plugin_logo']; ?>"
                                  alt="LOGO"></a>

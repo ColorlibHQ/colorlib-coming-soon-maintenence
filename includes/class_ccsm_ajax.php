@@ -15,8 +15,8 @@
  * @package Ajaxclass
  * @author  Christopher Churchill <churchill.c.j@gmail.com>
  */
-class ajaxclass{
-  /**
+class ccsm_ajax {
+	/**
 	 * Plugin version, used for cache-busting of style and script file references.
 	 *
 	 * @since   1.0.0
@@ -62,8 +62,8 @@ class ajaxclass{
 	 */
 	private function __construct() {
 
-		add_action( 'wp_ajax_add_mailchimp', array($this,  'add_mailchimp') );
-		add_action('wp_ajax_nopriv_add_mailchimp', array($this, 'add_mailchimp') );
+		add_action( 'wp_ajax_add_mailchimp', array( $this, 'ccsm_add_mailchimp' ) );
+		add_action( 'wp_ajax_nopriv_add_mailchimp', array( $this, 'ccsm_add_mailchimp' ) );
 	}
 
 	/**
@@ -73,20 +73,21 @@ class ajaxclass{
 	 *
 	 * @return    object    A single instance of this class.
 	 */
-	public static function get_instance() {
+	public static function ccsm_get_instance() {
 
 		// If the single instance hasn"t been set, set it now.
-		if (null == self::$instance) {
+		if ( null == self::$instance ) {
 			self::$instance = new self;
 		}
 
 		return self::$instance;
 	}
-  /**
-   *
-   */
-  public function add_mailchimp(){
-			include( plugin_dir_path(__FILE__) . '/templates/post-subscribe.php');
-    die();
-  }
+
+	/**
+	 *
+	 */
+	public function ccsm_add_mailchimp() {
+		include( plugin_dir_path( __FILE__ ) . '/templates/post-subscribe.php' );
+		die();
+	}
 }

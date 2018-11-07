@@ -9,6 +9,7 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
 
 			public
 			function render_content() {
+			    //replace '[' , ']' characters for wp_editor functionality to work correctly
 				$id = str_replace( '[', '', $this->id );
 				$id = str_replace( ']', '', $id );
 				?>

@@ -40,8 +40,9 @@
 
 
 	?>
-    <link rel="icon" type="image/png"
-          href="<?php echo CCSM_URL . 'templates/' . $template; ?>/images/icons/favicon.ico"/>
+    <!--TODO think we should remove this or add option in the customizer-->
+    <!--<link rel="icon" type="image/png"
+          href="<?php /*echo CCSM_URL . 'templates/' . $template; */ ?>/images/icons/favicon.ico"/>-->
 
 	<?php
 	include( CCSM_PATH . 'templates/' . $template . '/' . $template . '.php' );

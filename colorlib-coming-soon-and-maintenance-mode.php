@@ -11,7 +11,6 @@
   Domain Path: /languages
 */
 
-
 // Exit if accessed directly
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -22,19 +21,22 @@ define( 'CCSM_URL', plugin_dir_url( __FILE__ ) );
 define( 'CCSM_PLUGIN_BASE', plugin_basename( __FILE__ ) );
 define( 'CCSM_FILE_', __FILE__ );
 
+add_action( 'init', 'ccsm_skip_redirect_on_login' );
+add_action( 'plugins_loaded', 'ccsm_load_plugin_textdomain' );
+add_filter( 'plugin_action_links', 'ccsm_add_settings_link', 10, 5 );
+add_action( 'customize_controls_enqueue_scripts', 'ccsm_customizer_scripts' );
+add_action( 'customize_preview_init', 'ccsm_customizer_preview_scripts' );
+//add_action( 'wp_footer', 'ccsm_remove_scripts' );
+add_action( 'wp_enqueue_scripts', 'ccsm_style_enqueue' );
+add_action( 'wp_enqueue_scripts', 'ccsm_script_enqueue' );
+
+
 //loads the text domain for translation
 function ccsm_load_plugin_textdomain() {
 	load_plugin_textdomain( 'colorlib-coming-soon', false, basename( dirname( __FILE__ ) ) . '/lang/' );
 }
 
-add_action( 'plugins_loaded', 'ccsm_load_plugin_textdomain' );
-
-
-//Loading Plugin Theme Customizer Options
-require_once( 'includes/colorlib-customizer.php' );
-
-add_filter( 'plugin_action_links', 'ccsm_add_settings_link', 10, 5 );
-
+//add settings and support links on wordpress plugin page
 function ccsm_add_settings_link( $actions, $plugin_file ) {
 
 	static $plugin;
@@ -54,12 +56,8 @@ function ccsm_add_settings_link( $actions, $plugin_file ) {
 	return $actions;
 }
 
-
 /* Redirect code that checks if on WP login page */
-add_action( 'init', 'ccsm_skip_redirect_on_login' );
-
 function ccsm_skip_redirect_on_login() {
-
 
 	global $pagenow;
 	if ( 'wp-login.php' == $pagenow ) {
@@ -73,7 +71,9 @@ function ccsm_skip_redirect_on_login() {
 function ccsm_template_redirect() {
 	global $wp_customize;
 	$ccsm_options = get_option( 'ccsm_settings' );
-	if ( ! is_user_logged_in() && $ccsm_options['colorlib_coming_soon_activation'] == 1 || is_customize_preview() && isset( $_REQUEST['colorlib-coming-soon-customization'] ) ) { //Checks for if user is logged in and CCSM is activated  OR if customizer is open on CCSM customization panel
+
+	//Checks for if user is logged in and CCSM is activated  OR if customizer is open on CCSM customization panel
+	if ( ! is_user_logged_in() && $ccsm_options['colorlib_coming_soon_activation'] == 1 || is_customize_preview() && isset( $_REQUEST['colorlib-coming-soon-customization'] ) ) {
 
 		$file = plugin_dir_path( __FILE__ ) . 'includes/colorlib-template.php'; //get path of our coming soon display page and redirecting
 		include( $file );
@@ -82,7 +82,13 @@ function ccsm_template_redirect() {
 	}
 }
 
-// Function to enqueue template styles
+//remove all enqueued styles and scripts
+function ccsm_remove_scripts() {
+	remove_all_actions( 'wp_header' );
+	remove_all_actions( 'wp_footer' );
+}
+
+// enqueue template styles
 function ccsm_style_enqueue( $styles ) {
 	if ( is_array( $styles ) ) {
 		foreach ( $styles as $style ) {
@@ -100,9 +106,8 @@ function ccsm_style_enqueue( $styles ) {
 	}
 }
 
-// Function to enqueue template scripts
+// enqueue template scripts
 function ccsm_script_enqueue( $scripts ) {
-	remove_all_actions( 'wp_enqueue_scripts' );
 	wp_enqueue_script( 'jquery' );
 
 	if ( is_array( $scripts ) ) {
@@ -141,19 +146,13 @@ function ccsm_customizer_scripts() {
 	//wp_enqueue_code_editor( array( 'type' => 'text/css' ) );
 	wp_enqueue_script( 'colorlib-customizer-js', CCSM_URL . 'assets/js/customizer.js' );
 	wp_enqueue_script( 'colorlib-cmmm-main-js', CCSM_URL . 'assets/js/main.js' );
-	wp_enqueue_style( 'colorlib-custom-controls-css', CCSM_URL . 'assets/css/custom-controls.css', array(), '1.0', 'all' );
+	wp_enqueue_style( 'colorlib-custom-controls-css', CCSM_URL . 'assets/css/ccsm-custom-controls.css', array(), '1.0', 'all' );
 	wp_localize_script(
 		'colorlib-customizer-js', 'CCSurls', array(
 			'siteurl' => get_option( 'siteurl' ),
 		)
 	);
 }
-
-add_action( 'customize_controls_enqueue_scripts', 'ccsm_customizer_scripts' );
-add_action( 'wp_enqueue_style', 'ccsm_style_enqueue' );
-add_action( 'wp_enqueue_scripts', 'ccsm_script_enqueue' );
-add_action( 'customize_preview_init', 'ccsm_customizer_preview_scripts' );
-
 
 // Timer and countdown date display function
 function ccsm_counter_dates( $timerDate ) {
@@ -222,3 +221,7 @@ function ccsm_check_on_activation() {
 		update_option( 'ccsm_settings', $defaultSets );
 	}
 }
+
+
+//Loading Plugin Theme Customizer Options
+require_once( 'includes/class_ccsm_customizer.php' );
