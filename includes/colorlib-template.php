@@ -30,8 +30,6 @@
 		),
 	);
 
-	ccsm_style_enqueue( $styles );
-
 	$ccsm_options = get_option( 'ccsm_settings' );
 
 	if ( $ccsm_options['colorlib_coming_soon_template_selection'] ) {

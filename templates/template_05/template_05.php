@@ -1,24 +1,14 @@
 <?php
 $ccsm_options = get_option( 'ccsm_settings' );
-$styles       = array(
-	array(
-		'name'     => 'main',
-		'location' => 'css/main.css',
-		'template' => $template,
-	),
-	array(
-		'name'     => 'util',
-		'location' => 'css/util.css',
-		'template' => $template,
-	)
-);
-
-ccsm_style_enqueue( $styles );
-
 $template = $ccsm_options['colorlib_coming_soon_template_selection'];
 $counter  = $ccsm_options['colorlib_coming_soon_timer_option'];
 $dates    = ccsm_counter_dates( $counter );
+do_action( 'ccsm_header', 'template_05' );
+
 ?>
+<style>
+    <?php echo $ccsm_options['colorlib_coming_soon_page_custom_css']; ?>
+</style>
 </head>
 <body>
 
@@ -76,64 +66,17 @@ $dates    = ccsm_counter_dates( $counter );
 		</span>
 
 </div>
-
 <?php
-
-$scripts = array(
-	array(
-		'name'     => 'popper',
-		'location' => 'js/vendor/bootstrap/js/popper.js',
-		'template' => 'global',
-	),
-	array(
-		'name'     => 'bootstrap',
-		'location' => 'js/vendor/bootstrap/js/bootstrap.min.js',
-		'template' => 'global'
-	),
-	array(
-		'name'     => 'select2',
-		'location' => 'js/vendor/select2/select2.min.js',
-		'template' => 'global'
-	),
-	array(
-		'name'     => 'moment',
-		'location' => 'js/vendor/countdowntime/moment.min.js',
-		'template' => 'global'
-	),
-	array(
-		'name'     => 'moment-timezone',
-		'location' => 'js/vendor/countdowntime/moment-timezone.min.js',
-		'template' => 'global'
-	),
-	array(
-		'name'     => 'timezone',
-		'location' => 'js/vendor/countdowntime/moment-timezone-with-data.min.js',
-		'template' => 'global'
-	),
-	array(
-		'name'     => 'coutdowntime',
-		'location' => 'js/vendor/countdowntime/countdowntime.js',
-		'template' => 'global'
-	),
-	array(
-		'name'     => 'tilt',
-		'location' => 'js/vendor/tilt/tilt.jquery.min.js',
-		'template' => 'global'
-	),
-	array(
-		'name'     => 'main',
-		'location' => 'js/main.js',
-		'template' => $template,
-	),
-
-);
-
-ccsm_script_enqueue( $scripts );
-
-wp_footer();
-
+if ( is_customize_preview() ) {
+	?>
+    <div style="display:none !important;">
+		<?php
+		wp_footer();
+		?>
+    </div>
+	<?php
+}
 ?>
-
 <script>
     jQuery('.cd100').countdown100({
         /*Set Endtime here*/

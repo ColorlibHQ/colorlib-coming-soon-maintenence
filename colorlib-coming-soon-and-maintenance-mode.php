@@ -24,11 +24,10 @@ define( 'CCSM_FILE_', __FILE__ );
 add_action( 'init', 'ccsm_skip_redirect_on_login' );
 add_action( 'plugins_loaded', 'ccsm_load_plugin_textdomain' );
 add_filter( 'plugin_action_links', 'ccsm_add_settings_link', 10, 5 );
-add_action( 'customize_controls_enqueue_scripts', 'ccsm_customizer_scripts' );
-add_action( 'customize_preview_init', 'ccsm_customizer_preview_scripts' );
-//add_action( 'wp_footer', 'ccsm_remove_scripts' );
-add_action( 'wp_enqueue_scripts', 'ccsm_style_enqueue' );
-add_action( 'wp_enqueue_scripts', 'ccsm_script_enqueue' );
+add_action( 'customize_controls_enqueue_scripts', 'ccsm_customizer_scripts', 30 );
+add_action( 'customize_preview_init', 'ccsm_customizer_preview_scripts', 30 );
+add_action( 'ccsm_header', 'ccsm_style_enqueue', 20 );
+add_action( 'ccsm_header', 'wp_print_scripts' );
 
 
 //loads the text domain for translation
@@ -73,6 +72,7 @@ function ccsm_template_redirect() {
 	$ccsm_options = get_option( 'ccsm_settings' );
 
 	//Checks for if user is logged in and CCSM is activated  OR if customizer is open on CCSM customization panel
+
 	if ( ! is_user_logged_in() && $ccsm_options['colorlib_coming_soon_activation'] == 1 || is_customize_preview() && isset( $_REQUEST['colorlib-coming-soon-customization'] ) ) {
 
 		$file = plugin_dir_path( __FILE__ ) . 'includes/colorlib-template.php'; //get path of our coming soon display page and redirecting
@@ -82,70 +82,369 @@ function ccsm_template_redirect() {
 	}
 }
 
-//remove all enqueued styles and scripts
-function ccsm_remove_scripts() {
-	remove_all_actions( 'wp_header' );
-	remove_all_actions( 'wp_footer' );
-}
-
 // enqueue template styles
-function ccsm_style_enqueue( $styles ) {
-	if ( is_array( $styles ) ) {
-		foreach ( $styles as $style ) {
-			$fileLocation = $style['location'];
-			$fileName     = $style['name'];
-			$templateName = $style['template'];
+function ccsm_style_enqueue( $template_name ) {
 
-			if ( $templateName == 'global' ) {
-				wp_enqueue_style( $templateName . '-' . $fileName, CCSM_URL . 'assets/' . $fileLocation );
-			} else {
-				wp_enqueue_style( $templateName . '-' . $fileName, CCSM_URL . 'templates/' . $templateName . '/' . $fileLocation );
-			}
+	$global_styles = array(
+		array(
+			'name'     => 'animate',
+			'location' => 'css/vendor/animate/animate.css',
+		),
+		array(
+			'name'     => 'bootstrap',
+			'location' => 'css/vendor/bootstrap/css/bootstrap.min.css',
+		),
+		array(
+			'name'     => 'font-awesome',
+			'location' => 'fonts/font-awesome-4.7.0/css/font-awesome.min.css',
+		),
+		array(
+			'name'     => 'select-2',
+			'location' => 'css/vendor/select2/select2.min.css',
+		),
+	);
+
+	$template_styles = array(
+		'template_01' => array(
+			array(
+				'name'     => 'main',
+				'location' => 'css/main.css'
+			),
+			array(
+				'name'     => 'util',
+				'location' => 'css/util.css'
+			),
+		),
+		'template_02' => array(
+			array(
+				'name'     => 'main',
+				'location' => 'css/main.css',
+			),
+			array(
+				'name'     => 'util',
+				'location' => 'css/util.css',
+			)
+		),
+		'template_03' => array(
+			array(
+				'name'     => 'main',
+				'location' => 'css/main.css',
+			),
+			array(
+				'name'     => 'util',
+				'location' => 'css/util.css',
+			)
+		),
+		'template_04' => array(
+			array(
+				'name'     => 'main',
+				'location' => 'css/main.css',
+			),
+			array(
+				'name'     => 'util',
+				'location' => 'css/util.css',
+			)
+		),
+		'template_05' => array(
+			array(
+				'name'     => 'main',
+				'location' => 'css/main.css',
+			),
+			array(
+				'name'     => 'util',
+				'location' => 'css/util.css',
+			)
+		),
+		'template_06' => array(
+			array(
+				'name'     => 'main',
+				'location' => 'css/main.css',
+			),
+			array(
+				'name'     => 'util',
+				'location' => 'css/util.css',
+			)
+		),
+		'template_07' => array(
+			array(
+				'name'     => 'main',
+				'location' => 'css/main.css',
+			),
+			array(
+				'name'     => 'util',
+				'location' => 'css/util.css',
+			)
+		),
+		'template_08' => array(
+			array(
+				'name'     => 'main',
+				'location' => 'css/main.css',
+			),
+			array(
+				'name'     => 'util',
+				'location' => 'css/util.css',
+			)
+		),
+		'template_09' => array(
+			array(
+				'name'     => 'main',
+				'location' => 'css/main.css',
+			),
+			array(
+				'name'     => 'util',
+				'location' => 'css/util.css',
+			)
+		),
+		'template_10' => array(
+			array(
+				'name'     => 'main',
+				'location' => 'css/main.css',
+			),
+			array(
+				'name'     => 'util',
+				'location' => 'css/util.css',
+			)
+		),
+		'template_11' => array(
+			array(
+				'name'     => 'main',
+				'location' => 'css/main.css',
+			),
+			array(
+				'name'     => 'util',
+				'location' => 'css/util.css',
+			)
+		),
+		'template_12' => array(
+			array(
+				'name'     => 'main',
+				'location' => 'css/main.css',
+			),
+			array(
+				'name'     => 'util',
+				'location' => 'css/util.css',
+			)
+		),
+		'template_13' => array(
+			array(
+				'name'     => 'main',
+				'location' => 'css/main.css',
+			),
+			array(
+				'name'     => 'util',
+				'location' => 'css/util.css',
+			)
+		),
+		'template_14' => array(
+			array(
+				'name'     => 'main',
+				'location' => 'css/main.css',
+			),
+			array(
+				'name'     => 'util',
+				'location' => 'css/util.css',
+			)
+		),
+		'template_15' => array(
+			array(
+				'name'     => 'main',
+				'location' => 'css/main.css',
+			),
+			array(
+				'name'     => 'util',
+				'location' => 'css/util.css',
+			)
+		),
+	);
+
+	$global_scripts = array(
+		array(
+			'name'     => 'popper',
+			'location' => 'js/vendor/bootstrap/js/popper.js',
+			'template' => 'global',
+		),
+		array(
+			'name'     => 'bootstrap',
+			'location' => 'js/vendor/bootstrap/js/bootstrap.min.js',
+			'template' => 'global'
+		),
+		array(
+			'name'     => 'moment',
+			'location' => 'js/vendor/countdowntime/moment.min.js',
+			'template' => 'global'
+		),
+		array(
+			'name'     => 'moment-timezone',
+			'location' => 'js/vendor/countdowntime/moment-timezone.min.js',
+			'template' => 'global'
+		),
+		array(
+			'name'     => 'timezone',
+			'location' => 'js/vendor/countdowntime/moment-timezone-with-data.min.js',
+			'template' => 'global'
+		),
+		array(
+			'name'     => 'coutdowntime',
+			'location' => 'js/vendor/countdowntime/countdowntime.js',
+			'template' => 'global'
+		),
+		array(
+			'name'     => 'tilt',
+			'location' => 'js/vendor/tilt/tilt.jquery.min.js',
+			'template' => 'global'
+		),
+	);
+
+	$template_scripts = array(
+		'template_01' => array(
+			array(
+				'name'     => 'main',
+				'location' => 'js/main.js',
+			),
+		),
+		'template_02' => array(
+			array(
+				'name'     => 'main',
+				'location' => 'js/main.js',
+			),
+		),
+		'template_03' => array(
+			array(
+				'name'     => 'main',
+				'location' => 'js/main.js',
+			),
+		),
+		'template_04' => array(
+			array(
+				'name'     => 'main',
+				'location' => 'js/main.js',
+			),
+		),
+		'template_05' => array(
+			array(
+				'name'     => 'main',
+				'location' => 'js/main.js',
+			),
+		),
+		'template_06' => array(
+			array(
+				'name'     => 'main',
+				'location' => 'js/main.js',
+			),
+		),
+		'template_07' => array(
+			array(
+				'name'     => 'main',
+				'location' => 'js/main.js',
+			),
+		),
+		'template_08' => array(
+			array(
+				'name'     => 'main',
+				'location' => 'js/main.js',
+			),
+		),
+		'template_09' => array(
+			array(
+				'name'     => 'main',
+				'location' => 'js/main.js',
+			),
+		),
+		'template_10' => array(
+			array(
+				'name'     => 'main',
+				'location' => 'js/main.js',
+			),
+		),
+		'template_11' => array(
+			array(
+				'name'     => 'main',
+				'location' => 'js/main.js',
+			),
+		),
+		'template_12' => array(
+			array(
+				'name'     => 'main',
+				'location' => 'js/main.js',
+			),
+		),
+		'template_13' => array(
+			array(
+				'name'     => 'main',
+				'location' => 'js/main.js',
+			),
+		),
+		'template_14' => array(
+			array(
+				'name'     => 'main',
+				'location' => 'js/main.js',
+			),
+		),
+		'template_15' => array(
+			array(
+				'name'     => 'main',
+				'location' => 'js/main.js',
+			),
+		),
+	);
+
+	if ( $template_name ) {
+		$encript_styles = $template_styles[ $template_name ];
+	}
+
+	$encript_scripts = $template_scripts[ $template_name ];
+
+	if ( is_customize_preview() ) {
+
+	}
+
+	//print global styles
+	foreach ( $global_styles as $global_style ) {
+		wp_register_style( $global_style['name'], CCSM_URL . 'assets/' . $global_style['location'] );
+		wp_print_styles( $global_style['name'] );
+	}
+
+	//print wordpress default jquery
+	wp_print_scripts( 'jquery' );
+
+	//print global scripts
+	foreach ( $global_scripts as $global_script ) {
+		wp_register_script( $global_script['name'], CCSM_URL . 'assets/' . $global_script['location'] );
+		wp_print_scripts( $global_script['name'] );
+	}
+
+
+	if ( $encript_styles != null && is_array( $encript_styles ) ) {
+		foreach ( $encript_styles as $encript_style ) {
+			wp_register_style( $template_name . '-' . $encript_style['name'], CCSM_URL . 'templates/' . $template_name . '/' . $encript_style['location'] );
+			wp_print_styles( $template_name . '-' . $encript_style['name'] );
 
 		}
 	}
-}
 
-// enqueue template scripts
-function ccsm_script_enqueue( $scripts ) {
-	wp_enqueue_script( 'jquery' );
-
-	if ( is_array( $scripts ) ) {
-		foreach ( $scripts as $script ) {
-			if ( $script['location'] != null ) {
-				$fileLocation = $script['location'];
-			}
-			if ( $script['name'] != null ) {
-				$fileName = $script['name'];
-			}
-			if ( $script['template'] != null ) {
-				$templateName = $script['template'];
-			}
-			if ( $templateName != 'global' ) {
-				wp_enqueue_script( $templateName . '-' . $fileName, CCSM_URL . 'templates/' . $templateName . '/' . $fileLocation );
-			} else {
-				wp_enqueue_script( $templateName . '-' . $fileName, CCSM_URL . 'assets/' . $fileLocation );
-			}
-
-		}
+	foreach ( $encript_scripts as $encript_script ) {
+		wp_register_script( $template_name . '-' . $encript_script['name'], CCSM_URL . 'templates/' . $template_name . '/' . $encript_script['location'] );
+		wp_print_scripts( $template_name . '-' . $encript_script['name'] );
 	}
 }
 
 
 function ccsm_customizer_preview_scripts() {
-	wp_enqueue_script( 'colorlib-customizer-preview', CCSM_URL . 'assets/js/customizer-preview.js', array(
-		'customize-preview',
-		'jquery'
-	) );
+	wp_register_script( 'colorlib-customizer-preview', CCSM_URL . 'assets/js/customizer-preview.js', array(
+		'jquery',
+		'customize-preview'
+	), '', true );
+	wp_enqueue_script( 'colorlib-customizer-preview' );
 
 }
 
 
 function ccsm_customizer_scripts() {
 	wp_enqueue_editor();
-	//wp_enqueue_code_editor( array( 'type' => 'text/css' ) );
-	wp_enqueue_script( 'colorlib-customizer-js', CCSM_URL . 'assets/js/customizer.js' );
-	wp_enqueue_script( 'colorlib-cmmm-main-js', CCSM_URL . 'assets/js/main.js' );
+	wp_register_script( 'colorlib-customizer-js', CCSM_URL . 'assets/js/customizer.js' );
+	wp_enqueue_script( 'colorlib-customizer-js' );
+	wp_register_script( 'colorlib-ccsm-main-js', CCSM_URL . 'assets/js/main.js' );
+	wp_enqueue_script( 'colorlib-ccsm-main-js' );
 	wp_enqueue_style( 'colorlib-custom-controls-css', CCSM_URL . 'assets/css/ccsm-custom-controls.css', array(), '1.0', 'all' );
 	wp_localize_script(
 		'colorlib-customizer-js', 'CCSurls', array(

@@ -1,25 +1,14 @@
 <?php
-$ccsm_potions = get_option( 'ccsm_settings' );
-$styles       = array(
+$ccsm_options = get_option( 'ccsm_settings' );
+$template     = $ccsm_options['colorlib_coming_soon_template_selection'];
+$counter      = $ccsm_options['colorlib_coming_soon_timer_option'];
+$dates        = ccsm_counter_dates( $counter );
+do_action( 'ccsm_header', 'template_02' );
 
-	array(
-		'name'     => 'main',
-		'location' => 'css/main.css',
-		'template' => $template,
-	),
-	array(
-		'name'     => 'util',
-		'location' => 'css/util.css',
-		'template' => $template,
-	)
-);
-
-ccsm_style_enqueue( $styles );
-
-$template = $ccsm_potions['colorlib_coming_soon_template_selection'];
-$counter  = $ccsm_potions['colorlib_coming_soon_timer_option'];
-$dates    = ccsm_counter_dates( $counter );
 ?>
+<style>
+    <?php echo $ccsm_options['colorlib_coming_soon_page_custom_css']; ?>
+</style>
 </head>
 <body>
 <!--  -->
@@ -36,11 +25,11 @@ $dates    = ccsm_counter_dates( $counter );
     <!--  -->
     <div class="size1 flex-col-c-m p-l-15 p-r-15 p-t-50 p-b-50">
         <h3 class="l1-txt1 txt-center p-b-25" id="colorlib_coming_soon_page_heading">
-			<?php echo $ccsm_potions['colorlib_coming_soon_page_heading']; ?>
+			<?php echo $ccsm_options['colorlib_coming_soon_page_heading']; ?>
         </h3>
 
         <p class="m2-txt1 txt-center p-b-48" id="colorlib_coming_soon_page_content">
-			<?php echo $ccsm_potions['colorlib_coming_soon_page_content']; ?>
+			<?php echo $ccsm_options['colorlib_coming_soon_page_content']; ?>
         </p>
 
         <div class="flex-w flex-c-m cd100 p-b-33">
@@ -79,60 +68,17 @@ $dates    = ccsm_counter_dates( $counter );
         </form>
     </div>
 </div>
-
-
 <?php
-
-$scripts = array(
-	array(
-		'name'     => 'popper',
-		'location' => 'js/vendor/bootstrap/js/popper.js',
-		'template' => 'global',
-	),
-	array(
-		'name'     => 'bootstrap',
-		'location' => 'js/vendor/bootstrap/js/bootstrap.min.js',
-		'template' => 'global'
-	),
-	array(
-		'name'     => 'moment',
-		'location' => 'js/vendor/countdowntime/moment.min.js',
-		'template' => 'global'
-	),
-	array(
-		'name'     => 'moment-timezone',
-		'location' => 'js/vendor/countdowntime/moment-timezone.min.js',
-		'template' => 'global'
-	),
-	array(
-		'name'     => 'timezone',
-		'location' => 'js/vendor/countdowntime/moment-timezone-with-data.min.js',
-		'template' => 'global'
-	),
-	array(
-		'name'     => 'coutdowntime',
-		'location' => 'js/vendor/countdowntime/countdowntime.js',
-		'template' => 'global'
-	),
-	array(
-		'name'     => 'tilt',
-		'location' => 'js/vendor/tilt/tilt.jquery.min.js',
-		'template' => 'global'
-	),
-	array(
-		'name'     => 'main',
-		'location' => 'js/main.js',
-		'template' => $template,
-	),
-
-);
-
-ccsm_script_enqueue( $scripts );
-
-wp_footer();
-
+if ( is_customize_preview() ) {
+	?>
+    <div style="display:none !important;">
+		<?php
+		wp_footer();
+		?>
+    </div>
+	<?php
+}
 ?>
-
 <script>
     jQuery('.cd100').countdown100({
         /*Set Endtime here*/
