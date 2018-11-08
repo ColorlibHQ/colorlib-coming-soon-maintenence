@@ -1,12 +1,19 @@
 <?php
-$ccsm_options = get_option('ccsm_settings');
-$template = $ccsm_options['colorlib_coming_soon_template_selection'];
-$counter = $ccsm_options['colorlib_coming_soon_timer_option'];
-$dates   = ccsm_counter_dates( $counter );
+$ccsm_options      = get_option( 'ccsm_settings' );
+$counterActivation = $ccsm_options['colorlib_coming_soon_timer_activation'];
+$template          = $ccsm_options['colorlib_coming_soon_template_selection'];
+$counter           = $ccsm_options['colorlib_coming_soon_timer_option'];
+$dates             = ccsm_counter_dates( $counter );
 do_action( 'ccsm_header', 'template_08' );
 
 ?>
 <style>
+    <?php if( $counterActivation != '1' ){ ?>
+    .cd100 {
+        display: none !important;
+    }
+
+    <?php } ?>
     <?php echo $ccsm_options['colorlib_coming_soon_page_custom_css']; ?>
 </style>
 </head>
@@ -78,22 +85,23 @@ if ( is_customize_preview() ) {
 	<?php
 }
 ?>
-<script>
-    jQuery('.cd100').countdown100({
-        /*Set Endtime here*/
-        /*Endtime must be > current time*/
-        endtimeYear: <?php echo $dates['script']['year']; ?>,
-        endtimeMonth: <?php echo $dates['script']['month']; ?>,
-        endtimeDate: <?php echo $dates['script']['day']; ?>,
-        endtimeHours: <?php echo $dates['script']['hour']; ?>,
-        endtimeMinutes: <?php echo $dates['script']['minute']; ?>,
-        endtimeSeconds: <?php echo $dates['script']['second']; ?>,
-        timeZone: ""
-        // ex:  timeZone: "America/New_York"
-        //go to " http://momentjs.com/timezone/ " to get timezone
-    });
-</script>
-
+<?php if ( $counterActivation == '1' ) { ?>
+    <script>
+        jQuery('.cd100').countdown100({
+            /*Set Endtime here*/
+            /*Endtime must be > current time*/
+            endtimeYear: <?php echo $dates['script']['year']; ?>,
+            endtimeMonth: <?php echo $dates['script']['month']; ?>,
+            endtimeDate: <?php echo $dates['script']['day']; ?>,
+            endtimeHours: <?php echo $dates['script']['hour']; ?>,
+            endtimeMinutes: <?php echo $dates['script']['minute']; ?>,
+            endtimeSeconds: <?php echo $dates['script']['second']; ?>,
+            timeZone: ""
+            // ex:  timeZone: "America/New_York"
+            //go to " http://momentjs.com/timezone/ " to get timezone
+        });
+    </script>
+<?php } ?>
 <script>
     jQuery('.js-tilt').tilt({
         scale: 1.1

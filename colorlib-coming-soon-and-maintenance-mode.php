@@ -503,6 +503,7 @@ function ccsm_check_on_activation() {
 	if ( get_option( 'ccsm_settings' ) == null ) {
 		$defaultSets = array(
 			'colorlib_coming_soon_activation'         => '1',
+			'colorlib_coming_soon_timer_activation'         => '1',
 			'colorlib_coming_soon_template_selection' => 'template_01',
 			'colorlib_coming_soon_timer_option'       => date( 'Y-m-d H:i:s', strtotime( '+1 month' ) ),
 			'colorlib_coming_soon_plugin_logo'        => CCSM_URL . 'assets/images/logo.png',

@@ -89,6 +89,21 @@ class CCSM_Customizer {
 			) )
 		);
 
+		/* Setting - Coming Soon - Activation */
+		$wp_customize->add_setting( 'ccsm_settings[colorlib_coming_soon_timer_activation]', array(
+			'default'           => '1',
+			'sanitize_callback' => 'ccsm_sanitize_text',
+			'type'              => 'option',
+		) );
+
+		$wp_customize->add_control( new CCSM_Control_Toggle ( $wp_customize, 'ccsm_settings[colorlib_coming_soon_timer_activation]', array(
+				'label'       => esc_html__( 'Activate Timer Countdown?', 'colorlib-coming-soon' ),
+				'description' => esc_html__( '', 'colorlib-coming-soon' ),
+				'section'     => 'colorlib_coming_soon_section_general',
+				'priority'    => 10,
+			) )
+		);
+
 
 		/* Setting - Coming Soon - Custom CSS */
 		$wp_customize->add_setting( 'ccsm_settings[colorlib_coming_soon_page_custom_css]', array(
