@@ -13,7 +13,16 @@ do_action( 'ccsm_header', 'template_03' );
         display: none !important;
     }
 
-    <?php } ?>
+    <?php }
+    if($ccsm_options['colorlib_coming_soon_text_color']){
+        ?>
+    p, h1, h2, h3, h4, span, li {
+        color: <?php echo $ccsm_options['colorlib_coming_soon_text_color']; ?> !important;
+    }
+
+    <?php
+    }
+    ?>
     <?php echo $ccsm_options['colorlib_coming_soon_page_custom_css']; ?>
 </style>
 </head>
