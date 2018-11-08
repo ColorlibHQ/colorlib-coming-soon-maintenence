@@ -68,11 +68,11 @@ function ccsm_skip_redirect_on_login() {
 
 /* Coming Soon Redirect to Template */
 function ccsm_template_redirect() {
+
 	global $wp_customize;
 	$ccsm_options = get_option( 'ccsm_settings' );
 
 	//Checks for if user is logged in and CCSM is activated  OR if customizer is open on CCSM customization panel
-
 	if ( ! is_user_logged_in() && $ccsm_options['colorlib_coming_soon_activation'] == 1 || is_customize_preview() && isset( $_REQUEST['colorlib-coming-soon-customization'] ) ) {
 
 		$file = plugin_dir_path( __FILE__ ) . 'includes/colorlib-template.php'; //get path of our coming soon display page and redirecting
@@ -104,6 +104,7 @@ function ccsm_style_enqueue( $template_name ) {
 		),
 	);
 
+	//styles based on each template
 	$template_styles = array(
 		'template_01' => array(
 			array(
@@ -294,7 +295,7 @@ function ccsm_style_enqueue( $template_name ) {
 			'template' => 'global'
 		),
 	);
-
+	// scripts based on each template
 	$template_scripts = array(
 		'template_01' => array(
 			array(
@@ -388,14 +389,10 @@ function ccsm_style_enqueue( $template_name ) {
 		),
 	);
 
+	//check if template and get the template arrays
 	if ( $template_name ) {
-		$encript_styles = $template_styles[ $template_name ];
-	}
-
-	$encript_scripts = $template_scripts[ $template_name ];
-
-	if ( is_customize_preview() ) {
-
+		$encript_styles  = $template_styles[ $template_name ];
+		$encript_scripts = $template_scripts[ $template_name ];
 	}
 
 	//print global styles
@@ -413,7 +410,7 @@ function ccsm_style_enqueue( $template_name ) {
 		wp_print_scripts( $global_script['name'] );
 	}
 
-
+	//print styles depending on template
 	if ( $encript_styles != null && is_array( $encript_styles ) ) {
 		foreach ( $encript_styles as $encript_style ) {
 			wp_register_style( $template_name . '-' . $encript_style['name'], CCSM_URL . 'templates/' . $template_name . '/' . $encript_style['location'] );
@@ -422,6 +419,7 @@ function ccsm_style_enqueue( $template_name ) {
 		}
 	}
 
+	//print scripts depending on template
 	foreach ( $encript_scripts as $encript_script ) {
 		wp_register_script( $template_name . '-' . $encript_script['name'], CCSM_URL . 'templates/' . $template_name . '/' . $encript_script['location'] );
 		wp_print_scripts( $template_name . '-' . $encript_script['name'] );
@@ -503,7 +501,7 @@ function ccsm_check_on_activation() {
 	if ( get_option( 'ccsm_settings' ) == null ) {
 		$defaultSets = array(
 			'colorlib_coming_soon_activation'         => '1',
-			'colorlib_coming_soon_timer_activation'         => '1',
+			'colorlib_coming_soon_timer_activation'   => '1',
 			'colorlib_coming_soon_template_selection' => 'template_01',
 			'colorlib_coming_soon_timer_option'       => date( 'Y-m-d H:i:s', strtotime( '+1 month' ) ),
 			'colorlib_coming_soon_plugin_logo'        => CCSM_URL . 'assets/images/logo.png',

@@ -89,7 +89,8 @@ class CCSM_Customizer {
 			) )
 		);
 
-		/* Setting - Coming Soon - Activation */
+
+		/* Setting - Coming Soon - Timer Activation */
 		$wp_customize->add_setting( 'ccsm_settings[colorlib_coming_soon_timer_activation]', array(
 			'default'           => '1',
 			'sanitize_callback' => 'ccsm_sanitize_text',
@@ -154,6 +155,7 @@ class CCSM_Customizer {
 			)
 		) );
 
+
 		/*Settings - General - Timer*/
 		$wp_customize->add_setting( 'ccsm_settings[colorlib_coming_soon_timer_option]', array(
 			'default'           => date( 'Y-m-d H:i:s', strtotime( '+1 month' ) ),
@@ -183,7 +185,8 @@ class CCSM_Customizer {
 			) )
 		);
 
-		/* Setting - Coming Soon - Page Content */
+
+		/* Setting - Coming Soon - Page Heading */
 		$wp_customize->add_setting( 'ccsm_settings[colorlib_coming_soon_page_heading]', array(
 			'default'           => 'Something <strong>really good</strong> is coming <strong>very soon</strong>',
 			'sanitize_callback' => 'ccsm_sanitize_text',
@@ -214,7 +217,8 @@ class CCSM_Customizer {
 			) )
 		);
 
-		/* Setting - Coming Soon - Page Content */
+
+		/* Setting - Coming Soon - Page Footers */
 		$wp_customize->add_setting( 'ccsm_settings[colorlib_coming_soon_page_footer]', array(
 			'default'           => 'And don\'t worry, we hate spam too! You can unsubscribe at any time.',
 			'sanitize_callback' => 'ccsm_sanitize_text',
@@ -230,7 +234,7 @@ class CCSM_Customizer {
 		);
 
 
-		/* Setting - Coming Soon - Page Content */
+		/* Setting - Coming Soon - Subscribe Form Activation */
 		$wp_customize->add_setting( 'ccsm_settings[colorlib_coming_soon_subscribe]', array(
 			'sanitize_callback' => 'ccsm_sanitize_text',
 			'type'              => 'option'
@@ -244,7 +248,7 @@ class CCSM_Customizer {
 		);
 
 
-		/* Setting - Coming Soon - Page Content */
+		/* Setting - Coming Soon - Subscribe Form URL */
 		$wp_customize->add_setting( 'ccsm_settings[colorlib_coming_soon_subscribe_form_url]', array(
 			'sanitize_callback' => 'ccsm_sanitize_text',
 			'type'              => 'option'
@@ -259,7 +263,8 @@ class CCSM_Customizer {
 			)
 		);
 
-		/* Setting - Coming Soon - Social Links */
+
+		/* Setting - Coming Soon - Social Links  Facebook*/
 		$wp_customize->add_setting( 'ccsm_settings[colorlib_coming_soon_social_facebook]', array(
 			'default'           => 'https://www.facebook.com/',
 			'sanitize_callback' => 'ccsm_sanitize_text',
@@ -275,7 +280,7 @@ class CCSM_Customizer {
 		);
 
 
-		/* Setting - Coming Soon - Social Links */
+		/* Setting - Coming Soon - Social Links Twitter*/
 		$wp_customize->add_setting( 'ccsm_settings[colorlib_coming_soon_social_twitter]', array(
 			'default'           => 'https://www.twitter.com/',
 			'sanitize_callback' => 'ccsm_sanitize_text',
@@ -290,7 +295,7 @@ class CCSM_Customizer {
 			)
 		);
 
-		/* Setting - Coming Soon - Social Links */
+		/* Setting - Coming Soon - Social Links Email*/
 		$wp_customize->add_setting( 'ccsm_settings[colorlib_coming_soon_social_email]', array(
 			'default'           => 'you@domain.com',
 			'sanitize_callback' => 'ccsm_sanitize_text',
@@ -305,7 +310,7 @@ class CCSM_Customizer {
 			)
 		);
 
-		/* Setting - Coming Soon - Social Links */
+		/* Setting - Coming Soon - Social Links Youtube*/
 		$wp_customize->add_setting( 'ccsm_settings[colorlib_coming_soon_social_youtube]', array(
 			'default'           => 'https://youtube.com/',
 			'sanitize_callback' => 'ccsm_sanitize_text',
@@ -320,7 +325,7 @@ class CCSM_Customizer {
 			)
 		);
 
-		/* Setting - Coming Soon - Social Links */
+		/* Setting - Coming Soon - Social Links Pinteres*/
 		$wp_customize->add_setting( 'ccsm_settings[colorlib_coming_soon_social_pinterest]', array(
 			'default'           => 'https://pinterest.com/',
 			'sanitize_callback' => 'ccsm_sanitize_text',
@@ -335,7 +340,7 @@ class CCSM_Customizer {
 			)
 		);
 
-		/* Setting - Coming Soon - Social Links */
+		/* Setting - Coming Soon - Social Links Instagram*/
 		$wp_customize->add_setting( 'ccsm_settings[colorlib_coming_soon_social_instagram]', array(
 			'default'           => 'https://instagram.com/',
 			'sanitize_callback' => 'ccsm_sanitize_text',
