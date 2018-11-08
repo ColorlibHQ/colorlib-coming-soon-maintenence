@@ -285,16 +285,31 @@ function ccsm_style_enqueue( $template_name ) {
 			'template' => 'global'
 		),
 		array(
-			'name'     => 'coutdowntime',
-			'location' => 'js/vendor/countdowntime/countdowntime.js',
-			'template' => 'global'
-		),
-		array(
 			'name'     => 'tilt',
 			'location' => 'js/vendor/tilt/tilt.jquery.min.js',
 			'template' => 'global'
 		),
 	);
+
+	if ( $template_name == 'template_06' || $template_name == 'template_15' ) {
+		$global_scripts[] = array(
+			'name'     => 'flipclock',
+			'location' => 'js/vendor/countdowntime/flipclock.js',
+			'template' => 'global'
+		);
+		$global_scripts[] = array(
+			'name'     => 'coutdowntime-2',
+			'location' => 'js/vendor/countdowntime/countdowntime-2.js',
+			'template' => 'global'
+		);
+	} else {
+		$global_scripts[] = array(
+			'name'     => 'coutdowntime',
+			'location' => 'js/vendor/countdowntime/countdowntime.js',
+			'template' => 'global'
+		);
+	}
+	
 	// scripts based on each template
 	$template_scripts = array(
 		'template_01' => array(
@@ -446,7 +461,7 @@ function ccsm_customizer_scripts() {
 	wp_register_style( 'colorlib-custom-controls-css', CCSM_URL . 'assets/css/ccsm-custom-controls.css', array(), '1.0', 'all' );
 	wp_enqueue_style( 'colorlib-custom-controls-css' );
 	wp_localize_script(
-		'colorlib-customizer-js', 'CCSurls', array(
+		'colorlib-customizer-js', 'CCSMurls', array(
 			'siteurl' => get_option( 'siteurl' ),
 		)
 	);

@@ -23,13 +23,13 @@ jQuery(window).load(function () {
 
     wp.customize.panel('colorlib_coming_soon_general_panel', function (section) {
         section.expanded.bind(function (isExpanding) {
-            var loginURL = CCSurls.siteurl + '?colorlib-coming-soon-customization=true';
+            var loginURL = CCSMurls.siteurl + '?colorlib-coming-soon-customization=true';
 
             // Value of isExpanding will = true if you're entering the section, false if you're leaving it.
             if (isExpanding) {
                 wp.customize.previewer.previewUrl.set(loginURL);
             } else {
-                wp.customize.previewer.previewUrl.set(CCSurls.siteurl);
+                wp.customize.previewer.previewUrl.set(CCSMurls.siteurl);
             }
         });
     });
