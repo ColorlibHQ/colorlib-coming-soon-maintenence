@@ -172,7 +172,7 @@ class CCSM_Customizer {
 
 		/* Setting - General - Site Logo */
 		$wp_customize->add_setting( 'ccsm_settings[colorlib_coming_soon_plugin_logo]', array(
-			'default'           => CCSM_URL . 'assets/images/logo.png',
+			'default'           => CCSM_URL . 'assets/images/logo.jpg',
 			'sanitize_callback' => 'ccsm_sanitize_text',
 			'type'              => 'option'
 		) );

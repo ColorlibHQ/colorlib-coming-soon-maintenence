@@ -443,7 +443,8 @@ function ccsm_customizer_scripts() {
 	wp_enqueue_script( 'colorlib-customizer-js' );
 	wp_register_script( 'colorlib-ccsm-main-js', CCSM_URL . 'assets/js/main.js' );
 	wp_enqueue_script( 'colorlib-ccsm-main-js' );
-	wp_enqueue_style( 'colorlib-custom-controls-css', CCSM_URL . 'assets/css/ccsm-custom-controls.css', array(), '1.0', 'all' );
+	wp_register_style( 'colorlib-custom-controls-css', CCSM_URL . 'assets/css/ccsm-custom-controls.css', array(), '1.0', 'all' );
+	wp_enqueue_style( 'colorlib-custom-controls-css' );
 	wp_localize_script(
 		'colorlib-customizer-js', 'CCSurls', array(
 			'siteurl' => get_option( 'siteurl' ),
@@ -504,7 +505,7 @@ function ccsm_check_on_activation() {
 			'colorlib_coming_soon_timer_activation'   => '1',
 			'colorlib_coming_soon_template_selection' => 'template_01',
 			'colorlib_coming_soon_timer_option'       => date( 'Y-m-d H:i:s', strtotime( '+1 month' ) ),
-			'colorlib_coming_soon_plugin_logo'        => CCSM_URL . 'assets/images/logo.png',
+			'colorlib_coming_soon_plugin_logo'        => CCSM_URL . 'assets/images/logo.jpg',
 			'colorlib_coming_soon_page_heading'       => 'Something <strong>really good</strong> is coming <strong>very soon</strong>',
 			'colorlib_coming_soon_page_content'       => 'If you have something new you’re looking to launch, you’re going to want to start building a community of people interested in what you’re launching.',
 			'colorlib_coming_soon_page_footer'        => 'And don\'t worry, we hate spam too! You can unsubscribe at any time.',
