@@ -62,7 +62,7 @@ Primary use:
     float: unset;
     margin: 3px;
     width: 90px;
-    height: 120px;
+    height: 40px;
     font-size: 36px;
     font-weight: unset;
     line-height: unset;
@@ -81,7 +81,7 @@ Primary use:
 .flip-clock-wrapper ul li a div div.inn {
     font-family: Quantico-Regular;
     color: #fff;
-    font-size: 120px;
+    font-size: 60px;
     font-weight: unset;
     text-align: unset;
 
@@ -139,7 +139,7 @@ Primary use:
     height: 100%;
 }
 
-.flip-clock-divider.days::before {
+.flip-clock-wrapper ul.days::before {
     display: none;
 }
 
