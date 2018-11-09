@@ -309,7 +309,7 @@ function ccsm_style_enqueue( $template_name ) {
 			'template' => 'global'
 		);
 	}
-	
+
 	// scripts based on each template
 	$template_scripts = array(
 		'template_01' => array(
@@ -534,6 +534,67 @@ function ccsm_check_on_activation() {
 		);
 		update_option( 'ccsm_settings', $defaultSets );
 	}
+}
+
+function ccsm_template_has_content() {
+	$ccsm_options         = get_option( 'ccsm_settings' );
+	$template_has_content = array(
+		'template_02',
+		'template_04',
+		'template_05',
+		'template_06',
+		'template_08',
+		'template_10',
+		'template_12',
+		'template_14'
+	);
+	if ( in_array( $ccsm_options['colorlib_coming_soon_template_selection'], $template_has_content ) ) {
+		return true;
+	}
+
+	return false;
+}
+
+function ccsm_template_has_footer() {
+	$ccsm_options        = get_option( 'ccsm_settings' );
+	$template_has_footer = array(
+		'template_01',
+		'template_03',
+		'template_04',
+		'template_06'
+	);
+	if ( in_array( $ccsm_options['colorlib_coming_soon_template_selection'], $template_has_footer ) ) {
+		return true;
+	}
+
+	return false;
+}
+
+
+function ccsm_template_has_background_image() {
+	$ccsm_options                  = get_option( 'ccsm_settings' );
+	$template_has_background_image = array(
+		'template_03',
+		'template_04'
+	);
+	if ( in_array( $ccsm_options['colorlib_coming_soon_template_selection'], $template_has_background_image ) ) {
+		return false;
+	}
+
+	return true;
+}
+
+function ccsm_template_has_background_color() {
+	$ccsm_options                  = get_option( 'ccsm_settings' );
+	$template_has_background_color = array(
+		'template_03',
+		'template_04'
+	);
+	if ( in_array( $ccsm_options['colorlib_coming_soon_template_selection'], $template_has_background_color ) ) {
+		return true;
+	}
+
+	return false;
 }
 
 

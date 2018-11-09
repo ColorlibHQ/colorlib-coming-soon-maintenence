@@ -197,6 +197,7 @@ class CCSM_Customizer {
 				'description' => esc_html__( '', 'colorlib-coming-soon' ),
 				'section'     => 'colorlib_coming_soon_section_general',
 				'priority'    => 10,
+				'active_callback' => 'ccsm_template_has_background_image',
 			) )
 		);
 
@@ -212,6 +213,7 @@ class CCSM_Customizer {
 				'description' => esc_html__( '', 'colorlib-coming-soon' ),
 				'section'     => 'colorlib_coming_soon_section_general',
 				'priority'    => 10,
+				'active_callback' => 'ccsm_template_has_background_color',
 			) )
 		);
 
@@ -256,9 +258,10 @@ class CCSM_Customizer {
 		) );
 
 		$wp_customize->add_control( new CCSM_Control_Text_Editor( $wp_customize, 'ccsm_settings[colorlib_coming_soon_page_content]', array(
-				'label'    => esc_html__( 'Main Content', 'colorlib-coming-soon' ),
-				'section'  => 'colorlib_coming_soon_section_general',
-				'priority' => 30,
+				'label'           => esc_html__( 'Main Content', 'colorlib-coming-soon' ),
+				'section'         => 'colorlib_coming_soon_section_general',
+				'priority'        => 30,
+				'active_callback' => 'ccsm_template_has_content',
 			) )
 		);
 
@@ -272,9 +275,10 @@ class CCSM_Customizer {
 		) );
 
 		$wp_customize->add_control( new CCSM_Control_Text_Editor( $wp_customize, 'ccsm_settings[colorlib_coming_soon_page_footer]', array(
-				'label'    => esc_html__( 'Footer Text', 'colorlib-coming-soon' ),
-				'section'  => 'colorlib_coming_soon_section_general',
-				'priority' => 40,
+				'label'           => esc_html__( 'Footer Text', 'colorlib-coming-soon' ),
+				'section'         => 'colorlib_coming_soon_section_general',
+				'priority'        => 40,
+				'active_callback' => 'ccsm_template_has_footer',
 			) )
 		);
 
