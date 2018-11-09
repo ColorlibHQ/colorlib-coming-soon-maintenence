@@ -28,7 +28,7 @@ do_action( 'ccsm_header', 'template_06' );
 <body>
 
 <div class="bg-img1 size1 overlay1 p-t-24"
-     style="background-image: url('<?php echo CCSM_URL . 'templates/' . $template; ?>/images/bg01.jpg');">
+     style="background-image: url('<?php echo ( $ccsm_options['colorlib_coming_soon_background_image'] ) ? $ccsm_options['colorlib_coming_soon_background_image'] : CCSM_URL . 'templates/' . $template . '/images/bg01.jpg'; ?>');">
     <div class="flex-w flex-sb-m p-l-80 p-r-74 p-b-175 respon5">
         <div class="wrappic1 m-r-30 m-t-10 m-b-10">
 			<?php if ( $ccsm_options['colorlib_coming_soon_plugin_logo'] ) {

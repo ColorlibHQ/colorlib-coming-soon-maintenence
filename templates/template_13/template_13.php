@@ -29,13 +29,13 @@ do_action( 'ccsm_header', 'template_13' );
 
 <div class="simpleslide100">
     <div class="simpleslide100-item bg-img1"
-         style="background-image: url('<?php echo CCSM_URL . 'templates/' . $template; ?>/images/bg01.jpg');"></div>
+         style="background-image: url('<?php echo ( $ccsm_options['colorlib_coming_soon_background_image'] ) ? $ccsm_options['colorlib_coming_soon_background_image'] : CCSM_URL . 'templates/' . $template . '/images/bg01.jpg'; ?>');"></div>
     <div class="simpleslide100-item bg-img1"
-         style="background-image: url('<?php echo CCSM_URL . 'templates/' . $template; ?>/images/bg02.jpg');"></div>
+         style="background-image: url('<?php echo ( $ccsm_options['colorlib_coming_soon_background_image'] ) ? $ccsm_options['colorlib_coming_soon_background_image'] : CCSM_URL . 'templates/' . $template . '/images/bg02.jpg'; ?>');"></div>
     <div class="simpleslide100-item bg-img1"
-         style="background-image: url('<?php echo CCSM_URL . 'templates/' . $template; ?>/images/bg03.jpg');"></div>
+         style="background-image: url('<?php echo ( $ccsm_options['colorlib_coming_soon_background_image'] ) ? $ccsm_options['colorlib_coming_soon_background_image'] : CCSM_URL . 'templates/' . $template . '/images/bg03.jpg'; ?>');"></div>
     <div class="simpleslide100-item bg-img1"
-         style="background-image: url('<?php echo CCSM_URL . 'templates/' . $template; ?>/images/bg04.jpg');"></div>
+         style="background-image: url('<?php echo ( $ccsm_options['colorlib_coming_soon_background_image'] ) ? $ccsm_options['colorlib_coming_soon_background_image'] : CCSM_URL . 'templates/' . $template . '/images/bg04.jpg'; ?>');"></div>
 </div>
 
 <div class="flex-col-c-sb size1 overlay1 p-l-75 p-r-75 p-t-20 p-b-40 p-lr-15-sm">

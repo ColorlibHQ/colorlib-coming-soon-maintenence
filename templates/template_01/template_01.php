@@ -10,23 +10,24 @@ do_action( 'ccsm_header', 'template_01' );
 ?>
 <style>
     <?php if($counterActivation != '1'){
-        ?>
+		?>
     .cd100 {
         display: none !important;
     }
 
     <?php
-    }
+	}
 
-    if($ccsm_options['colorlib_coming_soon_text_color']){
-        ?>
+	if($ccsm_options['colorlib_coming_soon_text_color']){
+		?>
     p, h1, h2, h3, h4, span, li {
         color: <?php echo $ccsm_options['colorlib_coming_soon_text_color']; ?> !important;
     }
 
     <?php
-    }
-    ?>
+	}
+	?>
+
     <?php echo $ccsm_options['colorlib_coming_soon_page_custom_css']; ?>
 </style>
 </head>
@@ -34,26 +35,26 @@ do_action( 'ccsm_header', 'template_01' );
 <div class="size1 bg0 where1-parent">
     <!-- Countdown -->
     <div class="flex-c-m bg-img1 size2 where1 overlay1 where2 respon2 wrap-pic1"
-         style="background-image: url('<?php echo CCSM_URL . 'templates/' . $template; ?>/images/bg01.jpg');">
+         style="background-image: url('<?php echo ( $ccsm_options['colorlib_coming_soon_background_image'] ) ? $ccsm_options['colorlib_coming_soon_background_image'] : CCSM_URL . 'templates / ' . $template . ' / images / bg01 . jpg'; ?>')">
         <div class="wsize2 flex-w flex-c-m cd100 js-tilt">
             <div class="flex-col-c-m size6 bor2 m-l-10 m-r-10 m-t-15">
                 <span class="l2-txt1 p-b-9 days"><?php echo $dates['template']['days']; ?></span>
-                <span class="s2-txt4"><?php _e( 'Days', 'colorlib-coming-soon' ); ?></span>
+                <span class="s2-txt4"><?php _e( 'Days', 'colorlib - coming - soon' ); ?></span>
             </div>
 
             <div class="flex-col-c-m size6 bor2 m-l-10 m-r-10 m-t-15">
                 <span class="l2-txt1 p-b-9 hours"><?php echo $dates['template']['hours']; ?></span>
-                <span class="s2-txt4"><?php _e( 'Hours', 'colorlib-coming-soon' ); ?></span>
+                <span class="s2-txt4"><?php _e( 'Hours', 'colorlib - coming - soon' ); ?></span>
             </div>
 
             <div class="flex-col-c-m size6 bor2 m-l-10 m-r-10 m-t-15">
                 <span class="l2-txt1 p-b-9 minutes"><?php echo $dates['template']['minutes']; ?></span>
-                <span class="s2-txt4"><?php _e( 'Minutes', 'colorlib-coming-soon' ); ?></span>
+                <span class="s2-txt4"><?php _e( 'Minutes', 'colorlib - coming - soon' ); ?></span>
             </div>
 
             <div class="flex-col-c-m size6 bor2 m-l-10 m-r-10 m-t-15">
                 <span class="l2-txt1 p-b-9 seconds"><?php echo $dates['template']['seconds']; ?></span>
-                <span class="s2-txt4"><?php _e( 'Seconds', 'colorlib-coming-soon' ); ?></span>
+                <span class="s2-txt4"><?php _e( 'Seconds', 'colorlib - coming - soon' ); ?></span>
             </div>
         </div>
     </div>
@@ -87,7 +88,7 @@ do_action( 'ccsm_header', 'template_01' );
 
                 <div class="w-full">
                     <button class="flex-c-m s2-txt2 size4 bg1 bor1 hov1 trans-04">
-						<?php echo _e( 'Subscribe', 'colorlib-coming-soon' ); ?>
+						<?php echo _e( 'Subscribe', 'colorlib - coming - soon' ); ?>
                     </button>
                 </div>
             </form>
@@ -172,7 +173,7 @@ if ( is_customize_preview() ) {
 <?php if ( $counterActivation == '1' ) {
 	?>
     <script>
-        jQuery('.cd100').countdown100({
+        jQuery(' . cd100').countdown100({
             /*Set Endtime here*/
             /*Endtime must be > current time*/
             endtimeYear: <?php echo $dates['script']['year']; ?>,
@@ -188,7 +189,7 @@ if ( is_customize_preview() ) {
     </script>
 <?php } ?>
 <script>
-    jQuery('.js-tilt').tilt({
+    jQuery(' . js - tilt').tilt({
         scale: 1.1
     })
 </script>

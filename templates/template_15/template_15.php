@@ -29,16 +29,17 @@ do_action( 'ccsm_header', 'template_15' );
 
 <div class="simpleslide100">
     <div class="simpleslide100-item bg-img1"
-         style="background-image: url('<?php echo CCSM_URL . 'templates/' . $template; ?>/images/bg01.jpg');"></div>
+         style="background-image: url('<?php echo ( $ccsm_options['colorlib_coming_soon_background_image'] ) ? $ccsm_options['colorlib_coming_soon_background_image'] : CCSM_URL . 'templates/' . $template . '/images/bg01.jpg'; ?>');"></div>
     <div class="simpleslide100-item bg-img1"
-         style="background-image: url('<?php echo CCSM_URL . 'templates/' . $template; ?>/images/bg02.jpg');"></div>
+         style="background-image: url('<?php echo ( $ccsm_options['colorlib_coming_soon_background_image'] ) ? $ccsm_options['colorlib_coming_soon_background_image'] : CCSM_URL . 'templates/' . $template . '/images/bg02.jpg'; ?>');"></div>
     <div class="simpleslide100-item bg-img1"
-         style="background-image: url('<?php echo CCSM_URL . 'templates/' . $template; ?>/images/bg03.jpg');"></div>
+         style="background-image: url('<?php echo ( $ccsm_options['colorlib_coming_soon_background_image'] ) ? $ccsm_options['colorlib_coming_soon_background_image'] : CCSM_URL . 'templates/' . $template . '/images/bg03.jpg'; ?>');"></div>
     <div class="simpleslide100-item bg-img1"
-         style="background-image: url('<?php echo CCSM_URL . 'templates/' . $template; ?>/images/bg04.jpg');"></div>
+         style="background-image: url('<?php echo ( $ccsm_options['colorlib_coming_soon_background_image'] ) ? $ccsm_options['colorlib_coming_soon_background_image'] : CCSM_URL . 'templates/' . $template . '/images/bg04.jpg'; ?>');"></div>
 </div>
 
-<div class="bg-img1 size1 overlay1 p-b-35 p-l-15 p-r-15" style="background-image: url('images/bg01.jpg');">
+<div class="bg-img1 size1 overlay1 p-b-35 p-l-15 p-r-15"
+     style="background-image: url('<?php echo ( $ccsm_options['colorlib_coming_soon_background_image'] ) ? $ccsm_options['colorlib_coming_soon_background_image'] : CCSM_URL . 'templates/' . $template . '/images/bg01.jpg'; ?>');">
     <div class="flex-col-c p-t-160 p-b-215 respon1">
         <div class="wrappic1">
 			<?php if ( $ccsm_options['colorlib_coming_soon_plugin_logo'] ) {

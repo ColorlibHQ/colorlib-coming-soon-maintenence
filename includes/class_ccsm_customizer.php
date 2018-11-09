@@ -185,6 +185,51 @@ class CCSM_Customizer {
 			) )
 		);
 
+		/* Setting - General - Site Background Image */
+		$wp_customize->add_setting( 'ccsm_settings[colorlib_coming_soon_background_image]', array(
+			'default'           => CCSM_URL . 'assets/images/logo.jpg',
+			'sanitize_callback' => 'ccsm_sanitize_text',
+			'type'              => 'option'
+		) );
+
+		$wp_customize->add_control( new WP_Customize_Image_Control( $wp_customize, 'ccsm_settings[colorlib_coming_soon_background_image]', array(
+				'label'       => esc_html__( 'Background Image', 'colorlib-coming-soon' ),
+				'description' => esc_html__( '', 'colorlib-coming-soon' ),
+				'section'     => 'colorlib_coming_soon_section_general',
+				'priority'    => 10,
+			) )
+		);
+
+		/* Setting - General - Site Background Color */
+		$wp_customize->add_setting( 'ccsm_settings[colorlib_coming_soon_background_color]', array(
+			'default'           => CCSM_URL . 'assets/images/logo.jpg',
+			'sanitize_callback' => 'ccsm_sanitize_text',
+			'type'              => 'option'
+		) );
+
+		$wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'ccsm_settings[colorlib_coming_soon_background_color]', array(
+				'label'       => esc_html__( 'Background Color', 'colorlib-coming-soon' ),
+				'description' => esc_html__( '', 'colorlib-coming-soon' ),
+				'section'     => 'colorlib_coming_soon_section_general',
+				'priority'    => 10,
+			) )
+		);
+
+		/* Setting - General - Site Text Color */
+		$wp_customize->add_setting( 'ccsm_settings[colorlib_coming_soon_text_color]', array(
+			'default'           => CCSM_URL . 'assets/images/logo.jpg',
+			'sanitize_callback' => 'ccsm_sanitize_text',
+			'type'              => 'option'
+		) );
+
+		$wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'ccsm_settings[colorlib_coming_soon_text_color]', array(
+				'label'       => esc_html__( 'Text Color', 'colorlib-coming-soon' ),
+				'description' => esc_html__( '', 'colorlib-coming-soon' ),
+				'section'     => 'colorlib_coming_soon_section_general',
+				'priority'    => 10,
+			) )
+		);
+
 
 		/* Setting - Coming Soon - Page Heading */
 		$wp_customize->add_setting( 'ccsm_settings[colorlib_coming_soon_page_heading]', array(
