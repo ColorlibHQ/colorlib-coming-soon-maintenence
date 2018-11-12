@@ -1,10 +1,10 @@
 <?php
-$ccsm_options      = get_option( 'ccsm_settings' );
+$ccsm_options = get_option('ccsm_settings');
 $counterActivation = $ccsm_options['colorlib_coming_soon_timer_activation'];
-$template          = $ccsm_options['colorlib_coming_soon_template_selection'];
-$counter           = $ccsm_options['colorlib_coming_soon_timer_option'];
-$dates             = ccsm_counter_dates( $counter );
-do_action( 'ccsm_header', 'template_08' );
+$template = $ccsm_options['colorlib_coming_soon_template_selection'];
+$counter = $ccsm_options['colorlib_coming_soon_timer_option'];
+$dates = ccsm_counter_dates($counter);
+do_action('ccsm_header', 'template_08');
 
 ?>
 <style>
@@ -28,47 +28,48 @@ do_action( 'ccsm_header', 'template_08' );
 <body>
 
 <div class="bg-img1 overlay1 size1 flex-w flex-c-m p-t-55 p-b-55 p-l-15 p-r-15"
-     style="background-image: url('<?php echo ( $ccsm_options['colorlib_coming_soon_background_image'] ) ? $ccsm_options['colorlib_coming_soon_background_image'] : CCSM_URL . 'templates/' . $template . '/images/bg01.jpg'; ?>');">
+     style="background-image: url('<?php echo ($ccsm_options['colorlib_coming_soon_background_image']) ? $ccsm_options['colorlib_coming_soon_background_image'] : CCSM_URL . 'templates/' . $template . '/images/bg01.jpg'; ?>');">
     <div class="wsize1">
         <p class="txt-center p-b-23">
             <i class="zmdi zmdi-card-giftcard cl0 fs-60"></i>
         </p>
 
         <h3 class="l1-txt1 txt-center p-b-22" id="colorlib_coming_soon_page_heading">
-			<?php echo $ccsm_options['colorlib_coming_soon_page_heading']; ?>
+            <?php echo $ccsm_options['colorlib_coming_soon_page_heading']; ?>
         </h3>
 
         <p class="txt-center m2-txt1 p-b-67">
-			<?php echo $ccsm_options['colorlib_coming_soon_page_content']; ?>
+            <?php echo $ccsm_options['colorlib_coming_soon_page_content']; ?>
         </p>
+        <?php if ($counterActivation == '1' && $dates != false) { ?>
+            <div class="flex-w flex-sa-m cd100 bor1 p-t-42 p-b-22 p-l-50 p-r-50 respon1">
+                <div class="flex-col-c-m wsize2 m-b-20">
+                    <span class="l1-txt2 p-b-4 days"><?php echo $dates['template']['days']; ?></span>
+                    <span class="m2-txt2"><?php echo esc_html__('Days', 'colorlib-coming-soon'); ?></span>
+                </div>
 
-        <div class="flex-w flex-sa-m cd100 bor1 p-t-42 p-b-22 p-l-50 p-r-50 respon1">
-            <div class="flex-col-c-m wsize2 m-b-20">
-                <span class="l1-txt2 p-b-4 days"><?php echo $dates['template']['days']; ?></span>
-                <span class="m2-txt2"><?php echo esc_html__( 'Days', 'colorlib-coming-soon' ); ?></span>
+                <span class="l1-txt2 p-b-22">:</span>
+
+                <div class="flex-col-c-m wsize2 m-b-20">
+                    <span class="l1-txt2 p-b-4 hours"><?php echo $dates['template']['hours']; ?></span>
+                    <span class="m2-txt2"><?php echo esc_html__('Hours', 'colorlib-coming-soon'); ?></span>
+                </div>
+
+                <span class="l1-txt2 p-b-22 respon2">:</span>
+
+                <div class="flex-col-c-m wsize2 m-b-20">
+                    <span class="l1-txt2 p-b-4 minutes"><?php echo $dates['template']['minutes']; ?></span>
+                    <span class="m2-txt2"><?php echo esc_html__('Minutes', 'colorlib-coming-soon'); ?></span>
+                </div>
+
+                <span class="l1-txt2 p-b-22">:</span>
+
+                <div class="flex-col-c-m wsize2 m-b-20">
+                    <span class="l1-txt2 p-b-4 seconds"><?php echo $dates['template']['seconds']; ?></span>
+                    <span class="m2-txt2"><?php echo esc_html__('Seconds', 'colorlib-coming-soon'); ?></span>
+                </div>
             </div>
-
-            <span class="l1-txt2 p-b-22">:</span>
-
-            <div class="flex-col-c-m wsize2 m-b-20">
-                <span class="l1-txt2 p-b-4 hours"><?php echo $dates['template']['hours']; ?></span>
-                <span class="m2-txt2"><?php echo esc_html__( 'Hours', 'colorlib-coming-soon' ); ?></span>
-            </div>
-
-            <span class="l1-txt2 p-b-22 respon2">:</span>
-
-            <div class="flex-col-c-m wsize2 m-b-20">
-                <span class="l1-txt2 p-b-4 minutes"><?php echo $dates['template']['minutes']; ?></span>
-                <span class="m2-txt2"><?php echo esc_html__( 'Minutes', 'colorlib-coming-soon' ); ?></span>
-            </div>
-
-            <span class="l1-txt2 p-b-22">:</span>
-
-            <div class="flex-col-c-m wsize2 m-b-20">
-                <span class="l1-txt2 p-b-4 seconds"><?php echo $dates['template']['seconds']; ?></span>
-                <span class="m2-txt2"><?php echo esc_html__( 'Seconds', 'colorlib-coming-soon' ); ?></span>
-            </div>
-        </div>
+        <?php } ?>
 
         <form class="flex-w flex-c-m contact100-form validate-form p-t-70">
             <div class="wrap-input100 validate-input where1" data-validate="Email is required: ex@abc.xyz">
@@ -77,23 +78,23 @@ do_action( 'ccsm_header', 'template_08' );
             </div>
 
             <button class="flex-c-m s1-txt1 size2 how-btn trans-04 where1">
-				<?php echo esc_html__( 'Notify Me', 'colorlib-coming-soon' ); ?>
+                <?php echo esc_html__('Notify Me', 'colorlib-coming-soon'); ?>
             </button>
         </form>
     </div>
 </div>
 <?php
-if ( is_customize_preview() ) {
-	?>
+if (is_customize_preview()) {
+    ?>
     <div style="display:none !important;">
-		<?php
-		wp_footer();
-		?>
+        <?php
+        wp_footer();
+        ?>
     </div>
-	<?php
+    <?php
 }
 ?>
-<?php if ( $counterActivation == '1' ) { ?>
+<?php if ($counterActivation == '1' && $dates != false) { ?>
     <script>
         jQuery('.cd100').countdown100({
             /*Set Endtime here*/

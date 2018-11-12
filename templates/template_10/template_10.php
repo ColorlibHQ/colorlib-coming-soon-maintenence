@@ -1,10 +1,10 @@
 <?php
-$ccsm_options      = get_option( 'ccsm_settings' );
+$ccsm_options = get_option('ccsm_settings');
 $counterActivation = $ccsm_options['colorlib_coming_soon_timer_activation'];
-$template          = $ccsm_options['colorlib_coming_soon_template_selection'];
-$counter           = $ccsm_options['colorlib_coming_soon_timer_option'];
-$dates             = ccsm_counter_dates( $counter );
-do_action( 'ccsm_header', 'template_10' );
+$template = $ccsm_options['colorlib_coming_soon_template_selection'];
+$counter = $ccsm_options['colorlib_coming_soon_timer_option'];
+$dates = ccsm_counter_dates($counter);
+do_action('ccsm_header', 'template_10');
 
 ?>
 <style>
@@ -29,29 +29,29 @@ do_action( 'ccsm_header', 'template_10' );
 
 <div class="simpleslide100">
     <div class="simpleslide100-item bg-img1"
-         style="background-image: url('<?php echo ( $ccsm_options['colorlib_coming_soon_background_image'] ) ? $ccsm_options['colorlib_coming_soon_background_image'] : CCSM_URL . 'templates/' . $template . '/images/bg01.jpg'; ?>');"></div>
+         style="background-image: url('<?php echo ($ccsm_options['colorlib_coming_soon_background_image']) ? $ccsm_options['colorlib_coming_soon_background_image'] : CCSM_URL . 'templates/' . $template . '/images/bg01.jpg'; ?>');"></div>
     <div class="simpleslide100-item bg-img1"
-         style="background-image: url('<?php echo ( $ccsm_options['colorlib_coming_soon_background_image'] ) ? $ccsm_options['colorlib_coming_soon_background_image'] : CCSM_URL . 'templates/' . $template . '/images/bg02.jpg'; ?>');"></div>
+         style="background-image: url('<?php echo ($ccsm_options['colorlib_coming_soon_background_image']) ? $ccsm_options['colorlib_coming_soon_background_image'] : CCSM_URL . 'templates/' . $template . '/images/bg02.jpg'; ?>');"></div>
     <div class="simpleslide100-item bg-img1"
-         style="background-image: url('<?php echo ( $ccsm_options['colorlib_coming_soon_background_image'] ) ? $ccsm_options['colorlib_coming_soon_background_image'] : CCSM_URL . 'templates/' . $template . '/images/bg03.jpg'; ?>');"></div>
+         style="background-image: url('<?php echo ($ccsm_options['colorlib_coming_soon_background_image']) ? $ccsm_options['colorlib_coming_soon_background_image'] : CCSM_URL . 'templates/' . $template . '/images/bg03.jpg'; ?>');"></div>
 </div>
 
 <div class="size1 overlay1">
     <!--  -->
     <div class="w-full flex-w flex-sb-m p-l-65 p-r-80 p-t-22 p-b-185 p-lr-15-sm respon8">
         <div class="wrappic1 m-r-30 m-t-10 m-b-10">
-			<?php if ( $ccsm_options['colorlib_coming_soon_plugin_logo'] ) {
-				?>
+            <?php if ($ccsm_options['colorlib_coming_soon_plugin_logo']) {
+                ?>
                 <a href="#"><img src="<?php echo $ccsm_options['colorlib_coming_soon_plugin_logo']; ?>"
                                  alt="LOGO"></a>
-				<?php
-			}
-			?>
+                <?php
+            }
+            ?>
         </div>
 
         <div class="flex-w m-t-10 m-b-10">
             <a href="#" class="size2 m1-txt1 flex-c-m how-btn1 trans-04">
-				<?php echo esc_html__( 'Sign Up', 'colorlib-coming-soon' ); ?>
+                <?php echo esc_html__('Sign Up', 'colorlib-coming-soon'); ?>
             </a>
         </div>
     </div>
@@ -61,11 +61,11 @@ do_action( 'ccsm_header', 'template_10' );
         <!--  -->
         <div class="where3 wsize2 respon1">
             <h3 class="l1-txt2 p-b-30 respon6 respon7" id="colorlib_coming_soon_page_heading">
-				<?php echo $ccsm_options['colorlib_coming_soon_page_heading']; ?>
+                <?php echo $ccsm_options['colorlib_coming_soon_page_heading']; ?>
             </h3>
 
             <p class="m2-txt1 respon6" id="colorlib_coming_soon_page_content">
-				<?php echo $ccsm_options['colorlib_coming_soon_page_content']; ?>
+                <?php echo $ccsm_options['colorlib_coming_soon_page_content']; ?>
             </p>
 
             <form class="contact100-form validate-form p-t-55 w-full">
@@ -80,87 +80,88 @@ do_action( 'ccsm_header', 'template_10' );
             </form>
         </div>
 
-        <!--  -->
-        <div class="flex-w flex-col cd100 p-t-34 respon3">
-            <div class="flex-col wsize1 m-b-40 respon4">
-                <span class="l1-txt1 p-b-30 days"><?php echo $dates['template']['days']; ?></span>
-                <span class="s1-txt1"><?php echo esc_html__( 'Days', 'colorlib-coming-soon' ); ?></span>
-            </div>
+        <?php if ($counterActivation == '1' && $dates != false) { ?>
+            <div class="flex-w flex-col cd100 p-t-34 respon3">
+                <div class="flex-col wsize1 m-b-40 respon4">
+                    <span class="l1-txt1 p-b-30 days"><?php echo $dates['template']['days']; ?></span>
+                    <span class="s1-txt1"><?php echo esc_html__('Days', 'colorlib-coming-soon'); ?></span>
+                </div>
 
-            <div class="flex-col wsize1 m-b-40 respon4">
-                <span class="l1-txt1 p-b-30 hours"><?php echo $dates['template']['hours']; ?></span>
-                <span class="s1-txt1"><?php echo esc_html__( 'Hours', 'colorlib-coming-soon' ); ?></span>
-            </div>
+                <div class="flex-col wsize1 m-b-40 respon4">
+                    <span class="l1-txt1 p-b-30 hours"><?php echo $dates['template']['hours']; ?></span>
+                    <span class="s1-txt1"><?php echo esc_html__('Hours', 'colorlib-coming-soon'); ?></span>
+                </div>
 
-            <div class="flex-col wsize1 m-b-40 respon4">
-                <span class="l1-txt1 p-b-30 minutes"><?php echo $dates['template']['minutes']; ?></span>
-                <span class="s1-txt1"><?php echo esc_html__( 'Minutes', 'colorlib-coming-soon' ); ?></span>
-            </div>
+                <div class="flex-col wsize1 m-b-40 respon4">
+                    <span class="l1-txt1 p-b-30 minutes"><?php echo $dates['template']['minutes']; ?></span>
+                    <span class="s1-txt1"><?php echo esc_html__('Minutes', 'colorlib-coming-soon'); ?></span>
+                </div>
 
-            <div class="flex-col wsize1 m-b-40 respon4">
-                <span class="l1-txt1 p-b-30 seconds"><?php echo $dates['template']['seconds']; ?></span>
-                <span class="s1-txt1"><?php echo esc_html__( 'Seconds', 'colorlib-coming-soon' ); ?></span>
+                <div class="flex-col wsize1 m-b-40 respon4">
+                    <span class="l1-txt1 p-b-30 seconds"><?php echo $dates['template']['seconds']; ?></span>
+                    <span class="s1-txt1"><?php echo esc_html__('Seconds', 'colorlib-coming-soon'); ?></span>
+                </div>
             </div>
-        </div>
+        <?php } ?>
 
         <!--  -->
         <div class="flex-w flex-col where2 respon5">
-			<?php
-			if ( $ccsm_options['colorlib_coming_soon_social_facebook'] ) {
-				?>
+            <?php
+            if ($ccsm_options['colorlib_coming_soon_social_facebook']) {
+                ?>
                 <a href="<?php echo $ccsm_options['colorlib_coming_soon_social_facebook']; ?>"
                    id="colorlib_coming_soon_social_facebook"
                    class="size3 flex-c-m how-social trans-04 m-r-3 m-l-3 m-b-5">
                     <i class="fa fa-facebook-official"></i>
                 </a>
-				<?php
-			}
-			if ( $ccsm_options['colorlib_coming_soon_social_twitter'] ) {
-				?>
+                <?php
+            }
+            if ($ccsm_options['colorlib_coming_soon_social_twitter']) {
+                ?>
                 <a href="<?php echo $ccsm_options['colorlib_coming_soon_social_twitter']; ?>"
                    id="colorlib_coming_soon_social_twitter"
                    class="size3 flex-c-m how-social trans-04 m-r-3 m-l-3 m-b-5">
                     <i class="fa fa-twitter-square"></i>
                 </a>
-				<?php
-			}
-			if ( $ccsm_options['colorlib_coming_soon_social_pinterest'] ) {
-				?>
+                <?php
+            }
+            if ($ccsm_options['colorlib_coming_soon_social_pinterest']) {
+                ?>
                 <a href="<?php echo $ccsm_options['colorlib_coming_soon_social_pinterest']; ?>"
                    id="colorlib_coming_soon_social_pinterest"
                    class="size3 flex-c-m how-social trans-04 m-r-3 m-l-3 m-b-5">
                     <i class="fa fa-pinterest-square"></i>
                 </a>
-				<?php
-			}
-			if ( $ccsm_options['colorlib_coming_soon_social_email'] ) {
-				?>
+                <?php
+            }
+            if ($ccsm_options['colorlib_coming_soon_social_email']) {
+                ?>
                 <a href="mailto:<?php echo $ccsm_options['colorlib_coming_soon_social_email']; ?>"
                    id="colorlib_coming_soon_social_email"
                    class="size3 flex-c-m how-social trans-04 m-r-3 m-l-3 m-b-5">
                     <i class="fa fa-envelope-square"></i>
                 </a>
-				<?php
-			}
-			if ( $ccsm_options['colorlib_coming_soon_social_youtube'] ) {
-				?>
+                <?php
+            }
+            if ($ccsm_options['colorlib_coming_soon_social_youtube']) {
+                ?>
                 <a href="mailto:<?php echo $ccsm_options['colorlib_coming_soon_social_youtube']; ?>"
                    id="colorlib_coming_soon_social_youtube"
                    class="size3 flex-c-m how-social trans-04 m-r-3 m-l-3 m-b-5">
                     <i class="fa fa-youtube-square"></i>
                 </a>
-				<?php
-			}
-			if ( $ccsm_options['colorlib_coming_soon_social_instagram'] ) {
-				?>
+                <?php
+            }
+            if ($ccsm_options['colorlib_coming_soon_social_instagram']) {
+                ?>
                 <a href="mailto:<?php echo $ccsm_options['colorlib_coming_soon_social_instagram']; ?>"
                    id="colorlib_coming_soon_social_instagram"
                    class="size3 flex-c-m how-social trans-04 m-r-3 m-l-3 m-b-5">
                     <i class="fa fa-instagram"></i>
                 </a>
-				<?php
-			}
-			?>
+                <?php
+            }
+            ?>
 
 
         </div>
@@ -170,17 +171,17 @@ do_action( 'ccsm_header', 'template_10' );
 
 </div>
 <?php
-if ( is_customize_preview() ) {
-	?>
+if (is_customize_preview()) {
+    ?>
     <div style="display:none !important;">
-		<?php
-		wp_footer();
-		?>
+        <?php
+        wp_footer();
+        ?>
     </div>
-	<?php
+    <?php
 }
 ?>
-<?php if ( $counterActivation == '1' ) { ?>
+<?php if ($counterActivation == '1' && $dates != false) { ?>
     <script>
         jQuery('.cd100').countdown100({
             /*Set Endtime here*/

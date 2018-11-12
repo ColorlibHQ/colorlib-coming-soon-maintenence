@@ -124,7 +124,7 @@ do_action( 'ccsm_header', 'template_07' );
             </p>
         </div>
 
-
+        <?php if ($counterActivation == '1' && $dates != false) { ?>
         <div class="flex-w flex-c-m cd100 wsize1 m-lr-auto p-t-116">
             <div class="flex-col-c-m size2 bor1 m-l-10 m-r-10 m-b-15">
                 <span class="l1-txt3 p-b-9 days"><?php echo $dates['template']['days']; ?></span>
@@ -146,6 +146,7 @@ do_action( 'ccsm_header', 'template_07' );
                 <span class="s1-txt2"><?php echo esc_html__( 'Seconds', 'colorlib-coming-soon' ); ?></span>
             </div>
         </div>
+        <?php } ?>
     </div>
 </div>
 <?php
@@ -159,7 +160,7 @@ if ( is_customize_preview() ) {
 	<?php
 }
 ?>
-<?php if ( $counterActivation == '1' ) { ?>
+<?php if ( $counterActivation == '1' && $dates != false ) { ?>
     <script>
         jQuery('.cd100').countdown100({
             /*Set Endtime here*/

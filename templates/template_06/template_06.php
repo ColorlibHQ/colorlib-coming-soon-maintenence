@@ -109,7 +109,7 @@ do_action( 'ccsm_header', 'template_06' );
 				<?php echo $ccsm_options['colorlib_coming_soon_page_content']; ?>
             </h3>
 
-            <div class="cd100"></div>
+            <?php if ($counterActivation == '1' && $dates != false) { ?> <div class="cd100"></div> <?php } ?>
 
         </div>
 
@@ -152,7 +152,7 @@ if ( is_customize_preview() ) {
 	<?php
 }
 ?>
-<?php if ( $counterActivation == '1' ) { ?>
+<?php if ( $counterActivation == '1' && $dates != false ) { ?>
     <script>
         jQuery('.cd100').countdown100({
             /*Set Endtime here*/
