@@ -599,4 +599,4 @@ function ccsm_template_has_background_color() {
 
 
 //Loading Plugin Theme Customizer Options
-require_once( 'includes/class_ccsm_customizer.php' );
+require_once( 'includes/class-ccsm-customizer.php' );

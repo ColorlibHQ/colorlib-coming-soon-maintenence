@@ -173,7 +173,7 @@ if ( is_customize_preview() ) {
 <?php if ( $counterActivation == '1' ) {
 	?>
     <script>
-        jQuery(' . cd100').countdown100({
+        jQuery('.cd100').countdown100({
             /*Set Endtime here*/
             /*Endtime must be > current time*/
             endtimeYear: <?php echo $dates['script']['year']; ?>,
@@ -189,7 +189,7 @@ if ( is_customize_preview() ) {
     </script>
 <?php } ?>
 <script>
-    jQuery(' . js - tilt').tilt({
+    jQuery(' .js-tilt').tilt({
         scale: 1.1
     })
 </script>

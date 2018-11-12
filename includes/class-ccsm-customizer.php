@@ -70,9 +70,9 @@ class CCSM_Customizer {
 
 	public function ccsm_customizer_controls( $wp_customize ) {
 
-		require_once( CCSM_PATH . 'includes/controls/class_ccsm_control_text_editor.php' );
-		require_once( CCSM_PATH . 'includes/controls/class_ccsm_control_toggle.php' );
-		require_once( CCSM_PATH . 'includes/controls/class_ccsm_template_selection.php' );
+		require_once( CCSM_PATH . 'includes/controls/class-ccsm-control-text-editor.php' );
+		require_once( CCSM_PATH . 'includes/controls/class-ccsm-control-toggle.php' );
+		require_once( CCSM_PATH . 'includes/controls/class-ccsm-template-selection.php' );
 
 		/* Setting - Coming Soon - Activation */
 		$wp_customize->add_setting( 'ccsm_settings[colorlib_coming_soon_activation]', array(
