@@ -48,3 +48,5 @@ Design by <a href="https://jason.sc/">Jason Schuller</a> and Code by <a href="ht
 == Screenshots ==
 
 1. Screenshots are located under /assets/screenshots/
+
+== Changelog ==
