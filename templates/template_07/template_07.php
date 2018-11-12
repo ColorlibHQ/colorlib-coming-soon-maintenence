@@ -104,7 +104,7 @@ do_action( 'ccsm_header', 'template_07' );
 				<?php echo $ccsm_options['colorlib_coming_soon_page_heading']; ?>
             </p>
 			<?php if ( $ccsm_options['colorlib_coming_soon_subscribe'] != '1' ) { ?>
-                <form class="w-full flex-w flex-c-m validate-form">
+                <form class="w-full flex-w flex-c-m validate-form" action="<?php echo $ccsm_options['colorlib_coming_soon_subscribe_form_url']; ?>">
 
                     <div class="wrap-input100 validate-input m-b-20"
                          data-validate="Valid email is required: ex@abc.xyz">

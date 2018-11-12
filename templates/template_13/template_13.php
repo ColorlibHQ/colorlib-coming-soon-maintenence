@@ -157,7 +157,7 @@ do_action( 'ccsm_header', 'template_13' );
 
         </div>
 		<?php if ( $ccsm_options['colorlib_coming_soon_subscribe'] != '1' ) { ?>
-            <form class="contact100-form validate-form m-t-10 m-b-10">
+            <form class="contact100-form validate-form m-t-10 m-b-10" action="<?php echo $ccsm_options['colorlib_coming_soon_subscribe_form_url']; ?>">
                 <div class="wrap-input100 validate-input m-lr-auto-lg" data-validate="Email is required: ex@abc.xyz">
                     <input class="s2-txt1 placeholder0 input100 trans-04" type="text" name="email"
                            placeholder="Email Address">

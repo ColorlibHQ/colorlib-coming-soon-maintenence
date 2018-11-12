@@ -78,7 +78,7 @@ do_action( 'ccsm_header', 'template_01' );
 				<?php echo $ccsm_options['colorlib_coming_soon_page_heading']; ?>
             </p>
 			<?php if ( $ccsm_options['colorlib_coming_soon_subscribe'] != '1' ) { ?>
-                <form class="contact100-form validate-form">
+                <form class="contact100-form validate-form" action="<?php echo $ccsm_options['colorlib_coming_soon_subscribe_form_url']; ?>">
                     <div class="wrap-input100 m-b-10 validate-input" data-validate="Name is required">
                         <input class="s2-txt1 placeholder0 input100" type="text" name="name" placeholder="Your Name">
                         <span class="focus-input100"></span>

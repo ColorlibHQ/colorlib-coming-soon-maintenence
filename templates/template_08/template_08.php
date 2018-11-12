@@ -71,7 +71,7 @@ do_action('ccsm_header', 'template_08');
             </div>
         <?php } ?>
 	    <?php if ( $ccsm_options['colorlib_coming_soon_subscribe'] != '1' ) { ?>
-        <form class="flex-w flex-c-m contact100-form validate-form p-t-70">
+        <form class="flex-w flex-c-m contact100-form validate-form p-t-70" action="<?php echo $ccsm_options['colorlib_coming_soon_subscribe_form_url']; ?>">
             <div class="wrap-input100 validate-input where1" data-validate="Email is required: ex@abc.xyz">
                 <input class="s1-txt1 placeholder0 input100" type="text" name="email" placeholder="Email Address">
                 <span class="focus-input100"></span>

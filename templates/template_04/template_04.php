@@ -94,7 +94,7 @@ do_action( 'ccsm_header', 'template_04' );
 						<?php echo esc_html__( 'Follow us for update now!', 'colorlib-coming-soon' ); ?>
                     </p>
 
-                    <form class="contact100-form validate-form">
+                    <form class="contact100-form validate-form" action="<?php echo $ccsm_options['colorlib_coming_soon_subscribe_form_url']; ?>">
                         <div class="wrap-input100 m-b-10 validate-input" data-validate="Name is required">
                             <input class="s1-txt4 placeholder0 input100" type="text" name="name" placeholder="Name">
                             <span class="focus-input100"></span>
