@@ -39,22 +39,22 @@ do_action( 'ccsm_header', 'template_01' );
         <div class="wsize2 flex-w flex-c-m cd100 js-tilt">
             <div class="flex-col-c-m size6 bor2 m-l-10 m-r-10 m-t-15">
                 <span class="l2-txt1 p-b-9 days"><?php echo $dates['template']['days']; ?></span>
-                <span class="s2-txt4"><?php _e( 'Days', 'colorlib - coming - soon' ); ?></span>
+                <span class="s2-txt4"><?php esc_html__( 'Days', 'colorlib - coming - soon' ); ?></span>
             </div>
 
             <div class="flex-col-c-m size6 bor2 m-l-10 m-r-10 m-t-15">
                 <span class="l2-txt1 p-b-9 hours"><?php echo $dates['template']['hours']; ?></span>
-                <span class="s2-txt4"><?php _e( 'Hours', 'colorlib - coming - soon' ); ?></span>
+                <span class="s2-txt4"><?php esc_html__( 'Hours', 'colorlib - coming - soon' ); ?></span>
             </div>
 
             <div class="flex-col-c-m size6 bor2 m-l-10 m-r-10 m-t-15">
                 <span class="l2-txt1 p-b-9 minutes"><?php echo $dates['template']['minutes']; ?></span>
-                <span class="s2-txt4"><?php _e( 'Minutes', 'colorlib - coming - soon' ); ?></span>
+                <span class="s2-txt4"><?php esc_html__( 'Minutes', 'colorlib - coming - soon' ); ?></span>
             </div>
 
             <div class="flex-col-c-m size6 bor2 m-l-10 m-r-10 m-t-15">
                 <span class="l2-txt1 p-b-9 seconds"><?php echo $dates['template']['seconds']; ?></span>
-                <span class="s2-txt4"><?php _e( 'Seconds', 'colorlib - coming - soon' ); ?></span>
+                <span class="s2-txt4"><?php esc_html__( 'Seconds', 'colorlib - coming - soon' ); ?></span>
             </div>
         </div>
     </div>
@@ -88,7 +88,7 @@ do_action( 'ccsm_header', 'template_01' );
 
                 <div class="w-full">
                     <button class="flex-c-m s2-txt2 size4 bg1 bor1 hov1 trans-04">
-						<?php echo _e( 'Subscribe', 'colorlib - coming - soon' ); ?>
+						<?php echo esc_html__( 'Subscribe', 'colorlib - coming - soon' ); ?>
                     </button>
                 </div>
             </form>

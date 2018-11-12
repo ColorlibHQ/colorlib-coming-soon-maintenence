@@ -49,7 +49,7 @@ do_action( 'ccsm_header', 'template_09' );
 
         <div class="flex-w m-t-10 m-b-10">
             <a href="#" class="size2 m1-txt1 flex-c-m how-btn1 trans-04">
-				<?php echo _e( 'Sign Up', 'colorlib-coming-soon' ); ?>
+				<?php echo esc_html__( 'Sign Up', 'colorlib-coming-soon' ); ?>
             </a>
         </div>
     </div>
@@ -63,22 +63,22 @@ do_action( 'ccsm_header', 'template_09' );
         <div class="flex-w flex-c-m cd100">
             <div class="flex-col-c wsize1 m-b-30">
                 <span class="l1-txt2 p-b-9 days"><?php echo $dates['template']['days']; ?></span>
-                <span class="s1-txt1 where1 p-l-35"><?php echo _e( 'Days', 'colorlib-coming-soon' ); ?></span>
+                <span class="s1-txt1 where1 p-l-35"><?php echo esc_html__( 'Days', 'colorlib-coming-soon' ); ?></span>
             </div>
 
             <div class="flex-col-c wsize1 m-b-30">
                 <span class="l1-txt2 p-b-9 hours"><?php echo $dates['template']['hours']; ?></span>
-                <span class="s1-txt1 where1 p-l-35"><?php echo _e( 'Hours', 'colorlib-coming-soon' ); ?></span>
+                <span class="s1-txt1 where1 p-l-35"><?php echo esc_html__( 'Hours', 'colorlib-coming-soon' ); ?></span>
             </div>
 
             <div class="flex-col-c wsize1 m-b-30">
                 <span class="l1-txt2 p-b-9 minutes"><?php echo $dates['template']['minutes']; ?></span>
-                <span class="s1-txt1 where1 p-l-35"><?php echo _e( 'Minutes', 'colorlib-coming-soon' ); ?></span>
+                <span class="s1-txt1 where1 p-l-35"><?php echo esc_html__( 'Minutes', 'colorlib-coming-soon' ); ?></span>
             </div>
 
             <div class="flex-col-c wsize1 m-b-30">
                 <span class="l1-txt2 p-b-9 seconds"><?php echo $dates['template']['seconds']; ?></span>
-                <span class="s1-txt1 where1 p-l-35"><?php echo _e( 'Seconds', 'colorlib-coming-soon' ); ?></span>
+                <span class="s1-txt1 where1 p-l-35"><?php echo esc_html__( 'Seconds', 'colorlib-coming-soon' ); ?></span>
             </div>
         </div>
     </div>

@@ -31,22 +31,22 @@ do_action( 'ccsm_header', 'template_05' );
     <div class="flex-w flex-c cd100 wsize1 bor1">
         <div class="flex-col-c-m size2 bg0 bor2">
             <span class="l1-txt3 p-b-7 days"><?php echo $dates['template']['days']; ?></span>
-            <span class="s1-txt1"><?php echo _e( 'Days', 'colorlib-coming-soon' ); ?></span>
+            <span class="s1-txt1"><?php echo esc_html__( 'Days', 'colorlib-coming-soon' ); ?></span>
         </div>
 
         <div class="flex-col-c-m size2 bg0 bor2">
             <span class="l1-txt3 p-b-7 hours"><?php echo $dates['template']['hours']; ?></span>
-            <span class="s1-txt1"><?php echo _e( 'Hours', 'colorlib-coming-soon' ); ?></span>
+            <span class="s1-txt1"><?php echo esc_html__( 'Hours', 'colorlib-coming-soon' ); ?></span>
         </div>
 
         <div class="flex-col-c-m size2 bg0 bor2">
             <span class="l1-txt3 p-b-7 minutes"><?php echo $dates['template']['minutes']; ?></span>
-            <span class="s1-txt1"><?php echo _e( 'Minutes', 'colorlib-coming-soon' ); ?></span>
+            <span class="s1-txt1"><?php echo esc_html__( 'Minutes', 'colorlib-coming-soon' ); ?></span>
         </div>
 
         <div class="flex-col-c-m size2 bg0">
             <span class="l1-txt3 p-b-7 seconds"><?php echo $dates['template']['seconds']; ?></span>
-            <span class="s1-txt1"><?php echo _e( 'Seconds', 'colorlib-coming-soon' ); ?></span>
+            <span class="s1-txt1"><?php echo esc_html__( 'Seconds', 'colorlib-coming-soon' ); ?></span>
         </div>
     </div>
 
@@ -70,7 +70,7 @@ do_action( 'ccsm_header', 'template_05' );
             </div>
 
             <button class="flex-c-m s1-txt4 size3 how-btn trans-04 where1">
-				<?php echo _e( 'Get Updates', 'colorlib-coming-soon' ); ?>
+				<?php echo esc_html__( 'Get Updates', 'colorlib-coming-soon' ); ?>
             </button>
 
         </form>

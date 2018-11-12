@@ -41,22 +41,22 @@ do_action( 'ccsm_header', 'template_04' );
         <div class="flex-w flex-c cd100 p-b-82">
             <div class="flex-col-c-m size2 how-countdown">
                 <span class="l1-txt3 p-b-9 days"><?php echo $dates['template']['days']; ?></span>
-                <span class="s1-txt1"><?php echo _e( 'Days', 'colorlib-coming-soon' ); ?></span>
+                <span class="s1-txt1"><?php echo esc_html__( 'Days', 'colorlib-coming-soon' ); ?></span>
             </div>
 
             <div class="flex-col-c-m size2 how-countdown">
                 <span class="l1-txt3 p-b-9 hours"><?php echo $dates['template']['hours']; ?></span>
-                <span class="s1-txt1"><?php echo _e( 'Hours', 'colorlib-coming-soon' ); ?></span>
+                <span class="s1-txt1"><?php echo esc_html__( 'Hours', 'colorlib-coming-soon' ); ?></span>
             </div>
 
             <div class="flex-col-c-m size2 how-countdown">
                 <span class="l1-txt3 p-b-9 minutes"><?php echo $dates['template']['minutes']; ?></span>
-                <span class="s1-txt1"><?php echo _e( 'Minutes', 'colorlib-coming-soon' ); ?></span>
+                <span class="s1-txt1"><?php echo esc_html__( 'Minutes', 'colorlib-coming-soon' ); ?></span>
             </div>
 
             <div class="flex-col-c-m size2 how-countdown">
                 <span class="l1-txt3 p-b-9 seconds"><?php echo $dates['template']['days']; ?></span>
-                <span class="s1-txt1"><?php echo _e( 'Seconds', 'colorlib-coming-soon' ); ?></span>
+                <span class="s1-txt1"><?php echo esc_html__( 'Seconds', 'colorlib-coming-soon' ); ?></span>
             </div>
         </div>
 
@@ -82,11 +82,11 @@ do_action( 'ccsm_header', 'template_04' );
 
             <div class="wsize1 m-lr-auto">
                 <h3 class="m1-txt1 txt-center p-b-36">
-                    <span class="bor1 p-b-6"><?php echo _e( 'Subscribe', 'colorlib-coming-soon' ); ?></span>
+                    <span class="bor1 p-b-6"><?php echo esc_html__( 'Subscribe', 'colorlib-coming-soon' ); ?></span>
                 </h3>
 
                 <p class="m1-txt2 txt-center p-b-40">
-					<?php echo _e( 'Follow us for update now!', 'colorlib-coming-soon' ); ?>
+					<?php echo esc_html__( 'Follow us for update now!', 'colorlib-coming-soon' ); ?>
                 </p>
 
                 <form class="contact100-form validate-form">
@@ -102,7 +102,7 @@ do_action( 'ccsm_header', 'template_04' );
 
                     <div class="w-full">
                         <button class="flex-c-m s1-txt2 size5 how-btn1 trans-04">
-                            Get Updates
+                            <?php echo esc_html__('Get Updates','colorlib-coming-soon'); ?>
                         </button>
                     </div>
                 </form>

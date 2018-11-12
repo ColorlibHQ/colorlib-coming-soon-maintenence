@@ -52,7 +52,7 @@ do_action( 'ccsm_header', 'template_11' );
 
         <div class="flex-w m-t-10 m-b-10">
             <a href="#" class="size2 m1-txt1 flex-c-m how-btn1 trans-04">
-				<?php echo _e( 'Sign Up', 'colorlib-coming-soon' ); ?>
+				<?php echo esc_html__( 'Sign Up', 'colorlib-coming-soon' ); ?>
             </a>
         </div>
     </div>
@@ -66,28 +66,28 @@ do_action( 'ccsm_header', 'template_11' );
         <div class="flex-w flex-c cd100 respon2">
             <div class="flex-col-c wsize1 m-b-30">
                 <span class="l1-txt2 p-b-37 days"><?php echo $dates['template']['days']; ?></span>
-                <span class="m1-txt2 p-r-20"><?php echo _e( 'Days', 'colorlib-coming-soon' ); ?></span>
+                <span class="m1-txt2 p-r-20"><?php echo esc_html__( 'Days', 'colorlib-coming-soon' ); ?></span>
             </div>
 
             <span class="l1-txt2 p-t-15 dis-none-sm">:</span>
 
             <div class="flex-col-c wsize1 m-b-30">
                 <span class="l1-txt2 p-b-37 hours"><?php echo $dates['template']['hours']; ?></span>
-                <span class="m1-txt2 p-r-20"><?php echo _e( 'Hr', 'colorlib-coming-soon' ); ?></span>
+                <span class="m1-txt2 p-r-20"><?php echo esc_html__( 'Hr', 'colorlib-coming-soon' ); ?></span>
             </div>
 
             <span class="l1-txt2 p-t-15 dis-none-lg">:</span>
 
             <div class="flex-col-c wsize1 m-b-30">
                 <span class="l1-txt2 p-b-37 minutes"><?php echo $dates['template']['minutes']; ?></span>
-                <span class="m1-txt2 p-r-20"><?php echo _e( 'Min', 'colorlib-coming-soon' ); ?></span>
+                <span class="m1-txt2 p-r-20"><?php echo esc_html__( 'Min', 'colorlib-coming-soon' ); ?></span>
             </div>
 
             <span class="l1-txt2 p-t-15 dis-none-sm">:</span>
 
             <div class="flex-col-c wsize1 m-b-30">
                 <span class="l1-txt2 p-b-37 seconds"><?php echo $dates['template']['seconds']; ?></span>
-                <span class="m1-txt2 p-r-20"><?php echo _e( 'Sec', 'colorlib-coming-soon' ); ?></span>
+                <span class="m1-txt2 p-r-20"><?php echo esc_html__( 'Sec', 'colorlib-coming-soon' ); ?></span>
             </div>
         </div>
     </div>

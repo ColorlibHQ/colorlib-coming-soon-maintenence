@@ -70,7 +70,7 @@ do_action( 'ccsm_header', 'template_14' );
                     </button>
 
                     <div class="flex-c-m ab-t-l s2-txt1 size4 bor1 respon4">
-                        <span><?php echo _e( 'Subcribe Now', 'colorlib-coming-soon' ); ?>:</span>
+                        <span><?php echo esc_html__( 'Subcribe Now', 'colorlib-coming-soon' ); ?>:</span>
                     </div>
                 </div>
             </form>
@@ -79,7 +79,7 @@ do_action( 'ccsm_header', 'template_14' );
 
         <div class="flex-w flex-m">
 				<span class="m2-txt2 p-r-40">
-					<?php echo _e( 'Follow us', 'colorlib-coming-soon' ); ?>
+					<?php echo esc_html__( 'Follow us', 'colorlib-coming-soon' ); ?>
 				</span>
 			<?php
 			if ( $ccsm_options['colorlib_coming_soon_social_facebook'] ) {

@@ -115,7 +115,7 @@ do_action( 'ccsm_header', 'template_06' );
 
         <div class="bg0 wsize1 bor1 p-l-45 p-r-45 p-t-50 p-b-18 p-lr-15-sm">
             <h3 class="l1-txt3 txt-center p-b-43">
-				<?php echo _e( 'Newsletter', 'colorlib-coming-soon' ); ?>
+				<?php echo esc_html__( 'Newsletter', 'colorlib-coming-soon' ); ?>
             </h3>
 
             <form class="w-full validate-form">
@@ -131,7 +131,7 @@ do_action( 'ccsm_header', 'template_06' );
                 </div>
 
                 <button class="flex-c-m size2 s1-txt2 how-btn1 trans-04">
-					<?php echo _e( 'Subscribe', 'colorlib-coming-soon' ); ?>
+					<?php echo esc_html__( 'Subscribe', 'colorlib-coming-soon' ); ?>
                 </button>
             </form>
 

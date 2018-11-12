@@ -45,28 +45,28 @@ do_action( 'ccsm_header', 'template_08' );
         <div class="flex-w flex-sa-m cd100 bor1 p-t-42 p-b-22 p-l-50 p-r-50 respon1">
             <div class="flex-col-c-m wsize2 m-b-20">
                 <span class="l1-txt2 p-b-4 days"><?php echo $dates['template']['days']; ?></span>
-                <span class="m2-txt2"><?php echo _e( 'Days', 'colorlib-coming-soon' ); ?></span>
+                <span class="m2-txt2"><?php echo esc_html__( 'Days', 'colorlib-coming-soon' ); ?></span>
             </div>
 
             <span class="l1-txt2 p-b-22">:</span>
 
             <div class="flex-col-c-m wsize2 m-b-20">
                 <span class="l1-txt2 p-b-4 hours"><?php echo $dates['template']['hours']; ?></span>
-                <span class="m2-txt2"><?php echo _e( 'Hours', 'colorlib-coming-soon' ); ?></span>
+                <span class="m2-txt2"><?php echo esc_html__( 'Hours', 'colorlib-coming-soon' ); ?></span>
             </div>
 
             <span class="l1-txt2 p-b-22 respon2">:</span>
 
             <div class="flex-col-c-m wsize2 m-b-20">
                 <span class="l1-txt2 p-b-4 minutes"><?php echo $dates['template']['minutes']; ?></span>
-                <span class="m2-txt2"><?php echo _e( 'Minutes', 'colorlib-coming-soon' ); ?></span>
+                <span class="m2-txt2"><?php echo esc_html__( 'Minutes', 'colorlib-coming-soon' ); ?></span>
             </div>
 
             <span class="l1-txt2 p-b-22">:</span>
 
             <div class="flex-col-c-m wsize2 m-b-20">
                 <span class="l1-txt2 p-b-4 seconds"><?php echo $dates['template']['seconds']; ?></span>
-                <span class="m2-txt2"><?php echo _e( 'Seconds', 'colorlib-coming-soon' ); ?></span>
+                <span class="m2-txt2"><?php echo esc_html__( 'Seconds', 'colorlib-coming-soon' ); ?></span>
             </div>
         </div>
 
@@ -77,7 +77,7 @@ do_action( 'ccsm_header', 'template_08' );
             </div>
 
             <button class="flex-c-m s1-txt1 size2 how-btn trans-04 where1">
-				<?php echo _e( 'Notify Me', 'colorlib-coming-soon' ); ?>
+				<?php echo esc_html__( 'Notify Me', 'colorlib-coming-soon' ); ?>
             </button>
         </form>
     </div>

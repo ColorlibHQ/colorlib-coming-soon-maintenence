@@ -51,7 +51,7 @@ do_action( 'ccsm_header', 'template_10' );
 
         <div class="flex-w m-t-10 m-b-10">
             <a href="#" class="size2 m1-txt1 flex-c-m how-btn1 trans-04">
-				<?php echo _e( 'Sign Up', 'colorlib-coming-soon' ); ?>
+				<?php echo esc_html__( 'Sign Up', 'colorlib-coming-soon' ); ?>
             </a>
         </div>
     </div>
@@ -84,22 +84,22 @@ do_action( 'ccsm_header', 'template_10' );
         <div class="flex-w flex-col cd100 p-t-34 respon3">
             <div class="flex-col wsize1 m-b-40 respon4">
                 <span class="l1-txt1 p-b-30 days"><?php echo $dates['template']['days']; ?></span>
-                <span class="s1-txt1"><?php echo _e( 'Days', 'colorlib-coming-soon' ); ?></span>
+                <span class="s1-txt1"><?php echo esc_html__( 'Days', 'colorlib-coming-soon' ); ?></span>
             </div>
 
             <div class="flex-col wsize1 m-b-40 respon4">
                 <span class="l1-txt1 p-b-30 hours"><?php echo $dates['template']['hours']; ?></span>
-                <span class="s1-txt1"><?php echo _e( 'Hours', 'colorlib-coming-soon' ); ?></span>
+                <span class="s1-txt1"><?php echo esc_html__( 'Hours', 'colorlib-coming-soon' ); ?></span>
             </div>
 
             <div class="flex-col wsize1 m-b-40 respon4">
                 <span class="l1-txt1 p-b-30 minutes"><?php echo $dates['template']['minutes']; ?></span>
-                <span class="s1-txt1"><?php echo _e( 'Minutes', 'colorlib-coming-soon' ); ?></span>
+                <span class="s1-txt1"><?php echo esc_html__( 'Minutes', 'colorlib-coming-soon' ); ?></span>
             </div>
 
             <div class="flex-col wsize1 m-b-40 respon4">
                 <span class="l1-txt1 p-b-30 seconds"><?php echo $dates['template']['seconds']; ?></span>
-                <span class="s1-txt1"><?php echo _e( 'Seconds', 'colorlib-coming-soon' ); ?></span>
+                <span class="s1-txt1"><?php echo esc_html__( 'Seconds', 'colorlib-coming-soon' ); ?></span>
             </div>
         </div>
 
