@@ -112,7 +112,7 @@ do_action( 'ccsm_header', 'template_06' );
             <?php if ($counterActivation == '1' && $dates != false) { ?> <div class="cd100"></div> <?php } ?>
 
         </div>
-
+	    <?php if ( $ccsm_options['colorlib_coming_soon_subscribe'] != '1' ) { ?>
         <div class="bg0 wsize1 bor1 p-l-45 p-r-45 p-t-50 p-b-18 p-lr-15-sm">
             <h3 class="l1-txt3 txt-center p-b-43">
 				<?php echo esc_html__( 'Newsletter', 'colorlib-coming-soon' ); ?>
@@ -139,6 +139,7 @@ do_action( 'ccsm_header', 'template_06' );
 				<?php echo $ccsm_options['colorlib_coming_soon_page_footer']; ?>
             </p>
         </div>
+        <?php } ?>
     </div>
 </div>
 <?php

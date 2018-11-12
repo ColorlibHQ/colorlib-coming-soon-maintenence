@@ -61,7 +61,7 @@ do_action('ccsm_header', 'template_05');
         <p class="txt-center l1-txt2 p-b-43 wsize2" id="colorlib_coming_soon_page_content">
             <?php echo $ccsm_options['colorlib_coming_soon_page_content']; ?>
         </p>
-
+	    <?php if ( $ccsm_options['colorlib_coming_soon_subscribe'] != '1' ) { ?>
         <form class="flex-w flex-c-m w-full contact100-form validate-form">
             <div class="wrap-input100 validate-input where1" data-validate="Name is required">
                 <input class="s1-txt3 placeholder0 input100" type="text" name="name" placeholder="Name">
@@ -76,6 +76,7 @@ do_action('ccsm_header', 'template_05');
             </button>
 
         </form>
+        <?php } ?>
     </div>
 
     <span class="s1-txt2 txt-center">

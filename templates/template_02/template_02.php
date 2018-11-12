@@ -70,7 +70,7 @@ do_action('ccsm_header', 'template_02');
                 </div>
             </div>
         <?php } ?>
-
+	    <?php if ( $ccsm_options['colorlib_coming_soon_subscribe'] != '1' ) { ?>
         <form class="w-full flex-w flex-c-m validate-form">
 
             <div class="wrap-input100 validate-input where1" data-validate="Valid email is required: ex@abc.xyz">
@@ -83,6 +83,7 @@ do_action('ccsm_header', 'template_02');
                 <?php esc_html__('Subscribe', 'colorlib-coming-soon'); ?>
             </button>
         </form>
+        <?php } ?>
     </div>
 </div>
 <?php
