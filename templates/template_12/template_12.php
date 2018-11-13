@@ -4,29 +4,7 @@ $counterActivation = $ccsm_options['colorlib_coming_soon_timer_activation'];
 $template          = $ccsm_options['colorlib_coming_soon_template_selection'];
 $counter           = $ccsm_options['colorlib_coming_soon_timer_option'];
 $dates             = ccsm_counter_dates( $counter );
-do_action( 'ccsm_header', 'template_12' );
-
 ?>
-<style>
-    <?php if( $counterActivation != '1' ) { ?>
-    .cd100 {
-        display: none !important;
-    }
-
-    <?php }
-    if($ccsm_options['colorlib_coming_soon_text_color']){
-        ?>
-    p, h1, h2, h3, h4, span, li {
-        color: <?php echo $ccsm_options['colorlib_coming_soon_text_color']; ?> !important;
-    }
-
-    <?php
-    } ?>
-    <?php echo $ccsm_options['colorlib_coming_soon_page_custom_css']; ?>
-</style>
-</head>
-<body>
-
 <div class="flex-w flex-str size1 overlay1">
     <div class="flex-w flex-col-sb wsize1 bg0 p-l-65 p-t-37 p-b-50 p-r-80 respon1">
         <div class="wrappic1">

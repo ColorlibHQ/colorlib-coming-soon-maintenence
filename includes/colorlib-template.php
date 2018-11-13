@@ -11,15 +11,31 @@
 	if ( $ccsm_options['colorlib_coming_soon_template_selection'] ) {
 		$template = $ccsm_options['colorlib_coming_soon_template_selection'];
 	}
-	
-	?>
-    <!--TODO think we should remove this or add option in the customizer-->
-    <!--<link rel="icon" type="image/png"
-          href="<?php /*echo CCSM_URL . 'templates/' . $template; */ ?>/images/icons/favicon.ico"/>-->
 
-	<?php
-	include( CCSM_PATH . 'templates/' . $template . '/' . $template . '.php' );
-	?>
+	$counterActivation = $ccsm_options['colorlib_coming_soon_timer_activation'];
+	do_action( 'ccsm_header', $template );
 
-    </body>
+	?>
+    <style>
+        <?php if( $counterActivation != '1' ) { ?>
+        .cd100 {
+            display: none !important;
+        }
+
+        <?php }
+		if($ccsm_options['colorlib_coming_soon_text_color']){
+			?>
+        p, h1, h2, h3, h4, span, li {
+            color: <?php echo $ccsm_options['colorlib_coming_soon_text_color']; ?> !important;
+        }
+
+        <?php }
+        echo $ccsm_options['colorlib_coming_soon_page_custom_css']; ?>
+    </style>
+</head>
+<body>
+
+<?php include( CCSM_PATH . 'templates/' . $template . '/' . $template . '.php' ); ?>
+
+</body>
 </html>

@@ -5,33 +5,7 @@ $counterActivation = $ccsm_options['colorlib_coming_soon_timer_activation'];
 $template          = $ccsm_options['colorlib_coming_soon_template_selection'];
 $counter           = $ccsm_options['colorlib_coming_soon_timer_option'];
 $dates             = ccsm_counter_dates( $counter );
-do_action( 'ccsm_header', 'template_01' );
-
 ?>
-<style>
-    <?php if($counterActivation != '1'){
-		?>
-    .cd100 {
-        display: none !important;
-    }
-
-    <?php
-	}
-
-	if($ccsm_options['colorlib_coming_soon_text_color']){
-		?>
-    p, h1, h2, h3, h4, span, li {
-        color: <?php echo $ccsm_options['colorlib_coming_soon_text_color']; ?> !important;
-    }
-
-    <?php
-	}
-	?>
-
-    <?php echo $ccsm_options['colorlib_coming_soon_page_custom_css']; ?>
-</style>
-</head>
-<body>
 <div class="size1 bg0 where1-parent">
     <!-- Countdown -->
     <div class="flex-c-m bg-img1 size2 where1 overlay1 where2 respon2 wrap-pic1"
@@ -193,7 +167,7 @@ if ( is_customize_preview() ) {
     </script>
 <?php } ?>
 <script>
-    jQuery(' .js-tilt').tilt({
+    jQuery('.js-tilt').tilt({
         scale: 1.1
     })
 </script>
