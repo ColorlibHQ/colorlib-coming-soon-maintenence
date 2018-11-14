@@ -272,6 +272,14 @@ class CCSM_Customizer {
 			) )
 		);
 
+		$wp_customize->selective_refresh->add_partial(
+			'ccsm_settings[colorlib_coming_soon_page_content]',
+			array(
+				'selector'        => '#colorlib_coming_soon_page_content',
+				'render_callback' => 'ccsm_settings[colorlib_coming_soon_page_content]'
+			)
+		);
+
 
 		/* Setting - Coming Soon - Page Footers */
 		$wp_customize->add_setting( 'ccsm_settings[colorlib_coming_soon_page_footer]', array(
@@ -287,6 +295,14 @@ class CCSM_Customizer {
 				'priority'        => 40,
 				'active_callback' => 'ccsm_template_has_footer',
 			) )
+		);
+
+		$wp_customize->selective_refresh->add_partial(
+			'ccsm_settings[colorlib_coming_soon_page_footer]',
+			array(
+				'selector'        => '#colorlib_coming_soon_page_footer',
+				'render_callback' => 'ccsm_settings[colorlib_coming_soon_page_footer]'
+			)
 		);
 
 
