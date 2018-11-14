@@ -12,7 +12,7 @@ $dates             = ccsm_counter_dates( $counter );
             <div class="wrappic1 m-r-30 m-t-10 m-b-10">
 				<?php if ( $ccsm_options['colorlib_coming_soon_plugin_logo'] ) {
 					?>
-                    <a href="<?php echo site_url(); ?>"><img class="logo" src="<?php echo $ccsm_options['colorlib_coming_soon_plugin_logo']; ?>"
+                    <a href="<?php echo site_url(); ?>" class="logo-link"><img src="<?php echo $ccsm_options['colorlib_coming_soon_plugin_logo']; ?>"
                                      alt="LOGO"></a>
 					<?php
 				}
@@ -98,7 +98,7 @@ $dates             = ccsm_counter_dates( $counter );
                     </button>
                 </form>
 
-                <p class="txt-center s1-txt1 p-t-5">
+                <p class="txt-center s1-txt1 p-t-5" id="colorlib_coming_soon_page_footer">
 					<?php echo $ccsm_options['colorlib_coming_soon_page_footer']; ?>
                 </p>
 			<?php } ?>

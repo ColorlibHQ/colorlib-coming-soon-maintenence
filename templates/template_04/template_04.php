@@ -91,8 +91,8 @@ $dates             = ccsm_counter_dates( $counter );
                         </div>
                     </form>
 
-                    <p class="s1-txt5 txt-center wsize2 m-lr-auto p-t-20">
-						<?php esc_html__( 'And don’t worry, we hate spam too! You can unsubcribe at anytime.', 'colorlib-coming-soon' ); ?>
+                    <p class="s1-txt5 txt-center wsize2 m-lr-auto p-t-20" id="colorlib_coming_soon_page_footer">
+	                    <?php echo $ccsm_options['colorlib_coming_soon_page_footer']; ?>
                     </p>
                 </div>
             </div>

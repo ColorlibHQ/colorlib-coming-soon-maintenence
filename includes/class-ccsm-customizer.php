@@ -196,7 +196,7 @@ class CCSM_Customizer {
 		$wp_customize->selective_refresh->add_partial(
 			'ccsm_settings[colorlib_coming_soon_plugin_logo]',
 			array(
-				'selector'        => '.logo',
+				'selector'        => '.logo-link',
 				'render_callback' => 'ccsm_settings[colorlib_coming_soon_page_heading]'
 			)
 		);

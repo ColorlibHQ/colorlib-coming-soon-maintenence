@@ -21,7 +21,7 @@ $dates             = ccsm_counter_dates( $counter );
         <div class="wrappic1">
 			<?php if ( $ccsm_options['colorlib_coming_soon_plugin_logo'] ) {
 				?>
-                <a href="<?php echo site_url(); ?>"><img class="logo" src="<?php echo $ccsm_options['colorlib_coming_soon_plugin_logo']; ?>"
+                <a href="<?php echo site_url(); ?>" class="logo-link"><img src="<?php echo $ccsm_options['colorlib_coming_soon_plugin_logo']; ?>"
                                  alt="LOGO"></a>
 				<?php
 			}
