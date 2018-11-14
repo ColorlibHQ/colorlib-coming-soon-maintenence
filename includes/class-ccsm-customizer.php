@@ -173,7 +173,6 @@ class CCSM_Customizer {
 			'ccsm_settings[colorlib_coming_soon_timer_option]',
 			array(
 				'selector'        => '.cd100',
-				'render_callback' => 'ccsm_settings[colorlib_coming_soon_page_heading]'
 			)
 		);
 
@@ -197,7 +196,6 @@ class CCSM_Customizer {
 			'ccsm_settings[colorlib_coming_soon_plugin_logo]',
 			array(
 				'selector'        => '.logo-link',
-				'render_callback' => 'ccsm_settings[colorlib_coming_soon_page_heading]'
 			)
 		);
 
@@ -267,7 +265,6 @@ class CCSM_Customizer {
 			'ccsm_settings[colorlib_coming_soon_page_heading]',
 			array(
 				'selector'        => '#colorlib_coming_soon_page_heading',
-				'render_callback' => 'ccsm_settings[colorlib_coming_soon_page_heading]'
 			)
 		);
 
@@ -292,7 +289,6 @@ class CCSM_Customizer {
 			'ccsm_settings[colorlib_coming_soon_page_content]',
 			array(
 				'selector'        => '#colorlib_coming_soon_page_content',
-				'render_callback' => 'ccsm_settings[colorlib_coming_soon_page_content]'
 			)
 		);
 
@@ -317,7 +313,6 @@ class CCSM_Customizer {
 			'ccsm_settings[colorlib_coming_soon_page_footer]',
 			array(
 				'selector'        => '#colorlib_coming_soon_page_footer',
-				'render_callback' => 'ccsm_settings[colorlib_coming_soon_page_footer]'
 			)
 		);
 
@@ -372,7 +367,6 @@ class CCSM_Customizer {
 			'ccsm_settings[colorlib_coming_soon_social_facebook]',
 			array(
 				'selector'        => '#colorlib_coming_soon_social_facebook',
-				'render_callback' => 'ccsm_settings[colorlib_coming_soon_social_facebook]'
 			)
 		);
 
@@ -396,7 +390,6 @@ class CCSM_Customizer {
 			'ccsm_settings[colorlib_coming_soon_social_twitter]',
 			array(
 				'selector'        => '#colorlib_coming_soon_social_twitter',
-				'render_callback' => 'ccsm_settings[colorlib_coming_soon_social_twitter]'
 			)
 		);
 
@@ -420,7 +413,6 @@ class CCSM_Customizer {
 			'ccsm_settings[colorlib_coming_soon_social_email]',
 			array(
 				'selector'        => '#colorlib_coming_soon_social_email',
-				'render_callback' => 'ccsm_settings[colorlib_coming_soon_social_email]'
 			)
 		);
 
@@ -443,7 +435,6 @@ class CCSM_Customizer {
 			'ccsm_settings[colorlib_coming_soon_social_youtube]',
 			array(
 				'selector'        => '#colorlib_coming_soon_social_youtube',
-				'render_callback' => 'ccsm_settings[colorlib_coming_soon_social_youtube]'
 			)
 		);
 
@@ -466,7 +457,6 @@ class CCSM_Customizer {
 			'ccsm_settings[colorlib_coming_soon_social_pinterest]',
 			array(
 				'selector'        => '#colorlib_coming_soon_social_pinterest',
-				'render_callback' => 'ccsm_settings[colorlib_coming_soon_social_pinterest]'
 			)
 		);
 
@@ -489,7 +479,6 @@ class CCSM_Customizer {
 			'ccsm_settings[colorlib_coming_soon_social_instagram]',
 			array(
 				'selector'        => '#colorlib_coming_soon_social_instagram',
-				'render_callback' => 'ccsm_settings[colorlib_coming_soon_social_instagram]'
 			)
 		);
 
