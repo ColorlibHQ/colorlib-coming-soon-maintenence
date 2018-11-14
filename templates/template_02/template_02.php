@@ -57,7 +57,7 @@ $dates = ccsm_counter_dates($counter);
 
 
             <button class="flex-c-m size3 s2-txt3 how-btn1 trans-04 where1">
-                <?php esc_html__('Subscribe', 'colorlib-coming-soon'); ?>
+                <?php echo esc_html__('Subscribe', 'colorlib-coming-soon'); ?>
             </button>
         </form>
         <?php } ?>

@@ -448,6 +448,8 @@ function ccsm_customizer_preview_scripts() {
 		'customize-preview'
 	), '', true );
 	wp_enqueue_script( 'colorlib-customizer-preview' );
+	wp_enqueue_scripts('customize-selective-refresh');
+
 
 }
 
