@@ -293,6 +293,7 @@ class CCSM_Customizer {
 		/* Setting - Coming Soon - Subscribe Form Activation */
 		$wp_customize->add_setting( 'ccsm_settings[colorlib_coming_soon_subscribe]', array(
 			'sanitize_callback' => 'ccsm_sanitize_text',
+			'default'           => '',
 			'type'              => 'option'
 		) );
 

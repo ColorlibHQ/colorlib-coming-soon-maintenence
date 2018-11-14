@@ -514,7 +514,7 @@ function ccsm_counter_dates( $timerDate ) {
 			'minutes' => '0',
 			'seconds' => '0'
 		);
-		$dates['script'] = 'false';
+		$dates['script']   = 'false';
 
 	}
 
@@ -529,6 +529,7 @@ function ccsm_check_on_activation() {
 		$defaultSets = array(
 			'colorlib_coming_soon_activation'         => '1',
 			'colorlib_coming_soon_timer_activation'   => '1',
+			'colorlib_coming_soon_subscribe'          => '',
 			'colorlib_coming_soon_template_selection' => 'template_01',
 			'colorlib_coming_soon_timer_option'       => date( 'Y-m-d H:i:s', strtotime( '+1 month' ) ),
 			'colorlib_coming_soon_plugin_logo'        => CCSM_URL . 'assets/images/logo.jpg',
