@@ -7,7 +7,7 @@ $dates = ccsm_counter_dates($counter);
 
 ?>
 <div class="bg-g1 size1 flex-w flex-col-c-sb p-l-15 p-r-15 p-b-30">
-    <?php if ($counterActivation == '1' && $dates != false) { ?>
+    <?php if ($counterActivation == '1' ) { ?>
         <div class="flex-w flex-c cd100 wsize1 bor1">
             <div class="flex-col-c-m size2 bg0 bor2">
                 <span class="l1-txt3 p-b-7 days"><?php echo $dates['template']['days']; ?></span>
@@ -42,12 +42,12 @@ $dates = ccsm_counter_dates($counter);
         </p>
 	    <?php if ( $ccsm_options['colorlib_coming_soon_subscribe'] != '1' ) { ?>
         <form class="flex-w flex-c-m w-full contact100-form validate-form" action="<?php echo $ccsm_options['colorlib_coming_soon_subscribe_form_url']; ?>">
-            <div class="wrap-input100 validate-input where1" data-validate="Name is required">
-                <input class="s1-txt3 placeholder0 input100" type="text" name="name" placeholder="Name">
+            <div class="wrap-input100 validate-input where1" data-validate="<?php echo esc_attr__('Name is required','colorlib-coming-soon'); ?>">
+                <input class="s1-txt3 placeholder0 input100" type="text" name="name" placeholder="<?php echo esc_attr__('Name','colorlib-coming-soon'); ?>">
             </div>
 
-            <div class="wrap-input100 validate-input where1" data-validate="Email is required: ex@abc.xyz">
-                <input class="s1-txt3 placeholder0 input100" type="text" name="email" placeholder="Email">
+            <div class="wrap-input100 validate-input where1" data-validate="<?php echo esc_attr__('Email is required: ex@abc.xyz','colorlib-coming-soon'); ?>">
+                <input class="s1-txt3 placeholder0 input100" type="text" name="email" placeholder="<?php echo esc_attr__('Email','colorlib-coming-soon'); ?>">
             </div>
 
             <button class="flex-c-m s1-txt4 size3 how-btn trans-04 where1">

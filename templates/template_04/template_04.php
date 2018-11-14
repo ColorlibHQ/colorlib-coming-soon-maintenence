@@ -16,7 +16,7 @@ $dates             = ccsm_counter_dates( $counter );
         <p class="txt-center l1-txt2 p-b-60" id="colorlib_coming_soon_page_content">
 			<?php echo $ccsm_options['colorlib_coming_soon_page_content']; ?>
         </p>
-		<?php if ( $counterActivation == '1' && $dates != false ) { ?>
+		<?php if ( $counterActivation == '1' ) { ?>
             <div class="flex-w flex-c cd100 p-b-82">
                 <div class="flex-col-c-m size2 how-countdown">
                     <span class="l1-txt3 p-b-9 days"><?php echo $dates['template']['days']; ?></span>
@@ -74,13 +74,13 @@ $dates             = ccsm_counter_dates( $counter );
                     </p>
 
                     <form class="contact100-form validate-form" action="<?php echo $ccsm_options['colorlib_coming_soon_subscribe_form_url']; ?>">
-                        <div class="wrap-input100 m-b-10 validate-input" data-validate="Name is required">
-                            <input class="s1-txt4 placeholder0 input100" type="text" name="name" placeholder="Name">
+                        <div class="wrap-input100 m-b-10 validate-input" data-validate="<?php echo esc_attr__('Name is required','colorlib-coming-soon'); ?>">
+                            <input class="s1-txt4 placeholder0 input100" type="text" name="name" placeholder="<?php echo esc_attr__('Name','colorlib-coming-soon'); ?>">
                             <span class="focus-input100"></span>
                         </div>
 
-                        <div class="wrap-input100 m-b-20 validate-input" data-validate="Email is required: ex@abc.xyz">
-                            <input class="s1-txt4 placeholder0 input100" type="text" name="email" placeholder="Email">
+                        <div class="wrap-input100 m-b-20 validate-input" data-validate="<?php echo esc_attr__('Email is required: ex@abc.xyz','colorlib-coming-soon'); ?>">
+                            <input class="s1-txt4 placeholder0 input100" type="text" name="email" placeholder="<?php echo esc_attr__('Email','colorlib-coming-soon'); ?>">
                             <span class="focus-input100"></span>
                         </div>
 

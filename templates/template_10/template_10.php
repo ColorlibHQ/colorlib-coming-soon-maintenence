@@ -49,9 +49,9 @@ $dates             = ccsm_counter_dates( $counter );
 			<?php if ( $ccsm_options['colorlib_coming_soon_subscribe'] != '1' ) { ?>
                 <form class="contact100-form validate-form p-t-55 w-full" action="<?php echo $ccsm_options['colorlib_coming_soon_subscribe_form_url']; ?>">
                     <div class="wrap-input100 validate-input m-lr-auto-lg"
-                         data-validate="Email is required: ex@abc.xyz">
+                         data-validate="<?php echo esc_attr__('Email is required: ex@abc.xyz','colorlib-coming-soon'); ?>">
                         <input class="s2-txt1 placeholder0 input100 trans-04" type="text" name="email"
-                               placeholder="Email Address">
+                               placeholder="<?php echo esc_attr__('Email Address','colorlib-coming-soon'); ?>">
 
                         <button class="flex-c-m ab-t-r size4 s1-txt1 hov1 trans-04">
                             <i class="fa fa-paper-plane fs-15 cl0"></i>
@@ -61,7 +61,7 @@ $dates             = ccsm_counter_dates( $counter );
 			<?php } ?>
         </div>
 
-		<?php if ( $counterActivation == '1' && $dates != false ) { ?>
+		<?php if ( $counterActivation == '1' ) { ?>
             <div class="flex-w flex-col cd100 p-t-34 respon3">
                 <div class="flex-col wsize1 m-b-40 respon4">
                     <span class="l1-txt1 p-b-30 days"><?php echo $dates['template']['days']; ?></span>

@@ -38,7 +38,7 @@ $dates             = ccsm_counter_dates( $counter );
         <h3 class="l1-txt1 txt-center p-b-40 respon1" id="colorlib_coming_soon_page_heading">
 			<?php echo $ccsm_options['colorlib_coming_soon_page_heading']; ?>
         </h3>
-		<?php if ( $counterActivation == '1' && $dates != false ) { ?>
+		<?php if ( $counterActivation == '1' ) { ?>
             <div class="flex-w flex-c-m cd100">
                 <div class="flex-col-c wsize1 m-b-30">
                     <span class="l1-txt2 p-b-9 days"><?php echo $dates['template']['days']; ?></span>

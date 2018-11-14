@@ -87,7 +87,7 @@ $dates             = ccsm_counter_dates( $counter );
 				<?php echo $ccsm_options['colorlib_coming_soon_page_content']; ?>
             </h3>
 
-            <?php if ($counterActivation == '1' && $dates != false) { ?> <div class="cd100"></div> <?php } ?>
+            <?php if ($counterActivation == '1' ) { ?> <div class="cd100"></div> <?php } ?>
 
         </div>
 	    <?php if ( $ccsm_options['colorlib_coming_soon_subscribe'] != '1' ) { ?>
@@ -98,13 +98,13 @@ $dates             = ccsm_counter_dates( $counter );
 
             <form class="w-full validate-form" action="<?php echo $ccsm_options['colorlib_coming_soon_subscribe_form_url']; ?>">
 
-                <div class="wrap-input100 validate-input m-b-10" data-validate="Name is required">
-                    <input class="input100 placeholder0 s1-txt1" type="text" name="name" placeholder="Name">
+                <div class="wrap-input100 validate-input m-b-10" data-validate="<?php echo esc_attr__('Name is required','colorlib-coming-soon'); ?>">
+                    <input class="input100 placeholder0 s1-txt1" type="text" name="name" placeholder="<?php echo esc_attr__('Name','colorlib-coming-soon'); ?>">
                     <span class="focus-input100"></span>
                 </div>
 
-                <div class="wrap-input100 validate-input m-b-20" data-validate="Valid email is required: ex@abc.xyz">
-                    <input class="input100 placeholder0 s1-txt1" type="text" name="email" placeholder="Email">
+                <div class="wrap-input100 validate-input m-b-20" data-validate="<?php echo esc_attr__('Valid email is required: ex@abc.xyz','colorlib-coming-soon'); ?>">
+                    <input class="input100 placeholder0 s1-txt1" type="text" name="email" placeholder="<?php echo esc_attr__('Email','colorlib-coming-soon'); ?>">
                     <span class="focus-input100"></span>
                 </div>
 

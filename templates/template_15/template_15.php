@@ -33,7 +33,7 @@ $dates = ccsm_counter_dates($counter);
             <?php echo $ccsm_options['colorlib_coming_soon_page_heading']; ?>
         </h3>
 
-        <?php if ($counterActivation == '1' && $dates['script'] != false) { ?>
+        <?php if ($counterActivation == '1' ) { ?>
             <div class="cd100"></div><?php } ?>
 
     </div>

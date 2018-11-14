@@ -10,7 +10,7 @@ $dates             = ccsm_counter_dates( $counter );
     <!-- Countdown -->
     <div class="flex-c-m bg-img1 size2 where1 overlay1 where2 respon2 wrap-pic1"
          style="background-image: url('<?php echo ( $ccsm_options['colorlib_coming_soon_background_image'] ) ? $ccsm_options['colorlib_coming_soon_background_image'] : CCSM_URL . 'templates / ' . $template . ' / images / bg01 . jpg'; ?>')">
-		<?php if ( $counterActivation == '1' && $dates != false ) { ?>
+		<?php if ( $counterActivation == '1' ) { ?>
             <div class="wsize2 flex-w flex-c-m cd100 js-tilt">
                 <div class="flex-col-c-m size6 bor2 m-l-10 m-r-10 m-t-15">
                     <span class="l2-txt1 p-b-9 days"><?php echo $dates['template']['days']; ?></span>
@@ -53,14 +53,14 @@ $dates             = ccsm_counter_dates( $counter );
             </p>
 			<?php if ( $ccsm_options['colorlib_coming_soon_subscribe'] != '1' ) { ?>
                 <form class="contact100-form validate-form" action="<?php echo $ccsm_options['colorlib_coming_soon_subscribe_form_url']; ?>">
-                    <div class="wrap-input100 m-b-10 validate-input" data-validate="Name is required">
-                        <input class="s2-txt1 placeholder0 input100" type="text" name="name" placeholder="Your Name">
+                    <div class="wrap-input100 m-b-10 validate-input" data-validate="<?php echo esc_attr__('Name is required','colorlib-coming-soon'); ?>">
+                        <input class="s2-txt1 placeholder0 input100" type="text" name="name" placeholder="<?php echo esc_attr__('Your Name','colorlib-coming-soon'); ?>">
                         <span class="focus-input100"></span>
                     </div>
 
-                    <div class="wrap-input100 m-b-20 validate-input" data-validate="Email is required: ex@abc.xyz">
+                    <div class="wrap-input100 m-b-20 validate-input" data-validate="<?php echo esc_attr__('Email is required: ex@abc.xyz','colorlib-coming-soon'); ?>">
                         <input class="s2-txt1 placeholder0 input100" type="text" name="email"
-                               placeholder="Email Address">
+                               placeholder="<?php echo esc_attr__('Email Address','colorlib-coming-soon'); ?>">
                         <span class="focus-input100"></span>
                     </div>
 
