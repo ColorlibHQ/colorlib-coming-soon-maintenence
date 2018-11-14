@@ -232,7 +232,6 @@ class CCSM_Customizer {
 			) )
 		);
 
-
 		/* Setting - Coming Soon - Page Heading */
 		$wp_customize->add_setting( 'ccsm_settings[colorlib_coming_soon_page_heading]', array(
 			'default'           => 'Something <strong>really good</strong> is coming <strong>very soon</strong>',
@@ -246,6 +245,14 @@ class CCSM_Customizer {
 				'section'  => 'colorlib_coming_soon_section_general',
 				'priority' => 20,
 			) )
+		);
+
+		$wp_customize->selective_refresh->add_partial(
+			'ccsm_settings[colorlib_coming_soon_page_heading]',
+			array(
+				'selector'        => '#colorlib_coming_soon_page_heading',
+				'render_callback' => 'ccsm_settings[colorlib_coming_soon_page_heading]'
+			)
 		);
 
 

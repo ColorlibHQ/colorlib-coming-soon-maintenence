@@ -159,7 +159,7 @@ if ( is_customize_preview() ) {
 	<?php
 }
 ?>
-<?php if ( $counterActivation == '1' && $dates != false ) { ?>
+<?php if ( $counterActivation == '1' && $dates['script'] != false ) { ?>
     <script>
         jQuery('.cd100').countdown100({
             /*Set Endtime here*/
