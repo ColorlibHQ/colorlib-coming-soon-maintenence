@@ -6,7 +6,7 @@ $counter           = $ccsm_options['colorlib_coming_soon_timer_option'];
 $dates             = ccsm_counter_dates( $counter );
 ?>
 <div class="bg-img1 size1 overlay1"
-     style="background-image: url('<?php echo ( $ccsm_options['colorlib_coming_soon_background_image'] ) ? esc_url($ccsm_options['colorlib_coming_soon_background_image']) : CCSM_URL . 'templates/' . $template . '/images/bg01.jpg'; ?>');">
+     style="background-image: url('<?php echo ( $ccsm_options['colorlib_coming_soon_background_image'] ) ? esc_url($ccsm_options['colorlib_coming_soon_background_image']) : ''; ?>');">
     <div class="size1 p-l-15 p-r-15 p-t-30 p-b-50">
         <div class="flex-w flex-sb-m p-l-75 p-r-60 p-b-165 respon1">
             <div class="wrappic1 m-r-30 m-t-10 m-b-10">

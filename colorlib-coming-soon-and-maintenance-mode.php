@@ -102,6 +102,10 @@ function ccsm_style_enqueue( $template_name ) {
 			'name'     => 'select-2',
 			'location' => 'css/vendor/select2/select2.min.css',
 		),
+		array(
+			'name'     => 'iconic',
+			'location' => 'fonts/iconic/css/material-design-iconic-font.css',
+		),
 	);
 
 	//styles based on each template

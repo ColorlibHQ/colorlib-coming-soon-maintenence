@@ -7,13 +7,13 @@ $dates             = ccsm_counter_dates( $counter );
 ?>
 <div class="simpleslide100">
     <div class="simpleslide100-item bg-img1"
-         style="background-image: url('<?php echo ( $ccsm_options['colorlib_coming_soon_background_image'] ) ? esc_url($ccsm_options['colorlib_coming_soon_background_image']) : CCSM_URL . 'templates/' . $template . '/images/bg01.jpg'; ?>');"></div>
+         style="background-image: url('<?php echo ( $ccsm_options['colorlib_coming_soon_background_image'] ) ? esc_url($ccsm_options['colorlib_coming_soon_background_image']) : ''; ?>');"></div>
     <div class="simpleslide100-item bg-img1"
-         style="background-image: url('<?php echo ( $ccsm_options['colorlib_coming_soon_background_image'] ) ? esc_url($ccsm_options['colorlib_coming_soon_background_image']) : CCSM_URL . 'templates/' . $template . '/images/bg02.jpg'; ?>');"></div>
+         style="background-image: url('<?php echo ( $ccsm_options['colorlib_coming_soon_background_image'] ) ? esc_url($ccsm_options['colorlib_coming_soon_background_image']) : ''; ?>');"></div>
     <div class="simpleslide100-item bg-img1"
-         style="background-image: url('<?php echo ( $ccsm_options['colorlib_coming_soon_background_image'] ) ? esc_url($ccsm_options['colorlib_coming_soon_background_image']) : CCSM_URL . 'templates/' . $template . '/images/bg03.jpg'; ?>');"></div>
+         style="background-image: url('<?php echo ( $ccsm_options['colorlib_coming_soon_background_image'] ) ? esc_url($ccsm_options['colorlib_coming_soon_background_image']) : ''; ?>');"></div>
     <div class="simpleslide100-item bg-img1"
-         style="background-image: url('<?php echo ( $ccsm_options['colorlib_coming_soon_background_image'] ) ? esc_url($ccsm_options['colorlib_coming_soon_background_image']) : CCSM_URL . 'templates/' . $template . '/images/bg04.jpg'; ?>');"></div>
+         style="background-image: url('<?php echo ( $ccsm_options['colorlib_coming_soon_background_image'] ) ? esc_url($ccsm_options['colorlib_coming_soon_background_image']) : ''; ?>');"></div>
 </div>
 
 <div class="flex-col-c-sb size1 overlay1 p-l-75 p-r-75 p-t-20 p-b-40 p-lr-15-sm">

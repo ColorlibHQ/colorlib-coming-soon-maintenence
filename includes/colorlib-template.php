@@ -23,7 +23,7 @@
         }
 
         <?php }
-		if($ccsm_options['colorlib_coming_soon_text_color']){
+		if(in_array('colorlib_coming_soon_text_color',$ccsm_options)){
 			?>
         p, h1, h2, h3, h4, span, li {
             color: <?php echo $ccsm_options['colorlib_coming_soon_text_color']; ?> !important;
