@@ -7,11 +7,11 @@ $dates = ccsm_counter_dates($counter);
 ?>
 <div class="simpleslide100">
     <div class="simpleslide100-item bg-img1"
-         style="background-image: url('<?php echo ($ccsm_options['colorlib_coming_soon_background_image']) ? $ccsm_options['colorlib_coming_soon_background_image'] : CCSM_URL . 'templates/' . $template . '/images/bg01.jpg'; ?>');"></div>
+         style="background-image: url('<?php echo ($ccsm_options['colorlib_coming_soon_background_image']) ? esc_url($ccsm_options['colorlib_coming_soon_background_image']) : CCSM_URL . 'templates/' . $template . '/images/bg01.jpg'; ?>');"></div>
     <div class="simpleslide100-item bg-img1"
-         style="background-image: url('<?php echo ($ccsm_options['colorlib_coming_soon_background_image']) ? $ccsm_options['colorlib_coming_soon_background_image'] : CCSM_URL . 'templates/' . $template . '/images/bg02.jpg'; ?>');"></div>
+         style="background-image: url('<?php echo ($ccsm_options['colorlib_coming_soon_background_image']) ? esc_url($ccsm_options['colorlib_coming_soon_background_image']) : CCSM_URL . 'templates/' . $template . '/images/bg02.jpg'; ?>');"></div>
     <div class="simpleslide100-item bg-img1"
-         style="background-image: url('<?php echo ($ccsm_options['colorlib_coming_soon_background_image']) ? $ccsm_options['colorlib_coming_soon_background_image'] : CCSM_URL . 'templates/' . $template . '/images/bg03.jpg'; ?>');"></div>
+         style="background-image: url('<?php echo ($ccsm_options['colorlib_coming_soon_background_image']) ? esc_url($ccsm_options['colorlib_coming_soon_background_image']) : CCSM_URL . 'templates/' . $template . '/images/bg03.jpg'; ?>');"></div>
 </div>
 
 <div class="size1 overlay1">
@@ -48,7 +48,7 @@ $dates = ccsm_counter_dates($counter);
             </div>
         <?php } ?>
 	    <?php if ( $ccsm_options['colorlib_coming_soon_subscribe'] != '1' ) { ?>
-        <form class="w-full flex-w flex-c-m validate-form" action="<?php echo $ccsm_options['colorlib_coming_soon_subscribe_form_url']; ?>">
+        <form class="w-full flex-w flex-c-m validate-form" action="<?php echo esc_url($ccsm_options['colorlib_coming_soon_subscribe_form_url']); ?>">
 
             <div class="wrap-input100 validate-input where1" data-validate="<?php echo esc_attr__('Valid email is required: ex@abc.xyz','colorlib-coming-soon'); ?>">
                 <input class="input100 placeholder0 s2-txt2" type="text" name="email" placeholder="<?php echo esc_attr__('Enter Email Address','colorlib-coming-soon'); ?>">

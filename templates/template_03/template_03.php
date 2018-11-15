@@ -7,12 +7,12 @@ $dates             = ccsm_counter_dates( $counter );
 
 ?>
 <div class="bg-img1 size1 flex-w flex-c-m p-t-55 p-b-55 p-l-15 p-r-15"
-     style="background-image: url('<?php echo ( $ccsm_options['colorlib_coming_soon_background_image'] ) ? $ccsm_options['colorlib_coming_soon_background_image'] : CCSM_URL . 'templates/' . $template . '/images/bg01.jpg'; ?>');">
+     style="background-image: url('<?php echo ( $ccsm_options['colorlib_coming_soon_background_image'] ) ? esc_url($ccsm_options['colorlib_coming_soon_background_image']) : CCSM_URL . 'templates/' . $template . '/images/bg01.jpg'; ?>');">
     <div class="wsize1 bor1 bg1 p-t-175 p-b-45 p-l-15 p-r-15 respon1">
         <div class="wrappic1">
 			<?php if ( $ccsm_options['colorlib_coming_soon_plugin_logo'] ) {
 				?>
-                <a href="<?php echo site_url(); ?>" class="logo-link"><img src="<?php echo $ccsm_options['colorlib_coming_soon_plugin_logo']; ?>"
+                <a href="<?php echo site_url(); ?>" class="logo-link"><img src="<?php echo esc_url($ccsm_options['colorlib_coming_soon_plugin_logo']); ?>"
                                  alt="LOGO"></a>
 				<?php
 			}
@@ -46,7 +46,7 @@ $dates             = ccsm_counter_dates( $counter );
             </div>
 		<?php } ?>
 		<?php if ( $ccsm_options['colorlib_coming_soon_subscribe'] != '1' ) { ?>
-            <form class="flex-w flex-c-m contact100-form validate-form p-t-55" action="<?php echo $ccsm_options['colorlib_coming_soon_subscribe_form_url']; ?>">
+            <form class="flex-w flex-c-m contact100-form validate-form p-t-55" action="<?php echo esc_url($ccsm_options['colorlib_coming_soon_subscribe_form_url']); ?>">
                 <div class="wrap-input100 validate-input where1" data-validate="<?php echo esc_attr__('Email is required: ex@abc.xyz','colorlib-coming-soon'); ?>">
                     <input class="s1-txt2 placeholder0 input100" type="text" name="email" placeholder="<?php echo esc_attr__('Your Email','colorlib-coming-soon'); ?>">
                     <span class="focus-input100"></span>
