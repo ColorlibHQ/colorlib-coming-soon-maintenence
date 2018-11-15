@@ -217,7 +217,7 @@ class CCSM_Customizer {
 
 		/* Setting - General - Site Background Color */
 		$wp_customize->add_setting( 'ccsm_settings[colorlib_coming_soon_background_color]', array(
-			'default'           => CCSM_URL . 'assets/images/logo.jpg',
+			'default'           => '',
 			'sanitize_callback' => 'ccsm_sanitize_text',
 			'type'              => 'option'
 		) );
@@ -233,7 +233,7 @@ class CCSM_Customizer {
 
 		/* Setting - General - Site Text Color */
 		$wp_customize->add_setting( 'ccsm_settings[colorlib_coming_soon_text_color]', array(
-			'default'           => CCSM_URL . 'assets/images/logo.jpg',
+			'default'           => '',
 			'sanitize_callback' => 'ccsm_sanitize_text',
 			'type'              => 'option'
 		) );

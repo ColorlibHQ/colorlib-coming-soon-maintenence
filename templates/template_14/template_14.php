@@ -121,7 +121,7 @@ $dates             = ccsm_counter_dates( $counter );
     </div>
 
     <div class="wsize2 bg-img1 respon2"
-         style="background-image: url('<?php echo ( $ccsm_options['colorlib_coming_soon_background_image'] ) ? esc_url($ccsm_options['colorlib_coming_soon_background_image']) : CCSM_URL . 'templates/' . $template . '/images/bg01.jpg'; ?>');">
+         style="background-image: url('<?php echo ( $ccsm_options['colorlib_coming_soon_background_image'] ) ? esc_url($ccsm_options['colorlib_coming_soon_background_image']) :''; ?>');">
     </div>
 </div>
 <?php
@@ -152,8 +152,3 @@ if ( is_customize_preview() ) {
         });
     </script>
 <?php } ?>
-<script>
-    jQuery('.js-tilt').tilt({
-        scale: 1.1
-    })
-</script>

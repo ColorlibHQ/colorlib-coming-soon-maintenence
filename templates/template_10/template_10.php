@@ -111,7 +111,7 @@ $dates             = ccsm_counter_dates( $counter );
                 <a href="<?php echo esc_url($ccsm_options['colorlib_coming_soon_social_pinterest']); ?>"
                    id="colorlib_coming_soon_social_pinterest"
                    class="size3 flex-c-m how-social trans-04 m-r-3 m-l-3 m-b-5">
-                    <i class="fa fa-pinterest-square"></i>
+                    <i class="fa fa-pinterest"></i>
                 </a>
 				<?php
 			}
@@ -129,7 +129,7 @@ $dates             = ccsm_counter_dates( $counter );
                 <a href="mailto:<?php echo esc_url($ccsm_options['colorlib_coming_soon_social_youtube']); ?>"
                    id="colorlib_coming_soon_social_youtube"
                    class="size3 flex-c-m how-social trans-04 m-r-3 m-l-3 m-b-5">
-                    <i class="fa fa-youtube-square"></i>
+                    <i class="fa fa-youtube"></i>
                 </a>
 				<?php
 			}
@@ -174,8 +174,3 @@ if ( is_customize_preview() ) {
         });
     </script>
 <?php } ?>
-<script>
-    jQuery('.js-tilt').tilt({
-        scale: 1.1
-    })
-</script>

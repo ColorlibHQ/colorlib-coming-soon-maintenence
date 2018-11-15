@@ -38,7 +38,7 @@ jQuery(window).load(function () {
 
         //declare arrays
         var pageContentArray = ['template_02', 'template_04', 'template_05', 'template_06', 'template_08', 'template_10', 'template_12', 'template_14'];
-        var pageFooterArray = ['template_01', 'template_03', 'template_04', 'template_06'];
+        var pageFooterArray = ['template_01', 'template_03', 'template_04', 'template_06', 'template_07'];
         var negativeBackgroundImageArray = ['template_03', 'template_04'];
         var backgroundColorArray = ['template_03', 'template_04'];
 
@@ -77,10 +77,6 @@ jQuery(window).load(function () {
         }
 
     });
-
-    /*wp.customize.control('ccsm_settings[colorlib_coming_soon_template_selection]', function (control) {
-        console.log(control.setting._value);
-    });*/
 });
 
 

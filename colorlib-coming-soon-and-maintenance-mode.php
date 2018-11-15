@@ -582,7 +582,8 @@ function ccsm_template_has_footer() {
 		'template_01',
 		'template_03',
 		'template_04',
-		'template_06'
+		'template_06',
+		'template_07'
 	);
 	if ( in_array( $ccsm_options['colorlib_coming_soon_template_selection'], $template_has_footer ) ) {
 		return true;

@@ -93,8 +93,3 @@ if ( is_customize_preview() ) {
         });
     </script>
 <?php } ?>
-<script>
-    jQuery('.js-tilt').tilt({
-        scale: 1.1
-    });
-</script>
