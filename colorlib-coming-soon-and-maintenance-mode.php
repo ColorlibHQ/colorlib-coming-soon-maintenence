@@ -531,22 +531,27 @@ register_activation_hook( __FILE__, 'ccsm_check_on_activation' );
 function ccsm_check_on_activation() {
 	if ( get_option( 'ccsm_settings' ) == null ) {
 		$defaultSets = array(
-			'colorlib_coming_soon_activation'         => '1',
-			'colorlib_coming_soon_timer_activation'   => '1',
-			'colorlib_coming_soon_subscribe'          => '',
-			'colorlib_coming_soon_template_selection' => 'template_01',
-			'colorlib_coming_soon_timer_option'       => date( 'Y-m-d H:i:s', strtotime( '+1 month' ) ),
-			'colorlib_coming_soon_plugin_logo'        => CCSM_URL . 'assets/images/logo.jpg',
-			'colorlib_coming_soon_page_heading'       => 'Something <strong>really good</strong> is coming <strong>very soon</strong>',
-			'colorlib_coming_soon_page_content'       => 'If you have something new you’re looking to launch, you’re going to want to start building a community of people interested in what you’re launching.',
-			'colorlib_coming_soon_page_footer'        => 'And don\'t worry, we hate spam too! You can unsubscribe at any time.',
-			'colorlib_coming_soon_social_facebook'    => 'https://facebook.com/',
-			'colorlib_coming_soon_social_twitter'     => 'https://twitter.com/',
-			'colorlib_coming_soon_social_youtube'     => 'https://youtube.com/',
-			'colorlib_coming_soon_social_email'       => 'you@domain.com',
-			'colorlib_coming_soon_social_pinterest'   => 'https://pinterest.com/',
-			'colorlib_coming_soon_social_instagram'   => 'https://instagram.com/'
-
+			'colorlib_coming_soon_activation'          => '1',
+			'colorlib_coming_soon_timer_activation'    => '1',
+			'colorlib_coming_soon_subscribe'           => '',
+			'colorlib_coming_soon_template_selection'  => 'template_01',
+			'colorlib_coming_soon_timer_option'        => date( 'Y-m-d H:i:s', strtotime( '+1 month' ) ),
+			'colorlib_coming_soon_plugin_logo'         => CCSM_URL . 'assets/images/logo.jpg',
+			'colorlib_coming_soon_page_heading'        => 'Something <strong>really good</strong> is coming <strong>very soon</strong>',
+			'colorlib_coming_soon_page_content'        => 'If you have something new you’re looking to launch, you’re going to want to start building a community of people interested in what you’re launching.',
+			'colorlib_coming_soon_page_footer'         => 'And don\'t worry, we hate spam too! You can unsubscribe at any time.',
+			'colorlib_coming_soon_social_facebook'     => 'https://facebook.com/',
+			'colorlib_coming_soon_social_twitter'      => 'https://twitter.com/',
+			'colorlib_coming_soon_social_youtube'      => 'https://youtube.com/',
+			'colorlib_coming_soon_social_email'        => 'you@domain.com',
+			'colorlib_coming_soon_social_pinterest'    => 'https://pinterest.com/',
+			'colorlib_coming_soon_social_instagram'    => 'https://instagram.com/',
+			'colorlib_coming_soon_subscribe_form_url ' => ' ',
+			'colorlib_coming_soon_page_custom_css'     => '',
+			'colorlib_coming_soon_background_image'    => CCSM_URL . 'assets/images/logo.jpg',
+			'colorlib_coming_soon_background_color'    => '',
+			'colorlib_coming_soon_text_color'          => '',
+			'colorlib_coming_soon_subscribe_form_url'  => '',
 		);
 		update_option( 'ccsm_settings', $defaultSets );
 	}

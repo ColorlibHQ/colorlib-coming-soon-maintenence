@@ -22,15 +22,17 @@
             display: none !important;
         }
 
-        <?php }
-		if(in_array('colorlib_coming_soon_text_color',$ccsm_options)){
-			?>
+        <?php } ?>
+
         p, h1, h2, h3, h4, span, li {
             color: <?php echo $ccsm_options['colorlib_coming_soon_text_color']; ?> !important;
         }
 
-        <?php }
-        echo $ccsm_options['colorlib_coming_soon_page_custom_css']; ?>
+        body {
+            background-color: <?php echo $ccsm_options['colorlib_coming_soon_background_color']; ?> !important;
+        }
+
+        <?php  echo $ccsm_options['colorlib_coming_soon_page_custom_css']; ?>
     </style>
 </head>
 <body>
