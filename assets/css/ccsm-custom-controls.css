@@ -129,3 +129,27 @@ ul#sub-accordion-section-colorlib_coming_soon_section_general li {
 #sub-accordion-section-colorlib_coming_soon_section_general .customize-control-ccsm-editor iframe {
     min-height: 120px;
 }
+
+
+#sub-accordion-section-colorlib_coming_soon_section_templates > .customize-section-description-container {
+    position: fixed;
+    top: 12px;
+    width: 100%;
+}
+
+#sub-accordion-section-colorlib_coming_soon_section_templates {
+    padding-top: 85px !important;
+}
+
+#sub-accordion-section-colorlib_404_customizer_custom_css {
+    padding: 0px !important;
+}
+
+#customize-control-ccsm_settings-colorlib_coming_soon_page_custom_css .customize-section-description-container,
+#customize-control-ccsm_settings-colorlib_coming_soon_page_custom_css label {
+    padding: 12px;
+}
+
+#customize-control-ccsm_settings-colorlib_coming_soon_page_custom_css .CodeMirror {
+    height: calc(100vh - 185px);
+}
