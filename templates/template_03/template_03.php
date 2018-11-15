@@ -20,7 +20,7 @@ $dates             = ccsm_counter_dates( $counter );
         </div>
 
         <p class="txt-center m1-txt1 p-t-33 p-b-68" id="colorlib_coming_soon_page_content">
-			<?php echo $ccsm_options['colorlib_coming_soon_page_heading']; ?>
+			<?php echo wp_kses_post( $ccsm_options['colorlib_coming_soon_page_heading'] ); ?>
         </p>
 		<?php if ( $counterActivation == '1' ) { ?>
             <div class="wsize2 flex-w flex-c hsize1 cd100">
@@ -60,7 +60,7 @@ $dates             = ccsm_counter_dates( $counter );
             </form>
 
             <p class="s1-txt4 txt-center p-t-10" id="colorlib_coming_soon_page_footer">
-				<?php echo $ccsm_options['colorlib_coming_soon_page_footer']; ?>
+				<?php echo wp_kses_post( $ccsm_options['colorlib_coming_soon_page_footer'] ); ?>
             </p>
 		<?php } ?>
     </div>

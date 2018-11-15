@@ -7,9 +7,8 @@ $counter           = $ccsm_options['colorlib_coming_soon_timer_option'];
 $dates             = ccsm_counter_dates( $counter );
 ?>
 <div class="size1 bg0 where1-parent">
-    <!-- Countdown -->
     <div class="flex-c-m bg-img1 size2 where1 overlay1 where2 respon2 wrap-pic1"
-         style="background-image: url('<?php echo ( $ccsm_options['colorlib_coming_soon_background_image'] ) ? esc_url($ccsm_options['colorlib_coming_soon_background_image']) : ''; ?>')">
+         style="background-image: url('<?php echo ( $ccsm_options['colorlib_coming_soon_background_image'] ) ? esc_url( $ccsm_options['colorlib_coming_soon_background_image'] ) : ''; ?>')">
 		<?php if ( $counterActivation == '1' ) { ?>
             <div class="wsize2 flex-w flex-c-m cd100 js-tilt">
                 <div class="flex-col-c-m size6 bor2 m-l-10 m-r-10 m-t-15">
@@ -40,8 +39,9 @@ $dates             = ccsm_counter_dates( $counter );
         <div class="wrap-pic1">
 			<?php if ( $ccsm_options['colorlib_coming_soon_plugin_logo'] ) {
 				?>
-                <a href="<?php echo site_url(); ?>" class="logo-link"><img  src="<?php echo esc_url($ccsm_options['colorlib_coming_soon_plugin_logo']); ?>"
-                                 alt="<?php echo get_bloginfo(); ?>"></a>
+                <a href="<?php echo site_url(); ?>" class="logo-link"><img
+                            src="<?php echo esc_url( $ccsm_options['colorlib_coming_soon_plugin_logo'] ); ?>"
+                            alt="<?php echo get_bloginfo(); ?>"></a>
 				<?php
 			}
 			?>
@@ -49,18 +49,22 @@ $dates             = ccsm_counter_dates( $counter );
 
         <div class="p-t-50 p-b-60">
             <p class="m1-txt1 p-b-36" id="colorlib_coming_soon_page_heading">
-				<?php echo wp_kses_post($ccsm_options['colorlib_coming_soon_page_heading']); ?>
+				<?php echo wp_kses_post( $ccsm_options['colorlib_coming_soon_page_heading'] ); ?>
             </p>
 			<?php if ( $ccsm_options['colorlib_coming_soon_subscribe'] != '1' ) { ?>
-                <form class="contact100-form validate-form" action="<?php echo esc_url($ccsm_options['colorlib_coming_soon_subscribe_form_url']); ?>">
-                    <div class="wrap-input100 m-b-10 validate-input" data-validate="<?php echo esc_attr__('Name is required','colorlib-coming-soon'); ?>">
-                        <input class="s2-txt1 placeholder0 input100" type="text" name="name" placeholder="<?php echo esc_attr__('Your Name','colorlib-coming-soon'); ?>">
+                <form class="contact100-form validate-form"
+                      action="<?php echo esc_url( $ccsm_options['colorlib_coming_soon_subscribe_form_url'] ); ?>">
+                    <div class="wrap-input100 m-b-10 validate-input"
+                         data-validate="<?php echo esc_attr__( 'Name is required', 'colorlib-coming-soon' ); ?>">
+                        <input class="s2-txt1 placeholder0 input100" type="text" name="name"
+                               placeholder="<?php echo esc_attr__( 'Your Name', 'colorlib-coming-soon' ); ?>">
                         <span class="focus-input100"></span>
                     </div>
 
-                    <div class="wrap-input100 m-b-20 validate-input" data-validate="<?php echo esc_attr__('Email is required: ex@abc.xyz','colorlib-coming-soon'); ?>">
+                    <div class="wrap-input100 m-b-20 validate-input"
+                         data-validate="<?php echo esc_attr__( 'Email is required: ex@abc.xyz', 'colorlib-coming-soon' ); ?>">
                         <input class="s2-txt1 placeholder0 input100" type="text" name="email"
-                               placeholder="<?php echo esc_attr__('Email Address','colorlib-coming-soon'); ?>">
+                               placeholder="<?php echo esc_attr__( 'Email Address', 'colorlib-coming-soon' ); ?>">
                         <span class="focus-input100"></span>
                     </div>
 
@@ -72,7 +76,7 @@ $dates             = ccsm_counter_dates( $counter );
                 </form>
 
                 <p class="s2-txt3 p-t-18" id="colorlib_coming_soon_page_footer">
-					<?php echo wp_kses_post($ccsm_options['colorlib_coming_soon_page_footer']); ?>
+					<?php echo wp_kses_post( $ccsm_options['colorlib_coming_soon_page_footer'] ); ?>
                 </p>
 			<?php } ?>
         </div>
@@ -81,7 +85,7 @@ $dates             = ccsm_counter_dates( $counter );
 			<?php
 			if ( $ccsm_options['colorlib_coming_soon_social_facebook'] ) {
 				?>
-                <a href="<?php echo esc_url($ccsm_options['colorlib_coming_soon_social_facebook']); ?>"
+                <a href="<?php echo esc_url( $ccsm_options['colorlib_coming_soon_social_facebook'] ); ?>"
                    id="colorlib_coming_soon_social_facebook" class="flex-c-m size5 bg3 how1 trans-04 m-r-5">
                     <i class="fa fa-facebook"></i>
                 </a>
@@ -91,7 +95,7 @@ $dates             = ccsm_counter_dates( $counter );
 			<?php
 			if ( $ccsm_options['colorlib_coming_soon_social_twitter'] ) {
 				?>
-                <a href="<?php echo esc_url($ccsm_options['colorlib_coming_soon_social_twitter']); ?>"
+                <a href="<?php echo esc_url( $ccsm_options['colorlib_coming_soon_social_twitter'] ); ?>"
                    id="colorlib_coming_soon_social_twitter" class="flex-c-m size5 bg4 how1 trans-04 m-r-5">
                     <i class="fa fa-twitter"></i>
                 </a>
@@ -100,7 +104,7 @@ $dates             = ccsm_counter_dates( $counter );
 
 			if ( $ccsm_options['colorlib_coming_soon_social_youtube'] ) {
 				?>
-                <a href="<?php echo esc_url($ccsm_options['colorlib_coming_soon_social_youtube']); ?>"
+                <a href="<?php echo esc_url( $ccsm_options['colorlib_coming_soon_social_youtube'] ); ?>"
                    id="colorlib_coming_soon_social_youtube" class="flex-c-m size5 bg5 how1 trans-04 m-r-5">
                     <i class="fa fa-youtube-play"></i>
                 </a>
@@ -118,7 +122,7 @@ $dates             = ccsm_counter_dates( $counter );
 
 			if ( $ccsm_options['colorlib_coming_soon_social_pinterest'] ) {
 				?>
-                <a href="<?php echo esc_url($ccsm_options['colorlib_coming_soon_social_pinterest']); ?>"
+                <a href="<?php echo esc_url( $ccsm_options['colorlib_coming_soon_social_pinterest'] ); ?>"
                    id="colorlib_coming_soon_social_pinterest" class="flex-c-m size5 bg3 how1 trans-04 m-r-5">
                     <i class="fa fa-pinterest"></i>
                 </a>
@@ -126,7 +130,7 @@ $dates             = ccsm_counter_dates( $counter );
 			}
 			if ( $ccsm_options['colorlib_coming_soon_social_instagram'] ) {
 				?>
-                <a href="<?php echo esc_url($ccsm_options['colorlib_coming_soon_social_instagram']); ?>"
+                <a href="<?php echo esc_url( $ccsm_options['colorlib_coming_soon_social_instagram'] ); ?>"
                    id="colorlib_coming_soon_social_instagram" class="flex-c-m size5 bg3 how1 trans-04 m-r-5">
                     <i class="fa fa-instagram"></i>
                 </a>

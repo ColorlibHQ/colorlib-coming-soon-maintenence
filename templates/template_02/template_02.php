@@ -1,80 +1,76 @@
 <?php
-$ccsm_options = get_option('ccsm_settings');
+$ccsm_options      = get_option( 'ccsm_settings' );
 $counterActivation = $ccsm_options['colorlib_coming_soon_timer_activation'];
-$template = $ccsm_options['colorlib_coming_soon_template_selection'];
-$counter = $ccsm_options['colorlib_coming_soon_timer_option'];
-$dates = ccsm_counter_dates($counter);
+$template          = $ccsm_options['colorlib_coming_soon_template_selection'];
+$counter           = $ccsm_options['colorlib_coming_soon_timer_option'];
+$dates             = ccsm_counter_dates( $counter );
 ?>
 <div class="simpleslide100">
     <div class="simpleslide100-item bg-img1"
-         style="background-image: url('<?php echo ($ccsm_options['colorlib_coming_soon_background_image']) ? esc_url($ccsm_options['colorlib_coming_soon_background_image']) : ''; ?>');"></div>
-    <div class="simpleslide100-item bg-img1"
-         style="background-image: url('<?php echo ($ccsm_options['colorlib_coming_soon_background_image']) ? esc_url($ccsm_options['colorlib_coming_soon_background_image']) : ''; ?>');"></div>
-    <div class="simpleslide100-item bg-img1"
-         style="background-image: url('<?php echo ($ccsm_options['colorlib_coming_soon_background_image']) ? esc_url($ccsm_options['colorlib_coming_soon_background_image']) : ''; ?>');"></div>
+         style="background-image: url('<?php echo ( $ccsm_options['colorlib_coming_soon_background_image'] ) ? esc_url( $ccsm_options['colorlib_coming_soon_background_image'] ) : ''; ?>');"></div>
 </div>
-
 <div class="size1 overlay1">
-    <!--  -->
     <div class="size1 flex-col-c-m p-l-15 p-r-15 p-t-50 p-b-50">
         <h3 class="l1-txt1 txt-center p-b-25" id="colorlib_coming_soon_page_heading">
-            <?php echo $ccsm_options['colorlib_coming_soon_page_heading']; ?>
+			<?php echo wp_kses_post( $ccsm_options['colorlib_coming_soon_page_heading'] ); ?>
         </h3>
 
         <p class="m2-txt1 txt-center p-b-48" id="colorlib_coming_soon_page_content">
-            <?php echo $ccsm_options['colorlib_coming_soon_page_content']; ?>
+			<?php echo wp_kses_post( $ccsm_options['colorlib_coming_soon_page_content'] ); ?>
         </p>
-        <?php if ($counterActivation == '1' ) { ?>
+		<?php if ( $counterActivation == '1' ) { ?>
             <div class="flex-w flex-c-m cd100 p-b-33">
                 <div class="flex-col-c-m size2 bor1 m-l-15 m-r-15 m-b-20">
                     <span class="l2-txt1 p-b-9 days"><?php echo $dates['template']['days']; ?></span>
-                    <span class="s2-txt1"><?php esc_html__('Days', 'colorlib-coming-soon'); ?></span>
+                    <span class="s2-txt1"><?php esc_html__( 'Days', 'colorlib-coming-soon' ); ?></span>
                 </div>
 
                 <div class="flex-col-c-m size2 bor1 m-l-15 m-r-15 m-b-20">
                     <span class="l2-txt1 p-b-9 hours"><?php echo $dates['template']['hours']; ?></span>
-                    <span class="s2-txt1"><?php echo esc_html__('Hours', 'colorlib-coming-soon'); ?></span>
+                    <span class="s2-txt1"><?php echo esc_html__( 'Hours', 'colorlib-coming-soon' ); ?></span>
                 </div>
 
                 <div class="flex-col-c-m size2 bor1 m-l-15 m-r-15 m-b-20">
                     <span class="l2-txt1 p-b-9 minutes"><?php echo $dates['template']['minutes']; ?></span>
-                    <span class="s2-txt1"><?php echo esc_html__('Minutes', 'colorlib-coming-soon'); ?></span>
+                    <span class="s2-txt1"><?php echo esc_html__( 'Minutes', 'colorlib-coming-soon' ); ?></span>
                 </div>
 
                 <div class="flex-col-c-m size2 bor1 m-l-15 m-r-15 m-b-20">
                     <span class="l2-txt1 p-b-9 seconds"><?php echo $dates['template']['seconds']; ?></span>
-                    <span class="s2-txt1"><?php echo esc_html__('Seconds', 'colorlib-coming-soon'); ?></span>
+                    <span class="s2-txt1"><?php echo esc_html__( 'Seconds', 'colorlib-coming-soon' ); ?></span>
                 </div>
             </div>
-        <?php } ?>
-	    <?php if ( $ccsm_options['colorlib_coming_soon_subscribe'] != '1' ) { ?>
-        <form class="w-full flex-w flex-c-m validate-form" action="<?php echo esc_url($ccsm_options['colorlib_coming_soon_subscribe_form_url']); ?>">
+		<?php } ?>
+		<?php if ( $ccsm_options['colorlib_coming_soon_subscribe'] != '1' ) { ?>
+            <form class="w-full flex-w flex-c-m validate-form"
+                  action="<?php echo esc_url( $ccsm_options['colorlib_coming_soon_subscribe_form_url'] ); ?>">
 
-            <div class="wrap-input100 validate-input where1" data-validate="<?php echo esc_attr__('Valid email is required: ex@abc.xyz','colorlib-coming-soon'); ?>">
-                <input class="input100 placeholder0 s2-txt2" type="text" name="email" placeholder="<?php echo esc_attr__('Enter Email Address','colorlib-coming-soon'); ?>">
-                <span class="focus-input100"></span>
-            </div>
+                <div class="wrap-input100 validate-input where1"
+                     data-validate="<?php echo esc_attr__( 'Valid email is required: ex@abc.xyz', 'colorlib-coming-soon' ); ?>">
+                    <input class="input100 placeholder0 s2-txt2" type="text" name="email"
+                           placeholder="<?php echo esc_attr__( 'Enter Email Address', 'colorlib-coming-soon' ); ?>">
+                    <span class="focus-input100"></span>
+                </div>
 
-
-            <button class="flex-c-m size3 s2-txt3 how-btn1 trans-04 where1">
-                <?php echo esc_html__('Subscribe', 'colorlib-coming-soon'); ?>
-            </button>
-        </form>
-        <?php } ?>
+                <button class="flex-c-m size3 s2-txt3 how-btn1 trans-04 where1">
+					<?php echo esc_html__( 'Subscribe', 'colorlib-coming-soon' ); ?>
+                </button>
+            </form>
+		<?php } ?>
     </div>
 </div>
 <?php
-if (is_customize_preview()) {
-    ?>
+if ( is_customize_preview() ) {
+	?>
     <div style="display:none !important;">
-        <?php
-        wp_footer();
-        ?>
+		<?php
+		wp_footer();
+		?>
     </div>
-    <?php
+	<?php
 }
 ?>
-<?php if ($counterActivation == '1' && $dates['script'] != false) { ?>
+<?php if ( $counterActivation == '1' && $dates['script'] != false ) { ?>
     <script>
         jQuery('.cd100').countdown100({
             /*Set Endtime here*/

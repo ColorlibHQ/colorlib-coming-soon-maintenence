@@ -5,147 +5,142 @@ $template          = $ccsm_options['colorlib_coming_soon_template_selection'];
 $counter           = $ccsm_options['colorlib_coming_soon_timer_option'];
 $dates             = ccsm_counter_dates( $counter );
 ?>
-<div class="simpleslide100">
-    <div class="simpleslide100-item bg-img1"
-         style="background-image: url('<?php echo ( $ccsm_options['colorlib_coming_soon_background_image'] ) ? esc_url($ccsm_options['colorlib_coming_soon_background_image']) : ''; ?>');"></div>
-    <div class="simpleslide100-item bg-img1"
-         style="background-image: url('<?php echo ( $ccsm_options['colorlib_coming_soon_background_image'] ) ? esc_url($ccsm_options['colorlib_coming_soon_background_image']) : ''; ?>');"></div>
-    <div class="simpleslide100-item bg-img1"
-         style="background-image: url('<?php echo ( $ccsm_options['colorlib_coming_soon_background_image'] ) ? esc_url($ccsm_options['colorlib_coming_soon_background_image']) : ''; ?>');"></div>
-</div>
-
-<div class="size1 overlay1">
-    <!--  -->
-    <div class="w-full flex-w flex-sb-m p-l-65 p-r-80 p-t-22 p-b-185 p-lr-15-sm respon8">
-        <div class="wrappic1 m-r-30 m-t-10 m-b-10">
-			<?php if ( $ccsm_options['colorlib_coming_soon_plugin_logo'] ) {
-				?>
-                <a href="<?php echo site_url(); ?>" class="logo-link"><img src="<?php echo esc_url($ccsm_options['colorlib_coming_soon_plugin_logo']); ?>"
-                                 alt="<?php echo get_bloginfo(); ?>"></a>
-				<?php
-			}
-			?>
-        </div>
-		<?php if ( $ccsm_options['colorlib_coming_soon_subscribe'] != '1' ) { ?>
-            <div class="flex-w m-t-10 m-b-10">
-                <a href="#" class="size2 m1-txt1 flex-c-m how-btn1 trans-04">
-					<?php echo esc_html__( 'Sign Up', 'colorlib-coming-soon' ); ?>
-                </a>
-            </div>
-		<?php } ?>
+    <div class="simpleslide100">
+        <div class="simpleslide100-item bg-img1"
+             style="background-image: url('<?php echo ( $ccsm_options['colorlib_coming_soon_background_image'] ) ? esc_url( $ccsm_options['colorlib_coming_soon_background_image'] ) : ''; ?>');"></div>
     </div>
 
-    <!--  -->
-    <div class="flex-sb flex-row-rev where3-parent p-l-58 p-r-46 respon2">
-        <!--  -->
-        <div class="where3 wsize2 respon1">
-            <h3 class="l1-txt2 p-b-30 respon6 respon7" id="colorlib_coming_soon_page_heading">
-				<?php echo $ccsm_options['colorlib_coming_soon_page_heading']; ?>
-            </h3>
-
-            <p class="m2-txt1 respon6" id="colorlib_coming_soon_page_content">
-				<?php echo $ccsm_options['colorlib_coming_soon_page_content']; ?>
-            </p>
+    <div class="size1 overlay1">
+        <div class="w-full flex-w flex-sb-m p-l-65 p-r-80 p-t-22 p-b-185 p-lr-15-sm respon8">
+            <div class="wrappic1 m-r-30 m-t-10 m-b-10">
+				<?php if ( $ccsm_options['colorlib_coming_soon_plugin_logo'] ) {
+					?>
+                    <a href="<?php echo site_url(); ?>" class="logo-link"><img
+                                src="<?php echo esc_url( $ccsm_options['colorlib_coming_soon_plugin_logo'] ); ?>"
+                                alt="<?php echo get_bloginfo(); ?>"></a>
+					<?php
+				}
+				?>
+            </div>
 			<?php if ( $ccsm_options['colorlib_coming_soon_subscribe'] != '1' ) { ?>
-                <form class="contact100-form validate-form p-t-55 w-full" action="<?php echo esc_url($ccsm_options['colorlib_coming_soon_subscribe_form_url']); ?>">
-                    <div class="wrap-input100 validate-input m-lr-auto-lg"
-                         data-validate="<?php echo esc_attr__('Email is required: ex@abc.xyz','colorlib-coming-soon'); ?>">
-                        <input class="s2-txt1 placeholder0 input100 trans-04" type="text" name="email"
-                               placeholder="<?php echo esc_attr__('Email Address','colorlib-coming-soon'); ?>">
-
-                        <button class="flex-c-m ab-t-r size4 s1-txt1 hov1 trans-04">
-                            <i class="fa fa-paper-plane fs-15 cl0"></i>
-                        </button>
-                    </div>
-                </form>
+                <div class="flex-w m-t-10 m-b-10">
+                    <a href="#" class="size2 m1-txt1 flex-c-m how-btn1 trans-04">
+						<?php echo esc_html__( 'Sign Up', 'colorlib-coming-soon' ); ?>
+                    </a>
+                </div>
 			<?php } ?>
         </div>
 
-		<?php if ( $counterActivation == '1' ) { ?>
-            <div class="flex-w flex-col cd100 p-t-34 respon3">
-                <div class="flex-col wsize1 m-b-40 respon4">
-                    <span class="l1-txt1 p-b-30 days"><?php echo $dates['template']['days']; ?></span>
-                    <span class="s1-txt1"><?php echo esc_html__( 'Days', 'colorlib-coming-soon' ); ?></span>
-                </div>
+        <div class="flex-sb flex-row-rev where3-parent p-l-58 p-r-46 respon2">
+            <div class="where3 wsize2 respon1">
+                <h3 class="l1-txt2 p-b-30 respon6 respon7" id="colorlib_coming_soon_page_heading">
+					<?php echo wp_kses_post( $ccsm_options['colorlib_coming_soon_page_heading'] ); ?>
+                </h3>
 
-                <div class="flex-col wsize1 m-b-40 respon4">
-                    <span class="l1-txt1 p-b-30 hours"><?php echo $dates['template']['hours']; ?></span>
-                    <span class="s1-txt1"><?php echo esc_html__( 'Hours', 'colorlib-coming-soon' ); ?></span>
-                </div>
+                <p class="m2-txt1 respon6" id="colorlib_coming_soon_page_content">
+					<?php echo wp_kses_post( $ccsm_options['colorlib_coming_soon_page_content'] ); ?>
+                </p>
+				<?php if ( $ccsm_options['colorlib_coming_soon_subscribe'] != '1' ) { ?>
+                    <form class="contact100-form validate-form p-t-55 w-full"
+                          action="<?php echo esc_url( $ccsm_options['colorlib_coming_soon_subscribe_form_url'] ); ?>">
+                        <div class="wrap-input100 validate-input m-lr-auto-lg"
+                             data-validate="<?php echo esc_attr__( 'Email is required: ex@abc.xyz', 'colorlib-coming-soon' ); ?>">
+                            <input class="s2-txt1 placeholder0 input100 trans-04" type="text" name="email"
+                                   placeholder="<?php echo esc_attr__( 'Email Address', 'colorlib-coming-soon' ); ?>">
 
-                <div class="flex-col wsize1 m-b-40 respon4">
-                    <span class="l1-txt1 p-b-30 minutes"><?php echo $dates['template']['minutes']; ?></span>
-                    <span class="s1-txt1"><?php echo esc_html__( 'Minutes', 'colorlib-coming-soon' ); ?></span>
-                </div>
-
-                <div class="flex-col wsize1 m-b-40 respon4">
-                    <span class="l1-txt1 p-b-30 seconds"><?php echo $dates['template']['seconds']; ?></span>
-                    <span class="s1-txt1"><?php echo esc_html__( 'Seconds', 'colorlib-coming-soon' ); ?></span>
-                </div>
+                            <button class="flex-c-m ab-t-r size4 s1-txt1 hov1 trans-04">
+                                <i class="fa fa-paper-plane fs-15 cl0"></i>
+                            </button>
+                        </div>
+                    </form>
+				<?php } ?>
             </div>
-		<?php } ?>
 
-        <!--  -->
-        <div class="flex-w flex-col where2 respon5">
-			<?php
-			if ( $ccsm_options['colorlib_coming_soon_social_facebook'] ) {
-				?>
-                <a href="<?php echo esc_url($ccsm_options['colorlib_coming_soon_social_facebook']); ?>"
-                   id="colorlib_coming_soon_social_facebook"
-                   class="size3 flex-c-m how-social trans-04 m-r-3 m-l-3 m-b-5">
-                    <i class="fa fa-facebook-official"></i>
-                </a>
+			<?php if ( $counterActivation == '1' ) { ?>
+                <div class="flex-w flex-col cd100 p-t-34 respon3">
+                    <div class="flex-col wsize1 m-b-40 respon4">
+                        <span class="l1-txt1 p-b-30 days"><?php echo $dates['template']['days']; ?></span>
+                        <span class="s1-txt1"><?php echo esc_html__( 'Days', 'colorlib-coming-soon' ); ?></span>
+                    </div>
+
+                    <div class="flex-col wsize1 m-b-40 respon4">
+                        <span class="l1-txt1 p-b-30 hours"><?php echo $dates['template']['hours']; ?></span>
+                        <span class="s1-txt1"><?php echo esc_html__( 'Hours', 'colorlib-coming-soon' ); ?></span>
+                    </div>
+
+                    <div class="flex-col wsize1 m-b-40 respon4">
+                        <span class="l1-txt1 p-b-30 minutes"><?php echo $dates['template']['minutes']; ?></span>
+                        <span class="s1-txt1"><?php echo esc_html__( 'Minutes', 'colorlib-coming-soon' ); ?></span>
+                    </div>
+
+                    <div class="flex-col wsize1 m-b-40 respon4">
+                        <span class="l1-txt1 p-b-30 seconds"><?php echo $dates['template']['seconds']; ?></span>
+                        <span class="s1-txt1"><?php echo esc_html__( 'Seconds', 'colorlib-coming-soon' ); ?></span>
+                    </div>
+                </div>
+			<?php } ?>
+
+            <!--  -->
+            <div class="flex-w flex-col where2 respon5">
 				<?php
-			}
-			if ( $ccsm_options['colorlib_coming_soon_social_twitter'] ) {
+				if ( $ccsm_options['colorlib_coming_soon_social_facebook'] ) {
+					?>
+                    <a href="<?php echo esc_url( $ccsm_options['colorlib_coming_soon_social_facebook'] ); ?>"
+                       id="colorlib_coming_soon_social_facebook"
+                       class="size3 flex-c-m how-social trans-04 m-r-3 m-l-3 m-b-5">
+                        <i class="fa fa-facebook-official"></i>
+                    </a>
+					<?php
+				}
+				if ( $ccsm_options['colorlib_coming_soon_social_twitter'] ) {
+					?>
+                    <a href="<?php echo esc_url( $ccsm_options['colorlib_coming_soon_social_twitter'] ); ?>"
+                       id="colorlib_coming_soon_social_twitter"
+                       class="size3 flex-c-m how-social trans-04 m-r-3 m-l-3 m-b-5">
+                        <i class="fa fa-twitter-square"></i>
+                    </a>
+					<?php
+				}
+				if ( $ccsm_options['colorlib_coming_soon_social_pinterest'] ) {
+					?>
+                    <a href="<?php echo esc_url( $ccsm_options['colorlib_coming_soon_social_pinterest'] ); ?>"
+                       id="colorlib_coming_soon_social_pinterest"
+                       class="size3 flex-c-m how-social trans-04 m-r-3 m-l-3 m-b-5">
+                        <i class="fa fa-pinterest"></i>
+                    </a>
+					<?php
+				}
+				if ( $ccsm_options['colorlib_coming_soon_social_email'] ) {
+					?>
+                    <a href="mailto:<?php echo esc_html( antispambot( $ccsm_options['colorlib_coming_soon_social_email'] ) ); ?>"
+                       id="colorlib_coming_soon_social_email"
+                       class="size3 flex-c-m how-social trans-04 m-r-3 m-l-3 m-b-5">
+                        <i class="fa fa-envelope-square"></i>
+                    </a>
+					<?php
+				}
+				if ( $ccsm_options['colorlib_coming_soon_social_youtube'] ) {
+					?>
+                    <a href="mailto:<?php echo esc_url( $ccsm_options['colorlib_coming_soon_social_youtube'] ); ?>"
+                       id="colorlib_coming_soon_social_youtube"
+                       class="size3 flex-c-m how-social trans-04 m-r-3 m-l-3 m-b-5">
+                        <i class="fa fa-youtube"></i>
+                    </a>
+					<?php
+				}
+				if ( $ccsm_options['colorlib_coming_soon_social_instagram'] ) {
+					?>
+                    <a href="mailto:<?php echo esc_url( $ccsm_options['colorlib_coming_soon_social_instagram'] ); ?>"
+                       id="colorlib_coming_soon_social_instagram"
+                       class="size3 flex-c-m how-social trans-04 m-r-3 m-l-3 m-b-5">
+                        <i class="fa fa-instagram"></i>
+                    </a>
+					<?php
+				}
 				?>
-                <a href="<?php echo esc_url($ccsm_options['colorlib_coming_soon_social_twitter']); ?>"
-                   id="colorlib_coming_soon_social_twitter"
-                   class="size3 flex-c-m how-social trans-04 m-r-3 m-l-3 m-b-5">
-                    <i class="fa fa-twitter-square"></i>
-                </a>
-				<?php
-			}
-			if ( $ccsm_options['colorlib_coming_soon_social_pinterest'] ) {
-				?>
-                <a href="<?php echo esc_url($ccsm_options['colorlib_coming_soon_social_pinterest']); ?>"
-                   id="colorlib_coming_soon_social_pinterest"
-                   class="size3 flex-c-m how-social trans-04 m-r-3 m-l-3 m-b-5">
-                    <i class="fa fa-pinterest"></i>
-                </a>
-				<?php
-			}
-			if ( $ccsm_options['colorlib_coming_soon_social_email'] ) {
-				?>
-                <a href="mailto:<?php echo esc_html(antispambot($ccsm_options['colorlib_coming_soon_social_email'])); ?>"
-                   id="colorlib_coming_soon_social_email"
-                   class="size3 flex-c-m how-social trans-04 m-r-3 m-l-3 m-b-5">
-                    <i class="fa fa-envelope-square"></i>
-                </a>
-				<?php
-			}
-			if ( $ccsm_options['colorlib_coming_soon_social_youtube'] ) {
-				?>
-                <a href="mailto:<?php echo esc_url($ccsm_options['colorlib_coming_soon_social_youtube']); ?>"
-                   id="colorlib_coming_soon_social_youtube"
-                   class="size3 flex-c-m how-social trans-04 m-r-3 m-l-3 m-b-5">
-                    <i class="fa fa-youtube"></i>
-                </a>
-				<?php
-			}
-			if ( $ccsm_options['colorlib_coming_soon_social_instagram'] ) {
-				?>
-                <a href="mailto:<?php echo esc_url($ccsm_options['colorlib_coming_soon_social_instagram']); ?>"
-                   id="colorlib_coming_soon_social_instagram"
-                   class="size3 flex-c-m how-social trans-04 m-r-3 m-l-3 m-b-5">
-                    <i class="fa fa-instagram"></i>
-                </a>
-				<?php
-			}
-			?>
+            </div>
         </div>
     </div>
-</div>
 <?php
 if ( is_customize_preview() ) {
 	?>
