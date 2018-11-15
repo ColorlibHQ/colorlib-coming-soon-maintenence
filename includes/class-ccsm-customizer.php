@@ -172,7 +172,7 @@ class CCSM_Customizer {
 		$wp_customize->selective_refresh->add_partial(
 			'ccsm_settings[colorlib_coming_soon_timer_option]',
 			array(
-				'selector'        => '.cd100',
+				'selector' => '.cd100',
 			)
 		);
 
@@ -195,7 +195,7 @@ class CCSM_Customizer {
 		$wp_customize->selective_refresh->add_partial(
 			'ccsm_settings[colorlib_coming_soon_plugin_logo]',
 			array(
-				'selector'        => '.logo-link',
+				'selector' => '.logo-link',
 			)
 		);
 
@@ -264,7 +264,7 @@ class CCSM_Customizer {
 		$wp_customize->selective_refresh->add_partial(
 			'ccsm_settings[colorlib_coming_soon_page_heading]',
 			array(
-				'selector'        => '#colorlib_coming_soon_page_heading',
+				'selector' => '#colorlib_coming_soon_page_heading',
 			)
 		);
 
@@ -288,7 +288,7 @@ class CCSM_Customizer {
 		$wp_customize->selective_refresh->add_partial(
 			'ccsm_settings[colorlib_coming_soon_page_content]',
 			array(
-				'selector'        => '#colorlib_coming_soon_page_content',
+				'selector' => '#colorlib_coming_soon_page_content',
 			)
 		);
 
@@ -312,7 +312,7 @@ class CCSM_Customizer {
 		$wp_customize->selective_refresh->add_partial(
 			'ccsm_settings[colorlib_coming_soon_page_footer]',
 			array(
-				'selector'        => '#colorlib_coming_soon_page_footer',
+				'selector' => '#colorlib_coming_soon_page_footer',
 			)
 		);
 
@@ -347,6 +347,13 @@ class CCSM_Customizer {
 			)
 		);
 
+		$wp_customize->selective_refresh->add_partial(
+			'ccsm_settings[colorlib_coming_soon_subscribe_form_url]',
+			array(
+				'selector'        => 'form',
+			)
+		);
+
 
 		/* Setting - Coming Soon - Social Links  Facebook*/
 		$wp_customize->add_setting( 'ccsm_settings[colorlib_coming_soon_social_facebook]', array(
@@ -366,7 +373,7 @@ class CCSM_Customizer {
 		$wp_customize->selective_refresh->add_partial(
 			'ccsm_settings[colorlib_coming_soon_social_facebook]',
 			array(
-				'selector'        => '#colorlib_coming_soon_social_facebook',
+				'selector' => '#colorlib_coming_soon_social_facebook',
 			)
 		);
 
@@ -389,7 +396,7 @@ class CCSM_Customizer {
 		$wp_customize->selective_refresh->add_partial(
 			'ccsm_settings[colorlib_coming_soon_social_twitter]',
 			array(
-				'selector'        => '#colorlib_coming_soon_social_twitter',
+				'selector' => '#colorlib_coming_soon_social_twitter',
 			)
 		);
 
@@ -412,7 +419,7 @@ class CCSM_Customizer {
 		$wp_customize->selective_refresh->add_partial(
 			'ccsm_settings[colorlib_coming_soon_social_email]',
 			array(
-				'selector'        => '#colorlib_coming_soon_social_email',
+				'selector' => '#colorlib_coming_soon_social_email',
 			)
 		);
 
@@ -434,7 +441,7 @@ class CCSM_Customizer {
 		$wp_customize->selective_refresh->add_partial(
 			'ccsm_settings[colorlib_coming_soon_social_youtube]',
 			array(
-				'selector'        => '#colorlib_coming_soon_social_youtube',
+				'selector' => '#colorlib_coming_soon_social_youtube',
 			)
 		);
 
@@ -456,7 +463,7 @@ class CCSM_Customizer {
 		$wp_customize->selective_refresh->add_partial(
 			'ccsm_settings[colorlib_coming_soon_social_pinterest]',
 			array(
-				'selector'        => '#colorlib_coming_soon_social_pinterest',
+				'selector' => '#colorlib_coming_soon_social_pinterest',
 			)
 		);
 
@@ -478,7 +485,7 @@ class CCSM_Customizer {
 		$wp_customize->selective_refresh->add_partial(
 			'ccsm_settings[colorlib_coming_soon_social_instagram]',
 			array(
-				'selector'        => '#colorlib_coming_soon_social_instagram',
+				'selector' => '#colorlib_coming_soon_social_instagram',
 			)
 		);
 
