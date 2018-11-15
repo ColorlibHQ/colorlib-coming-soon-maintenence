@@ -117,11 +117,8 @@ $dates             = ccsm_counter_dates( $counter );
 				<?php
 			}
 			?>
-
-
         </div>
     </div>
-
 
     <div class="wsize2 bg-img1 respon2"
          style="background-image: url('<?php echo ( $ccsm_options['colorlib_coming_soon_background_image'] ) ? $ccsm_options['colorlib_coming_soon_background_image'] : CCSM_URL . 'templates/' . $template . '/images/bg01.jpg'; ?>');">

@@ -143,13 +143,8 @@ $dates             = ccsm_counter_dates( $counter );
 				<?php
 			}
 			?>
-
-
         </div>
-
     </div>
-
-
 </div>
 <?php
 if ( is_customize_preview() ) {
