@@ -24,7 +24,7 @@ $dates             = ccsm_counter_dates( $counter );
 				?>
                 <a href="<?php echo site_url(); ?>" class="logo-link"><img
                             src="<?php echo esc_url( $ccsm_options['colorlib_coming_soon_plugin_logo'] ); ?>"
-                            alt="LOGO"></a>
+                            alt="<?php echo get_bloginfo(); ?>"></a>
 				<?php
 			}
 			?>
