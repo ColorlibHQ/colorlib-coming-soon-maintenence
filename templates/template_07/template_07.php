@@ -101,7 +101,7 @@ $dates             = ccsm_counter_dates( $counter );
                     </form>
 
                     <p class="txt-center s1-txt1 p-t-5" id="colorlib_coming_soon_page_footer">
-						<?php echo $ccsm_options['colorlib_coming_soon_page_footer']; ?>
+						<?php echo wp_kses_post( $ccsm_options['colorlib_coming_soon_page_footer'] ); ?>
                     </p>
 				<?php } ?>
             </div>

@@ -13,28 +13,27 @@ $dates             = ccsm_counter_dates( $counter );
             <div class="wsize2 flex-w flex-c-m cd100 js-tilt">
                 <div class="flex-col-c-m size6 bor2 m-l-10 m-r-10 m-t-15">
                     <span class="l2-txt1 p-b-9 days"><?php echo $dates['template']['days']; ?></span>
-                    <span class="s2-txt4"><?php esc_html__( 'Days', 'colorlib - coming - soon' ); ?></span>
+                    <span class="s2-txt4"><?php esc_html__( 'Days', 'colorlib-coming-soon' ); ?></span>
                 </div>
 
                 <div class="flex-col-c-m size6 bor2 m-l-10 m-r-10 m-t-15">
                     <span class="l2-txt1 p-b-9 hours"><?php echo $dates['template']['hours']; ?></span>
-                    <span class="s2-txt4"><?php esc_html__( 'Hours', 'colorlib - coming - soon' ); ?></span>
+                    <span class="s2-txt4"><?php esc_html__( 'Hours', 'colorlib-coming-soon' ); ?></span>
                 </div>
 
                 <div class="flex-col-c-m size6 bor2 m-l-10 m-r-10 m-t-15">
                     <span class="l2-txt1 p-b-9 minutes"><?php echo $dates['template']['minutes']; ?></span>
-                    <span class="s2-txt4"><?php esc_html__( 'Minutes', 'colorlib - coming - soon' ); ?></span>
+                    <span class="s2-txt4"><?php esc_html__( 'Minutes', 'colorlib-coming-soon' ); ?></span>
                 </div>
 
                 <div class="flex-col-c-m size6 bor2 m-l-10 m-r-10 m-t-15">
                     <span class="l2-txt1 p-b-9 seconds"><?php echo $dates['template']['seconds']; ?></span>
-                    <span class="s2-txt4"><?php esc_html__( 'Seconds', 'colorlib - coming - soon' ); ?></span>
+                    <span class="s2-txt4"><?php esc_html__( 'Seconds', 'colorlib-coming-soon' ); ?></span>
                 </div>
             </div>
 		<?php } ?>
     </div>
 
-    <!-- Form -->
     <div class="size3 flex-col-sb flex-w p-l-75 p-r-75 p-t-45 p-b-45 respon1">
         <div class="wrap-pic1">
 			<?php if ( $ccsm_options['colorlib_coming_soon_plugin_logo'] ) {
@@ -70,7 +69,7 @@ $dates             = ccsm_counter_dates( $counter );
 
                     <div class="w-full">
                         <button class="flex-c-m s2-txt2 size4 bg1 bor1 hov1 trans-04">
-							<?php echo esc_html__( 'Subscribe', 'colorlib - coming - soon' ); ?>
+							<?php echo esc_html__( 'Subscribe', 'colorlib-coming-soon' ); ?>
                         </button>
                     </div>
                 </form>
@@ -113,7 +112,7 @@ $dates             = ccsm_counter_dates( $counter );
 
 			if ( $ccsm_options['colorlib_coming_soon_social_email'] ) {
 				?>
-                <a href="mailto:<?php echo $ccsm_options['colorlib_coming_soon_social_email']; ?>"
+                <a href="mailto:<?php echo esc_html(antispambot($ccsm_options['colorlib_coming_soon_social_email'])); ?>"
                    id="colorlib_coming_soon_social_email" class="flex-c-m size5 bg3 how1 trans-04 m-r-5">
                     <i class="fa fa-envelope"></i>
                 </a>
@@ -138,7 +137,8 @@ $dates             = ccsm_counter_dates( $counter );
 			}
 			?>
         </div>
-        <p style="text-align:center">Coming Soon Template designed by <a href="https://colorlib.com/" target="_blank">Colorlib</a></p>
+        <p style="text-align:center">Coming Soon Template designed by <a href="https://colorlib.com/" target="_blank">Colorlib</a>
+        </p>
     </div>
 </div>
 

@@ -29,8 +29,7 @@ $dates             = ccsm_counter_dates( $counter );
                     </a>
 					<?php
 				}
-				?>
-				<?php
+
 				if ( $ccsm_options['colorlib_coming_soon_social_twitter'] ) {
 					?>
                     <a href="<?php echo esc_url( $ccsm_options['colorlib_coming_soon_social_twitter'] ); ?>"
