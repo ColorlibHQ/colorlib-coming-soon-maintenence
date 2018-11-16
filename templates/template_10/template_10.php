@@ -5,7 +5,7 @@ $template          = $ccsm_options['colorlib_coming_soon_template_selection'];
 $counter           = $ccsm_options['colorlib_coming_soon_timer_option'];
 $dates             = ccsm_counter_dates( $counter );
 ?>
-    <div class="simpleslide100">
+    <div class="simpleslide100" style="background-color:<?php echo $ccsm_options['colorlib_coming_soon_background_color']; ?>;">
         <div class="simpleslide100-item bg-img1"
              style="background-image: url('<?php echo ( $ccsm_options['colorlib_coming_soon_background_image'] ) ? esc_url( $ccsm_options['colorlib_coming_soon_background_image'] ) : ''; ?>');"></div>
     </div>
@@ -24,7 +24,7 @@ $dates             = ccsm_counter_dates( $counter );
             </div>
 			<?php if ( $ccsm_options['colorlib_coming_soon_subscribe'] != '1' ) { ?>
                 <div class="flex-w m-t-10 m-b-10">
-                    <a href="#" class="size2 m1-txt1 flex-c-m how-btn1 trans-04">
+                    <a href="<?php echo esc_url($ccsm_options['colorlib_coming_soon_subscribe_form_other']); ?>" class="size2 m1-txt1 flex-c-m how-btn1 trans-04 sign-up">
 						<?php echo esc_html__( 'Sign Up', 'colorlib-coming-soon' ); ?>
                     </a>
                 </div>

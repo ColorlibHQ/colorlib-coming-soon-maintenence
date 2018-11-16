@@ -25,7 +25,7 @@ $dates             = ccsm_counter_dates( $counter );
             </div>
 			<?php if ( $ccsm_options['colorlib_coming_soon_subscribe'] != '1' ) { ?>
                 <div class="flex-w m-t-10 m-b-10">
-                    <a href="#" class="size2 m1-txt1 flex-c-m how-btn1 trans-04">
+                    <a href="<?php echo esc_url($ccsm_options['colorlib_coming_soon_subscribe_form_other']); ?>" class="size2 m1-txt1 flex-c-m how-btn1 trans-04 sign-up">
 						<?php echo esc_html__( 'Sign Up', 'colorlib-coming-soon' ); ?>
                     </a>
                 </div>
@@ -74,7 +74,7 @@ $dates             = ccsm_counter_dates( $counter );
 			if ( $ccsm_options['colorlib_coming_soon_social_twitter'] ) {
 				?>
                 <a href="<?php echo esc_url( $ccsm_options['colorlib_coming_soon_social_twitter'] ); ?>"
-                   id="colorlib_coming_soon_social_twiiter"
+                   id="colorlib_coming_soon_social_twitter"
                    class="size3 flex-c-m how-social trans-04 m-r-3 m-l-3 m-b-5">
                     <i class="fa fa-twitter"></i>
                 </a>
@@ -83,7 +83,7 @@ $dates             = ccsm_counter_dates( $counter );
 			if ( $ccsm_options['colorlib_coming_soon_social_youtube'] ) {
 				?>
                 <a href="<?php echo esc_url( $ccsm_options['colorlib_coming_soon_social_youtube'] ); ?>"
-                   id="colrlib_coming_soon_social_youtube" class="size3 flex-c-m how-social trans-04 m-r-3 m-l-3 m-b-5">
+                   id="colorlib_coming_soon_social_youtube" class="size3 flex-c-m how-social trans-04 m-r-3 m-l-3 m-b-5">
                     <i class="fa fa-youtube-play"></i>
                 </a>
 				<?php
@@ -91,7 +91,7 @@ $dates             = ccsm_counter_dates( $counter );
 			if ( $ccsm_options['colorlib_coming_soon_social_email'] ) {
 				?>
                 <a href="mailto:<?php echo esc_html( antispambot( $ccsm_options['colorlib_coming_soon_social_email'] ) ); ?>"
-                   id="colrlib_coming_soon_social_email" class="size3 flex-c-m how-social trans-04 m-r-3 m-l-3 m-b-5">
+                   id="colorlib_coming_soon_social_email" class="size3 flex-c-m how-social trans-04 m-r-3 m-l-3 m-b-5">
                     <i class="fa fa-envelope"></i>
                 </a>
 				<?php
@@ -99,7 +99,7 @@ $dates             = ccsm_counter_dates( $counter );
 			if ( $ccsm_options['colorlib_coming_soon_social_pinterest'] ) {
 				?>
                 <a href="<?php echo esc_url( $ccsm_options['colorlib_coming_soon_social_pinterest'] ); ?>"
-                   id="colrlib_coming_soon_social_pinterest"
+                   id="colorlib_coming_soon_social_pinterest"
                    class="size3 flex-c-m how-social trans-04 m-r-3 m-l-3 m-b-5">
                     <i class="fa fa-pinterest"></i>
                 </a>
@@ -108,7 +108,7 @@ $dates             = ccsm_counter_dates( $counter );
 			if ( $ccsm_options['colorlib_coming_soon_social_instagram'] ) {
 				?>
                 <a href="<?php echo esc_url( $ccsm_options['colorlib_coming_soon_social_instagram'] ); ?>"
-                   id="colrlib_coming_soon_social_instagram"
+                   id="colorlib_coming_soon_social_instagram"
                    class="size3 flex-c-m how-social trans-04 m-r-3 m-l-3 m-b-5">
                     <i class="fa fa-instagram"></i>
                 </a>

@@ -49,9 +49,10 @@ class CCSM_Customizer {
 
 		/* Section - Coming Soon - Social Links */
 		$wp_customize->add_section( 'colorlib_coming_soon_section_social_settings', array(
-				'title'    => esc_html__( 'Social Links', 'colorlib-coming-soon' ),
-				'panel'    => 'colorlib_coming_soon_general_panel',
-				'priority' => 35,
+				'title'           => esc_html__( 'Social Links', 'colorlib-coming-soon' ),
+				'panel'           => 'colorlib_coming_soon_general_panel',
+				'priority'        => 35,
+				'active_callback' => 'ccsm_template_has_social'
 			)
 		);
 
@@ -98,10 +99,11 @@ class CCSM_Customizer {
 		) );
 
 		$wp_customize->add_control( new CCSM_Control_Toggle ( $wp_customize, 'ccsm_settings[colorlib_coming_soon_timer_activation]', array(
-				'label'       => esc_html__( 'Activate Timer Countdown?', 'colorlib-coming-soon' ),
-				'description' => esc_html__( '', 'colorlib-coming-soon' ),
-				'section'     => 'colorlib_coming_soon_section_general',
-				'priority'    => 10,
+				'label'           => esc_html__( 'Activate Timer Countdown?', 'colorlib-coming-soon' ),
+				'description'     => esc_html__( '', 'colorlib-coming-soon' ),
+				'section'         => 'colorlib_coming_soon_section_general',
+				'priority'        => 10,
+				'active_callback' => 'ccsm_template_has_timer'
 			) )
 		);
 
@@ -164,9 +166,10 @@ class CCSM_Customizer {
 		) );
 
 		$wp_customize->add_control( new WP_Customize_Date_Time_Control( $wp_customize, 'ccsm_settings[colorlib_coming_soon_timer_option]', array(
-			'label'    => esc_html__( 'Time to opening', 'colorlib-coming-soon' ),
-			'section'  => 'colorlib_coming_soon_section_general',
-			'priority' => 10,
+			'label'           => esc_html__( 'Time to opening', 'colorlib-coming-soon' ),
+			'section'         => 'colorlib_coming_soon_section_general',
+			'priority'        => 10,
+			'active_callback' => 'ccsm_template_has_timer',
 		) ) );
 
 		$wp_customize->selective_refresh->add_partial(
@@ -185,10 +188,11 @@ class CCSM_Customizer {
 		) );
 
 		$wp_customize->add_control( new WP_Customize_Image_Control( $wp_customize, 'ccsm_settings[colorlib_coming_soon_plugin_logo]', array(
-				'label'       => esc_html__( 'Logo Image', 'colorlib-coming-soon' ),
-				'description' => esc_html__( 'Recommended size: 80px by 80px', 'colorlib-coming-soon' ),
-				'section'     => 'colorlib_coming_soon_section_general',
-				'priority'    => 10,
+				'label'           => esc_html__( 'Logo Image', 'colorlib-coming-soon' ),
+				'description'     => esc_html__( 'Recommended size: 80px by 80px', 'colorlib-coming-soon' ),
+				'section'         => 'colorlib_coming_soon_section_general',
+				'priority'        => 10,
+				'active_callback' => 'ccsm_template_has_logo',
 			) )
 		);
 
@@ -235,14 +239,15 @@ class CCSM_Customizer {
 		$wp_customize->add_setting( 'ccsm_settings[colorlib_coming_soon_text_color]', array(
 			'default'           => '',
 			'sanitize_callback' => 'ccsm_sanitize_text',
-			'type'              => 'option'
+			'type'              => 'option',
 		) );
 
 		$wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'ccsm_settings[colorlib_coming_soon_text_color]', array(
-				'label'       => esc_html__( 'Text Color', 'colorlib-coming-soon' ),
-				'description' => esc_html__( '', 'colorlib-coming-soon' ),
-				'section'     => 'colorlib_coming_soon_section_general',
-				'priority'    => 10,
+				'label'           => esc_html__( 'Text Color', 'colorlib-coming-soon' ),
+				'description'     => esc_html__( '', 'colorlib-coming-soon' ),
+				'section'         => 'colorlib_coming_soon_section_general',
+				'priority'        => 10,
+				'active_callback' => 'ccsm_template_has_text_color'
 			) )
 		);
 
@@ -325,9 +330,10 @@ class CCSM_Customizer {
 		) );
 
 		$wp_customize->add_control( new CCSM_Control_Toggle( $wp_customize, 'ccsm_settings[colorlib_coming_soon_subscribe]', array(
-				'label'    => esc_html__( 'Disable Subscribe Form', 'colorlib-coming-soon' ),
-				'section'  => 'colorlib_coming_soon_subscribe_form',
-				'priority' => 10,
+				'label'           => esc_html__( 'Disable Subscribe Form', 'colorlib-coming-soon' ),
+				'section'         => 'colorlib_coming_soon_subscribe_form',
+				'priority'        => 10,
+				'active_callback' => 'ccsm_template_has_subscribe_form'
 			) )
 		);
 
@@ -339,18 +345,42 @@ class CCSM_Customizer {
 		) );
 
 		$wp_customize->add_control( 'ccsm_settings[colorlib_coming_soon_subscribe_form_url]', array(
-				'label'       => esc_html__( 'Subscribe Form Action URL', 'colorlib-coming-soon' ),
-				'description' => __( 'You can get your form action URL by creating a sign-up form and copying the form action="" field.: <a href="http://kb.mailchimp.com/lists/signup-forms/add-a-signup-form-to-your-website" target="_blank">http://kb.mailchimp.com/lists/signup-forms/add-a-signup-form-to-your-website</a>', 'colorlib-coming-soon' ),
-				'section'     => 'colorlib_coming_soon_subscribe_form',
-				'type'        => 'text',
-				'priority'    => 10,
+				'label'           => esc_html__( 'Subscribe Form Action URL', 'colorlib-coming-soon' ),
+				'description'     => __( 'You can get your form action URL by creating a sign-up form and copying the form action="" field.: <a href="http://kb.mailchimp.com/lists/signup-forms/add-a-signup-form-to-your-website" target="_blank">http://kb.mailchimp.com/lists/signup-forms/add-a-signup-form-to-your-website</a>', 'colorlib-coming-soon' ),
+				'section'         => 'colorlib_coming_soon_subscribe_form',
+				'type'            => 'text',
+				'priority'        => 10,
+				'active_callback' => 'ccsm_template_has_subscribe_form'
 			)
 		);
 
 		$wp_customize->selective_refresh->add_partial(
 			'ccsm_settings[colorlib_coming_soon_subscribe_form_url]',
 			array(
-				'selector'        => 'form',
+				'selector' => 'form',
+			)
+		);
+
+		/* Setting - Coming Soon - Subscribe Form Other */
+		$wp_customize->add_setting( 'ccsm_settings[colorlib_coming_soon_subscribe_form_other]', array(
+			'sanitize_callback' => 'ccsm_sanitize_text',
+			'type'              => 'option'
+		) );
+
+		$wp_customize->add_control( 'ccsm_settings[colorlib_coming_soon_subscribe_form_other]', array(
+				'label'           => esc_html__( 'Subscribe Form Action URL', 'colorlib-coming-soon' ),
+				'description'     => __( 'Sign Up Link', 'colorlib-coming-soon' ),
+				'section'         => 'colorlib_coming_soon_subscribe_form',
+				'type'            => 'text',
+				'priority'        => 20,
+				'active_callback' => 'ccsm_template_has_subscribe_form'
+			)
+		);
+
+		$wp_customize->selective_refresh->add_partial(
+			'ccsm_settings[colorlib_coming_soon_subscribe_form_other]',
+			array(
+				'selector' => '.sign-up',
 			)
 		);
 

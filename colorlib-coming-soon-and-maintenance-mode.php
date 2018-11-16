@@ -596,8 +596,8 @@ function ccsm_template_has_footer() {
 function ccsm_template_has_background_image() {
 	$ccsm_options                  = get_option( 'ccsm_settings' );
 	$template_has_background_image = array(
-		'template_03',
-		'template_04'
+		'template_04',
+		'template_05'
 	);
 	if ( in_array( $ccsm_options['colorlib_coming_soon_template_selection'], $template_has_background_image ) ) {
 		return false;
@@ -609,14 +609,107 @@ function ccsm_template_has_background_image() {
 function ccsm_template_has_background_color() {
 	$ccsm_options                  = get_option( 'ccsm_settings' );
 	$template_has_background_color = array(
+		'template_02',
 		'template_03',
-		'template_04'
+		'template_09',
+		'template_10',
+		'template_12',
+		'template_13',
+		'template_14'
 	);
 	if ( in_array( $ccsm_options['colorlib_coming_soon_template_selection'], $template_has_background_color ) ) {
 		return true;
 	}
 
 	return false;
+}
+
+function ccsm_template_has_text_color() {
+	$ccsm_options            = get_option( 'ccsm_settings' );
+	$template_has_text_color = array(
+		'template_04',
+		'template_05'
+	);
+	if ( in_array( $ccsm_options['colorlib_coming_soon_template_selection'], $template_has_text_color ) ) {
+		return false;
+	}
+
+	return true;
+}
+
+function ccsm_template_has_logo() {
+	$ccsm_options      = get_option( 'ccsm_settings' );
+	$template_has_logo = array(
+		'template_01',
+		'template_03',
+		'template_06',
+		'template_07',
+		'template_09',
+		'template_10',
+		'template_11',
+		'template_12',
+		'template_13',
+		'template_14',
+		'template_15'
+	);
+
+	if ( in_array( $ccsm_options['colorlib_coming_soon_template_selection'], $template_has_logo ) ) {
+		return true;
+	} else {
+		return false;
+	}
+}
+
+function ccsm_template_has_social() {
+	$ccsm_options        = get_option( 'ccsm_settings' );
+	$template_has_social = array(
+		'template_01',
+		'template_06',
+		'template_07',
+		'template_09',
+		'template_10',
+		'template_11',
+		'template_12',
+		'template_13',
+		'template_14',
+		'template_15'
+	);
+
+	if ( in_array( $ccsm_options['colorlib_coming_soon_template_selection'], $template_has_social ) ) {
+		return true;
+	} else {
+		return false;
+	}
+
+}
+
+function ccsm_template_has_timer() {
+
+	$ccsm_options       = get_option( 'ccsm_settings' );
+	$template_has_timer = array(
+		'template_12',
+		'template_14'
+	);
+
+	if ( in_array( $ccsm_options['colorlib_coming_soon_template_selection'], $template_has_timer ) ) {
+		return false;
+	} else {
+		return true;
+	}
+
+}
+
+function ccsm_template_has_subscribe_form(){
+	$ccsm_options       = get_option( 'ccsm_settings' );
+	$template_has_subscribe_form = array(
+		'template_15',
+	);
+
+	if ( in_array( $ccsm_options['colorlib_coming_soon_template_selection'], $template_has_subscribe_form ) ) {
+		return false;
+	} else {
+		return true;
+	}
 }
 
 

@@ -39,8 +39,13 @@ jQuery(window).load(function () {
         //declare arrays
         var pageContentArray = ['template_02', 'template_04', 'template_05', 'template_06', 'template_08', 'template_10', 'template_12', 'template_14'];
         var pageFooterArray = ['template_01', 'template_03', 'template_04', 'template_06', 'template_07'];
-        var negativeBackgroundImageArray = ['template_03', 'template_04'];
-        var backgroundColorArray = ['template_03', 'template_04'];
+        var negativeBackgroundImageArray = ['template_04', 'template_05'];
+        var backgroundColorArray = ['template_02', 'template_03', 'template_09', 'template_10', 'template_12', 'template_13', 'template_14'];
+        var logoArray = ['template_01', 'template_03', 'template_06', 'template_07', 'template_09', 'template_10', 'template_11', 'template_12', 'template_13', 'template_14', 'template_15'];
+        var socialsArray = ['template_01', 'template_06', 'template_07', 'template_09', 'template_10', 'template_11', 'template_12', 'template_13', 'template_14', 'template_15'];
+        var negativeTextColorArray = ['template_04'];
+        var negativeTimerArray = ['template_12', 'template_14'];
+        var negativeSubscribeArray = ['template_15'];
 
         //get control value
         var controlValue = wp.customize.control('ccsm_settings[colorlib_coming_soon_template_selection]').setting._value;
@@ -50,6 +55,15 @@ jQuery(window).load(function () {
         var pageFooter = wp.customize.control('ccsm_settings[colorlib_coming_soon_page_footer]');
         var backgroundImage = wp.customize.control('ccsm_settings[colorlib_coming_soon_background_image]');
         var backgroundColor = wp.customize.control('ccsm_settings[colorlib_coming_soon_background_color]');
+        var logoImage = wp.customize.control('ccsm_settings[colorlib_coming_soon_plugin_logo]');
+        var textColor = wp.customize.control('ccsm_settings[colorlib_coming_soon_text_color]');
+        var socialSection = wp.customize.section('colorlib_coming_soon_section_social_settings');
+        var timerControl = wp.customize.control('ccsm_settings[colorlib_coming_soon_timer_option]');
+        var timerToggle = wp.customize.control('ccsm_settings[colorlib_coming_soon_timer_activation]');
+        var subscribeActivation = wp.customize.control('ccsm_settings[colorlib_coming_soon_subscribe]');
+        var subscribeUrl = wp.customize.control('ccsm_settings[colorlib_coming_soon_subscribe_form_url]');
+        var signup = wp.customize.control('ccsm_settings[colorlib_coming_soon_subscribe_form_other]');
+
 
         //do action
         if (jQuery.inArray(controlValue, pageContentArray)) {
@@ -75,6 +89,43 @@ jQuery(window).load(function () {
         } else {
             backgroundColor.deactivate();
         }
+
+        if (jQuery.inArray(controlValue, logoArray)) {
+            logoImage.activate();
+        } else {
+            logoImage.deactivate();
+        }
+
+        if (jQuery.inArray(controlValue, negativeTextColorArray)) {
+            textColor.deactivate();
+        } else {
+            textColor.activate();
+        }
+
+        if (jQuery.inArray(controlValue, socialsArray)) {
+            socialSection.activate();
+        } else {
+            socialSection.deactivate();
+        }
+
+        if (jQuery.inArray(controlValue, negativeTimerArray)) {
+            timerControl.deactivate();
+            timerControl.deactivate();
+        } else {
+            timerControl.activate();
+            timerToggle.activate();
+        }
+
+        if (jQuery.inArray(controlValue, negativeSubscribeArray)) {
+            subscribeActivation.deactivate();
+            subscribeUrl.deactivate();
+            signup.deactivate();
+        } else {
+            subscribeActivation.activate();
+            subscribeUrl.activate();
+            signup.activate();
+        }
+
 
     });
 });

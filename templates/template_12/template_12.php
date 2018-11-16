@@ -5,7 +5,7 @@ $template          = $ccsm_options['colorlib_coming_soon_template_selection'];
 $counter           = $ccsm_options['colorlib_coming_soon_timer_option'];
 $dates             = ccsm_counter_dates( $counter );
 ?>
-    <div class="flex-w flex-str size1 overlay1">
+    <div class="flex-w flex-str size1 overlay1" style="background-color:<?php echo $ccsm_options['colorlib_coming_soon_background_color']; ?>;">
         <div class="flex-w flex-col-sb wsize1 bg0 p-l-65 p-t-37 p-b-50 p-r-80 respon1">
             <div class="wrappic1">
 				<?php if ( $ccsm_options['colorlib_coming_soon_plugin_logo'] ) {
