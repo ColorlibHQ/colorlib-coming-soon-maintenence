@@ -46,6 +46,7 @@ jQuery(window).load(function () {
         var negativeTextColorArray = ['template_04'];
         var negativeTimerArray = ['template_12', 'template_14'];
         var negativeSubscribeArray = ['template_15'];
+        var subscribeSignupArray = ['template_09', 'template_10', 'template_11']
 
         //get control value
         var controlValue = wp.customize.control('ccsm_settings[colorlib_coming_soon_template_selection]').setting._value;
@@ -124,6 +125,12 @@ jQuery(window).load(function () {
             subscribeActivation.activate();
             subscribeUrl.activate();
             signup.activate();
+        }
+
+        if (jQuery.inArray(controlValue, subscribeSignupArray)) {
+            signup.activate();
+        } else {
+            signup.deactivate();
         }
 
 

@@ -703,6 +703,9 @@ function ccsm_template_has_subscribe_form(){
 	$ccsm_options       = get_option( 'ccsm_settings' );
 	$template_has_subscribe_form = array(
 		'template_15',
+		'template_09',
+		'template_10',
+		'template_11'
 	);
 
 	if ( in_array( $ccsm_options['colorlib_coming_soon_template_selection'], $template_has_subscribe_form ) ) {
@@ -712,6 +715,20 @@ function ccsm_template_has_subscribe_form(){
 	}
 }
 
+function ccsm_template_has_subscribe_signup(){
+	$ccsm_options       = get_option( 'ccsm_settings' );
+	$template_has_subscribe_signup = array(
+		'template_09',
+		'template_10',
+		'template_11'
+	);
+
+	if ( in_array( $ccsm_options['colorlib_coming_soon_template_selection'], $template_has_subscribe_signup ) ) {
+		return true;
+	} else {
+		return false;
+	}
+}
 
 //Loading Plugin Theme Customizer Options
 require_once( 'includes/class-ccsm-customizer.php' );

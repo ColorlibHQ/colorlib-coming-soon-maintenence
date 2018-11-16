@@ -373,7 +373,7 @@ class CCSM_Customizer {
 				'section'         => 'colorlib_coming_soon_subscribe_form',
 				'type'            => 'text',
 				'priority'        => 20,
-				'active_callback' => 'ccsm_template_has_subscribe_form'
+				'active_callback' => 'ccsm_template_has_subscribe_signup'
 			)
 		);
 
