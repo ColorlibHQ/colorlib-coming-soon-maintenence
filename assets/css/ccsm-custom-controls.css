@@ -134,7 +134,7 @@ ul#sub-accordion-section-colorlib_coming_soon_section_general li {
 #sub-accordion-section-colorlib_coming_soon_section_templates > .customize-section-description-container {
     position: fixed;
     top: 12px;
-    width: 100%;
+    width: auto;
 }
 
 #sub-accordion-section-colorlib_coming_soon_section_templates {

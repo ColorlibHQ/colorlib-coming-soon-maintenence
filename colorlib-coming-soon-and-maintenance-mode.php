@@ -613,6 +613,7 @@ function ccsm_template_has_background_color() {
 		'template_03',
 		'template_09',
 		'template_10',
+		'template_11',
 		'template_12',
 		'template_13',
 		'template_14'
@@ -705,7 +706,8 @@ function ccsm_template_has_subscribe_form(){
 		'template_15',
 		'template_09',
 		'template_10',
-		'template_11'
+		'template_11',
+		'template_13'
 	);
 
 	if ( in_array( $ccsm_options['colorlib_coming_soon_template_selection'], $template_has_subscribe_form ) ) {
@@ -720,7 +722,8 @@ function ccsm_template_has_subscribe_signup(){
 	$template_has_subscribe_signup = array(
 		'template_09',
 		'template_10',
-		'template_11'
+		'template_11',
+		'template_13'
 	);
 
 	if ( in_array( $ccsm_options['colorlib_coming_soon_template_selection'], $template_has_subscribe_signup ) ) {

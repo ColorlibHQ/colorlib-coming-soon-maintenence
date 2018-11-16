@@ -47,7 +47,7 @@ $dates             = ccsm_counter_dates( $counter );
 			<?php } ?>
 			<?php if ( $ccsm_options['colorlib_coming_soon_subscribe'] != '1' ) { ?>
                 <div class="m-t-10 m-b-10">
-                    <a href="#" class="size2 s1-txt1 flex-c-m how-btn1 trans-04">
+                    <a href="#" class="size2 s1-txt1 flex-c-m how-btn1 trans-04 sign-up">
 						<?php echo esc_html__( 'Sign Up', 'colorlib-coming-soon' ); ?>
                     </a>
                 </div>

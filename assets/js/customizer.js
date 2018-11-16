@@ -40,13 +40,13 @@ jQuery(window).load(function () {
         var pageContentArray = ['template_02', 'template_04', 'template_05', 'template_06', 'template_08', 'template_10', 'template_12', 'template_14'];
         var pageFooterArray = ['template_01', 'template_03', 'template_04', 'template_06', 'template_07'];
         var negativeBackgroundImageArray = ['template_04', 'template_05'];
-        var backgroundColorArray = ['template_02', 'template_03', 'template_09', 'template_10', 'template_12', 'template_13', 'template_14'];
+        var backgroundColorArray = ['template_02', 'template_03', 'template_09', 'template_10','template_11', 'template_12', 'template_13', 'template_14'];
         var logoArray = ['template_01', 'template_03', 'template_06', 'template_07', 'template_09', 'template_10', 'template_11', 'template_12', 'template_13', 'template_14', 'template_15'];
         var socialsArray = ['template_01', 'template_06', 'template_07', 'template_09', 'template_10', 'template_11', 'template_12', 'template_13', 'template_14', 'template_15'];
         var negativeTextColorArray = ['template_04'];
         var negativeTimerArray = ['template_12', 'template_14'];
         var negativeSubscribeArray = ['template_15'];
-        var subscribeSignupArray = ['template_09', 'template_10', 'template_11']
+        var subscribeSignupArray = ['template_09', 'template_10', 'template_11','template_13']
 
         //get control value
         var controlValue = wp.customize.control('ccsm_settings[colorlib_coming_soon_template_selection]').setting._value;
