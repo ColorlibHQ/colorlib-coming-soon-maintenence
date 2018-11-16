@@ -138,6 +138,7 @@ $dates             = ccsm_counter_dates( $counter );
 			}
 			?>
         </div>
+        <p style="text-align:center">Coming Soon Template designed by <a href="https://colorlib.com/" target="_blank">Colorlib</a></p>
     </div>
 </div>
 

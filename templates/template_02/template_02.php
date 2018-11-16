@@ -57,6 +57,7 @@ $dates             = ccsm_counter_dates( $counter );
                 </button>
             </form>
 		<?php } ?>
+        <p style="text-align:center;color:#fff;position:absolute;bottom:0;">Coming Soon Template designed by <a href="https://colorlib.com/" target="_blank" style="color:#fff">Colorlib</a></p>
     </div>
 </div>
 <?php

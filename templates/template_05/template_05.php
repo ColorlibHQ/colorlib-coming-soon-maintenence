@@ -64,7 +64,7 @@ $dates             = ccsm_counter_dates( $counter );
         </div>
 
         <span class="s1-txt2 txt-center">
-			@ 2017 Coming Soon Template. Designed by Colorlib
+			 Coming Soon Template designed by <a href="https://colorlib.com/" target="_blank">Colorlib</a>
 		</span>
 
     </div>
