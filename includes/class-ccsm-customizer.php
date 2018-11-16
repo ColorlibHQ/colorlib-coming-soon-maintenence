@@ -84,7 +84,6 @@ class CCSM_Customizer {
 
 		$wp_customize->add_control( new CCSM_Control_Toggle ( $wp_customize, 'ccsm_settings[colorlib_coming_soon_activation]', array(
 				'label'       => esc_html__( 'Activate Colorlib Coming Soon Page?', 'colorlib-coming-soon' ),
-				'description' => esc_html__( '', 'colorlib-coming-soon' ),
 				'section'     => 'colorlib_coming_soon_section_general',
 				'priority'    => 10,
 			) )
@@ -100,7 +99,6 @@ class CCSM_Customizer {
 
 		$wp_customize->add_control( new CCSM_Control_Toggle ( $wp_customize, 'ccsm_settings[colorlib_coming_soon_timer_activation]', array(
 				'label'           => esc_html__( 'Activate Timer Countdown?', 'colorlib-coming-soon' ),
-				'description'     => esc_html__( '', 'colorlib-coming-soon' ),
 				'section'         => 'colorlib_coming_soon_section_general',
 				'priority'        => 10,
 				'active_callback' => 'ccsm_template_has_timer'
@@ -212,7 +210,6 @@ class CCSM_Customizer {
 
 		$wp_customize->add_control( new WP_Customize_Image_Control( $wp_customize, 'ccsm_settings[colorlib_coming_soon_background_image]', array(
 				'label'           => esc_html__( 'Background Image', 'colorlib-coming-soon' ),
-				'description'     => esc_html__( '', 'colorlib-coming-soon' ),
 				'section'         => 'colorlib_coming_soon_section_general',
 				'priority'        => 10,
 				'active_callback' => 'ccsm_template_has_background_image',
@@ -228,7 +225,6 @@ class CCSM_Customizer {
 
 		$wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'ccsm_settings[colorlib_coming_soon_background_color]', array(
 				'label'           => esc_html__( 'Background Color', 'colorlib-coming-soon' ),
-				'description'     => esc_html__( '', 'colorlib-coming-soon' ),
 				'section'         => 'colorlib_coming_soon_section_general',
 				'priority'        => 10,
 				'active_callback' => 'ccsm_template_has_background_color',
@@ -244,7 +240,6 @@ class CCSM_Customizer {
 
 		$wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'ccsm_settings[colorlib_coming_soon_text_color]', array(
 				'label'           => esc_html__( 'Text Color', 'colorlib-coming-soon' ),
-				'description'     => esc_html__( '', 'colorlib-coming-soon' ),
 				'section'         => 'colorlib_coming_soon_section_general',
 				'priority'        => 10,
 				'active_callback' => 'ccsm_template_has_text_color'
