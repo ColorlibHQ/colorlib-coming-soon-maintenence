@@ -43,6 +43,20 @@
 	?>
 
         <?php  echo $ccsm_options['colorlib_coming_soon_page_custom_css']; ?>
+        .colorlib-copyright {
+            text-align: center;
+            left: 0;
+            right: 0;
+            margin: 0 auto;
+        }
+
+        .colorlib-copyright span {
+            opacity: 0.8;
+        }
+
+        .colorlib-copyright a {
+            opacity: 1;
+        }
     </style>
 </head>
 <body>

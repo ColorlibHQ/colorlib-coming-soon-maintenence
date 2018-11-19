@@ -49,8 +49,8 @@ $dates             = ccsm_counter_dates( $counter );
 			<?php } ?>
         </div>
 
-        <span class="s1-txt3 txt-center">
-			 Coming Soon Template designed by <a href="https://colorlib.com/" target="_blank">Colorlib</a>
+        <span class="s1-txt3 txt-center colorlib-copyright">
+            <span>Coming Soon Template designed by</span> <a href="https://colorlib.com/" target="_blank">Colorlib</a>
 		</span>
 
     </div>

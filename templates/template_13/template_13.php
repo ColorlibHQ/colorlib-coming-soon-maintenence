@@ -141,7 +141,7 @@ $dates             = ccsm_counter_dates( $counter );
                 </form>
 			<?php } ?>
         </div>
-        <p style="text-align:center;color:#fff;">Coming Soon Template designed by <a href="https://colorlib.com/" target="_blank">Colorlib</a></p>
+        <p style="color:#fff;" class="colorlib-copyright"><span>Coming Soon Template designed by</span> <a href="https://colorlib.com/" target="_blank">Colorlib</a></p>
     </div>
 
 <?php

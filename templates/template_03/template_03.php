@@ -63,7 +63,7 @@ $dates             = ccsm_counter_dates( $counter );
 				<?php echo wp_kses_post( $ccsm_options['colorlib_coming_soon_page_footer'] ); ?>
             </p>
 		<?php } ?>
-        <p style="text-align:center;">Coming Soon Template designed by <a href="https://colorlib.com/" target="_blank">Colorlib</a></p>
+        <p class="colorlib-copyright"><span>Coming Soon Template designed by</span> <a href="https://colorlib.com/" target="_blank">Colorlib</a></p>
     </div>
 </div>
 
