@@ -6,28 +6,7 @@ Assigned to:  Bach Le
 Primary use:  
 -------------------------------------------------------------------*/
 
-/*//////////////////////////////////////////////////////////////////
-[ FONT ]*/
-
-@font-face {
-    font-family: Montserrat-Regular;
-    src: url('../../../assets/fonts/Montserrat/Montserrat-Regular.ttf');
-}
-
-@font-face {
-    font-family: Montserrat-Thin;
-    src: url('../../../assets/fonts/Montserrat/Montserrat-Thin.ttf');
-}
-
-@font-face {
-    font-family: Montserrat-Bold;
-    src: url('../../../assets/fonts/Montserrat/Montserrat-Bold.ttf');
-}
-
-@font-face {
-    font-family: Quantico-Regular;
-    src: url('../../../assets/fonts/Quantico/Quantico-Regular.ttf');
-}
+/*//////////////////////////////////////////////////////////////////*/
 
 /*//////////////////////////////////////////////////////////////////
 [ RS PLUGIN ]*/
@@ -79,7 +58,7 @@ Primary use:
 }
 
 .flip-clock-wrapper ul li a div div.inn {
-    font-family: Quantico-Regular;
+    font-family: 'Quantico', sans-serif;
     color: #fff;
     font-size: 60px;
     font-weight: unset;
@@ -125,7 +104,7 @@ Primary use:
 
 .flip-clock-divider::before {
     content: ":";
-    font-family: Quantico-Regular;
+    font-family: 'Quantico', sans-serif;
     color: #fff;
     font-size: 120px;
     display: -webkit-box;
@@ -144,7 +123,8 @@ Primary use:
 }
 
 .flip-clock-divider::after {
-    font-family: Montserrat-Bold;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
     color: #fff;
     font-size: 14px;
     text-transform: uppercase;
@@ -222,7 +202,8 @@ Primary use:
 /*//////////////////////////////////////////////////////////////////
 [ S-Text 0 - 15 ]*/
 .s1-txt1 {
-    font-family: Montserrat-Bold;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
     font-size: 14px;
     color: #fff;
     line-height: 1;
@@ -235,7 +216,8 @@ Primary use:
 /*//////////////////////////////////////////////////////////////////
 [ L-Text >= 26 ]*/
 .l1-txt1 {
-    font-family: Montserrat-Thin;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 100;
     font-size: 50px;
     color: #fff;
     line-height: 1.1;

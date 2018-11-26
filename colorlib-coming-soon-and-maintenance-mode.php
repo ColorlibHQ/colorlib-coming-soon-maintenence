@@ -96,7 +96,8 @@ function ccsm_style_enqueue( $template_name ) {
 		),
 		array(
 			'name'     => 'font-awesome',
-			'location' => 'fonts/font-awesome-4.7.0/css/font-awesome.min.css',
+			'location' => 'https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css',
+			'font'     => 'true'
 		),
 		array(
 			'name'     => 'select-2',
@@ -119,6 +120,16 @@ function ccsm_style_enqueue( $template_name ) {
 				'name'     => 'util',
 				'location' => 'css/util.css'
 			),
+			array(
+				'name'     => 'Poppins',
+				'location' => 'https://fonts.googleapis.com/css?family=Poppins:400,700',
+				'font'     => 'true'
+			),
+			array(
+				'name'     => 'Lato',
+				'location' => 'https://fonts.googleapis.com/css?family=Lato:400,700',
+				'font'     => 'true'
+			)
 		),
 		'template_02' => array(
 			array(
@@ -128,6 +139,16 @@ function ccsm_style_enqueue( $template_name ) {
 			array(
 				'name'     => 'util',
 				'location' => 'css/util.css',
+			),
+			array(
+				'name'     => 'Poppins',
+				'location' => 'https://fonts.googleapis.com/css?family=Poppins:400,700',
+				'font'     => 'true'
+			),
+			array(
+				'name'     => 'Lato',
+				'location' => 'https://fonts.googleapis.com/css?family=Lato:300,400,700',
+				'font'     => 'true'
 			)
 		),
 		'template_03' => array(
@@ -138,6 +159,11 @@ function ccsm_style_enqueue( $template_name ) {
 			array(
 				'name'     => 'util',
 				'location' => 'css/util.css',
+			),
+			array(
+				'name'     => 'Barlow',
+				'location' => 'https://fonts.googleapis.com/css?family=Barlow:400,500,700',
+				'font'     => 'true'
 			)
 		),
 		'template_04' => array(
@@ -148,6 +174,11 @@ function ccsm_style_enqueue( $template_name ) {
 			array(
 				'name'     => 'util',
 				'location' => 'css/util.css',
+			),
+			array(
+				'name'     => 'Montserrat',
+				'location' => 'https://fonts.googleapis.com/css?family=Montserrat:300,400,700,900',
+				'font'     => 'true'
 			)
 		),
 		'template_05' => array(
@@ -158,6 +189,11 @@ function ccsm_style_enqueue( $template_name ) {
 			array(
 				'name'     => 'util',
 				'location' => 'css/util.css',
+			),
+			array(
+				'name'     => 'Ubuntu',
+				'location' => 'https://fonts.googleapis.com/css?family=Ubuntu:400,700',
+				'font'     => 'true'
 			)
 		),
 		'template_06' => array(
@@ -166,9 +202,19 @@ function ccsm_style_enqueue( $template_name ) {
 				'location' => 'css/main.css',
 			),
 			array(
-				'name'     => 'util',
+				'name'     => 'Aldrich',
+				'location' => 'https://fonts.googleapis.com/css?family=Aldrich',
+				'font'     => 'true'
+			),
+			array(
+				'name'     => 'Util',
 				'location' => 'css/util.css',
-			)
+			),
+			array(
+				'name'     => 'Poppins',
+				'location' => 'https://fonts.googleapis.com/css?family=Poppins:400,700',
+				'font'     => 'true'
+			),
 		),
 		'template_07' => array(
 			array(
@@ -178,6 +224,16 @@ function ccsm_style_enqueue( $template_name ) {
 			array(
 				'name'     => 'util',
 				'location' => 'css/util.css',
+			),
+			array(
+				'name'     => 'Poppins',
+				'location' => 'https://fonts.googleapis.com/css?family=Poppins:400,700',
+				'font'     => 'true'
+			),
+			array(
+				'name'     => 'Lato',
+				'location' => 'https://fonts.googleapis.com/css?family=Lato',
+				'font'     => 'true'
 			)
 		),
 		'template_08' => array(
@@ -188,6 +244,16 @@ function ccsm_style_enqueue( $template_name ) {
 			array(
 				'name'     => 'util',
 				'location' => 'css/util.css',
+			),
+			array(
+				'name'     => 'Poppins',
+				'location' => 'https://fonts.googleapis.com/css?family=Poppins:300,400,700',
+				'font'     => 'true'
+			),
+			array(
+				'name'     => 'Playfair-Display',
+				'location' => 'https://fonts.googleapis.com/css?family=Playfair+Display:400,400i',
+				'font'     => 'true'
 			)
 		),
 		'template_09' => array(
@@ -198,6 +264,11 @@ function ccsm_style_enqueue( $template_name ) {
 			array(
 				'name'     => 'util',
 				'location' => 'css/util.css',
+			),
+			array(
+				'name'     => 'Poppins',
+				'location' => 'https://fonts.googleapis.com/css?family=Poppins:100,400,700,900',
+				'font'     => 'true'
 			)
 		),
 		'template_10' => array(
@@ -208,6 +279,11 @@ function ccsm_style_enqueue( $template_name ) {
 			array(
 				'name'     => 'util',
 				'location' => 'css/util.css',
+			),
+			array(
+				'name'     => 'Poppins-Playfair',
+				'location' => 'https://fonts.googleapis.com/css?family=Playfair+Display:400i,700,900i|Poppins:100,400,500,700,900',
+				'font'     => 'true'
 			)
 		),
 		'template_11' => array(
@@ -218,6 +294,11 @@ function ccsm_style_enqueue( $template_name ) {
 			array(
 				'name'     => 'util',
 				'location' => 'css/util.css',
+			),
+			array(
+				'name'     => 'Lato-Playrfair',
+				'location' => 'https://fonts.googleapis.com/css?family=Lato:100,400|Playfair+Display:400i',
+				'font'     => 'true'
 			)
 		),
 		'template_12' => array(
@@ -228,6 +309,11 @@ function ccsm_style_enqueue( $template_name ) {
 			array(
 				'name'     => 'util',
 				'location' => 'css/util.css',
+			),
+			array(
+				'name'     => 'Poppins-Playfair',
+				'location' => 'https://fonts.googleapis.com/css?family=Playfair+Display:900i|Poppins:400,500',
+				'font'     => 'true'
 			)
 		),
 		'template_13' => array(
@@ -238,6 +324,11 @@ function ccsm_style_enqueue( $template_name ) {
 			array(
 				'name'     => 'util',
 				'location' => 'css/util.css',
+			),
+			array(
+				'name'     => 'Montserrat',
+				'location' => 'https://fonts.googleapis.com/css?family=Montserrat:400,600',
+				'font'     => 'true'
 			)
 		),
 		'template_14' => array(
@@ -248,6 +339,11 @@ function ccsm_style_enqueue( $template_name ) {
 			array(
 				'name'     => 'util',
 				'location' => 'css/util.css',
+			),
+			array(
+				'name'     => 'Poppins-Playfair',
+				'location' => 'https://fonts.googleapis.com/css?family=Playfair+Display:400,900i|Poppins:400,500',
+				'font'     => 'true'
 			)
 		),
 		'template_15' => array(
@@ -258,6 +354,11 @@ function ccsm_style_enqueue( $template_name ) {
 			array(
 				'name'     => 'util',
 				'location' => 'css/util.css',
+			),
+			array(
+				'name'     => 'Montserrat-Quantico',
+				'location' => 'https://fonts.googleapis.com/css?family=Montserrat:100,400,700|Quantico',
+				'font'     => 'true'
 			)
 		),
 	);
@@ -416,8 +517,14 @@ function ccsm_style_enqueue( $template_name ) {
 
 	//print global styles
 	foreach ( $global_styles as $global_style ) {
-		wp_register_style( $global_style['name'], CCSM_URL . 'assets/' . $global_style['location'] );
-		wp_print_styles( $global_style['name'] );
+
+		if ( isset( $global_style['font'] ) && $global_style['font'] == 'true' ) {
+			wp_register_style( $global_style['name'], $global_style['location'] );
+			wp_print_styles( $global_style['name'] );
+		} else {
+			wp_register_style( $global_style['name'], CCSM_URL . 'templates/' . $template_name . '/' . $global_style['location'] );
+			wp_print_styles( $global_style['name'] );
+		}
 	}
 
 	//print wordpress default jquery
@@ -432,8 +539,14 @@ function ccsm_style_enqueue( $template_name ) {
 	//print styles depending on template
 	if ( $encript_styles != null && is_array( $encript_styles ) ) {
 		foreach ( $encript_styles as $encript_style ) {
-			wp_register_style( $template_name . '-' . $encript_style['name'], CCSM_URL . 'templates/' . $template_name . '/' . $encript_style['location'] );
-			wp_print_styles( $template_name . '-' . $encript_style['name'] );
+			if ( isset( $encript_style['font'] ) && $encript_style['font'] == 'true' ) {
+				wp_register_style( $encript_style['name'], $encript_style['location'] );
+				wp_print_styles( $encript_style['name'] );
+			} else {
+				wp_register_style( $template_name . '-' . $encript_style['name'], CCSM_URL . 'templates/' . $template_name . '/' . $encript_style['location'] );
+				wp_print_styles( $template_name . '-' . $encript_style['name'] );
+			}
+
 
 		}
 	}
@@ -700,8 +813,8 @@ function ccsm_template_has_timer() {
 
 }
 
-function ccsm_template_has_subscribe_form(){
-	$ccsm_options       = get_option( 'ccsm_settings' );
+function ccsm_template_has_subscribe_form() {
+	$ccsm_options                = get_option( 'ccsm_settings' );
 	$template_has_subscribe_form = array(
 		'template_15',
 		'template_09',
@@ -717,8 +830,8 @@ function ccsm_template_has_subscribe_form(){
 	}
 }
 
-function ccsm_template_has_subscribe_signup(){
-	$ccsm_options       = get_option( 'ccsm_settings' );
+function ccsm_template_has_subscribe_signup() {
+	$ccsm_options                  = get_option( 'ccsm_settings' );
 	$template_has_subscribe_signup = array(
 		'template_09',
 		'template_10',

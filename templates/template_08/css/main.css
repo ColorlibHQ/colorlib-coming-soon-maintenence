@@ -8,35 +8,7 @@ Primary use:
 
 
 
-/*//////////////////////////////////////////////////////////////////
-[ FONT ]*/
-
-
-@font-face {
-  font-family: Poppins-Regular;
-  src: url('../../../assets/fonts/Poppins/Poppins-Regular.ttf');
-}
-
-@font-face {
-  font-family: Poppins-Light;
-  src: url('../../../assets/fonts/Poppins/Poppins-Light.ttf');
-}
-
-@font-face {
-  font-family: Poppins-Bold;
-  src: url('../../../assets/fonts/Poppins/Poppins-Bold.ttf');
-}
-
-@font-face {
-  font-family: PlayfairDisplay-Regular;
-  src: url('../../../assets/fonts/PlayfairDisplay/PlayfairDisplay-Regular.ttf');
-}
-
-@font-face {
-  font-family: PlayfairDisplay-Italic;
-  src: url('../../../assets/fonts/PlayfairDisplay/PlayfairDisplay-Italic.ttf');
-}
-
+/*//////////////////////////////////////////////////////////////////*/
 
 
 /*//////////////////////////////////////////////////////////////////
@@ -142,7 +114,7 @@ input.input100 {
   right: 12px;
   pointer-events: none;
 
-  font-family: Poppins-Regular;
+  font-family: 'Poppins', sans-serif;
   color: #c80000;
   font-size: 14px;
   line-height: 1.4;
@@ -201,7 +173,7 @@ input.input100 {
 /*//////////////////////////////////////////////////////////////////
 [ S-Text 0 - 15 ]*/
 .s1-txt1 {
-  font-family: Poppins-Regular;
+  font-family: 'Poppins', sans-serif;
   font-size: 15px;
   color: #fff;
   line-height: 1.2;
@@ -213,14 +185,15 @@ input.input100 {
 
 /*---------------------------------------------*/
 .m2-txt1 {
-  font-family: PlayfairDisplay-Regular;
+  font-family: 'Playfair Display', serif;
   font-size: 25px;
   color: #fff;
   line-height: 1.2;
 }
 
 .m2-txt2 {
-  font-family: PlayfairDisplay-Italic;
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
   font-size: 18px;
   color: #fff;
   line-height: 1;
@@ -229,7 +202,8 @@ input.input100 {
 /*//////////////////////////////////////////////////////////////////
 [ L-Text >= 26 ]*/
 .l1-txt1 {
-  font-family: Poppins-Bold;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
   font-size: 48px;
   color: #fff;
   line-height: 1.2;
@@ -237,7 +211,8 @@ input.input100 {
 }
 
 .l1-txt2 {
-  font-family: Poppins-Light;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 300;
   font-size: 70px;
   color: #fff;
   line-height: 1;
