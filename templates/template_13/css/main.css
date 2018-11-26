@@ -6,13 +6,7 @@ Assigned to:  Bach Le
 Primary use:  
 -------------------------------------------------------------------*/
 
-/*//////////////////////////////////////////////////////////////////
-[ FONT ]*/
-
-@font-face {
-    font-family: Playlist Script;
-    src: url('../../../assets/fonts/Playlist/Playlist Script.otf');
-}
+/*//////////////////////////////////////////////////////////////////*/
 
 /*//////////////////////////////////////////////////////////////////
 [ RS PLUGIN ]*/
@@ -185,7 +179,7 @@ Primary use:
 }
 
 .l1-txt2 {
-    font-family: Playlist Script;
+    font-family: 'Dancing Script', cursive;
     font-size: 180px;
     color: #fff;
     line-height: 1.1;
