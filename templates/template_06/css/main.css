@@ -386,6 +386,7 @@ Primary use:
 .wsize1 {
     width: 390px;
     max-width: 100%;
+    margin-bottom:25px;
 }
 
 /*//////////////////////////////////////////////////////////////////
@@ -474,7 +475,10 @@ Primary use:
 }
 
 .wrappic1 img {
-    max-width: 100%;
+    max-width: 200px;
+    max-heght: 150px;
+    width: auto;
+    height: auto;
 }
 
 /*---------------------------------------------*/

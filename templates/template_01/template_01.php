@@ -5,6 +5,16 @@ $counterActivation = $ccsm_options['colorlib_coming_soon_timer_activation'];
 $template          = $ccsm_options['colorlib_coming_soon_template_selection'];
 $counter           = $ccsm_options['colorlib_coming_soon_timer_option'];
 $dates             = ccsm_counter_dates( $counter );
+
+if ( ccsm_template_has_text_color() ) {
+	?>
+    <style>
+        .cd100 span {
+            color: <?php echo $ccsm_options['colorlib_coming_soon_text_color']; ?> !important;
+        }
+    </style>
+	<?php
+}
 ?>
 <div class="size1 bg0 where1-parent">
     <div class="flex-c-m bg-img1 size2 where1 overlay1 where2 respon2 wrap-pic1"
@@ -112,7 +122,7 @@ $dates             = ccsm_counter_dates( $counter );
 
 			if ( $ccsm_options['colorlib_coming_soon_social_email'] ) {
 				?>
-                <a href="mailto:<?php echo esc_html(antispambot($ccsm_options['colorlib_coming_soon_social_email'])); ?>"
+                <a href="mailto:<?php echo esc_html( antispambot( $ccsm_options['colorlib_coming_soon_social_email'] ) ); ?>"
                    id="colorlib_coming_soon_social_email" class="flex-c-m size5 bg3 how1 trans-04 m-r-5">
                     <i class="fa fa-envelope"></i>
                 </a>
@@ -137,7 +147,8 @@ $dates             = ccsm_counter_dates( $counter );
 			}
 			?>
         </div>
-        <p class="colorlib-copyright"><span>Coming Soon Template designed by</span> <a href="https://colorlib.com/" target="_blank">Colorlib</a>
+        <p class="colorlib-copyright"><span>Coming Soon Template designed by</span> <a href="https://colorlib.com/"
+                                                                                       target="_blank">Colorlib</a>
         </p>
     </div>
 </div>

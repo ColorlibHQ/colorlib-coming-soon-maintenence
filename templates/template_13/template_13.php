@@ -4,8 +4,18 @@ $counterActivation = $ccsm_options['colorlib_coming_soon_timer_activation'];
 $template          = $ccsm_options['colorlib_coming_soon_template_selection'];
 $counter           = $ccsm_options['colorlib_coming_soon_timer_option'];
 $dates             = ccsm_counter_dates( $counter );
+if ( ccsm_template_has_text_color() ) {
+	?>
+    <style>
+        h1, h2, h3, p, span, li, a:not(.sign-up) {
+            color: <?php echo $ccsm_options['colorlib_coming_soon_text_color']; ?> !important;
+        }
+    </style>
+	<?php
+}
 ?>
-    <div class="simpleslide100" style="background-color:<?php echo $ccsm_options['colorlib_coming_soon_background_color']; ?>;">
+    <div class="simpleslide100"
+         style="background-color:<?php echo $ccsm_options['colorlib_coming_soon_background_color']; ?>;">
         <div class="simpleslide100-item bg-img1"
              style="background-image: url('<?php echo ( $ccsm_options['colorlib_coming_soon_background_image'] ) ? esc_url( $ccsm_options['colorlib_coming_soon_background_image'] ) : ''; ?>');"></div>
     </div>
@@ -141,7 +151,8 @@ $dates             = ccsm_counter_dates( $counter );
                 </form>
 			<?php } ?>
         </div>
-        <p style="color:#fff;" class="colorlib-copyright"><span>Coming Soon Template designed by</span> <a href="https://colorlib.com/" target="_blank">Colorlib</a></p>
+        <p style="color:#fff;" class="colorlib-copyright"><span>Coming Soon Template designed by</span> <a
+                    href="https://colorlib.com/" target="_blank">Colorlib</a></p>
     </div>
 
 <?php

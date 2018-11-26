@@ -105,7 +105,8 @@ function ccsm_style_enqueue( $template_name ) {
 		),
 		array(
 			'name'     => 'iconic',
-			'location' => 'fonts/iconic/css/material-design-iconic-font.css',
+			'location' => 'https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.css',
+			'font'     => 'true'
 		),
 	);
 
@@ -329,6 +330,11 @@ function ccsm_style_enqueue( $template_name ) {
 				'name'     => 'Montserrat',
 				'location' => 'https://fonts.googleapis.com/css?family=Montserrat:400,600',
 				'font'     => 'true'
+			),
+			array(
+				'name'     => 'Dancing-script',
+				'location' => 'https://fonts.googleapis.com/css?family=Dancing+Script',
+				'font'     => 'true'
 			)
 		),
 		'template_14' => array(
@@ -522,7 +528,7 @@ function ccsm_style_enqueue( $template_name ) {
 			wp_register_style( $global_style['name'], $global_style['location'] );
 			wp_print_styles( $global_style['name'] );
 		} else {
-			wp_register_style( $global_style['name'], CCSM_URL . 'templates/' . $template_name . '/' . $global_style['location'] );
+			wp_register_style( $global_style['name'], CCSM_URL . 'assets/' . $global_style['location'] );
 			wp_print_styles( $global_style['name'] );
 		}
 	}
@@ -644,27 +650,28 @@ register_activation_hook( __FILE__, 'ccsm_check_on_activation' );
 function ccsm_check_on_activation() {
 	if ( get_option( 'ccsm_settings' ) == null ) {
 		$defaultSets = array(
-			'colorlib_coming_soon_activation'          => '1',
-			'colorlib_coming_soon_timer_activation'    => '1',
-			'colorlib_coming_soon_subscribe'           => '',
-			'colorlib_coming_soon_template_selection'  => 'template_01',
-			'colorlib_coming_soon_timer_option'        => date( 'Y-m-d H:i:s', strtotime( '+1 month' ) ),
-			'colorlib_coming_soon_plugin_logo'         => CCSM_URL . 'assets/images/logo.jpg',
-			'colorlib_coming_soon_page_heading'        => 'Something <strong>really good</strong> is coming <strong>very soon</strong>',
-			'colorlib_coming_soon_page_content'        => 'If you have something new you’re looking to launch, you’re going to want to start building a community of people interested in what you’re launching.',
-			'colorlib_coming_soon_page_footer'         => 'And don\'t worry, we hate spam too! You can unsubscribe at any time.',
-			'colorlib_coming_soon_social_facebook'     => 'https://facebook.com/',
-			'colorlib_coming_soon_social_twitter'      => 'https://twitter.com/',
-			'colorlib_coming_soon_social_youtube'      => 'https://youtube.com/',
-			'colorlib_coming_soon_social_email'        => 'you@domain.com',
-			'colorlib_coming_soon_social_pinterest'    => 'https://pinterest.com/',
-			'colorlib_coming_soon_social_instagram'    => 'https://instagram.com/',
-			'colorlib_coming_soon_subscribe_form_url ' => ' ',
-			'colorlib_coming_soon_page_custom_css'     => '',
-			'colorlib_coming_soon_background_image'    => CCSM_URL . 'assets/images/logo.jpg',
-			'colorlib_coming_soon_background_color'    => '',
-			'colorlib_coming_soon_text_color'          => '',
-			'colorlib_coming_soon_subscribe_form_url'  => '',
+			'colorlib_coming_soon_activation'            => '1',
+			'colorlib_coming_soon_timer_activation'      => '1',
+			'colorlib_coming_soon_subscribe'             => '',
+			'colorlib_coming_soon_template_selection'    => 'template_01',
+			'colorlib_coming_soon_timer_option'          => date( 'Y-m-d H:i:s', strtotime( '+1 month' ) ),
+			'colorlib_coming_soon_plugin_logo'           => CCSM_URL . 'assets/images/logo.jpg',
+			'colorlib_coming_soon_page_heading'          => 'Something <strong>really good</strong> is coming <strong>very soon</strong>',
+			'colorlib_coming_soon_page_content'          => 'If you have something new you’re looking to launch, you’re going to want to start building a community of people interested in what you’re launching.',
+			'colorlib_coming_soon_page_footer'           => 'And don\'t worry, we hate spam too! You can unsubscribe at any time.',
+			'colorlib_coming_soon_social_facebook'       => 'https://facebook.com/',
+			'colorlib_coming_soon_social_twitter'        => 'https://twitter.com/',
+			'colorlib_coming_soon_social_youtube'        => 'https://youtube.com/',
+			'colorlib_coming_soon_social_email'          => 'you@domain.com',
+			'colorlib_coming_soon_social_pinterest'      => 'https://pinterest.com/',
+			'colorlib_coming_soon_social_instagram'      => 'https://instagram.com/',
+			'colorlib_coming_soon_subscribe_form_url '   => ' ',
+			'colorlib_coming_soon_page_custom_css'       => '',
+			'colorlib_coming_soon_background_image'      => CCSM_URL . 'assets/images/logo.jpg',
+			'colorlib_coming_soon_background_color'      => '',
+			'colorlib_coming_soon_text_color'            => '',
+			'colorlib_coming_soon_subscribe_form_url'    => '',
+			'colorlib_coming_soon_subscribe_form_other ' => ''
 		);
 		update_option( 'ccsm_settings', $defaultSets );
 	}
@@ -742,7 +749,14 @@ function ccsm_template_has_text_color() {
 	$ccsm_options            = get_option( 'ccsm_settings' );
 	$template_has_text_color = array(
 		'template_04',
-		'template_05'
+		'template_05',
+		'template_03',
+		'template_06',
+		'template_07',
+		'template_08',
+		'template_12',
+		'template_14',
+		'template_15'
 	);
 	if ( in_array( $ccsm_options['colorlib_coming_soon_template_selection'], $template_has_text_color ) ) {
 		return false;

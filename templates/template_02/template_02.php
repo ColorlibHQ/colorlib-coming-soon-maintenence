@@ -4,6 +4,16 @@ $counterActivation = $ccsm_options['colorlib_coming_soon_timer_activation'];
 $template          = $ccsm_options['colorlib_coming_soon_template_selection'];
 $counter           = $ccsm_options['colorlib_coming_soon_timer_option'];
 $dates             = ccsm_counter_dates( $counter );
+
+if ( ccsm_template_has_text_color() ) {
+	?>
+    <style>
+        h1,h2,h3,p,span,li {
+            color: <?php echo $ccsm_options['colorlib_coming_soon_text_color']; ?> !important;
+        }
+    </style>
+	<?php
+}
 ?>
 <div class="simpleslide100">
     <div class="simpleslide100-item bg-img1"
@@ -57,7 +67,8 @@ $dates             = ccsm_counter_dates( $counter );
                 </button>
             </form>
 		<?php } ?>
-        <p style="color:#fff;position:absolute;bottom:0;" class="colorlib-copyright"><span>Coming Soon Template designed by</span> <a href="https://colorlib.com/" target="_blank" style="color:#fff">Colorlib</a></p>
+        <p style="color:#fff;position:absolute;bottom:0;" class="colorlib-copyright"><span>Coming Soon Template designed by</span>
+            <a href="https://colorlib.com/" target="_blank" style="color:#fff">Colorlib</a></p>
     </div>
 </div>
 <?php
