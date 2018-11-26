@@ -46,7 +46,7 @@ function ccsm_add_settings_link( $actions, $plugin_file ) {
 	if ( $plugin == $plugin_file ) {
 
 		$settings  = array( 'settings' => '<a href="options-general.php?page=ccsm_settings">' . __( 'Settings', 'colorlib-coming-soon' ) . '</a>' );
-		$site_link = array( 'support' => '<a href="http://colorlib.com" target="_blank">Support</a>' );
+		$site_link = array( 'support' => '<a href="http://colorlib.com/wp/forums" target="_blank">Support</a>' );
 
 		$actions = array_merge( $settings, $actions );
 		$actions = array_merge( $site_link, $actions );
