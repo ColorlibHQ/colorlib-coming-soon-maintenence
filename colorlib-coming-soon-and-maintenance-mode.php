@@ -867,7 +867,7 @@ function ccsm_check_for_review() {
 	require_once CCSM_PATH . 'includes/class-ccsm-review.php';
 
 	CCSM_Review::get_instance( array(
-		'slug'     => 'colorlib-coming-soon',
+		'slug' => 'colorlib-coming-soon',
 	) );
 }
 
