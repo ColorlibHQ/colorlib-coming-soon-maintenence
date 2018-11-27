@@ -3,7 +3,7 @@
 class CCSM_Review {
 
 	private static $instance;
-	private $when = array( 5, 10, 15 );
+	private $when = array( 5, 15, 30 );
 	private $value;
 	private $messages;
 	private $link = 'https://wordpress.org/support/plugin/%s/reviews/#new-post';
@@ -34,7 +34,7 @@ class CCSM_Review {
 	}
 
 	public static function get_instance( $args ) {
-		if ( NULL === static::$instance ) {
+		if ( null === static::$instance ) {
 			static::$instance = new static( $args );
 		}
 
@@ -59,8 +59,8 @@ class CCSM_Review {
 	private function check() {
 
 		$options = get_option( 'ccsm_settings' );
-		$option = isset( $options['givemereview'] ) ? $options['givemereview'] : '';
-
+		$option  = isset( $options['givemereview'] ) ? $options['givemereview'] : '';
+		$currDate = date('Y-m-d');
 		if ( 'already-rated' == $option ) {
 			return false;
 		}
@@ -70,28 +70,26 @@ class CCSM_Review {
 		}
 
 		if ( is_array( $this->when ) ) {
-			return in_array( $this->value, $this->when );
-		}
+			foreach($this->when as $et){
+			    if( date('Y-m-d',strtotime($currDate.' +'.$et.' days')) == $this->value){
+			        return true;
+                }
 
-		return ( $this->when == $this->value );
+			}
+		}
 
 	}
 
 	private function value() {
 
-		$value = get_transient( 'ccsm-review' );
+		$value = get_transient( 'ccsm_review' );
 
 		if ( $value ) {
 			return $value;
 		}
 
-		global $wpdb;
-
-		//$galleries = $wpdb->get_var( 'SELECT count(Id) FROM ' . $wpdb->ModulaGalleries );
-
-		set_transient( 'ccsm-review',1, 60 * 5 );
-
-		//return $galleries;
+		$date = date( 'Y-m-d' );
+		set_transient( 'ccsm_review', $date, 24 * 30 * HOUR_IN_SECONDS );
 
 	}
 
@@ -100,14 +98,17 @@ class CCSM_Review {
 		$url = sprintf( $this->link, $this->slug );
 
 		?>
-		<div id="<?php echo $this->slug ?>-epsilon-review-notice" class="notice notice-success is-dismissible">
-			<p><?php echo sprintf( wp_kses_post( $this->messages['notice'] ), $this->value ) ; ?></p>
-			<p class="actions">
-				<a id="epsilon-rate" href="<?php echo esc_url( $url ) ?>" class="button button-primary epsilon-review-button"><?php echo esc_html( $this->messages['rate'] ); ?></a>
-				<a id="epsilon-rated" href="#" class="button button-secondary epsilon-review-button"><?php echo esc_html( $this->messages['rated'] ); ?></a>
-				<a id="epsilon-no-rate" href="#" class="button button-secondary epsilon-review-button"><?php echo esc_html( $this->messages['no_rate'] ); ?></a>
-			</p>
-		</div>
+        <div id="<?php echo $this->slug ?>-epsilon-review-notice" class="notice notice-success is-dismissible">
+            <p><?php echo sprintf( wp_kses_post( $this->messages['notice'] ), $this->value ); ?></p>
+            <p class="actions">
+                <a id="epsilon-rate" href="<?php echo esc_url( $url ) ?>"
+                   class="button button-primary epsilon-review-button"><?php echo esc_html( $this->messages['rate'] ); ?></a>
+                <a id="epsilon-rated" href="#"
+                   class="button button-secondary epsilon-review-button"><?php echo esc_html( $this->messages['rated'] ); ?></a>
+                <a id="epsilon-no-rate" href="#"
+                   class="button button-secondary epsilon-review-button"><?php echo esc_html( $this->messages['no_rate'] ); ?></a>
+            </p>
+        </div>
 		<?php
 	}
 
@@ -115,15 +116,15 @@ class CCSM_Review {
 
 		check_ajax_referer( 'epsilon-review', 'security' );
 
-		$options = get_option( 'ccsm-checks', array() );
+		$options = get_option( 'ccsm_settings', array() );
 
 		if ( isset( $_POST['epsilon-review'] ) ) {
 			$options['givemereview'] = 'already-rated';
-		}else{
+		} else {
 			$options['givemereview'] = $this->value;
 		}
 
-		update_option( 'ccsm-checks', $options );
+		update_option( 'ccsm_settings', $options );
 
 		wp_die( 'ok' );
 
@@ -139,10 +140,10 @@ class CCSM_Review {
 
 		?>
 
-		<script type="text/javascript">
-            jQuery( document ).ready( function( $ ){
+        <script type="text/javascript">
+            jQuery(document).ready(function ($) {
 
-                $( '.epsilon-review-button' ).click( function( evt ){
+                $('.epsilon-review-button').click(function (evt) {
                     var href = $(this).attr('href'),
                         id = $(this).attr('id');
 
@@ -153,25 +154,25 @@ class CCSM_Review {
                         security: '<?php echo $ajax_nonce; ?>',
                     };
 
-                    if ( 'epsilon-rated' === id ) {
+                    if ('epsilon-rated' === id) {
                         data['epsilon-review'] = 1;
                     }
 
-                    $.post( '<?php echo admin_url( 'admin-ajax.php' ) ?>', data, function( response ) {
-                        $( '#<?php echo $this->slug ?>-epsilon-review-notice' ).slideUp( 'fast', function() {
-                            $( this ).remove();
-                        } );
+                    $.post('<?php echo admin_url( 'admin-ajax.php' ) ?>', data, function (response) {
+                        $('#<?php echo $this->slug ?>-epsilon-review-notice').slideUp('fast', function () {
+                            $(this).remove();
+                        });
 
-                        if ( 'epsilon-rate' === id ) {
+                        if ('epsilon-rate' === id) {
                             window.location.href = href;
                         }
 
                     });
 
-                } );
+                });
 
             });
-		</script>
+        </script>
 
 		<?php
 	}
