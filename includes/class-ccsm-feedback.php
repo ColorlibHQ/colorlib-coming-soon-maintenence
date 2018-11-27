@@ -240,7 +240,7 @@ class CCSM_Feedback {
 		check_ajax_referer( 'epsilon_deactivate_plugin', 'security' );
 
 		if ( isset( $_POST['reason'] ) && isset( $_POST['details'] ) && isset( $_POST['tracking'] ) ) {
-			require_once 'includes/class-epsilon-plugin-request.php';
+			require_once 'class-epsilon-plugin-request.php';
 			$args    = array(
 				'reason'   => $_POST['reason'],
 				'details'  => $_POST['details'],
