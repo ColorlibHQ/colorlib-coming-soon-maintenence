@@ -860,5 +860,26 @@ function ccsm_template_has_subscribe_signup() {
 	}
 }
 
+function ccsm_check_for_review() {
+	if ( ! is_admin() ) {
+		return;
+	}
+	require_once CCSM_PATH . 'includes/class-ccsm-review.php';
+
+	CCSM_Review::get_instance( array(
+		'slug'     => 'colorlib-coming-soon',
+		'messages' => array(
+			'notice'  => __( "Hey, I noticed you have created %s galleries - that's awesome! Could you please do me a BIG favor and give it a 5-star rating on WordPress? Just to help us spread the word and boost our motivation.<br><br><strong>~ Cristian Raiber</strong>,<br><strong>CEO Modula</strong>.", 'colorlib-coming-soon' ),
+			'rate'    => __( 'Ok, you deserve it', 'colorlib-coming-soon' ),
+			'rated'   => __( 'I already did', 'colorlib-coming-soon' ),
+			'no_rate' => __( 'No, not good enough', 'colorlib-coming-soon' ),
+		),
+	) );
+}
+
+//ccsm_check_for_review();
+
 //Loading Plugin Theme Customizer Options
 require_once( 'includes/class-ccsm-customizer.php' );
+require_once( 'includes/class-ccsm-feedback.php' );
+new CCSM_Feedback( __FILE__ );
