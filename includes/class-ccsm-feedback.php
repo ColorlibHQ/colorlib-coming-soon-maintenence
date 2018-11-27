@@ -58,12 +58,12 @@ class CCSM_Feedback {
 				}
 			}
 			$html .= '</p><label id="epsilon-deactivate-details-label" for="epsilon-deactivate-reasons"><strong>' . esc_html( $form['details'] ) . '</strong></label><textarea name="epsilon-deactivate-details" id="epsilon-deactivate-details" rows="2" style="width:100%"></textarea>';
-			$html .= '<input type="checkbox" name="epsilon-deactivate-tracking" checked="" id="allow-tracking" value="yes"> <label for="allow-tracking">' . esc_html__( 'Allow us to get more information in order to improve our plugin', 'modula-gallery' ) . '</label><br>';
+			$html .= '<input type="checkbox" name="epsilon-deactivate-tracking" checked="" id="allow-tracking" value="yes"> <label for="allow-tracking">' . esc_html__( 'Allow us to get more information in order to improve our plugin', 'colorlib-coming-soon' ) . '</label><br>';
 			$html .= '</div><!-- .epsilon-deactivate-options -->';
 		}
 		$html .= '</div><!-- .epsilon-deactivate-form-body -->';
-		$html .= '<p class="deactivating-spinner"><span class="spinner"></span> ' . __( 'Submitting form', 'modula-gallery' ) . '</p>';
-		$html .= '<div class="epsilon-deactivate-form-footer"><p><a id="epsilon-deactivate-plugin" href="#">' . __( 'Just Deactivate', 'modula-gallery' ) . '</a><a id="epsilon-deactivate-submit-form" class="button button-primary" href="#">' . __( 'Submit and Deactivate', 'modula-gallery' ) . '</a></p></div>'
+		$html .= '<p class="deactivating-spinner"><span class="spinner"></span> ' . __( 'Submitting form', 'colorlib-coming-soon' ) . '</p>';
+		$html .= '<div class="epsilon-deactivate-form-footer"><p><a id="epsilon-deactivate-plugin" href="#">' . __( 'Just Deactivate', 'colorlib-coming-soon' ) . '</a><a id="epsilon-deactivate-submit-form" class="button button-primary" href="#">' . __( 'Submit and Deactivate', 'colorlib-coming-soon' ) . '</a></p></div>'
 		?>
         <div class="epsilon-deactivate-form-bg"></div>
         <style type="text/css">
@@ -221,7 +221,7 @@ class CCSM_Feedback {
 	 */
 	public function get_form_info() {
 		$form            = array();
-		$form['heading'] = __( 'Sorry to see you go', 'modula-gallery' );
+		$form['heading'] = __( 'Sorry to see you go', 'colorlib-coming-soon' );
 		$form['body']    = __( 'Before you deactivate the plugin, would you quickly give us your reason for doing so?', 'colorlib-coming-soon' );
 		$form['options'] = array(
 			'setup'           => __( 'Set up is too difficult', 'colorlib-coming-soon' ),
