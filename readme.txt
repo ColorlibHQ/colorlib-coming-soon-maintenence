@@ -1,11 +1,11 @@
 === Colorlib Coming Soon & Maintenance Mode ===
   Plugin URI: https://colorlib.com/
   Description: Colorlib Coming soon is a responsive coming soon WordPress plugin that comes with well designed coming soon page and lots of useful features including customization via Live Customizer, MailChimp integration, custom forms, and more.
-  Tags: coming soon, maintenance mode, under construction, landing page, launch, launch page, maintenance, notify, offline, offline mode, subscribe, under construction, ultimate coming soon, wordpress landing page, wordpress coming soon, best coming soon, mailchimp, getresponse, admin, wordpress under construction page, ultimate landing page, live customizer coming soon
-  Requires at least: 4.0
-  Tested up to: 4.5
+  Tags: coming soon, maintenance mode, under construction, landing page, launch page, maintenance, nunder construction, ultimate coming soon, wordpress coming soon, best coming soon, wordpress under construction page, ultimate landing page
+  Requires at least: 4.8
+  Tested up to: 5.0
   Contributors: Colorlib
-  Stable tag: 1.3.0
+  Stable tag: trunk
   License: GPLv2 or later  
   License URI: http://www.gnu.org/licenses/gpl-2.0.html
  
@@ -25,13 +25,9 @@ Easily work on your site while the plugin takes care of collecting your vistiors
 <li>and more</li>
 </ul>
 
-Docs: https://colorlib.com/
+Docs: https://colorlib.com/wp/forums/
 
-This plugin is currenlty maintained and supported by Colorlib and works with all the popular <a href="http://www.designbombs.com/best-free-wordpress-themes/" rel="friend">free themes</a>. If you are looking to switch your current hosting provider, here's a quick guide on <a href="http://www.designbombs.com/best-wordpress-hosting/" rel="friend">Best WordPress Hosting</a> (based on real research).
-
-<h4>Credits</h4>
-
-Design by <a href="https://jason.sc/">Jason Schuller</a> and Code by <a href="http://www.wpkube.com" rel="friend">WPKube</a>.
+This plugin is currenlty maintained and supported by Colorlib and works with all the popular <a href="http://www.designbombs.com/best-free-wordpress-themes/">free themes</a>. If you are looking to switch your current hosting provider, here's a quick guide on <a href="http://www.designbombs.com/best-wordpress-hosting/">Best WordPress Hosting</a> (based on real research).
 
 == Installation ==
 
