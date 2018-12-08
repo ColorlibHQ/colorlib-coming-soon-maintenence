@@ -5,7 +5,7 @@
   Requires at least: 4.8
   Tested up to: 5.0
   Contributors: Colorlib
-  Stable tag: trunk
+  Stable tag: 1.0.1
   License: GPLv2 or later  
   License URI: http://www.gnu.org/licenses/gpl-2.0.html
  
@@ -46,3 +46,9 @@ This plugin is currenlty maintained and supported by Colorlib and works with all
 1. Screenshots are located under /assets/screenshots/
 
 == Changelog ==
+
+= 1.0.1 =
+* Remove uninstall feedback
+
+= 1.0.0 =
+* Initial release
