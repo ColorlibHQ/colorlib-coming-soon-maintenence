@@ -5,7 +5,7 @@
   Requires at least: 4.8
   Tested up to: 5.0
   Contributors: silkalns
-  Stable tag: 1.0.1
+  Stable tag: 1.0.2
   License: GPLv2 or later  
   License URI: http://www.gnu.org/licenses/gpl-2.0.html
  
@@ -69,6 +69,9 @@ If you enjoy using Colorlib Coming Soon for WordPress please leave a positive fe
 1. Screenshots are located under /assets/screenshots/
 
 == Changelog ==
+
+= 1.0.2 =
+* Update change template UI
 
 = 1.0.1 =
 * Remove uninstall feedback
