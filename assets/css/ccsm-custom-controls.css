@@ -157,10 +157,6 @@ input[type=checkbox]:checked + .onoffswitch-label:before {
 }
 
 /* CodeMirror */
-#sub-accordion-section-colorlib_404_customizer_custom_css {
-    padding: 0px !important;
-}
-
 #customize-control-ccsm_settings-colorlib_coming_soon_page_custom_css .customize-section-description-container,
 #customize-control-ccsm_settings-colorlib_coming_soon_page_custom_css label {
     padding: 12px;
