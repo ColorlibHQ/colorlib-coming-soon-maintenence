@@ -16,14 +16,14 @@ class CCSM_Customizer {
 
 		$wp_customize->add_panel( 'colorlib_coming_soon_general_panel', array(
 				'priority' => 1,
-				'title'    => esc_html__( 'Colorlib Coming Soon Settings', 'colorlib-coming-soon' ),
+				'title'    => esc_html__( 'Colorlib Coming Soon Settings', 'colorlib-coming-soon-maintenance' ),
 			)
 		);
 
 
 		/* Section - Coming Soon - Templates */
 		$wp_customize->add_section( 'colorlib_coming_soon_section_templates', array(
-				'title'    => esc_html__( 'Templates', 'colorlib-coming-soon' ),
+				'title'    => esc_html__( 'Templates', 'colorlib-coming-soon-maintenance' ),
 				'panel'    => 'colorlib_coming_soon_general_panel',
 				'priority' => 5,
 				'type'     => 'outer'
@@ -32,7 +32,7 @@ class CCSM_Customizer {
 
 		/* Section - Coming Soon - General */
 		$wp_customize->add_section( 'colorlib_coming_soon_section_general', array(
-				'title'    => esc_html__( 'General', 'colorlib-coming-soon' ),
+				'title'    => esc_html__( 'General', 'colorlib-coming-soon-maintenance' ),
 				'panel'    => 'colorlib_coming_soon_general_panel',
 				'priority' => 10,
 			)
@@ -41,7 +41,7 @@ class CCSM_Customizer {
 
 		/* Section - Coming Soon - Subscribe Form */
 		$wp_customize->add_section( 'colorlib_coming_soon_subscribe_form', array(
-				'title'    => esc_html__( 'Subscribe Form', 'colorlib-coming-soon' ),
+				'title'    => esc_html__( 'Subscribe Form', 'colorlib-coming-soon-maintenance' ),
 				'panel'    => 'colorlib_coming_soon_general_panel',
 				'priority' => 30,
 			)
@@ -49,7 +49,7 @@ class CCSM_Customizer {
 
 		/* Section - Coming Soon - Social Links */
 		$wp_customize->add_section( 'colorlib_coming_soon_section_social_settings', array(
-				'title'           => esc_html__( 'Social Links', 'colorlib-coming-soon' ),
+				'title'           => esc_html__( 'Social Links', 'colorlib-coming-soon-maintenance' ),
 				'panel'           => 'colorlib_coming_soon_general_panel',
 				'priority'        => 35,
 				'active_callback' => 'ccsm_template_has_social'
@@ -59,7 +59,7 @@ class CCSM_Customizer {
 
 		/* Section - Coming Soon - Custom CSS */
 		$wp_customize->add_section( 'colorlib_coming_soon_custom_css_settings', array(
-				'title'     => esc_html__( 'Custom CSS', 'colorlib-coming-soon' ),
+				'title'     => esc_html__( 'Custom CSS', 'colorlib-coming-soon-maintenance' ),
 				'panel'     => 'colorlib_coming_soon_general_panel',
 				'priority'  => 40,
 				'code_type' => 'text/css',
@@ -83,7 +83,7 @@ class CCSM_Customizer {
 		) );
 
 		$wp_customize->add_control( new CCSM_Control_Toggle ( $wp_customize, 'ccsm_settings[colorlib_coming_soon_activation]', array(
-				'label'       => esc_html__( 'Activate Colorlib Coming Soon Page?', 'colorlib-coming-soon' ),
+				'label'       => esc_html__( 'Activate Colorlib Coming Soon Page?', 'colorlib-coming-soon-maintenance' ),
 				'section'     => 'colorlib_coming_soon_section_general',
 				'priority'    => 10,
 			) )
@@ -98,7 +98,7 @@ class CCSM_Customizer {
 		) );
 
 		$wp_customize->add_control( new CCSM_Control_Toggle ( $wp_customize, 'ccsm_settings[colorlib_coming_soon_timer_activation]', array(
-				'label'           => esc_html__( 'Activate Timer Countdown?', 'colorlib-coming-soon' ),
+				'label'           => esc_html__( 'Activate Timer Countdown?', 'colorlib-coming-soon-maintenance' ),
 				'section'         => 'colorlib_coming_soon_section_general',
 				'priority'        => 10,
 				'active_callback' => 'ccsm_template_has_timer'
@@ -113,7 +113,7 @@ class CCSM_Customizer {
 		) );
 
 		$wp_customize->add_control( new WP_Customize_Code_Editor_Control ( $wp_customize, 'ccsm_settings[colorlib_coming_soon_page_custom_css]', array(
-				'label'       => esc_html__( 'Custom CSS on Coming Soon Page', 'colorlib-coming-soon' ),
+				'label'       => esc_html__( 'Custom CSS on Coming Soon Page', 'colorlib-coming-soon-maintenance' ),
 				'section'     => 'colorlib_coming_soon_custom_css_settings',
 				'code_type'   => 'text/css',
 				'priority'    => 20,
@@ -132,25 +132,25 @@ class CCSM_Customizer {
 		) );
 
 		$wp_customize->add_control( new CCSM_Template_Selection( $wp_customize, 'ccsm_settings[colorlib_coming_soon_template_selection]', array(
-				'label'    => esc_html__( 'Select Template', 'colorlib-coming-soon' ),
+				'label'    => esc_html__( 'Select Template', 'colorlib-coming-soon-maintenance' ),
 				'section'  => 'colorlib_coming_soon_section_templates',
 				'priority' => 30,
 				'choices'  => array(
-					'template_01' => esc_html__( 'Template 1', 'colorlib-coming-soon' ),
-					'template_02' => esc_html__( 'Template 2', 'colorlib-coming-soon' ),
-					'template_03' => esc_html__( 'Template 3', 'colorlib-coming-soon' ),
-					'template_04' => esc_html__( 'Template 4', 'colorlib-coming-soon' ),
-					'template_05' => esc_html__( 'Template 5', 'colorlib-coming-soon' ),
-					'template_06' => esc_html__( 'Template 6', 'colorlib-coming-soon' ),
-					'template_07' => esc_html__( 'Template 7', 'colorlib-coming-soon' ),
-					'template_08' => esc_html__( 'Template 8', 'colorlib-coming-soon' ),
-					'template_09' => esc_html__( 'Template 9', 'colorlib-coming-soon' ),
-					'template_10' => esc_html__( 'Template 10', 'colorlib-coming-soon' ),
-					'template_11' => esc_html__( 'Template 11', 'colorlib-coming-soon' ),
-					'template_12' => esc_html__( 'Template 12', 'colorlib-coming-soon' ),
-					'template_13' => esc_html__( 'Template 13', 'colorlib-coming-soon' ),
-					'template_14' => esc_html__( 'Template 14', 'colorlib-coming-soon' ),
-					'template_15' => esc_html__( 'Template 15', 'colorlib-coming-soon' ),
+					'template_01' => esc_html__( 'Template 1', 'colorlib-coming-soon-maintenance' ),
+					'template_02' => esc_html__( 'Template 2', 'colorlib-coming-soon-maintenance' ),
+					'template_03' => esc_html__( 'Template 3', 'colorlib-coming-soon-maintenance' ),
+					'template_04' => esc_html__( 'Template 4', 'colorlib-coming-soon-maintenance' ),
+					'template_05' => esc_html__( 'Template 5', 'colorlib-coming-soon-maintenance' ),
+					'template_06' => esc_html__( 'Template 6', 'colorlib-coming-soon-maintenance' ),
+					'template_07' => esc_html__( 'Template 7', 'colorlib-coming-soon-maintenance' ),
+					'template_08' => esc_html__( 'Template 8', 'colorlib-coming-soon-maintenance' ),
+					'template_09' => esc_html__( 'Template 9', 'colorlib-coming-soon-maintenance' ),
+					'template_10' => esc_html__( 'Template 10', 'colorlib-coming-soon-maintenance' ),
+					'template_11' => esc_html__( 'Template 11', 'colorlib-coming-soon-maintenance' ),
+					'template_12' => esc_html__( 'Template 12', 'colorlib-coming-soon-maintenance' ),
+					'template_13' => esc_html__( 'Template 13', 'colorlib-coming-soon-maintenance' ),
+					'template_14' => esc_html__( 'Template 14', 'colorlib-coming-soon-maintenance' ),
+					'template_15' => esc_html__( 'Template 15', 'colorlib-coming-soon-maintenance' ),
 				),
 			)
 		) );
@@ -164,7 +164,7 @@ class CCSM_Customizer {
 		) );
 
 		$wp_customize->add_control( new WP_Customize_Date_Time_Control( $wp_customize, 'ccsm_settings[colorlib_coming_soon_timer_option]', array(
-			'label'           => esc_html__( 'Time to opening', 'colorlib-coming-soon' ),
+			'label'           => esc_html__( 'Time to opening', 'colorlib-coming-soon-maintenance' ),
 			'section'         => 'colorlib_coming_soon_section_general',
 			'priority'        => 10,
 			'active_callback' => 'ccsm_template_has_timer',
@@ -186,8 +186,8 @@ class CCSM_Customizer {
 		) );
 
 		$wp_customize->add_control( new WP_Customize_Image_Control( $wp_customize, 'ccsm_settings[colorlib_coming_soon_plugin_logo]', array(
-				'label'           => esc_html__( 'Logo Image', 'colorlib-coming-soon' ),
-				'description'     => esc_html__( 'Recommended size: 80px by 80px', 'colorlib-coming-soon' ),
+				'label'           => esc_html__( 'Logo Image', 'colorlib-coming-soon-maintenance' ),
+				'description'     => esc_html__( 'Recommended size: 80px by 80px', 'colorlib-coming-soon-maintenance' ),
 				'section'         => 'colorlib_coming_soon_section_general',
 				'priority'        => 10,
 				'active_callback' => 'ccsm_template_has_logo',
@@ -209,7 +209,7 @@ class CCSM_Customizer {
 		) );
 
 		$wp_customize->add_control( new WP_Customize_Image_Control( $wp_customize, 'ccsm_settings[colorlib_coming_soon_background_image]', array(
-				'label'           => esc_html__( 'Background Image', 'colorlib-coming-soon' ),
+				'label'           => esc_html__( 'Background Image', 'colorlib-coming-soon-maintenance' ),
 				'section'         => 'colorlib_coming_soon_section_general',
 				'priority'        => 10,
 				'active_callback' => 'ccsm_template_has_background_image',
@@ -224,7 +224,7 @@ class CCSM_Customizer {
 		) );
 
 		$wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'ccsm_settings[colorlib_coming_soon_background_color]', array(
-				'label'           => esc_html__( 'Background Color', 'colorlib-coming-soon' ),
+				'label'           => esc_html__( 'Background Color', 'colorlib-coming-soon-maintenance' ),
 				'section'         => 'colorlib_coming_soon_section_general',
 				'priority'        => 10,
 				'active_callback' => 'ccsm_template_has_background_color',
@@ -239,7 +239,7 @@ class CCSM_Customizer {
 		) );
 
 		$wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'ccsm_settings[colorlib_coming_soon_text_color]', array(
-				'label'           => esc_html__( 'Text Color', 'colorlib-coming-soon' ),
+				'label'           => esc_html__( 'Text Color', 'colorlib-coming-soon-maintenance' ),
 				'section'         => 'colorlib_coming_soon_section_general',
 				'priority'        => 10,
 				'active_callback' => 'ccsm_template_has_text_color'
@@ -255,7 +255,7 @@ class CCSM_Customizer {
 		) );
 
 		$wp_customize->add_control( new CCSM_Control_Text_Editor( $wp_customize, 'ccsm_settings[colorlib_coming_soon_page_heading]', array(
-				'label'    => esc_html__( 'Heading', 'colorlib-coming-soon' ),
+				'label'    => esc_html__( 'Heading', 'colorlib-coming-soon-maintenance' ),
 				'section'  => 'colorlib_coming_soon_section_general',
 				'priority' => 20,
 			) )
@@ -278,7 +278,7 @@ class CCSM_Customizer {
 		) );
 
 		$wp_customize->add_control( new CCSM_Control_Text_Editor( $wp_customize, 'ccsm_settings[colorlib_coming_soon_page_content]', array(
-				'label'           => esc_html__( 'Main Content', 'colorlib-coming-soon' ),
+				'label'           => esc_html__( 'Main Content', 'colorlib-coming-soon-maintenance' ),
 				'section'         => 'colorlib_coming_soon_section_general',
 				'priority'        => 30,
 				'active_callback' => 'ccsm_template_has_content',
@@ -302,7 +302,7 @@ class CCSM_Customizer {
 		) );
 
 		$wp_customize->add_control( new CCSM_Control_Text_Editor( $wp_customize, 'ccsm_settings[colorlib_coming_soon_page_footer]', array(
-				'label'           => esc_html__( 'Footer Text', 'colorlib-coming-soon' ),
+				'label'           => esc_html__( 'Footer Text', 'colorlib-coming-soon-maintenance' ),
 				'section'         => 'colorlib_coming_soon_section_general',
 				'priority'        => 40,
 				'active_callback' => 'ccsm_template_has_footer',
@@ -325,7 +325,7 @@ class CCSM_Customizer {
 		) );
 
 		$wp_customize->add_control( new CCSM_Control_Toggle( $wp_customize, 'ccsm_settings[colorlib_coming_soon_subscribe]', array(
-				'label'           => esc_html__( 'Disable Subscribe Form', 'colorlib-coming-soon' ),
+				'label'           => esc_html__( 'Disable Subscribe Form', 'colorlib-coming-soon-maintenance' ),
 				'section'         => 'colorlib_coming_soon_subscribe_form',
 				'priority'        => 10,
 				'active_callback' => 'ccsm_template_has_subscribe_form'
@@ -340,8 +340,8 @@ class CCSM_Customizer {
 		) );
 
 		$wp_customize->add_control( 'ccsm_settings[colorlib_coming_soon_subscribe_form_url]', array(
-				'label'           => esc_html__( 'Subscribe Form Action URL', 'colorlib-coming-soon' ),
-				'description'     => __( 'You can get your form action URL by creating a sign-up form and copying the form action="" field.: <a href="http://kb.mailchimp.com/lists/signup-forms/add-a-signup-form-to-your-website" target="_blank">http://kb.mailchimp.com/lists/signup-forms/add-a-signup-form-to-your-website</a>', 'colorlib-coming-soon' ),
+				'label'           => esc_html__( 'Subscribe Form Action URL', 'colorlib-coming-soon-maintenance' ),
+				'description'     => __( 'You can get your form action URL by creating a sign-up form and copying the form action="" field.: <a href="http://kb.mailchimp.com/lists/signup-forms/add-a-signup-form-to-your-website" target="_blank">http://kb.mailchimp.com/lists/signup-forms/add-a-signup-form-to-your-website</a>', 'colorlib-coming-soon-maintenance' ),
 				'section'         => 'colorlib_coming_soon_subscribe_form',
 				'type'            => 'text',
 				'priority'        => 10,
@@ -363,8 +363,8 @@ class CCSM_Customizer {
 		) );
 
 		$wp_customize->add_control( 'ccsm_settings[colorlib_coming_soon_subscribe_form_other]', array(
-				'label'           => esc_html__( 'Subscribe Form Action URL', 'colorlib-coming-soon' ),
-				'description'     => __( 'Sign Up Link', 'colorlib-coming-soon' ),
+				'label'           => esc_html__( 'Subscribe Form Action URL', 'colorlib-coming-soon-maintenance' ),
+				'description'     => __( 'Sign Up Link', 'colorlib-coming-soon-maintenance' ),
 				'section'         => 'colorlib_coming_soon_subscribe_form',
 				'type'            => 'text',
 				'priority'        => 20,
@@ -388,7 +388,7 @@ class CCSM_Customizer {
 		) );
 
 		$wp_customize->add_control( 'ccsm_settings[colorlib_coming_soon_social_facebook]', array(
-				'label'    => esc_html__( 'Facebook', 'colorlib-coming-soon' ),
+				'label'    => esc_html__( 'Facebook', 'colorlib-coming-soon-maintenance' ),
 				'section'  => 'colorlib_coming_soon_section_social_settings',
 				'type'     => 'text',
 				'priority' => 10,
@@ -411,7 +411,7 @@ class CCSM_Customizer {
 		) );
 
 		$wp_customize->add_control( 'ccsm_settings[colorlib_coming_soon_social_twitter]', array(
-				'label'    => esc_html__( 'Twitter', 'colorlib-coming-soon' ),
+				'label'    => esc_html__( 'Twitter', 'colorlib-coming-soon-maintenance' ),
 				'section'  => 'colorlib_coming_soon_section_social_settings',
 				'type'     => 'text',
 				'priority' => 20,
@@ -434,7 +434,7 @@ class CCSM_Customizer {
 		) );
 
 		$wp_customize->add_control( 'ccsm_settings[colorlib_coming_soon_social_email]', array(
-				'label'    => esc_html__( 'Email', 'colorlib-coming-soon' ),
+				'label'    => esc_html__( 'Email', 'colorlib-coming-soon-maintenance' ),
 				'section'  => 'colorlib_coming_soon_section_social_settings',
 				'type'     => 'text',
 				'priority' => 30,
@@ -456,7 +456,7 @@ class CCSM_Customizer {
 		) );
 
 		$wp_customize->add_control( 'ccsm_settings[colorlib_coming_soon_social_youtube]', array(
-				'label'    => esc_html__( 'Youtube', 'colorlib-coming-soon' ),
+				'label'    => esc_html__( 'Youtube', 'colorlib-coming-soon-maintenance' ),
 				'section'  => 'colorlib_coming_soon_section_social_settings',
 				'type'     => 'text',
 				'priority' => 40,
@@ -478,7 +478,7 @@ class CCSM_Customizer {
 		) );
 
 		$wp_customize->add_control( 'ccsm_settings[colorlib_coming_soon_social_pinterest]', array(
-				'label'    => esc_html__( 'Pinterest', 'colorlib-coming-soon' ),
+				'label'    => esc_html__( 'Pinterest', 'colorlib-coming-soon-maintenance' ),
 				'section'  => 'colorlib_coming_soon_section_social_settings',
 				'type'     => 'text',
 				'priority' => 50,
@@ -500,7 +500,7 @@ class CCSM_Customizer {
 		) );
 
 		$wp_customize->add_control( 'ccsm_settings[colorlib_coming_soon_social_instagram]', array(
-				'label'    => esc_html__( 'Instagram', 'colorlib-coming-soon' ),
+				'label'    => esc_html__( 'Instagram', 'colorlib-coming-soon-maintenance' ),
 				'section'  => 'colorlib_coming_soon_section_social_settings',
 				'type'     => 'text',
 				'priority' => 60,
@@ -518,7 +518,7 @@ class CCSM_Customizer {
 
 	public function ccsm_add_menu_item() {
 		$page = add_menu_page(
-			esc_html__( 'Colorlib Coming Soon', 'colorlib-comin-soon' ), esc_html__( 'Coming Soon', 'colorlib-coming-soon' ), 'manage_options', 'ccsm_settings', array(
+			esc_html__( 'Colorlib Coming Soon', 'colorlib-coming-soon-maintenance' ), esc_html__( 'Coming Soon', 'colorlib-coming-soon-maintenance' ), 'manage_options', 'ccsm_settings', array(
 			$this,
 			'settings_page',
 		), 'dashicons-share-alt'
@@ -533,7 +533,7 @@ class CCSM_Customizer {
 	 * @return array        Modified links
 	 */
 	public function ccsm_add_settings_link( $links ) {
-		$settings_link = '<a href="options-general.php?page=ccsm__settings">' . __( 'Settings', 'colorlib-coming-soon' ) . '</a>';
+		$settings_link = '<a href="options-general.php?page=ccsm__settings">' . __( 'Settings', 'colorlib-coming-soon-maintenance' ) . '</a>';
 		array_push( $links, $settings_link );
 
 		return $links;

@@ -32,7 +32,7 @@ add_action( 'ccsm_header', 'wp_print_scripts' );
 
 //loads the text domain for translation
 function ccsm_load_plugin_textdomain() {
-	load_plugin_textdomain( 'colorlib-coming-soon', false, basename( dirname( __FILE__ ) ) . '/lang/' );
+	load_plugin_textdomain( 'colorlib-coming-soon-maintenance', false, basename( dirname( __FILE__ ) ) . '/languages/' );
 }
 
 //add settings and support links on wordpress plugin page
@@ -45,8 +45,8 @@ function ccsm_add_settings_link( $actions, $plugin_file ) {
 	}
 	if ( $plugin == $plugin_file ) {
 
-		$settings  = array( 'settings' => '<a href="options-general.php?page=ccsm_settings">' . __( 'Settings', 'colorlib-coming-soon' ) . '</a>' );
-		$site_link = array( 'support' => '<a href="http://colorlib.com/wp/forums" target="_blank">Support</a>' );
+		$settings  = array( 'settings' => '<a href="options-general.php?page=ccsm_settings">' . __( 'Settings', 'colorlib-coming-soon-maintenance' ) . '</a>' );
+		$site_link = array( 'support' => '<a href="http://colorlib.com/wp/forums" target="_blank">' . __( 'Support', 'colorlib-coming-soon-maintenance' ) . '</a>' );
 
 		$actions = array_merge( $settings, $actions );
 		$actions = array_merge( $site_link, $actions );

@@ -20,22 +20,22 @@ $dates             = ccsm_counter_dates( $counter );
                 <div class="flex-w flex-c cd100 p-b-82">
                     <div class="flex-col-c-m size2 how-countdown">
                         <span class="l1-txt3 p-b-9 days"><?php echo $dates['template']['days']; ?></span>
-                        <span class="s1-txt1"><?php echo esc_html__( 'Days', 'colorlib-coming-soon' ); ?></span>
+                        <span class="s1-txt1"><?php echo esc_html__( 'Days', 'colorlib-coming-soon-maintenance' ); ?></span>
                     </div>
 
                     <div class="flex-col-c-m size2 how-countdown">
                         <span class="l1-txt3 p-b-9 hours"><?php echo $dates['template']['hours']; ?></span>
-                        <span class="s1-txt1"><?php echo esc_html__( 'Hours', 'colorlib-coming-soon' ); ?></span>
+                        <span class="s1-txt1"><?php echo esc_html__( 'Hours', 'colorlib-coming-soon-maintenance' ); ?></span>
                     </div>
 
                     <div class="flex-col-c-m size2 how-countdown">
                         <span class="l1-txt3 p-b-9 minutes"><?php echo $dates['template']['minutes']; ?></span>
-                        <span class="s1-txt1"><?php echo esc_html__( 'Minutes', 'colorlib-coming-soon' ); ?></span>
+                        <span class="s1-txt1"><?php echo esc_html__( 'Minutes', 'colorlib-coming-soon-maintenance' ); ?></span>
                     </div>
 
                     <div class="flex-col-c-m size2 how-countdown">
                         <span class="l1-txt3 p-b-9 seconds"><?php echo $dates['template']['days']; ?></span>
-                        <span class="s1-txt1"><?php echo esc_html__( 'Seconds', 'colorlib-coming-soon' ); ?></span>
+                        <span class="s1-txt1"><?php echo esc_html__( 'Seconds', 'colorlib-coming-soon-maintenance' ); ?></span>
                     </div>
                 </div>
 			<?php } ?>
@@ -65,32 +65,32 @@ $dates             = ccsm_counter_dates( $counter );
 
                 <div class="wsize1 m-lr-auto">
                     <h3 class="m1-txt1 txt-center p-b-36">
-                        <span class="bor1 p-b-6"><?php echo esc_html__( 'Subscribe', 'colorlib-coming-soon' ); ?></span>
+                        <span class="bor1 p-b-6"><?php echo esc_html__( 'Subscribe', 'colorlib-coming-soon-maintenance' ); ?></span>
                     </h3>
 
                     <p class="m1-txt2 txt-center p-b-40">
-						<?php echo esc_html__( 'Follow us for update now!', 'colorlib-coming-soon' ); ?>
+						<?php echo esc_html__( 'Follow us for update now!', 'colorlib-coming-soon-maintenance' ); ?>
                     </p>
 
                     <form class="contact100-form validate-form"
                           action="<?php echo esc_url( $ccsm_options['colorlib_coming_soon_subscribe_form_url'] ); ?>">
                         <div class="wrap-input100 m-b-10 validate-input"
-                             data-validate="<?php echo esc_attr__( 'Name is required', 'colorlib-coming-soon' ); ?>">
+                             data-validate="<?php echo esc_attr__( 'Name is required', 'colorlib-coming-soon-maintenance' ); ?>">
                             <input class="s1-txt4 placeholder0 input100" type="text" name="name"
-                                   placeholder="<?php echo esc_attr__( 'Name', 'colorlib-coming-soon' ); ?>">
+                                   placeholder="<?php echo esc_attr__( 'Name', 'colorlib-coming-soon-maintenance' ); ?>">
                             <span class="focus-input100"></span>
                         </div>
 
                         <div class="wrap-input100 m-b-20 validate-input"
-                             data-validate="<?php echo esc_attr__( 'Email is required: ex@abc.xyz', 'colorlib-coming-soon' ); ?>">
+                             data-validate="<?php echo esc_attr__( 'Email is required: ex@abc.xyz', 'colorlib-coming-soon-maintenance' ); ?>">
                             <input class="s1-txt4 placeholder0 input100" type="text" name="email"
-                                   placeholder="<?php echo esc_attr__( 'Email', 'colorlib-coming-soon' ); ?>">
+                                   placeholder="<?php echo esc_attr__( 'Email', 'colorlib-coming-soon-maintenance' ); ?>">
                             <span class="focus-input100"></span>
                         </div>
 
                         <div class="w-full">
                             <button class="flex-c-m s1-txt2 size5 how-btn1 trans-04">
-								<?php echo esc_html__( 'Get Updates', 'colorlib-coming-soon' ); ?>
+								<?php echo esc_html__( 'Get Updates', 'colorlib-coming-soon-maintenance' ); ?>
                             </button>
                         </div>
                     </form>

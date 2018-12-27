@@ -95,28 +95,28 @@ $dates             = ccsm_counter_dates( $counter );
 			<?php if ( $ccsm_options['colorlib_coming_soon_subscribe'] != '1' ) { ?>
                 <div class="bg0 wsize1 bor1 p-l-45 p-r-45 p-t-50 p-b-18 p-lr-15-sm">
                     <h3 class="l1-txt3 txt-center p-b-43">
-						<?php echo esc_html__( 'Newsletter', 'colorlib-coming-soon' ); ?>
+						<?php echo esc_html__( 'Newsletter', 'colorlib-coming-soon-maintenance' ); ?>
                     </h3>
 
                     <form class="w-full validate-form"
                           action="<?php echo esc_url( $ccsm_options['colorlib_coming_soon_subscribe_form_url'] ); ?>">
 
                         <div class="wrap-input100 validate-input m-b-10"
-                             data-validate="<?php echo esc_attr__( 'Name is required', 'colorlib-coming-soon' ); ?>">
+                             data-validate="<?php echo esc_attr__( 'Name is required', 'colorlib-coming-soon-maintenance' ); ?>">
                             <input class="input100 placeholder0 s1-txt1" type="text" name="name"
-                                   placeholder="<?php echo esc_attr__( 'Name', 'colorlib-coming-soon' ); ?>">
+                                   placeholder="<?php echo esc_attr__( 'Name', 'colorlib-coming-soon-maintenance' ); ?>">
                             <span class="focus-input100"></span>
                         </div>
 
                         <div class="wrap-input100 validate-input m-b-20"
-                             data-validate="<?php echo esc_attr__( 'Valid email is required: ex@abc.xyz', 'colorlib-coming-soon' ); ?>">
+                             data-validate="<?php echo esc_attr__( 'Valid email is required: ex@abc.xyz', 'colorlib-coming-soon-maintenance' ); ?>">
                             <input class="input100 placeholder0 s1-txt1" type="text" name="email"
-                                   placeholder="<?php echo esc_attr__( 'Email', 'colorlib-coming-soon' ); ?>">
+                                   placeholder="<?php echo esc_attr__( 'Email', 'colorlib-coming-soon-maintenance' ); ?>">
                             <span class="focus-input100"></span>
                         </div>
 
                         <button class="flex-c-m size2 s1-txt2 how-btn1 trans-04">
-							<?php echo esc_html__( 'Subscribe', 'colorlib-coming-soon' ); ?>
+							<?php echo esc_html__( 'Subscribe', 'colorlib-coming-soon-maintenance' ); ?>
                         </button>
                     </form>
 

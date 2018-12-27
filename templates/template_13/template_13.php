@@ -36,22 +36,22 @@ if ( ccsm_template_has_text_color() ) {
                 <div class="flex-w cd100 p-t-15 p-b-15 p-r-36">
                     <div class="flex-w flex-b m-r-22 m-t-8 m-b-8">
                         <span class="l1-txt1 wsize1 days"><?php echo $dates['template']['days']; ?></span>
-                        <span class="m1-txt1 p-b-2"><?php echo esc_html__( 'Days', 'colorlib-coming-soon' ); ?></span>
+                        <span class="m1-txt1 p-b-2"><?php echo esc_html__( 'Days', 'colorlib-coming-soon-maintenance' ); ?></span>
                     </div>
 
                     <div class="flex-w flex-b m-r-22 m-t-8 m-b-8">
                         <span class="l1-txt1 wsize1 hours"><?php echo $dates['template']['hours']; ?></span>
-                        <span class="m1-txt1 p-b-2"><?php echo esc_html__( 'Hr', 'colorlib-coming-soon' ); ?></span>
+                        <span class="m1-txt1 p-b-2"><?php echo esc_html__( 'Hr', 'colorlib-coming-soon-maintenance' ); ?></span>
                     </div>
 
                     <div class="flex-w flex-b m-r-22 m-t-8 m-b-8">
                         <span class="l1-txt1 wsize1 minutes"><?php echo $dates['template']['minutes']; ?></span>
-                        <span class="m1-txt1 p-b-2"><?php echo esc_html__( 'Min', 'colorlib-coming-soon' ); ?></span>
+                        <span class="m1-txt1 p-b-2"><?php echo esc_html__( 'Min', 'colorlib-coming-soon-maintenance' ); ?></span>
                     </div>
 
                     <div class="flex-w flex-b m-r-22 m-t-8 m-b-8">
                         <span class="l1-txt1 wsize1 seconds"><?php echo $dates['template']['seconds']; ?></span>
-                        <span class="m1-txt1 p-b-2"><?php echo esc_html__( 'Sec', 'colorlib-coming-soon' ); ?></span>
+                        <span class="m1-txt1 p-b-2"><?php echo esc_html__( 'Sec', 'colorlib-coming-soon-maintenance' ); ?></span>
                     </div>
                 </div>
 			<?php } ?>
@@ -59,7 +59,7 @@ if ( ccsm_template_has_text_color() ) {
                 <div class="m-t-10 m-b-10">
                     <a href="<?php echo esc_url( $ccsm_options['colorlib_coming_soon_subscribe_form_other'] ); ?>"
                        class="size2 s1-txt1 flex-c-m how-btn1 trans-04 sign-up">
-						<?php echo esc_html__( 'Sign Up', 'colorlib-coming-soon' ); ?>
+						<?php echo esc_html__( 'Sign Up', 'colorlib-coming-soon-maintenance' ); ?>
                     </a>
                 </div>
 			<?php } ?>
@@ -141,9 +141,9 @@ if ( ccsm_template_has_text_color() ) {
                 <form class="contact100-form validate-form m-t-10 m-b-10"
                       action="<?php echo esc_url( $ccsm_options['colorlib_coming_soon_subscribe_form_url'] ); ?>">
                     <div class="wrap-input100 validate-input m-lr-auto-lg"
-                         data-validate="<?php echo esc_attr__( 'Email is required: ex@abc.xyz', 'colorlib-coming-soon' ); ?>">
+                         data-validate="<?php echo esc_attr__( 'Email is required: ex@abc.xyz', 'colorlib-coming-soon-maintenance' ); ?>">
                         <input class="s2-txt1 placeholder0 input100 trans-04" type="text" name="email"
-                               placeholder="<?php echo esc_attr__( 'Email Address', 'colorlib-coming-soon' ); ?>">
+                               placeholder="<?php echo esc_attr__( 'Email Address', 'colorlib-coming-soon-maintenance' ); ?>">
 
                         <button class="flex-c-m ab-t-r size4 s1-txt1 hov1">
                             <i class="zmdi zmdi-long-arrow-right fs-16 cl1 trans-04"></i>

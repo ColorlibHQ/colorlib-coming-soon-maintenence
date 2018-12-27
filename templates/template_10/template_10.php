@@ -34,7 +34,7 @@ if ( ccsm_template_has_text_color() ) {
 			<?php if ( $ccsm_options['colorlib_coming_soon_subscribe'] != '1' ) { ?>
                 <div class="flex-w m-t-10 m-b-10">
                     <a href="<?php echo esc_url($ccsm_options['colorlib_coming_soon_subscribe_form_other']); ?>" class="size2 m1-txt1 flex-c-m how-btn1 trans-04 sign-up">
-						<?php echo esc_html__( 'Sign Up', 'colorlib-coming-soon' ); ?>
+						<?php echo esc_html__( 'Sign Up', 'colorlib-coming-soon-maintenance' ); ?>
                     </a>
                 </div>
 			<?php } ?>
@@ -53,9 +53,9 @@ if ( ccsm_template_has_text_color() ) {
                     <form class="contact100-form validate-form p-t-55 w-full"
                           action="<?php echo esc_url( $ccsm_options['colorlib_coming_soon_subscribe_form_url'] ); ?>">
                         <div class="wrap-input100 validate-input m-lr-auto-lg"
-                             data-validate="<?php echo esc_attr__( 'Email is required: ex@abc.xyz', 'colorlib-coming-soon' ); ?>">
+                             data-validate="<?php echo esc_attr__( 'Email is required: ex@abc.xyz', 'colorlib-coming-soon-maintenance' ); ?>">
                             <input class="s2-txt1 placeholder0 input100 trans-04" type="text" name="email"
-                                   placeholder="<?php echo esc_attr__( 'Email Address', 'colorlib-coming-soon' ); ?>">
+                                   placeholder="<?php echo esc_attr__( 'Email Address', 'colorlib-coming-soon-maintenance' ); ?>">
 
                             <button class="flex-c-m ab-t-r size4 s1-txt1 hov1 trans-04">
                                 <i class="fa fa-paper-plane fs-15 cl0"></i>
@@ -69,22 +69,22 @@ if ( ccsm_template_has_text_color() ) {
                 <div class="flex-w flex-col cd100 p-t-34 respon3">
                     <div class="flex-col wsize1 m-b-40 respon4">
                         <span class="l1-txt1 p-b-30 days"><?php echo $dates['template']['days']; ?></span>
-                        <span class="s1-txt1"><?php echo esc_html__( 'Days', 'colorlib-coming-soon' ); ?></span>
+                        <span class="s1-txt1"><?php echo esc_html__( 'Days', 'colorlib-coming-soon-maintenance' ); ?></span>
                     </div>
 
                     <div class="flex-col wsize1 m-b-40 respon4">
                         <span class="l1-txt1 p-b-30 hours"><?php echo $dates['template']['hours']; ?></span>
-                        <span class="s1-txt1"><?php echo esc_html__( 'Hours', 'colorlib-coming-soon' ); ?></span>
+                        <span class="s1-txt1"><?php echo esc_html__( 'Hours', 'colorlib-coming-soon-maintenance' ); ?></span>
                     </div>
 
                     <div class="flex-col wsize1 m-b-40 respon4">
                         <span class="l1-txt1 p-b-30 minutes"><?php echo $dates['template']['minutes']; ?></span>
-                        <span class="s1-txt1"><?php echo esc_html__( 'Minutes', 'colorlib-coming-soon' ); ?></span>
+                        <span class="s1-txt1"><?php echo esc_html__( 'Minutes', 'colorlib-coming-soon-maintenance' ); ?></span>
                     </div>
 
                     <div class="flex-col wsize1 m-b-40 respon4">
                         <span class="l1-txt1 p-b-30 seconds"><?php echo $dates['template']['seconds']; ?></span>
-                        <span class="s1-txt1"><?php echo esc_html__( 'Seconds', 'colorlib-coming-soon' ); ?></span>
+                        <span class="s1-txt1"><?php echo esc_html__( 'Seconds', 'colorlib-coming-soon-maintenance' ); ?></span>
                     </div>
                 </div>
 			<?php } ?>
