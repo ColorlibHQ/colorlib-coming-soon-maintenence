@@ -88,15 +88,15 @@ $dates             = ccsm_counter_dates( $counter );
                           action="<?php echo esc_url( $ccsm_options['colorlib_coming_soon_subscribe_form_url'] ); ?>">
 
                         <div class="wrap-input100 validate-input m-b-20"
-                             data-validate="<?php echo esc_attr__( 'Valid email is required: ex@abc.xyz', 'colorlib-coming-soon' ); ?>">
+                             data-validate="<?php echo esc_attr__( 'Valid email is required: ex@abc.xyz', 'colorlib-coming-soon-maintenance' ); ?>">
                             <input class="input100 placeholder0 m1-txt1" type="text" name="email"
-                                   placeholder="<?php echo esc_attr__( 'Email Address', 'colorlib-coming-soon' ); ?>">
+                                   placeholder="<?php echo esc_attr__( 'Email Address', 'colorlib-coming-soon-maintenance' ); ?>">
                             <span class="focus-input100"></span>
                         </div>
 
 
                         <button class="flex-c-m size3 m1-txt2 how-btn1 trans-04 m-b-20">
-							<?php echo esc_html__( 'Subscribe', 'colorlib-coming-soon' ); ?>
+							<?php echo esc_html__( 'Subscribe', 'colorlib-coming-soon-maintenance' ); ?>
                         </button>
                     </form>
 
@@ -110,22 +110,22 @@ $dates             = ccsm_counter_dates( $counter );
                 <div class="flex-w flex-c-m cd100 wsize1 m-lr-auto p-t-116">
                     <div class="flex-col-c-m size2 bor1 m-l-10 m-r-10 m-b-15">
                         <span class="l1-txt3 p-b-9 days"><?php echo $dates['template']['days']; ?></span>
-                        <span class="s1-txt2"><?php echo esc_html__( 'Days', 'colorlib-coming-soon' ); ?></span>
+                        <span class="s1-txt2"><?php echo esc_html__( 'Days', 'colorlib-coming-soon-maintenance' ); ?></span>
                     </div>
 
                     <div class="flex-col-c-m size2 bor1 m-l-10 m-r-10 m-b-15">
                         <span class="l1-txt3 p-b-9 hours"><?php echo $dates['template']['hours']; ?></span>
-                        <span class="s1-txt2"><?php echo esc_html__( 'Hours', 'colorlib-coming-soon' ); ?></span>
+                        <span class="s1-txt2"><?php echo esc_html__( 'Hours', 'colorlib-coming-soon-maintenance' ); ?></span>
                     </div>
 
                     <div class="flex-col-c-m size2 bor1 m-l-10 m-r-10 m-b-15">
                         <span class="l1-txt3 p-b-9 minutes"><?php echo $dates['template']['minutes']; ?></span>
-                        <span class="s1-txt2"><?php echo esc_html__( 'Minutes', 'colorlib-coming-soon' ); ?></span>
+                        <span class="s1-txt2"><?php echo esc_html__( 'Minutes', 'colorlib-coming-soon-maintenance' ); ?></span>
                     </div>
 
                     <div class="flex-col-c-m size2 bor1 m-l-10 m-r-10 m-b-15">
                         <span class="l1-txt3 p-b-9 seconds"><?php echo $dates['template']['seconds']; ?></span>
-                        <span class="s1-txt2"><?php echo esc_html__( 'Seconds', 'colorlib-coming-soon' ); ?></span>
+                        <span class="s1-txt2"><?php echo esc_html__( 'Seconds', 'colorlib-coming-soon-maintenance' ); ?></span>
                     </div>
                 </div>
 			<?php } ?>

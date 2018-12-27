@@ -19,10 +19,10 @@ class CCSM_Review {
 		$this->value = $this->value();
 
 		$this->messages = array(
-			'notice'  => __( "Hey, I noticed you have installed our plugin for %s day - that's awesome! Could you please do me a BIG favor and give it a 5-star rating on WordPress? Just to help us spread the word and boost our motivation.", 'colorlib-coming-soon' ),
-			'rate'    => __( 'Ok, you deserve it', 'colorlib-coming-soon' ),
-			'rated'   => __( 'I already did', 'colorlib-coming-soon' ),
-			'no_rate' => __( 'No, not good enough', 'colorlib-coming-soon' ),
+			'notice'  => __( "Hey, I noticed you have installed our plugin for %s day - that's awesome! Could you please do me a BIG favor and give it a 5-star rating on WordPress? Just to help us spread the word and boost our motivation.", 'colorlib-coming-soon-maintenance' ),
+			'rate'    => __( 'Ok, you deserve it', 'colorlib-coming-soon-maintenance' ),
+			'rated'   => __( 'I already did', 'colorlib-coming-soon-maintenance' ),
+			'no_rate' => __( 'No, not good enough', 'colorlib-coming-soon-maintenance' ),
 		);
 
 		if ( isset( $args['messages'] ) ) {
@@ -85,7 +85,10 @@ class CCSM_Review {
 		$value = get_transient( 'ccsm_review' );
 
 		if ( $value ) {
-			return $value;
+			$current_time = time(); // or your date as well
+            $trans_date = strtotime($value);
+            $date_diff = $current_time - $trans_date;
+            return round($date_diff / (60 * 60 * 24));
 		}
 
 		$date = date( 'Y-m-d' );

@@ -6,7 +6,7 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
 			/**
 			 * The type of control being rendered
 			 */
-			public $type = 'template_select_radio';
+			public $type = 'ccsm-templates';
 
 			/**
 			 * Render the control in the customizer
@@ -26,11 +26,8 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
 							}
 							?>
                             <label class="colorlib-single-template-wrapper <?php echo $active; ?>">
-                                <img
-                                        src="<?php echo CCSM_URL . 'templates/' . esc_attr( $key ) . '/' . esc_attr( $key ) . '.jpg' ?>">
-                                <input class="colorlib-template-radio" type="radio"
-                                       name="<?php echo esc_attr( $this->id ); ?>"
-                                       value="<?php echo esc_attr( $key ); ?>" <?php $this->link(); ?> <?php checked( esc_attr( $key ), $this->value() ); ?>/>
+                            	<input class="colorlib-template-radio" type="radio" name="<?php echo esc_attr( $this->id ); ?>" value="<?php echo esc_attr( $key ); ?>" <?php $this->link(); ?> <?php checked( esc_attr( $key ), $this->value() ); ?>/>
+                                <img src="<?php echo CCSM_URL . 'templates/' . esc_attr( $key ) . '/' . esc_attr( $key ) . '.jpg' ?>">
                             </label>
 						<?php } ?>
                     </div>

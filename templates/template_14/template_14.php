@@ -35,16 +35,16 @@ $dates             = ccsm_counter_dates( $counter );
                     <form class="contact100-form validate-form m-t-10 m-b-10"
                           action="<?php echo esc_url( $ccsm_options['colorlib_coming_soon_subscribe_form_url'] ); ?>">
                         <div class="wrap-input100 validate-input m-lr-auto-lg"
-                             data-validate="<?php echo esc_attr__( 'Email is required: ex@abc.xyz', 'colorlib-coming-soon' ); ?>">
+                             data-validate="<?php echo esc_attr__( 'Email is required: ex@abc.xyz', 'colorlib-coming-soon-maintenance' ); ?>">
                             <input class="s2-txt1 placeholder0 input100 trans-04" type="text" name="email"
-                                   placeholder="<?php echo esc_attr__( 'Email Address', 'colorlib-coming-soon' ); ?>">
+                                   placeholder="<?php echo esc_attr__( 'Email Address', 'colorlib-coming-soon-maintenance' ); ?>">
 
                             <button class="flex-c-m ab-t-r size2 hov1 respon5">
                                 <i class="zmdi zmdi-long-arrow-right fs-30 cl1 trans-04"></i>
                             </button>
 
                             <div class="flex-c-m ab-t-l s2-txt1 size4 bor1 respon4">
-                                <span><?php echo esc_html__( 'Subcribe Now', 'colorlib-coming-soon' ); ?>:</span>
+                                <span><?php echo esc_html__( 'Subcribe Now', 'colorlib-coming-soon-maintenance' ); ?>:</span>
                             </div>
                         </div>
                     </form>
@@ -54,7 +54,7 @@ $dates             = ccsm_counter_dates( $counter );
 
             <div class="flex-w flex-m">
 				<span class="m2-txt2 p-r-40">
-					<?php echo esc_html__( 'Follow us', 'colorlib-coming-soon' ); ?>
+					<?php echo esc_html__( 'Follow us', 'colorlib-coming-soon-maintenance' ); ?>
 				</span>
 				<?php
 				if ( $ccsm_options['colorlib_coming_soon_social_facebook'] ) {

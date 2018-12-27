@@ -3,11 +3,11 @@
   Plugin Name: Colorlib Coming Soon and Maintenance plugin for WordPress
   Plugin URI: https://colorlib.com/
   Description: Colorlib Coming Soon and Maintenance is a responsive coming soon WordPress plugin that comes with well designed coming soon page and lots of useful features including customization via Live Customizer, MailChimp integration, custom forms, and more.
-  Version: 1.0.0
+  Version: 1.0.2
   Author: Colorlib
   Author URI: https://colorlib.com/
   License: GPL V3
-  Text Domain: colorlib-coming-soon
+  Text Domain: colorlib-coming-soon-maintenance
   Domain Path: /languages
 */
 
@@ -32,7 +32,7 @@ add_action( 'ccsm_header', 'wp_print_scripts' );
 
 //loads the text domain for translation
 function ccsm_load_plugin_textdomain() {
-	load_plugin_textdomain( 'colorlib-coming-soon', false, basename( dirname( __FILE__ ) ) . '/lang/' );
+	load_plugin_textdomain( 'colorlib-coming-soon-maintenance', false, basename( dirname( __FILE__ ) ) . '/languages/' );
 }
 
 //add settings and support links on wordpress plugin page
@@ -45,8 +45,8 @@ function ccsm_add_settings_link( $actions, $plugin_file ) {
 	}
 	if ( $plugin == $plugin_file ) {
 
-		$settings  = array( 'settings' => '<a href="options-general.php?page=ccsm_settings">' . __( 'Settings', 'colorlib-coming-soon' ) . '</a>' );
-		$site_link = array( 'support' => '<a href="http://colorlib.com/wp/forums" target="_blank">Support</a>' );
+		$settings  = array( 'settings' => '<a href="options-general.php?page=ccsm_settings">' . __( 'Settings', 'colorlib-coming-soon-maintenance' ) . '</a>' );
+		$site_link = array( 'support' => '<a href="http://colorlib.com/wp/forums" target="_blank">' . __( 'Support', 'colorlib-coming-soon-maintenance' ) . '</a>' );
 
 		$actions = array_merge( $settings, $actions );
 		$actions = array_merge( $site_link, $actions );
@@ -577,10 +577,8 @@ function ccsm_customizer_preview_scripts() {
 
 function ccsm_customizer_scripts() {
 	wp_enqueue_editor();
-	wp_register_script( 'colorlib-customizer-js', CCSM_URL . 'assets/js/customizer.js' );
+	wp_register_script( 'colorlib-customizer-js', CCSM_URL . 'assets/js/customizer.js', array( 'customize-controls' ) );
 	wp_enqueue_script( 'colorlib-customizer-js' );
-	wp_register_script( 'colorlib-ccsm-main-js', CCSM_URL . 'assets/js/main.js' );
-	wp_enqueue_script( 'colorlib-ccsm-main-js' );
 	wp_register_style( 'colorlib-custom-controls-css', CCSM_URL . 'assets/css/ccsm-custom-controls.css', array(), '1.0', 'all' );
 	wp_enqueue_style( 'colorlib-custom-controls-css' );
 	wp_localize_script(
@@ -867,7 +865,7 @@ function ccsm_check_for_review() {
 	require_once CCSM_PATH . 'includes/class-ccsm-review.php';
 
 	CCSM_Review::get_instance( array(
-		'slug' => 'colorlib-coming-soon',
+		'slug' => 'colorlib-coming-soon-maintenance',
 	) );
 }
 
@@ -875,5 +873,3 @@ ccsm_check_for_review();
 
 //Loading Plugin Theme Customizer Options
 require_once( 'includes/class-ccsm-customizer.php' );
-require_once( 'includes/class-ccsm-feedback.php' );
-new CCSM_Feedback( __FILE__ );
