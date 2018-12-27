@@ -577,10 +577,8 @@ function ccsm_customizer_preview_scripts() {
 
 function ccsm_customizer_scripts() {
 	wp_enqueue_editor();
-	wp_register_script( 'colorlib-customizer-js', CCSM_URL . 'assets/js/customizer.js' );
+	wp_register_script( 'colorlib-customizer-js', CCSM_URL . 'assets/js/customizer.js', array( 'customize-controls' ) );
 	wp_enqueue_script( 'colorlib-customizer-js' );
-	wp_register_script( 'colorlib-ccsm-main-js', CCSM_URL . 'assets/js/main.js' );
-	wp_enqueue_script( 'colorlib-ccsm-main-js' );
 	wp_register_style( 'colorlib-custom-controls-css', CCSM_URL . 'assets/css/ccsm-custom-controls.css', array(), '1.0', 'all' );
 	wp_enqueue_style( 'colorlib-custom-controls-css' );
 	wp_localize_script(

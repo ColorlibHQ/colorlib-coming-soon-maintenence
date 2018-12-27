@@ -14,6 +14,8 @@ class CCSM_Customizer {
 
 	public function ccsm_panels_initialize( $wp_customize ) {
 
+		require_once( CCSM_PATH . 'includes/controls/class-ccsm-template-section.php' );
+
 		$wp_customize->add_panel( 'colorlib_coming_soon_general_panel', array(
 				'priority' => 1,
 				'title'    => esc_html__( 'Colorlib Coming Soon Settings', 'colorlib-coming-soon-maintenance' ),
@@ -22,13 +24,11 @@ class CCSM_Customizer {
 
 
 		/* Section - Coming Soon - Templates */
-		$wp_customize->add_section( 'colorlib_coming_soon_section_templates', array(
-				'title'    => esc_html__( 'Templates', 'colorlib-coming-soon-maintenance' ),
-				'panel'    => 'colorlib_coming_soon_general_panel',
-				'priority' => 5,
-				'type'     => 'outer'
-			)
-		);
+		$wp_customize->add_section( new CCSM_Templates_Section( $wp_customize, 'colorlib_coming_soon_section_templates', array(
+			'title'    => esc_html__( 'Templates', 'colorlib-coming-soon-maintenance' ),
+			'panel'    => 'colorlib_coming_soon_general_panel',
+			'priority' => 5,
+		) ) );
 
 		/* Section - Coming Soon - General */
 		$wp_customize->add_section( 'colorlib_coming_soon_section_general', array(
@@ -74,6 +74,7 @@ class CCSM_Customizer {
 		require_once( CCSM_PATH . 'includes/controls/class-ccsm-control-text-editor.php' );
 		require_once( CCSM_PATH . 'includes/controls/class-ccsm-control-toggle.php' );
 		require_once( CCSM_PATH . 'includes/controls/class-ccsm-template-selection.php' );
+		
 
 		/* Setting - Coming Soon - Activation */
 		$wp_customize->add_setting( 'ccsm_settings[colorlib_coming_soon_activation]', array(
