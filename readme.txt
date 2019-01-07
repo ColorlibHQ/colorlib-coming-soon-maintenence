@@ -3,9 +3,9 @@
   Description: Colorlib Coming soon is a responsive coming soon WordPress plugin that comes with well designed coming soon page and lots of useful features including customization via Live Customizer, MailChimp integration, custom forms, and more.
   Tags: maintenance mode, coming soon page, coming soon, under construction, launch page, launch, maintenance, construction, offline, unavailable, under construction page, landing page
   Requires at least: 4.8
-  Tested up to: 5.0
+  Tested up to: 5.0.2
   Contributors: silkalns
-  Stable tag: 1.0.2
+  Stable tag: 1.0.3
   License: GPLv2 or later  
   License URI: http://www.gnu.org/licenses/gpl-2.0.html
  
@@ -69,6 +69,10 @@ If you enjoy using Colorlib Coming Soon for WordPress please leave a positive fe
 1. Screenshots are located under /assets/screenshots/
 
 == Changelog ==
+
+= 1.0.3 =
+* Added missing translation strings
+* Added missing escape function
 
 = 1.0.2 =
 * Update change template UI

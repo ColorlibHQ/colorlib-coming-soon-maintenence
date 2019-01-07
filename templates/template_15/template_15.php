@@ -89,7 +89,7 @@ $dates             = ccsm_counter_dates( $counter );
 			}
 			?>
         </div>
-        <p style="color:#fff;" class="colorlib-copyright"><span>Coming Soon Template designed by</span> <a href="https://colorlib.com/" target="_blank">Colorlib</a></p>
+        <p style="color:#fff;" class="colorlib-copyright"><span><?php _e('Coming Soon Template designed by','colorlib-coming-soon-maintenance'); ?></span> <a href="https://colorlib.com/" target="_blank">Colorlib</a></p>
     </div>
 <?php
 if ( is_customize_preview() ) {
