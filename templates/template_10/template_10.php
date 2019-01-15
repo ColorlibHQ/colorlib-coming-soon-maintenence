@@ -8,7 +8,7 @@ if ( ccsm_template_has_text_color() ) {
 	?>
     <style>
         h1,h2,h3,p,span,li,a:not(.sign-up) {
-            color: <?php echo $ccsm_options['colorlib_coming_soon_text_color']; ?> !important;
+            color: <?php echo esc_html($ccsm_options['colorlib_coming_soon_text_color']); ?> !important;
         }
     </style>
 	<?php
@@ -149,7 +149,7 @@ if ( ccsm_template_has_text_color() ) {
 				?>
             </div>
         </div>
-        <p style="color:#fff;position: absolute;right:30px;bottom:0;" class="colorlib-copyright"><span>Coming Soon Template designed by</span> <a href="https://colorlib.com/" target="_blank" style="color:#fff;">Colorlib</a></p>
+        <p style="color:#fff;position: absolute;right:30px;bottom:0;" class="colorlib-copyright"><span><?php _e('Coming Soon Template designed by','colorlib-coming-soon-maintenance'); ?></span> <a href="https://colorlib.com/" target="_blank" style="color:#fff;">Colorlib</a></p>
     </div>
 <?php
 if ( is_customize_preview() ) {
