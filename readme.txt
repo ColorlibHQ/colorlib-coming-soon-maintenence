@@ -1,6 +1,6 @@
-=== Colorlib Coming Soon & Maintenance Mode ===
+=== Coming Soon & Maintenance Mode by Colorlib ===
   Plugin URI: https://colorlib.com/
-  Description: Colorlib Coming soon is a responsive coming soon WordPress plugin that comes with well designed coming soon page and lots of useful features including customization via Live Customizer, MailChimp integration, custom forms, and more.
+  Description: Coming Soon & Maintenance Mode by Colorlib is a responsive coming soon WordPress plugin that comes with well designed coming soon page and lots of useful features including customization via Live Customizer, MailChimp integration, custom forms, and more.
   Tags: maintenance mode, coming soon page, coming soon, under construction, launch page, launch, maintenance, construction, offline, unavailable, under construction page, landing page
   Requires at least: 4.8
   Tested up to: 5.0.2
