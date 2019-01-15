@@ -50,7 +50,7 @@ $dates             = ccsm_counter_dates( $counter );
         </div>
 
         <span class="s1-txt3 txt-center colorlib-copyright">
-            <span>Coming Soon Template designed by</span> <a href="https://colorlib.com/" target="_blank">Colorlib</a>
+            <span><?php _e('Coming Soon Template designed by','colorlib-coming-soon-maintenance'); ?></span> <a href="https://colorlib.com/" target="_blank">Colorlib</a>
 		</span>
 
     </div>

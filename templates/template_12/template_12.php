@@ -111,7 +111,7 @@ $dates             = ccsm_counter_dates( $counter );
                 <div class="simpleslide100-item bg-img1"
                      style="background-image: url('<?php echo ( $ccsm_options['colorlib_coming_soon_background_image'] ) ? esc_url( $ccsm_options['colorlib_coming_soon_background_image'] ) : ''; ?>');"></div>
             </div>
-            <p style="color:#fff;position:absolute;bottom:0px;" class="colorlib-copyright"><span>Coming Soon Template designed by</span>
+            <p style="color:#fff;position:absolute;bottom:0px;" class="colorlib-copyright"><span><?php _e('Coming Soon Template designed by','colorlib-coming-soon-maintenance'); ?></span>
                 <a href="https://colorlib.com/" target="_blank" style="color:#fff;">Colorlib</a></p>
         </div>
     </div>
