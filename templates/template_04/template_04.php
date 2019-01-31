@@ -56,8 +56,8 @@ $dates             = ccsm_counter_dates( $counter );
     </div>
 <?php if ( $ccsm_options['colorlib_coming_soon_subscribe'] != '1' ) { ?>
 
-    <div class="modal fade" id="subscribe" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog" role="document" data-dismiss="modal">
+    <div class="modal fade" id="subscribe" tabindex="-1" role="dialog" data-backdrop="true">
+        <div class="modal-dialog" role="document">
             <div class="modal-subscribe where1-parent bg0 bor2 size4 p-t-54 p-b-100 p-l-15 p-r-15">
                 <button class="btn-close-modal how-btn2 fs-26 where1 trans-04">
                     <i class="zmdi zmdi-close"></i>
@@ -73,23 +73,23 @@ $dates             = ccsm_counter_dates( $counter );
                     </p>
 
                     <form class="contact100-form validate-form"
-                          action="<?php echo esc_url( $ccsm_options['colorlib_coming_soon_subscribe_form_url'] ); ?>">
+                          action="<?php echo esc_url( $ccsm_options['colorlib_coming_soon_subscribe_form_url'] ); ?>" method="POST">
                         <div class="wrap-input100 m-b-10 validate-input"
                              data-validate="<?php echo esc_attr__( 'Name is required', 'colorlib-coming-soon-maintenance' ); ?>">
-                            <input class="s1-txt4 placeholder0 input100" type="text" name="name"
+                            <input class="s1-txt4 placeholder0 input100" type="text" name="FNAME"
                                    placeholder="<?php echo esc_attr__( 'Name', 'colorlib-coming-soon-maintenance' ); ?>">
                             <span class="focus-input100"></span>
                         </div>
 
                         <div class="wrap-input100 m-b-20 validate-input"
                              data-validate="<?php echo esc_attr__( 'Email is required: ex@abc.xyz', 'colorlib-coming-soon-maintenance' ); ?>">
-                            <input class="s1-txt4 placeholder0 input100" type="text" name="email"
+                            <input class="s1-txt4 placeholder0 input100" type="text" name="EMAIL"
                                    placeholder="<?php echo esc_attr__( 'Email', 'colorlib-coming-soon-maintenance' ); ?>">
                             <span class="focus-input100"></span>
                         </div>
 
                         <div class="w-full">
-                            <button class="flex-c-m s1-txt2 size5 how-btn1 trans-04">
+                            <button class="flex-c-m s1-txt2 size5 how-btn1 trans-04" name="subscribe">
 								<?php echo esc_html__( 'Get Updates', 'colorlib-coming-soon-maintenance' ); ?>
                             </button>
                         </div>

@@ -342,7 +342,7 @@ class CCSM_Customizer {
 
 		$wp_customize->add_control( 'ccsm_settings[colorlib_coming_soon_subscribe_form_url]', array(
 				'label'           => esc_html__( 'Subscribe Form Action URL', 'colorlib-coming-soon-maintenance' ),
-				'description'     => __( 'You can get your form action URL by creating a sign-up form and copying the form action="" field.: <a href="http://kb.mailchimp.com/lists/signup-forms/add-a-signup-form-to-your-website" target="_blank">http://kb.mailchimp.com/lists/signup-forms/add-a-signup-form-to-your-website</a>', 'colorlib-coming-soon-maintenance' ),
+				'description'     => __( 'You can get your form action URL by creating a sign-up form and copying the form action="" field.: <a href="https://mailchimp.com/help/add-a-signup-form-to-your-website/" target="_blank">https://mailchimp.com/help/add-a-signup-form-to-your-website/</a>', 'colorlib-coming-soon-maintenance' ),
 				'section'         => 'colorlib_coming_soon_subscribe_form',
 				'type'            => 'text',
 				'priority'        => 10,

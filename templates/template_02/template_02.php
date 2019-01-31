@@ -53,16 +53,16 @@ if ( ccsm_template_has_text_color() ) {
 		<?php } ?>
 		<?php if ( $ccsm_options['colorlib_coming_soon_subscribe'] != '1' ) { ?>
             <form class="w-full flex-w flex-c-m validate-form"
-                  action="<?php echo esc_url( $ccsm_options['colorlib_coming_soon_subscribe_form_url'] ); ?>">
+                  action="<?php echo esc_url( $ccsm_options['colorlib_coming_soon_subscribe_form_url'] ); ?>" method="POST">
 
                 <div class="wrap-input100 validate-input where1"
                      data-validate="<?php echo esc_attr__( 'Valid email is required: ex@abc.xyz', 'colorlib-coming-soon-maintenance' ); ?>">
-                    <input class="input100 placeholder0 s2-txt2" type="text" name="email"
+                    <input class="input100 placeholder0 s2-txt2" type="text" name="EMAIL"
                            placeholder="<?php echo esc_attr__( 'Enter Email Address', 'colorlib-coming-soon-maintenance' ); ?>">
                     <span class="focus-input100"></span>
                 </div>
 
-                <button class="flex-c-m size3 s2-txt3 how-btn1 trans-04 where1">
+                <button class="flex-c-m size3 s2-txt3 how-btn1 trans-04 where1" name="subscribe">
 					<?php echo esc_html__( 'Subscribe', 'colorlib-coming-soon-maintenance' ); ?>
                 </button>
             </form>

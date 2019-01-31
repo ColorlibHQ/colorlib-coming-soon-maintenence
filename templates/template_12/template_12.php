@@ -30,13 +30,13 @@ $dates             = ccsm_counter_dates( $counter );
                     </p>
 					<?php if ( $ccsm_options['colorlib_coming_soon_subscribe'] != '1' ) { ?>
                         <form class="contact100-form validate-form m-t-10 m-b-10"
-                              action="<?php echo esc_url( $ccsm_options['colorlib_coming_soon_subscribe_form_url'] ); ?>">
+                              action="<?php echo esc_url( $ccsm_options['colorlib_coming_soon_subscribe_form_url'] ); ?>" method="POST">
                             <div class="wrap-input100 validate-input m-lr-auto-lg"
                                  data-validate="<?php echo esc_attr__( 'Email is required: ex@abc.xyz', 'colorlib-coming-soon-maintenance' ); ?>">
-                                <input class="s2-txt1 placeholder0 input100 trans-04" type="text" name="email"
+                                <input class="s2-txt1 placeholder0 input100 trans-04" type="text" name="EMAIL"
                                        placeholder="<?php echo esc_attr__( 'Email Address', 'colorlib-coming-soon-maintenance' ); ?>">
 
-                                <button class="flex-c-m ab-t-r size2 hov1">
+                                <button class="flex-c-m ab-t-r size2 hov1" name="subscribe">
                                     <i class="zmdi zmdi-long-arrow-right fs-30 cl1 trans-04"></i>
                                 </button>
                             </div>
