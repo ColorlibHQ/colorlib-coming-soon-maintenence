@@ -53,9 +53,9 @@
 
     /*==================================================================
     [ Modal ]*/
-    $('.modal-subscribe').on('click',function(e){
-        e.stopPropagation();
-    })
+    // $('.modal-subscribe').on('click',function(e){
+    //     e.stopPropagation();
+    // })
     
     $('.btn-close-modal').on('click', function(){
         $('#subscribe').modal('hide');

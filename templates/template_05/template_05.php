@@ -42,20 +42,20 @@ $dates             = ccsm_counter_dates( $counter );
             </p>
 			<?php if ( $ccsm_options['colorlib_coming_soon_subscribe'] != '1' ) { ?>
                 <form class="flex-w flex-c-m w-full contact100-form validate-form"
-                      action="<?php echo esc_url( $ccsm_options['colorlib_coming_soon_subscribe_form_url'] ); ?>">
+                      action="<?php echo esc_url( $ccsm_options['colorlib_coming_soon_subscribe_form_url'] ); ?>" method="POST">
                     <div class="wrap-input100 validate-input where1"
                          data-validate="<?php echo esc_attr__( 'Name is required', 'colorlib-coming-soon-maintenance' ); ?>">
-                        <input class="s1-txt3 placeholder0 input100" type="text" name="name"
+                        <input class="s1-txt3 placeholder0 input100" type="text" name="FNAME"
                                placeholder="<?php echo esc_attr__( 'Name', 'colorlib-coming-soon-maintenance' ); ?>">
                     </div>
 
                     <div class="wrap-input100 validate-input where1"
                          data-validate="<?php echo esc_attr__( 'Email is required: ex@abc.xyz', 'colorlib-coming-soon-maintenance' ); ?>">
-                        <input class="s1-txt3 placeholder0 input100" type="text" name="email"
+                        <input class="s1-txt3 placeholder0 input100" type="text" name="EMAIL"
                                placeholder="<?php echo esc_attr__( 'Email', 'colorlib-coming-soon-maintenance' ); ?>">
                     </div>
 
-                    <button class="flex-c-m s1-txt4 size3 how-btn trans-04 where1">
+                    <button class="flex-c-m s1-txt4 size3 how-btn trans-04 where1" name="subscribe">
 						<?php echo esc_html__( 'Get Updates', 'colorlib-coming-soon-maintenance' ); ?>
                     </button>
 

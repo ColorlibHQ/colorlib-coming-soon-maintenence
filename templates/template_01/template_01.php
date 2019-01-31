@@ -62,23 +62,23 @@ if ( ccsm_template_has_text_color() ) {
             </p>
 			<?php if ( $ccsm_options['colorlib_coming_soon_subscribe'] != '1' ) { ?>
                 <form class="contact100-form validate-form"
-                      action="<?php echo esc_url( $ccsm_options['colorlib_coming_soon_subscribe_form_url'] ); ?>">
+                      action="<?php echo esc_url( $ccsm_options['colorlib_coming_soon_subscribe_form_url'] ); ?>" method="POST">
                     <div class="wrap-input100 m-b-10 validate-input"
                          data-validate="<?php echo esc_attr__( 'Name is required', 'colorlib-coming-soon-maintenance' ); ?>">
-                        <input class="s2-txt1 placeholder0 input100" type="text" name="name"
+                        <input class="s2-txt1 placeholder0 input100" type="text" name="FNAME"
                                placeholder="<?php echo esc_attr__( 'Your Name', 'colorlib-coming-soon-maintenance' ); ?>">
                         <span class="focus-input100"></span>
                     </div>
 
                     <div class="wrap-input100 m-b-20 validate-input"
                          data-validate="<?php echo esc_attr__( 'Email is required: ex@abc.xyz', 'colorlib-coming-soon-maintenance' ); ?>">
-                        <input class="s2-txt1 placeholder0 input100" type="text" name="email"
+                        <input class="s2-txt1 placeholder0 input100" type="text" name="EMAIL"
                                placeholder="<?php echo esc_attr__( 'Email Address', 'colorlib-coming-soon-maintenance' ); ?>">
                         <span class="focus-input100"></span>
                     </div>
 
                     <div class="w-full">
-                        <button class="flex-c-m s2-txt2 size4 bg1 bor1 hov1 trans-04">
+                        <button class="flex-c-m s2-txt2 size4 bg1 bor1 hov1 trans-04" name="subscribe">
 							<?php echo esc_html__( 'Subscribe', 'colorlib-coming-soon-maintenance' ); ?>
                         </button>
                     </div>

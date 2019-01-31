@@ -31,7 +31,7 @@ if ( ccsm_template_has_text_color() ) {
 				}
 				?>
             </div>
-			<?php if ( $ccsm_options['colorlib_coming_soon_subscribe'] != '1' ) { ?>
+			<?php if ( isset( $ccsm_options['colorlib_coming_soon_subscribe_form_other'] ) && '' == $ccsm_options['colorlib_coming_soon_subscribe_form_other'] ) { ?>
                 <div class="flex-w m-t-10 m-b-10">
                     <a href="<?php echo esc_url($ccsm_options['colorlib_coming_soon_subscribe_form_other']); ?>" class="size2 m1-txt1 flex-c-m how-btn1 trans-04 sign-up">
 						<?php echo esc_html__( 'Sign Up', 'colorlib-coming-soon-maintenance' ); ?>
