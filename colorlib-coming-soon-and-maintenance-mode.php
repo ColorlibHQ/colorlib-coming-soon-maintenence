@@ -611,6 +611,9 @@ function ccsm_counter_dates( $timerDate ) {
 		$year  = $date->format( 'Y' );
 		$month = $date->format( 'm' );
 		$day   = $date->format( 'd' );
+		$hour = $date->format('H');
+		$minute = $date->format('I');
+        $second = $date->format('s');
 
 		$dates['template'] = array(
 			'days'    => $days,
@@ -623,10 +626,11 @@ function ccsm_counter_dates( $timerDate ) {
 			'year'   => $year,
 			'month'  => $month,
 			'day'    => $day,
-			'hour'   => $hours,
-			'minute' => $minutes,
-			'second' => $seconds
+			'hour'   => $hour,
+			'minute' => $minute,
+			'second' => $second
 		);
+
 
 	} else {
 		$dates['template'] = array(
