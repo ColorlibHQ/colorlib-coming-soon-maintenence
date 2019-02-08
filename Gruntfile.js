@@ -137,6 +137,7 @@ module.exports = function( grunt ) {
 	] );
 	// Build task
 	grunt.registerTask( 'build-archive', [
+		'i18n',
 		'clean:init',
 		'copy',
 		'compress:build',
