@@ -72,6 +72,7 @@ If you enjoy using Colorlib Coming Soon for WordPress please leave a positive fe
 
 = 1.0.5 =
 * Fixed countdown timer
+* Added 24 hour format to timer
 
 = 1.0.4 =
 * Fixed subscribe forms
