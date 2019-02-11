@@ -165,10 +165,11 @@ class CCSM_Customizer {
 		) );
 
 		$wp_customize->add_control( new WP_Customize_Date_Time_Control( $wp_customize, 'ccsm_settings[colorlib_coming_soon_timer_option]', array(
-			'label'           => esc_html__( 'Time to opening', 'colorlib-coming-soon-maintenance' ),
-			'section'         => 'colorlib_coming_soon_section_general',
-			'priority'        => 10,
-			'active_callback' => 'ccsm_template_has_timer',
+            'label'              => esc_html__('Time to opening', 'colorlib-coming-soon-maintenance'),
+            'section'            => 'colorlib_coming_soon_section_general',
+            'priority'           => 10,
+            'twelve_hour_format' => false,
+            'active_callback'    => 'ccsm_template_has_timer',
 		) ) );
 
 		$wp_customize->selective_refresh->add_partial(
