@@ -1,15 +1,35 @@
 <?php
-/*
-  Plugin Name: Coming Soon and Maintenance by Colorlib
-  Plugin URI: https://colorlib.com/
-  Description: Colorlib Coming Soon and Maintenance is a responsive coming soon WordPress plugin that comes with well designed coming soon page and lots of useful features including customization via Live Customizer, MailChimp integration, custom forms, and more.
-  Version: 1.0.4
-  Author: Colorlib
-  Author URI: https://colorlib.com/
-  License: GPL V3
-  Text Domain: colorlib-coming-soon-maintenance
-  Domain Path: /languages
+/**
+* Plugin Name: Coming Soon and Maintenance by Colorlib
+* Plugin URI: https://colorlib.com/
+* Description: Colorlib Coming Soon and Maintenance is a responsive coming soon WordPress plugin that comes with well designed coming soon page and lots of useful features including customization via Live Customizer, MailChimp integration, custom forms, and more.
+* Version: 1.0.4
+* Author: Colorlib
+* Author URI: https://colorlib.com/
+* Tested up to: 5.0.3
+* Requires: 4.6 or higher
+* License: GPLv3 or later
+* License URI: http://www.gnu.org/licenses/gpl-3.0.html
+* Requires PHP: 5.6
+* Text Domain: colorlib-coming-soon-maintenance
+* Domain Path: /languages
+*
+* Copyright 2018-2019 Colorlib support@colorlib.com
+*
+* This program is free software; you can redistribute it and/or modify
+* it under the terms of the GNU General Public License, version 3, as
+* published by the Free Software Foundation.
+*
+* This program is distributed in the hope that it will be useful,
+* but WITHOUT ANY WARRANTY; without even the implied warranty of
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+* GNU General Public License for more details.
+*
+* You should have received a copy of the GNU General Public License
+* along with this program; if not, write to the Free Software
+* Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
+
 
 // Exit if accessed directly
 if ( ! defined( 'ABSPATH' ) ) {
