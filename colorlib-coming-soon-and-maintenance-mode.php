@@ -3,7 +3,7 @@
 * Plugin Name: Coming Soon and Maintenance by Colorlib
 * Plugin URI: https://colorlib.com/
 * Description: Colorlib Coming Soon and Maintenance is a responsive coming soon WordPress plugin that comes with well designed coming soon page and lots of useful features including customization via Live Customizer, MailChimp integration, custom forms, and more.
-* Version: 1.0.4
+* Version: 1.0.5
 * Author: Colorlib
 * Author URI: https://colorlib.com/
 * Tested up to: 5.0.3
@@ -631,6 +631,9 @@ function ccsm_counter_dates( $timerDate ) {
 		$year  = $date->format( 'Y' );
 		$month = $date->format( 'm' );
 		$day   = $date->format( 'd' );
+		$hour = $date->format('H');
+		$minute = $date->format('I');
+        $second = $date->format('s');
 
 		$dates['template'] = array(
 			'days'    => $days,
@@ -643,10 +646,11 @@ function ccsm_counter_dates( $timerDate ) {
 			'year'   => $year,
 			'month'  => $month,
 			'day'    => $day,
-			'hour'   => $hours,
-			'minute' => $minutes,
-			'second' => $seconds
+			'hour'   => $hour,
+			'minute' => $minute,
+			'second' => $second
 		);
+
 
 	} else {
 		$dates['template'] = array(
