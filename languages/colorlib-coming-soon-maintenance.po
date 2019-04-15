@@ -1,12 +1,11 @@
 # Copyright (C) 2019 Colorlib
-# This file is distributed under the GPL V3.
+# This file is distributed under the GPLv3 or later.
 msgid ""
 msgstr ""
-"Project-Id-Version: Colorlib Coming Soon and Maintenance plugin for "
-"WordPress 1.0.3\n"
+"Project-Id-Version: Coming Soon and Maintenance by Colorlib 1.0.6\n"
 "Report-Msgid-Bugs-To: "
 "https://wordpress.org/support/plugin/colorlib-coming-soon-maintenence\n"
-"POT-Creation-Date: 2019-01-15 13:30:37+00:00\n"
+"POT-Creation-Date: 2019-04-15 11:25:35+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -26,12 +25,12 @@ msgstr ""
 "X-Textdomain-Support: yes\n"
 "X-Generator: grunt-wp-i18n 1.0.3\n"
 
-#: colorlib-coming-soon-and-maintenance-mode.php:48
-#: includes/class-ccsm-customizer.php:537
+#: colorlib-coming-soon-and-maintenance-mode.php:68
+#: includes/class-ccsm-customizer.php:538
 msgid "Settings"
 msgstr ""
 
-#: colorlib-coming-soon-and-maintenance-mode.php:49
+#: colorlib-coming-soon-and-maintenance-mode.php:69
 msgid "Support"
 msgstr ""
 
@@ -139,93 +138,92 @@ msgstr ""
 msgid "Time to opening"
 msgstr ""
 
-#: includes/class-ccsm-customizer.php:190
+#: includes/class-ccsm-customizer.php:191
 msgid "Logo Image"
 msgstr ""
 
-#: includes/class-ccsm-customizer.php:191
+#: includes/class-ccsm-customizer.php:192
 msgid "Recommended size: 80px by 80px"
 msgstr ""
 
-#: includes/class-ccsm-customizer.php:213
+#: includes/class-ccsm-customizer.php:214
 msgid "Background Image"
 msgstr ""
 
-#: includes/class-ccsm-customizer.php:228
+#: includes/class-ccsm-customizer.php:229
 msgid "Background Color"
 msgstr ""
 
-#: includes/class-ccsm-customizer.php:243
+#: includes/class-ccsm-customizer.php:244
 msgid "Text Color"
 msgstr ""
 
-#: includes/class-ccsm-customizer.php:259
+#: includes/class-ccsm-customizer.php:260
 msgid "Heading"
 msgstr ""
 
-#: includes/class-ccsm-customizer.php:282
+#: includes/class-ccsm-customizer.php:283
 msgid "Main Content"
 msgstr ""
 
-#: includes/class-ccsm-customizer.php:306
+#: includes/class-ccsm-customizer.php:307
 msgid "Footer Text"
 msgstr ""
 
-#: includes/class-ccsm-customizer.php:329
+#: includes/class-ccsm-customizer.php:330
 msgid "Disable Subscribe Form"
 msgstr ""
 
-#: includes/class-ccsm-customizer.php:344
-#: includes/class-ccsm-customizer.php:367
+#: includes/class-ccsm-customizer.php:345
+#: includes/class-ccsm-customizer.php:368
 msgid "Subscribe Form Action URL"
 msgstr ""
 
-#: includes/class-ccsm-customizer.php:345
+#: includes/class-ccsm-customizer.php:346
 msgid ""
 "You can get your form action URL by creating a sign-up form and copying the "
 "form action=\"\" field.: <a "
-"href=\"http://kb.mailchimp.com/lists/signup-forms/add-a-signup-form-to-your-"
-"website\" "
-"target=\"_blank\">http://kb.mailchimp.com/lists/signup-forms/add-a-signup-"
-"form-to-your-website</a>"
+"href=\"https://mailchimp.com/help/add-a-signup-form-to-your-website/\" "
+"target=\"_blank\">https://mailchimp.com/help/add-a-signup-form-to-your-"
+"website/</a>"
 msgstr ""
 
-#: includes/class-ccsm-customizer.php:368
+#: includes/class-ccsm-customizer.php:369
 msgid "Sign Up Link"
 msgstr ""
 
-#: includes/class-ccsm-customizer.php:392
+#: includes/class-ccsm-customizer.php:393
 msgid "Facebook"
 msgstr ""
 
-#: includes/class-ccsm-customizer.php:415
+#: includes/class-ccsm-customizer.php:416
 msgid "Twitter"
 msgstr ""
 
-#: includes/class-ccsm-customizer.php:438
+#: includes/class-ccsm-customizer.php:439
 #: templates/template_04/template_04.php:87
 #: templates/template_05/template_05.php:55
 #: templates/template_06/template_06.php:114
 msgid "Email"
 msgstr ""
 
-#: includes/class-ccsm-customizer.php:460
+#: includes/class-ccsm-customizer.php:461
 msgid "Youtube"
 msgstr ""
 
-#: includes/class-ccsm-customizer.php:482
+#: includes/class-ccsm-customizer.php:483
 msgid "Pinterest"
 msgstr ""
 
-#: includes/class-ccsm-customizer.php:504
+#: includes/class-ccsm-customizer.php:505
 msgid "Instagram"
 msgstr ""
 
-#: includes/class-ccsm-customizer.php:522
+#: includes/class-ccsm-customizer.php:523
 msgid "Colorlib Coming Soon"
 msgstr ""
 
-#: includes/class-ccsm-customizer.php:522
+#: includes/class-ccsm-customizer.php:523
 msgid "Coming Soon"
 msgstr ""
 
@@ -450,7 +448,7 @@ msgid "Follow us"
 msgstr ""
 
 #. Plugin Name of the plugin/theme
-msgid "Colorlib Coming Soon and Maintenance plugin for WordPress"
+msgid "Coming Soon and Maintenance by Colorlib"
 msgstr ""
 
 #. Author URI of the plugin/theme
