@@ -37,8 +37,14 @@ if ( ! class_exists( 'Colorlib_Dashboard_Widget_Extend_Feed' ) ) {
 			 * We want to modify the feed URLs only for the
 			 * WordPress Events & News Dashboard Widget
 			 */
-			if ( strpos( $url, 'planet.wordpress.org' ) === false ) {
-				return;
+			if ( is_array( $url ) ) {
+				if ( ! in_array( 'https://planet.wordpress.org/feed/', $url ) ) {
+					return;
+				}
+			}else{
+				if ( strpos( $url, 'planet.wordpress.org' ) === false ) {
+					return;
+				}
 			}
 
 			// Build the feed sources.
