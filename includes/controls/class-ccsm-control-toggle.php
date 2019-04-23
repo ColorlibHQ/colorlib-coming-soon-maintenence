@@ -65,7 +65,7 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
                     <div class="checkbox_switch">
                         <div>
                             <div class="cf toggle-wrapper">
-                                {{{ data.label }}}
+                                <span><strong>{{{ data.label }}}</strong></span>
                                 <div class="epsilon-toggle">
                                     <input class="epsilon-toggle__input" type="checkbox" id="{{{ data.id }}}"
                                            name="{{{ data.id }}}" value="{{{ data.value }}}" {{{ data.link }}} <#
