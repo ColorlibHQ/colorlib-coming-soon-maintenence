@@ -13,7 +13,7 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
 				$id = str_replace( '[', '', $this->id );
 				$id = str_replace( ']', '', $id );
 				?>
-                <label><?php echo $this->label; ?></label>
+                <label><span class="customize-control-title"><?php echo $this->label; ?></span></label>
                 <span class="description customize-control-description"><?php echo $this->description; ?></span>
                 </span>
                 <textarea id="<?php echo $id ?>"
