@@ -32,7 +32,7 @@ if ( ccsm_template_has_text_color() ) {
             <div class="flex-w flex-c-m cd100 p-b-33">
                 <div class="flex-col-c-m size2 bor1 m-l-15 m-r-15 m-b-20">
                     <span class="l2-txt1 p-b-9 days"><?php echo $dates['template']['days']; ?></span>
-                    <span class="s2-txt1"><?php esc_html__( 'Days', 'colorlib-coming-soon-maintenance' ); ?></span>
+                    <span class="s2-txt1"><?php echo esc_html__( 'Days', 'colorlib-coming-soon-maintenance' ); ?></span>
                 </div>
 
                 <div class="flex-col-c-m size2 bor1 m-l-15 m-r-15 m-b-20">
