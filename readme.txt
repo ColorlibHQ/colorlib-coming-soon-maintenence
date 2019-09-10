@@ -3,10 +3,10 @@
   Description: Coming Soon & Maintenance Mode by Colorlib is a responsive coming soon WordPress plugin that comes with well designed coming soon page and lots of useful features including customization via Live Customizer, MailChimp integration, custom forms, and more.
   Tags: maintenance mode, coming soon page, coming soon, under construction, launch page, launch, maintenance, construction, offline, unavailable, under construction page, landing page
   Requires at least: 4.8
-  Tested up to: 5.1
+  Tested up to: 5.2
   Requires PHP: 5.6
   Contributors: silkalns
-  Stable tag: 1.0.7
+  Stable tag: 1.0.8
   License: GPLv3 or later  
   License URI: http://www.gnu.org/licenses/gpl-3.0.html
  
@@ -70,6 +70,9 @@ If you enjoy using Colorlib Coming Soon for WordPress please leave a positive fe
 1. Screenshots are located under /assets/screenshots/
 
 == Changelog ==
+
+= 1.0.8 =
+* Display 'Days','Hours','Minutes' and 'Seconds' fix
 
 = 1.0.7 =
 * UI minor update
