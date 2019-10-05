@@ -104,10 +104,12 @@ function ccsm_template_redirect() {
 	// allow plugins & themes to control whether to force the check, regardless of any other settings
 	$force = apply_filters('ccsm_force_redirect', false);
 
-	//Checks for if user is logged in and CCSM is activated  OR if customizer is open on CCSM customization panel
+	// Checks for if user is logged in and CCSM is activated  OR if customizer is open on CCSM customization panel
 	$activated = !is_user_logged_in() && $ccsm_options['colorlib_coming_soon_activation'] == 1 || is_customize_preview() && isset( $_REQUEST['colorlib-coming-soon-customization'] );
-	if ( $force || $activated ) {		
-		// allow plugins & themes to control whether to filter
+
+	// If something "forced" it, or the default case was met, we might redirect
+	if ( $force || $activated ) {
+		// allow plugins & themes to skip the redirect (assuming force wasn't set)
 		$skip = apply_filters('ccsm_skip_redirect', false);
 		if( $force || !$skip ){
 			$file = plugin_dir_path( __FILE__ ) . 'includes/colorlib-template.php'; //get path of our coming soon display page and redirecting
