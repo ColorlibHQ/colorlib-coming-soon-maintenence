@@ -48,10 +48,7 @@ $dates             = ccsm_counter_dates( $counter );
                     </div>
                 </div>
 			<?php } ?>
-			<?php 
-			    do_action('colorlib_coming_soon_before_forms'); 
- 			    if ( $ccsm_options['colorlib_coming_soon_subscribe'] != '1' ) {  
-			?>
+			<?php if ( $ccsm_options['colorlib_coming_soon_subscribe'] != '1' ) { ?>
                 <form class="flex-w flex-c-m contact100-form validate-form p-t-70"
                       action="<?php echo esc_url( $ccsm_options['colorlib_coming_soon_subscribe_form_url'] ); ?>" method="POST">
                     <div class="wrap-input100 validate-input where1"

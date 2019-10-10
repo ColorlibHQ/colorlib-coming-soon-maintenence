@@ -40,10 +40,7 @@ $dates             = ccsm_counter_dates( $counter );
             <p class="txt-center l1-txt2 p-b-43 wsize2" id="colorlib_coming_soon_page_content">
 				<?php echo wp_kses_post( $ccsm_options['colorlib_coming_soon_page_content'] ); ?>
             </p>
-			<?php 
-			    do_action('colorlib_coming_soon_before_forms'); 
- 			    if ( $ccsm_options['colorlib_coming_soon_subscribe'] != '1' ) {  
-			?>
+			<?php if ( $ccsm_options['colorlib_coming_soon_subscribe'] != '1' ) { ?>
                 <form class="flex-w flex-c-m w-full contact100-form validate-form"
                       action="<?php echo esc_url( $ccsm_options['colorlib_coming_soon_subscribe_form_url'] ); ?>" method="POST">
                     <div class="wrap-input100 validate-input where1"

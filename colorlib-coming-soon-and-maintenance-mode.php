@@ -77,6 +77,7 @@ function ccsm_add_settings_link( $actions, $plugin_file ) {
 
 /* Redirect code that checks if on WP login page */
 function ccsm_skip_redirect_on_login() {
+
 	global $pagenow;
 	if ( 'wp-login.php' == $pagenow ) {
 		return;
@@ -85,37 +86,19 @@ function ccsm_skip_redirect_on_login() {
 	}
 }
 
-function ccsm_skip_redirect($should_skip=false){
-	return $should_skip;
-}
-add_filter( 'ccsm_skip_redirect', 'ccsm_skip_redirect' );
-
-function ccsm_force_redirect($should_force=false){
-	return $should_force;
-}
-add_filter( 'ccsm_force_redirect', 'ccsm_force_redirect' );
-
-
 /* Coming Soon Redirect to Template */
 function ccsm_template_redirect() {
+
 	global $wp_customize;
 	$ccsm_options = get_option( 'ccsm_settings' );
 
-	// allow plugins & themes to control whether to force the check, regardless of any other settings
-	$force = apply_filters('ccsm_force_redirect', false);
+	//Checks for if user is logged in and CCSM is activated  OR if customizer is open on CCSM customization panel
+	if ( ! is_user_logged_in() && $ccsm_options['colorlib_coming_soon_activation'] == 1 || is_customize_preview() && isset( $_REQUEST['colorlib-coming-soon-customization'] ) ) {
 
-	// Checks for if user is logged in and CCSM is activated  OR if customizer is open on CCSM customization panel
-	$activated = !is_user_logged_in() && $ccsm_options['colorlib_coming_soon_activation'] == 1 || is_customize_preview() && isset( $_REQUEST['colorlib-coming-soon-customization'] );
+		$file = plugin_dir_path( __FILE__ ) . 'includes/colorlib-template.php'; //get path of our coming soon display page and redirecting
+		include( $file );
 
-	// If something "forced" it, or the default case was met, we might redirect
-	if ( $force || $activated ) {
-		// allow plugins & themes to skip the redirect (assuming force wasn't set)
-		$skip = apply_filters('ccsm_skip_redirect', false);
-		if( $force || !$skip ){
-			$file = plugin_dir_path( __FILE__ ) . 'includes/colorlib-template.php'; //get path of our coming soon display page and redirecting
-			include( $file );
-			exit();
-		}
+		exit();
 	}
 }
 
