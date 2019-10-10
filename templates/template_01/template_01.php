@@ -60,10 +60,7 @@ if ( ccsm_template_has_text_color() ) {
             <p class="m1-txt1 p-b-36" id="colorlib_coming_soon_page_heading">
 				<?php echo wp_kses_post( $ccsm_options['colorlib_coming_soon_page_heading'] ); ?>
             </p>
-			<?php 
-			    do_action('colorlib_coming_soon_before_forms'); 
- 			    if ( $ccsm_options['colorlib_coming_soon_subscribe'] != '1' ) {  
-			?>
+			<?php if ( $ccsm_options['colorlib_coming_soon_subscribe'] != '1' ) { ?>
                 <form class="contact100-form validate-form"
                       action="<?php echo esc_url( $ccsm_options['colorlib_coming_soon_subscribe_form_url'] ); ?>" method="POST">
                     <div class="wrap-input100 m-b-10 validate-input"
