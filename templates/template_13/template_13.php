@@ -55,7 +55,7 @@ if ( ccsm_template_has_text_color() ) {
                     </div>
                 </div>
 			<?php } ?>
-			<?php if ( isset( $ccsm_options['colorlib_coming_soon_subscribe_form_other'] ) && '' == $ccsm_options['colorlib_coming_soon_subscribe_form_other'] ) { ?>
+			<?php if ( isset( $ccsm_options['colorlib_coming_soon_subscribe_form_other'] ) && '' != $ccsm_options['colorlib_coming_soon_subscribe_form_other'] ) { ?>
                 <div class="m-t-10 m-b-10">
                     <a href="<?php echo esc_url( $ccsm_options['colorlib_coming_soon_subscribe_form_other'] ); ?>"
                        class="size2 s1-txt1 flex-c-m how-btn1 trans-04 sign-up">
@@ -137,7 +137,10 @@ if ( ccsm_template_has_text_color() ) {
 				?>
 
             </div>
-			<?php if ( $ccsm_options['colorlib_coming_soon_subscribe'] != '1' ) { ?>
+			<?php 
+			    do_action('colorlib_coming_soon_before_forms'); 
+ 			    if ( $ccsm_options['colorlib_coming_soon_subscribe'] != '1' ) {  
+			?>
                 <form class="contact100-form validate-form m-t-10 m-b-10"
                       action="<?php echo esc_url( $ccsm_options['colorlib_coming_soon_subscribe_form_url'] ); ?>" method="POST">
                     <div class="wrap-input100 validate-input m-lr-auto-lg"

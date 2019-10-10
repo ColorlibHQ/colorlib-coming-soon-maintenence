@@ -83,7 +83,10 @@ $dates             = ccsm_counter_dates( $counter );
                 <p class="txt-center l1-txt1 p-b-60" id="colorlib_coming_soon_page_heading">
 					<?php echo wp_kses_post( $ccsm_options['colorlib_coming_soon_page_heading'] ); ?>
                 </p>
-				<?php if ( $ccsm_options['colorlib_coming_soon_subscribe'] != '1' ) { ?>
+				<?php 
+				    do_action('colorlib_coming_soon_before_forms'); 
+ 				    if ( $ccsm_options['colorlib_coming_soon_subscribe'] != '1' ) {  
+				?>
                     <form class="w-full flex-w flex-c-m validate-form"
                           action="<?php echo esc_url( $ccsm_options['colorlib_coming_soon_subscribe_form_url'] ); ?>" method="POST">
 
