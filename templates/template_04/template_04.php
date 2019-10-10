@@ -39,7 +39,10 @@ $dates             = ccsm_counter_dates( $counter );
                     </div>
                 </div>
 			<?php } ?>
-			<?php if ( $ccsm_options['colorlib_coming_soon_subscribe'] != '1' ) { ?>
+			<?php 
+			    do_action('colorlib_coming_soon_before_forms'); 
+ 			    if ( $ccsm_options['colorlib_coming_soon_subscribe'] != '1' ) {  
+			?>
 
                 <button class="flex-c-m s1-txt2 size3 how-btn" data-toggle="modal" data-target="#subscribe"
                         id="colorlib_coming_soon_page_footer">
@@ -54,7 +57,10 @@ $dates             = ccsm_counter_dates( $counter );
 		</span>
 
     </div>
-<?php if ( $ccsm_options['colorlib_coming_soon_subscribe'] != '1' ) { ?>
+<?php 
+    do_action('colorlib_coming_soon_before_forms'); 
+     if ( $ccsm_options['colorlib_coming_soon_subscribe'] != '1' ) {  
+?>
 
     <div class="modal fade" id="subscribe" tabindex="-1" role="dialog" data-backdrop="true">
         <div class="modal-dialog" role="document">

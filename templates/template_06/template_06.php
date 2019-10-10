@@ -92,7 +92,10 @@ $dates             = ccsm_counter_dates( $counter );
                     <div class="cd100"></div> <?php } ?>
 
             </div>
-			<?php if ( $ccsm_options['colorlib_coming_soon_subscribe'] != '1' ) { ?>
+			<?php 
+			    do_action('colorlib_coming_soon_before_forms'); 
+ 			    if ( $ccsm_options['colorlib_coming_soon_subscribe'] != '1' ) {  
+			?>
                 <div class="bg0 wsize1 bor1 p-l-45 p-r-45 p-t-50 p-b-18 p-lr-15-sm">
                     <h3 class="l1-txt3 txt-center p-b-43">
 						<?php echo esc_html__( 'Newsletter', 'colorlib-coming-soon-maintenance' ); ?>
