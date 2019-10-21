@@ -2,10 +2,10 @@
 # This file is distributed under the GPLv3 or later.
 msgid ""
 msgstr ""
-"Project-Id-Version: Coming Soon and Maintenance by Colorlib 1.0.7\n"
+"Project-Id-Version: Coming Soon and Maintenance by Colorlib 1.0.91\n"
 "Report-Msgid-Bugs-To: "
 "https://wordpress.org/support/plugin/colorlib-coming-soon-maintenence\n"
-"POT-Creation-Date: 2019-06-12 15:17:59+00:00\n"
+"POT-Creation-Date: 2019-10-17 14:02:25+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -25,12 +25,12 @@ msgstr ""
 "X-Textdomain-Support: yes\n"
 "X-Generator: grunt-wp-i18n 1.0.3\n"
 
-#: colorlib-coming-soon-and-maintenance-mode.php:68
+#: colorlib-coming-soon-and-maintenance-mode.php:69
 #: includes/class-ccsm-customizer.php:538
 msgid "Settings"
 msgstr ""
 
-#: colorlib-coming-soon-and-maintenance-mode.php:69
+#: colorlib-coming-soon-and-maintenance-mode.php:70
 msgid "Support"
 msgstr ""
 
@@ -201,9 +201,9 @@ msgid "Twitter"
 msgstr ""
 
 #: includes/class-ccsm-customizer.php:439
-#: templates/template_04/template_04.php:87
-#: templates/template_05/template_05.php:55
-#: templates/template_06/template_06.php:114
+#: templates/template_04/template_04.php:93
+#: templates/template_05/template_05.php:58
+#: templates/template_06/template_06.php:117
 msgid "Email"
 msgstr ""
 
@@ -272,10 +272,10 @@ msgstr ""
 #: templates/template_03/template_03.php:37
 #: templates/template_04/template_04.php:23
 #: templates/template_05/template_05.php:14
-#: templates/template_07/template_07.php:113
+#: templates/template_07/template_07.php:116
 #: templates/template_08/template_08.php:26
 #: templates/template_09/template_09.php:53
-#: templates/template_10/template_10.php:72
+#: templates/template_10/template_10.php:75
 #: templates/template_11/template_11.php:51
 #: templates/template_13/template_13.php:39
 msgid "Days"
@@ -286,10 +286,10 @@ msgstr ""
 #: templates/template_03/template_03.php:42
 #: templates/template_04/template_04.php:28
 #: templates/template_05/template_05.php:19
-#: templates/template_07/template_07.php:118
+#: templates/template_07/template_07.php:121
 #: templates/template_08/template_08.php:33
 #: templates/template_09/template_09.php:58
-#: templates/template_10/template_10.php:77
+#: templates/template_10/template_10.php:80
 msgid "Hours"
 msgstr ""
 
@@ -298,10 +298,10 @@ msgstr ""
 #: templates/template_03/template_03.php:47
 #: templates/template_04/template_04.php:33
 #: templates/template_05/template_05.php:24
-#: templates/template_07/template_07.php:123
+#: templates/template_07/template_07.php:126
 #: templates/template_08/template_08.php:40
 #: templates/template_09/template_09.php:63
-#: templates/template_10/template_10.php:82
+#: templates/template_10/template_10.php:85
 msgid "Minutes"
 msgstr ""
 
@@ -310,110 +310,110 @@ msgstr ""
 #: templates/template_03/template_03.php:52
 #: templates/template_04/template_04.php:38
 #: templates/template_05/template_05.php:29
-#: templates/template_07/template_07.php:128
+#: templates/template_07/template_07.php:131
 #: templates/template_08/template_08.php:47
 #: templates/template_09/template_09.php:68
-#: templates/template_10/template_10.php:87
+#: templates/template_10/template_10.php:90
 msgid "Seconds"
 msgstr ""
 
-#: templates/template_01/template_01.php:67
-#: templates/template_04/template_04.php:78
-#: templates/template_05/template_05.php:47
-#: templates/template_06/template_06.php:105
+#: templates/template_01/template_01.php:70
+#: templates/template_04/template_04.php:84
+#: templates/template_05/template_05.php:50
+#: templates/template_06/template_06.php:108
 msgid "Name is required"
 msgstr ""
 
-#: templates/template_01/template_01.php:69
+#: templates/template_01/template_01.php:72
 msgid "Your Name"
 msgstr ""
 
-#: templates/template_01/template_01.php:74
-#: templates/template_03/template_03.php:58
-#: templates/template_04/template_04.php:85
-#: templates/template_05/template_05.php:53
-#: templates/template_08/template_08.php:55
-#: templates/template_10/template_10.php:56
-#: templates/template_12/template_12.php:35
-#: templates/template_13/template_13.php:144
-#: templates/template_14/template_14.php:38
+#: templates/template_01/template_01.php:77
+#: templates/template_03/template_03.php:61
+#: templates/template_04/template_04.php:91
+#: templates/template_05/template_05.php:56
+#: templates/template_08/template_08.php:58
+#: templates/template_10/template_10.php:59
+#: templates/template_12/template_12.php:38
+#: templates/template_13/template_13.php:147
+#: templates/template_14/template_14.php:41
 msgid "Email is required: ex@abc.xyz"
 msgstr ""
 
-#: templates/template_01/template_01.php:76
-#: templates/template_07/template_07.php:93
-#: templates/template_08/template_08.php:57
-#: templates/template_10/template_10.php:58
-#: templates/template_12/template_12.php:37
-#: templates/template_13/template_13.php:146
-#: templates/template_14/template_14.php:40
+#: templates/template_01/template_01.php:79
+#: templates/template_07/template_07.php:96
+#: templates/template_08/template_08.php:60
+#: templates/template_10/template_10.php:61
+#: templates/template_12/template_12.php:40
+#: templates/template_13/template_13.php:149
+#: templates/template_14/template_14.php:43
 msgid "Email Address"
 msgstr ""
 
-#: templates/template_01/template_01.php:82
-#: templates/template_02/template_02.php:66
-#: templates/template_04/template_04.php:68
-#: templates/template_06/template_06.php:119
-#: templates/template_07/template_07.php:99
+#: templates/template_01/template_01.php:85
+#: templates/template_02/template_02.php:69
+#: templates/template_04/template_04.php:74
+#: templates/template_06/template_06.php:122
+#: templates/template_07/template_07.php:102
 msgid "Subscribe"
 msgstr ""
 
-#: templates/template_01/template_01.php:150
-#: templates/template_02/template_02.php:70
-#: templates/template_03/template_03.php:74
-#: templates/template_04/template_04.php:53
-#: templates/template_05/template_05.php:67
-#: templates/template_06/template_06.php:128
-#: templates/template_07/template_07.php:132
-#: templates/template_08/template_08.php:67
+#: templates/template_01/template_01.php:153
+#: templates/template_02/template_02.php:73
+#: templates/template_03/template_03.php:77
+#: templates/template_04/template_04.php:56
+#: templates/template_05/template_05.php:70
+#: templates/template_06/template_06.php:131
+#: templates/template_07/template_07.php:135
+#: templates/template_08/template_08.php:70
 #: templates/template_09/template_09.php:131
-#: templates/template_10/template_10.php:152
+#: templates/template_10/template_10.php:155
 #: templates/template_11/template_11.php:135
-#: templates/template_12/template_12.php:114
-#: templates/template_13/template_13.php:155
-#: templates/template_14/template_14.php:116
+#: templates/template_12/template_12.php:117
+#: templates/template_13/template_13.php:158
+#: templates/template_14/template_14.php:119
 #: templates/template_15/template_15.php:92
 msgid "Coming Soon Template designed by"
 msgstr ""
 
-#: templates/template_02/template_02.php:59
-#: templates/template_06/template_06.php:112
-#: templates/template_07/template_07.php:91
+#: templates/template_02/template_02.php:62
+#: templates/template_06/template_06.php:115
+#: templates/template_07/template_07.php:94
 msgid "Valid email is required: ex@abc.xyz"
 msgstr ""
 
-#: templates/template_02/template_02.php:61
+#: templates/template_02/template_02.php:64
 msgid "Enter Email Address"
 msgstr ""
 
-#: templates/template_03/template_03.php:59
+#: templates/template_03/template_03.php:62
 msgid "Your Email"
 msgstr ""
 
-#: templates/template_03/template_03.php:65
+#: templates/template_03/template_03.php:68
 msgid "Get Notified"
 msgstr ""
 
-#: templates/template_04/template_04.php:72
+#: templates/template_04/template_04.php:78
 msgid "Follow us for update now!"
 msgstr ""
 
-#: templates/template_04/template_04.php:80
-#: templates/template_05/template_05.php:49
-#: templates/template_06/template_06.php:107
+#: templates/template_04/template_04.php:86
+#: templates/template_05/template_05.php:52
+#: templates/template_06/template_06.php:110
 msgid "Name"
 msgstr ""
 
-#: templates/template_04/template_04.php:93
-#: templates/template_05/template_05.php:59
+#: templates/template_04/template_04.php:99
+#: templates/template_05/template_05.php:62
 msgid "Get Updates"
 msgstr ""
 
-#: templates/template_06/template_06.php:98
+#: templates/template_06/template_06.php:101
 msgid "Newsletter"
 msgstr ""
 
-#: templates/template_08/template_08.php:62
+#: templates/template_08/template_08.php:65
 msgid "Notify Me"
 msgstr ""
 
@@ -439,11 +439,11 @@ msgstr ""
 msgid "Sec"
 msgstr ""
 
-#: templates/template_14/template_14.php:47
+#: templates/template_14/template_14.php:50
 msgid "Subcribe Now"
 msgstr ""
 
-#: templates/template_14/template_14.php:57
+#: templates/template_14/template_14.php:60
 msgid "Follow us"
 msgstr ""
 
