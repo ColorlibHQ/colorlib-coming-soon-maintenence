@@ -65,14 +65,14 @@ class CCSM_Review {
 			return false;
 		}
 
-		if ( $this->value == $option ) {
+		if ( $this->value == $option && "" != $option ) {
 			return false;
 		}
 
 		if ( is_array( $this->when ) ) {
 			foreach($this->when as $et){
-			    if( date('Y-m-d',strtotime($currDate.' +'.$et.' days')) == $this->value){
-			        return true;
+                if ($et == $this->value) {
+                    return true;
                 }
 
 			}
@@ -122,7 +122,7 @@ class CCSM_Review {
 		$options = get_option( 'ccsm_settings', array() );
 
 		if ( isset( $_POST['epsilon-review'] ) ) {
-			$options['givemereview'] = 'already-rated';
+			$options['givemereview'] = "already-rated";
 		} else {
 			$options['givemereview'] = $this->value;
 		}
