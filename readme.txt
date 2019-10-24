@@ -6,7 +6,7 @@
   Tested up to: 5.2
   Requires PHP: 5.6
   Contributors: silkalns
-  Stable tag: 1.0.91
+  Stable tag: 1.0.92
   License: GPLv3 or later  
   License URI: http://www.gnu.org/licenses/gpl-3.0.html
  
@@ -70,6 +70,10 @@ If you enjoy using Colorlib Coming Soon for WordPress please leave a positive fe
 1. Screenshots are located under /assets/screenshots/
 
 == Changelog ==
+
+= 1.0.92 =
+* Review request fix / review save fix
+* Fix compatibility with Colorlib 404 Customizer
 
 = 1.0.91 =
 * Prevent forcing customizer to show only coming soon page
