@@ -3,10 +3,10 @@
 * Plugin Name: Coming Soon and Maintenance by Colorlib
 * Plugin URI: https://colorlib.com/
 * Description: Colorlib Coming Soon and Maintenance is a responsive coming soon WordPress plugin that comes with well designed coming soon page and lots of useful features including customization via Live Customizer, MailChimp integration, custom forms, and more.
-* Version: 1.0.91
+* Version: 1.0.92
 * Author: Colorlib
 * Author URI: https://colorlib.com/
-* Tested up to: 5.2
+* Tested up to: 5.3
 * Requires: 4.6 or higher
 * License: GPLv3 or later
 * License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -603,23 +603,23 @@ function ccsm_style_enqueue( $template_name ) {
 
 
 function ccsm_customizer_preview_scripts() {
-	wp_register_script( 'colorlib-customizer-preview', CCSM_URL . 'assets/js/customizer-preview.js', array(
+	wp_register_script( 'colorlib-ccsm-customizer-preview', CCSM_URL . 'assets/js/customizer-preview.js', array(
 		'jquery',
 		'customize-preview'
 	), '', true );
-	wp_enqueue_script( 'colorlib-customizer-preview' );
+	wp_enqueue_script( 'colorlib-ccsm-customizer-preview' );
 	wp_enqueue_scripts( 'customize-selective-refresh' );
 }
 
 
 function ccsm_customizer_scripts() {
 	wp_enqueue_editor();
-	wp_register_script( 'colorlib-customizer-js', CCSM_URL . 'assets/js/customizer.js', array( 'customize-controls' ) );
-	wp_enqueue_script( 'colorlib-customizer-js' );
-	wp_register_style( 'colorlib-custom-controls-css', CCSM_URL . 'assets/css/ccsm-custom-controls.css', array(), '1.0', 'all' );
-	wp_enqueue_style( 'colorlib-custom-controls-css' );
+	wp_register_script( 'colorlib-ccsm-customizer-js', CCSM_URL . 'assets/js/customizer.js', array( 'customize-controls' ) );
+	wp_enqueue_script( 'colorlib-ccsm-customizer-js' );
+	wp_register_style( 'colorlib-ccsm-custom-controls-css', CCSM_URL . 'assets/css/ccsm-custom-controls.css', array(), '1.0', 'all' );
+	wp_enqueue_style( 'colorlib-ccsm-custom-controls-css' );
 	wp_localize_script(
-		'colorlib-customizer-js', 'CCSMurls', array(
+		'colorlib-ccsm-customizer-js', 'CCSMurls', array(
 			'siteurl' => get_option( 'siteurl' ),
 		)
 	);
