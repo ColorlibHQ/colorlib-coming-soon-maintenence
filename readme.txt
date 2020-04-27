@@ -73,6 +73,7 @@ If you enjoy using Colorlib Coming Soon for WordPress please leave a positive fe
 = 1.0.93 =
 * Added option to add Google Analytics to landing page
 * Fix toggle button bug when using themes that change the layout of customizer controls
+* Review dismiss fix
 
 = 1.0.92 =
 * Review request fix / review save fix
