@@ -7,7 +7,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 	<?php
 	$ccsm_options = get_option( 'ccsm_settings' );
-    echo $ccsm_options['colorlib_coming_soon_google_analytics'];
+    if ( isset( $ccsm_options['colorlib_coming_soon_google_analytics'] ) ) {
+        echo $ccsm_options['colorlib_coming_soon_google_analytics'];
+    }
 
 	if ( $ccsm_options['colorlib_coming_soon_template_selection'] ) {
 		$template = $ccsm_options['colorlib_coming_soon_template_selection'];
