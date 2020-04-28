@@ -46,7 +46,7 @@ class CCSM_Review {
 			return;
 		}
 
-		add_action( 'wp_ajax_epsilon_review', array( $this, 'ajax' ) );
+		add_action( 'wp_ajax_ccsm_epsilon_review', array( $this, 'ajax' ) );
 
 		if ( $this->check() ) {
 			add_action( 'admin_notices', array( $this, 'five_star_wp_rate_notice' ) );
@@ -153,11 +153,11 @@ class CCSM_Review {
                     evt.preventDefault();
 
                     var data = {
-                        action: 'epsilon_review',
+                        action: 'ccsm_epsilon_review',
                         security: '<?php echo $ajax_nonce; ?>',
                     };
 
-                    if ('epsilon-rated' === id) {
+                    if ('epsilon-rated' === id || 'epsilon-rate' === id) {
                         data['epsilon-review'] = 1;
                     }
 
@@ -173,6 +173,21 @@ class CCSM_Review {
                     });
 
                 });
+
+	            $('#colorlib-coming-soon-maintenance-epsilon-review-notice .notice-dismiss').click(function(){
+
+		            var data = {
+			            action: 'ccsm_epsilon_review',
+			            security: '<?php echo $ajax_nonce; ?>',
+		            };
+
+		            $.post('<?php echo admin_url( 'admin-ajax.php' ) ?>', data, function (response) {
+			            $('#<?php echo $this->slug ?>-epsilon-review-notice').slideUp('fast', function () {
+				            $(this).remove();
+			            });
+
+		            });
+	            });
 
             });
         </script>
