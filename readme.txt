@@ -70,6 +70,10 @@ If you enjoy using Colorlib Coming Soon for WordPress please leave a positive fe
 1. Screenshots are located under /assets/screenshots/
 
 == Changelog ==
+= 1.0.94 =
+* Fix timer fields width in FireFox
+* Some escaping improvements
+
 = 1.0.93 =
 * Added option to add Google Analytics to landing page
 * Fix toggle button bug when using themes that change the layout of customizer controls

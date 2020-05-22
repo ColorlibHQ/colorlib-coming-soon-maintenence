@@ -180,3 +180,7 @@ body .epsilon-toggle > input.epsilon-toggle__input[type=checkbox]:checked + .eps
 #customize-control-ccsm_settings-colorlib_coming_soon_page_custom_css .CodeMirror {
     height: calc(100vh - 185px);
 }
+
+#customize-control-ccsm_settings-colorlib_coming_soon_timer_option input {
+    min-width: 85px;
+}
