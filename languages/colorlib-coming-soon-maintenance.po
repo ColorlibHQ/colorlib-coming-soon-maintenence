@@ -1,15 +1,15 @@
-# Copyright (C) 2019 Colorlib
+# Copyright (C) 2020 Colorlib
 # This file is distributed under the GPLv3 or later.
 msgid ""
 msgstr ""
-"Project-Id-Version: Coming Soon and Maintenance by Colorlib 1.0.91\n"
+"Project-Id-Version: Coming Soon and Maintenance by Colorlib 1.0.94\n"
 "Report-Msgid-Bugs-To: "
 "https://wordpress.org/support/plugin/colorlib-coming-soon-maintenence\n"
-"POT-Creation-Date: 2019-10-17 14:02:25+00:00\n"
+"POT-Creation-Date: 2020-10-02 13:22:40+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"PO-Revision-Date: 2019-MO-DA HO:MI+ZONE\n"
+"PO-Revision-Date: 2020-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: en\n"
@@ -26,7 +26,7 @@ msgstr ""
 "X-Generator: grunt-wp-i18n 1.0.3\n"
 
 #: colorlib-coming-soon-and-maintenance-mode.php:69
-#: includes/class-ccsm-customizer.php:538
+#: includes/class-ccsm-customizer.php:552
 msgid "Settings"
 msgstr ""
 
@@ -166,20 +166,24 @@ msgstr ""
 msgid "Main Content"
 msgstr ""
 
-#: includes/class-ccsm-customizer.php:307
+#: includes/class-ccsm-customizer.php:298
+msgid "Google Analytics"
+msgstr ""
+
+#: includes/class-ccsm-customizer.php:321
 msgid "Footer Text"
 msgstr ""
 
-#: includes/class-ccsm-customizer.php:330
+#: includes/class-ccsm-customizer.php:344
 msgid "Disable Subscribe Form"
 msgstr ""
 
-#: includes/class-ccsm-customizer.php:345
-#: includes/class-ccsm-customizer.php:368
+#: includes/class-ccsm-customizer.php:359
+#: includes/class-ccsm-customizer.php:382
 msgid "Subscribe Form Action URL"
 msgstr ""
 
-#: includes/class-ccsm-customizer.php:346
+#: includes/class-ccsm-customizer.php:360
 msgid ""
 "You can get your form action URL by creating a sign-up form and copying the "
 "form action=\"\" field.: <a "
@@ -188,42 +192,42 @@ msgid ""
 "website/</a>"
 msgstr ""
 
-#: includes/class-ccsm-customizer.php:369
+#: includes/class-ccsm-customizer.php:383
 msgid "Sign Up Link"
 msgstr ""
 
-#: includes/class-ccsm-customizer.php:393
+#: includes/class-ccsm-customizer.php:407
 msgid "Facebook"
 msgstr ""
 
-#: includes/class-ccsm-customizer.php:416
+#: includes/class-ccsm-customizer.php:430
 msgid "Twitter"
 msgstr ""
 
-#: includes/class-ccsm-customizer.php:439
+#: includes/class-ccsm-customizer.php:453
 #: templates/template_04/template_04.php:93
 #: templates/template_05/template_05.php:58
 #: templates/template_06/template_06.php:117
 msgid "Email"
 msgstr ""
 
-#: includes/class-ccsm-customizer.php:461
+#: includes/class-ccsm-customizer.php:475
 msgid "Youtube"
 msgstr ""
 
-#: includes/class-ccsm-customizer.php:483
+#: includes/class-ccsm-customizer.php:497
 msgid "Pinterest"
 msgstr ""
 
-#: includes/class-ccsm-customizer.php:505
+#: includes/class-ccsm-customizer.php:519
 msgid "Instagram"
 msgstr ""
 
-#: includes/class-ccsm-customizer.php:523
+#: includes/class-ccsm-customizer.php:537
 msgid "Colorlib Coming Soon"
 msgstr ""
 
-#: includes/class-ccsm-customizer.php:523
+#: includes/class-ccsm-customizer.php:537
 msgid "Coming Soon"
 msgstr ""
 
