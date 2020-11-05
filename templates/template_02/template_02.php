@@ -6,8 +6,11 @@ $counter           = $ccsm_options['colorlib_coming_soon_timer_option'];
 $dates             = ccsm_counter_dates( $counter );
 $bcg_url = ($ccsm_options['colorlib_coming_soon_background_image']) ?  $ccsm_options['colorlib_coming_soon_background_image'] : '';
 
-if ( is_ssl() && !empty( $bcg_url ) ) {
-	$bcg_url = str_replace( 'http://', 'https://', $ccsm_options['colorlib_coming_soon_background_image'] );
+if ( is_ssl()  ) {
+
+	if ( !empty( $bcg_url ) ) {
+		$bcg_url = str_replace( 'http://', 'https://', $ccsm_options['colorlib_coming_soon_background_image'] );
+	}
 }
 
 if ( ccsm_template_has_text_color() ) {
