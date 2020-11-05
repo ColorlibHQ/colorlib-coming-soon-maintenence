@@ -4,15 +4,25 @@ $counterActivation = $ccsm_options['colorlib_coming_soon_timer_activation'];
 $template          = $ccsm_options['colorlib_coming_soon_template_selection'];
 $counter           = $ccsm_options['colorlib_coming_soon_timer_option'];
 $dates             = ccsm_counter_dates( $counter );
+$bcg_url           = ($ccsm_options['colorlib_coming_soon_background_image']) ?  $ccsm_options['colorlib_coming_soon_background_image'] : '';
+$logo_url          = ($ccsm_options['colorlib_coming_soon_plugin_logo']) ? $ccsm_options['colorlib_coming_soon_plugin_logo'] : false;
+
+if ( is_ssl() && !empty( $bcg_url ) ) {
+	$bcg_url = str_replace( 'http://', 'https://', $ccsm_options['colorlib_coming_soon_background_image'] );
+
+	if ( $logo_url ) {
+		$logo_url = str_replace( 'http://', 'https://', $logo_url );
+	}
+}
 ?>
     <div class="flex-w flex-str size1 overlay1"
          style="background-color:<?php echo $ccsm_options['colorlib_coming_soon_background_color']; ?>;">
         <div class="flex-w flex-col-sb wsize1 bg0 p-l-65 p-t-37 p-b-50 p-r-80 respon1">
             <div class="wrappic1">
-				<?php if ( $ccsm_options['colorlib_coming_soon_plugin_logo'] ) {
+				<?php if ( $logo_url ) {
 					?>
                     <a href="<?php echo site_url(); ?>" class="logo-link"><img
-                                src="<?php echo esc_url( $ccsm_options['colorlib_coming_soon_plugin_logo'] ); ?>"
+                                src="<?php echo esc_url( $logo_url ); ?>"
                                 alt="<?php echo get_bloginfo(); ?>"></a>
 					<?php
 				}
@@ -112,7 +122,7 @@ $dates             = ccsm_counter_dates( $counter );
         <div class="wsize1 simpleslide100-parent respon2">
             <div class="simpleslide100">
                 <div class="simpleslide100-item bg-img1"
-                     style="background-image: url('<?php echo ( $ccsm_options['colorlib_coming_soon_background_image'] ) ? esc_url( $ccsm_options['colorlib_coming_soon_background_image'] ) : ''; ?>');"></div>
+                     style="background-image: url('<?php echo esc_url($bcg_url); ?>');"></div>
             </div>
             <p style="color:#fff;position:absolute;bottom:0px;" class="colorlib-copyright"><span><?php _e('Coming Soon Template designed by','colorlib-coming-soon-maintenance'); ?></span>
                 <a href="https://colorlib.com/" target="_blank" style="color:#fff;">Colorlib</a></p>

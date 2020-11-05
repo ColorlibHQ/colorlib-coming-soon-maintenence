@@ -4,20 +4,30 @@ $counterActivation = $ccsm_options['colorlib_coming_soon_timer_activation'];
 $template          = $ccsm_options['colorlib_coming_soon_template_selection'];
 $counter           = $ccsm_options['colorlib_coming_soon_timer_option'];
 $dates             = ccsm_counter_dates( $counter );
+$bcg_url           = ($ccsm_options['colorlib_coming_soon_background_image']) ?  $ccsm_options['colorlib_coming_soon_background_image'] : '';
+$logo_url          = ($ccsm_options['colorlib_coming_soon_plugin_logo']) ? $ccsm_options['colorlib_coming_soon_plugin_logo'] : false;
+
+if ( is_ssl() && !empty( $bcg_url ) ) {
+	$bcg_url = str_replace( 'http://', 'https://', $ccsm_options['colorlib_coming_soon_background_image'] );
+
+	if ( $logo_url ) {
+		$logo_url = str_replace( 'http://', 'https://', $logo_url );
+	}
+}
 ?>
     <div class="simpleslide100">
         <div class="simpleslide100-item bg-img1"
-             style="background-image: url('<?php echo ( $ccsm_options['colorlib_coming_soon_background_image'] ) ? esc_url( $ccsm_options['colorlib_coming_soon_background_image'] ) : ''; ?>');"></div>
+             style="background-image: url('<?php echo esc_url($bcg_url); ?>');"></div>
     </div>
 
     <div class="bg-img1 size1 overlay1 p-b-35 p-l-15 p-r-15"
-         style="background-image: url('<?php echo ( $ccsm_options['colorlib_coming_soon_background_image'] ) ? esc_url( $ccsm_options['colorlib_coming_soon_background_image'] ) : ''; ?>');">
+         style="background-image: url('<?php echo esc_url($bcg_url); ?>');">
         <div class="flex-col-c p-t-160 p-b-215 respon1">
             <div class="wrappic1">
-				<?php if ( $ccsm_options['colorlib_coming_soon_plugin_logo'] ) {
+				<?php if ( $logo_url) {
 					?>
                     <a href="<?php echo site_url(); ?>" class="logo-link"><img
-                                src="<?php echo esc_url( $ccsm_options['colorlib_coming_soon_plugin_logo'] ); ?>"
+                                src="<?php echo esc_url( $logo_url ); ?>"
                                 alt="<?php echo get_bloginfo(); ?>"></a>
 					<?php
 				}
