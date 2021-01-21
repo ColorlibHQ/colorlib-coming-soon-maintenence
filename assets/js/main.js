@@ -1,4 +1,4 @@
-jQuery(window).load(function ($) {
+jQuery(function ($) {
     jQuery('.colorlib-templates-wrapper input[type="radio"]').on('change', function () {
         var btn = jQuery(this);
         var parent = btn.parent('.colorlib-single-template-wrapper');

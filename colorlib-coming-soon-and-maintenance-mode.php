@@ -676,7 +676,7 @@ function ccsm_counter_dates( $timerDate ) {
 			'minutes' => '0',
 			'seconds' => '0'
 		);
-		$dates['script']   = 'false';
+		$dates['script']   = false;
 
 	}
 
