@@ -6,7 +6,7 @@
   Tested up to: 5.5
   Requires PHP: 5.6
   Contributors: silkalns
-  Stable tag: 1.0.95
+  Stable tag: 1.0.96
   License: GPLv3 or later  
   License URI: http://www.gnu.org/licenses/gpl-3.0.html
  
@@ -70,6 +70,9 @@ If you enjoy using Colorlib Coming Soon for WordPress please leave a positive fe
 1. Screenshots are located under /assets/screenshots/
 
 == Changelog ==
+= 1.0.96 =
+* Compatibility with jQuery 3.0
+
 = 1.0.95 =
 * Fixed SSL Verification
 
