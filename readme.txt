@@ -70,6 +70,9 @@ If you enjoy using Colorlib Coming Soon for WordPress please leave a positive fe
 1. Screenshots are located under /assets/screenshots/
 
 == Changelog ==
+= 1.0.97 =
+* Fixed double dots on template 15 ( https://github.com/ColorlibHQ/colorlib-coming-soon-maintenence/issues/76 )
+
 = 1.0.96 =
 * Compatibility with jQuery 3.0
 

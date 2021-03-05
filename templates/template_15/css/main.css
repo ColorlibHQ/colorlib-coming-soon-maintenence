@@ -102,7 +102,7 @@ Primary use:
     display: none;
 }
 
-.flip-clock-divider::before {
+.flip-clock-divider:not(.days)::before {
     content: ":";
     font-family: 'Quantico', sans-serif;
     color: #fff;
