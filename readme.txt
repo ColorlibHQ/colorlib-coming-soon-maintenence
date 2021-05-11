@@ -7,28 +7,28 @@
   Requires PHP: 5.6
   Contributors: silkalns
   Stable tag: 1.0.97
-  License: GPLv3 or later  
+  License: GPLv3 or later
   License URI: http://www.gnu.org/licenses/gpl-3.0.html
- 
+
 == Description ==
 
 Colorlib Coming Soon & Maintenance Mode is a free WordPress plugin that allows you to create one of a kind coming soon and maintenance pages quickly directly from the Live Customizer. Easily work on your site while the plugin takes care of collecting your visitors’ email.
 
 Colorlib Coming Soon and Maintenance Mode is extremely easy to use, user-friendly, versatile, and useful for anyone looking to develop unique and custom coming soon and maintenance mode pages. This plugin gives you complete control over the coming soon and maintenance mode pages and you will be able to change their layout directly from WordPress’ Customizer. While your website is in maintenance mode, you can easily collect your visitor’s information – while being fully compliant with GDPR.
 
-Colorlib Coming Soon and Maintenance Mode is free to use and has a bunch of incredible features that can be found in Appearance > Customize once you install and activate the plugin. With only one click you can turn on your coming soon page and maintenance mode so that you work on your website without visitors noticing. 
+Colorlib Coming Soon and Maintenance Mode is free to use and has a bunch of incredible features that can be found in Appearance > Customize once you install and activate the plugin. With only one click you can turn on your coming soon page and maintenance mode so that you work on your website without visitors noticing.
 
-This plugin does not have a premium version available so you will not be disturbed by ads, upsells, or have limited features. All its features are available freely for everyone to use in order to create beautiful and custom under construction pages and coming soon pages. 
+This plugin does not have a premium version available so you will not be disturbed by ads, upsells, or have limited features. All its features are available freely for everyone to use in order to create beautiful and custom under construction pages and coming soon pages.
 
 Colorlib Coming Soon and Maintenance Mode is full of features, easy to use and install, and user-friendly. This incredible plugin comes with 15 coming soon and under construction page templates that you can use out of the box. Each coming soon page template was pre-designed to look professional and modern and they all are fully customizable. With a single click you can have a custom under construction page.
 
-After you install and activate Colorlib Coming Soon and Maintenance Mode plugin you will find all its features under the General tab in Appearance > Customize > Colorlib Coming Soon Settings. Once here, you will be able to play around with the logo image, background image, heading, and footer text. From the General tab you can also enable or disable the Colorlib Coming Soon and Maintenance Mode plugin as well as set up a timer for your under construction page. 
+After you install and activate Colorlib Coming Soon and Maintenance Mode plugin you will find all its features under the General tab in Appearance > Customize > Colorlib Coming Soon Settings. Once here, you will be able to play around with the logo image, background image, heading, and footer text. From the General tab you can also enable or disable the Colorlib Coming Soon and Maintenance Mode plugin as well as set up a timer for your under construction page.
 
-From the Subscribe Form tab you will be able to set up the subscription form. You can obviously turn it on or off, and add a sign-up form to your coming soon/under construction page. Colorlib Coming Soon and Maintenance Mode has social media integration offering the possibility of adding social media buttons to the coming soon page. 
+From the Subscribe Form tab you will be able to set up the subscription form. You can obviously turn it on or off, and add a sign-up form to your coming soon/under construction page. Colorlib Coming Soon and Maintenance Mode has social media integration offering the possibility of adding social media buttons to the coming soon page.
 
-While this plugin is exceptionally easy to use and requires no custom coding to set up and use, it offers a custom CSS area where you can add custom styling if you feel like customizing it even more. 
+While this plugin is exceptionally easy to use and requires no custom coding to set up and use, it offers a custom CSS area where you can add custom styling if you feel like customizing it even more.
 
-=== Colorlib Coming Soon & Maintenance Mode Features === 
+=== Colorlib Coming Soon & Maintenance Mode Features ===
 
 - Beautiful and responsive design
 - Works with all WordPress themes
@@ -70,6 +70,10 @@ If you enjoy using Colorlib Coming Soon for WordPress please leave a positive fe
 1. Screenshots are located under /assets/screenshots/
 
 == Changelog ==
+
+= 1.0.98 - 11.05.2021 =
+Added : Social icons for template 3 ( https://github.com/ColorlibHQ/colorlib-coming-soon-maintenence/issues/78 )
+
 = 1.0.97 - 08.04.2021 =
 Fixed: Double dots on template 15 ( https://github.com/ColorlibHQ/colorlib-coming-soon-maintenence/issues/76 )
 
