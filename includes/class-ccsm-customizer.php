@@ -292,12 +292,16 @@ class CCSM_Customizer {
 		$wp_customize->add_setting( 'ccsm_settings[colorlib_coming_soon_google_analytics]', array(
 				'sanitize_callback' => 'ccsm_sanitize_google_analytics',
 				'type'              => 'option'
+				
 			) );
 
 		$wp_customize->add_control( 'ccsm_settings[colorlib_coming_soon_google_analytics]', array(
-			'label'           => esc_html__( 'Google Analytics', 'colorlib-coming-soon-maintenance' ),
+			'label'           => esc_html__( 'Google Analytics tracking code ID', 'colorlib-coming-soon-maintenance' ),
 			'section'         => 'colorlib_coming_soon_section_general',
 			'priority'        => 30,
+			'input_attrs' => array(
+				'placeholder' => __( 'UA-xxxxxxxxx-x', 'colorlib-coming-soon-maintenance' ),
+			)
 		) );
 	
 
@@ -587,6 +591,6 @@ function ccsm_sanitize_text( $input ) {
 }
 
 function ccsm_sanitize_google_analytics( $input ) {
-	return $input;
+	return esc_html( $input );
 }
 
