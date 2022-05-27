@@ -919,7 +919,8 @@ ccsm_check_for_review();
  * @return void
  */
 function ccsm_google_analytics_notice() {
-	if ( ! get_option( 'ccsm_ga_notice' ) &&  ! get_option( 'colorlib_coming_soon_google_analytics_id' ) && get_option( 'colorlib_coming_soon_google_analytics' ) && '' !== get_option( 'colorlib_coming_soon_google_analytics' ) ) {
+    $options = get_option( 'ccsm_settings' );
+	if ( ! get_option( 'ccsm_ga_notice' ) && '' !== $options['colorlib_coming_soon_google_analytics'] ) {
 		$message = sprintf( __('For security reasons we have changed the Google Analytics setting. Please update your settings <a href="%s">here</a> in order to correctly use the Google Analytics script.', 'colorlib-coming-soon-maintenance'), esc_url( admin_url( 'customize.php?autofocus[panel]=colorlib_coming_soon_general_panel' ) ));
 		printf('<div id="ccsm-ga-notice" class="notice notice-warning is-dismissible"><p>%1$s</p></div>', wp_kses_post( $message ) );
 	}
