@@ -913,5 +913,68 @@ function ccsm_check_for_review() {
 
 ccsm_check_for_review();
 
+/**
+ * Notice for Google Analytics
+ *
+ * @return void
+ */
+function ccsm_google_analytics_notice() {
+	if ( ! get_option( 'ccsm_ga_notice' ) &&  ! get_option( 'colorlib_coming_soon_google_analytics_id' ) && get_option( 'colorlib_coming_soon_google_analytics' ) && '' !== get_option( 'colorlib_coming_soon_google_analytics' ) ) {
+		$message = sprintf( __('For security reasons we have changed the Google Analytics setting. Please update your settings <a href="%s">here</a> in order to correctly use the Google Analytics script.', 'colorlib-coming-soon-maintenance'), esc_url( admin_url( 'customize.php?autofocus[panel]=colorlib_coming_soon_general_panel' ) ));
+		printf('<div id="ccsm-ga-notice" class="notice notice-warning is-dismissible"><p>%1$s</p></div>', wp_kses_post( $message ) );
+	}
+}
+add_action( 'admin_notices', 'ccsm_google_analytics_notice' );
+
+/**
+ * AJAX script
+ *
+ * @since 1.0.99
+ */
+function ccsm_ajax_dismiss_script() {
+
+	$ajax_nonce = wp_create_nonce( 'ccsm-ga-notice' );
+
+	?>
+
+	<script type="text/javascript">
+        jQuery( document ).ready( function( $ ){
+
+            $(document).on('click','#ccsm-ga-notice .notice-dismiss', function( ){
+                var data = {
+                    action: 'ccsm-ga-notice_dismiss',
+                    security: '<?php echo $ajax_nonce; ?>',
+                };
+
+                $.post( '<?php echo esc_url( admin_url( 'admin-ajax.php' ) ); ?>', data, function( response ) {
+                    $( '#ccsm-ga-notice' ).slideUp( 'fast', function() {
+                        $( this ).remove();
+                    } );
+                });
+
+            } );
+
+        });
+	</script>
+
+	<?php
+}
+add_action( 'admin_print_footer_scripts', 'ccsm_ajax_dismiss_script' );
+
+/**
+ * Dismiss and update option for notice
+ *
+ * @return void
+ * @since 1.0.99
+ */
+function ccsm_ajax_dismiss_ga() {
+
+	check_ajax_referer( 'ccsm-ga-notice', 'security' );
+	update_option('ccsm_ga_notice', true );
+	wp_die( 'ok' );
+
+}
+add_action( 'wp_ajax_ccsm-ga-notice_dismiss', 'ccsm_ajax_dismiss_ga' );
+
 //Loading Plugin Theme Customizer Options
 require_once( 'includes/class-ccsm-customizer.php' );
