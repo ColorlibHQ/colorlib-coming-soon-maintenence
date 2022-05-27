@@ -7,15 +7,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 	<?php
 	$ccsm_options = get_option( 'ccsm_settings' );
-    if ( isset( $ccsm_options['colorlib_coming_soon_google_analytics'] ) && '' != $ccsm_options['colorlib_coming_soon_google_analytics'] ) {
+    if ( isset( $ccsm_options['colorlib_coming_soon_google_analytics_id'] ) && '' != $ccsm_options['colorlib_coming_soon_google_analytics_id'] ) {
      ?>
-        <script async src="https://www.googletagmanager.com/gtag/js?id=<?php echo esc_html( str_replace(array('\'', '"'), '', $ccsm_options['colorlib_coming_soon_google_analytics']) ); ?>"></script>
+        <script async src="https://www.googletagmanager.com/gtag/js?id=<?php echo esc_html( str_replace(array('\'', '"'), '', $ccsm_options['colorlib_coming_soon_google_analytics_id']) ); ?>"></script>
         <script>
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
 
-        gtag('config', '<?php echo esc_html( str_replace(array('\'', '"'), '', $ccsm_options['colorlib_coming_soon_google_analytics']) ); ?>');
+        gtag('config', '<?php echo esc_html( str_replace(array('\'', '"'), '', $ccsm_options['colorlib_coming_soon_google_analytics_id']) ); ?>');
         </script>
      <?php
     }

@@ -289,13 +289,13 @@ class CCSM_Customizer {
 
 		/* Setting - Coming Soon - Google Analytics */
 
-		$wp_customize->add_setting( 'ccsm_settings[colorlib_coming_soon_google_analytics]', array(
+		$wp_customize->add_setting( 'ccsm_settings[colorlib_coming_soon_google_analytics_id]', array(
 				'sanitize_callback' => 'ccsm_sanitize_google_analytics',
 				'type'              => 'option'
 				
 			) );
 
-		$wp_customize->add_control( 'ccsm_settings[colorlib_coming_soon_google_analytics]', array(
+		$wp_customize->add_control( 'ccsm_settings[colorlib_coming_soon_google_analytics_id]', array(
 			'label'           => esc_html__( 'Google Analytics tracking code ID', 'colorlib-coming-soon-maintenance' ),
 			'section'         => 'colorlib_coming_soon_section_general',
 			'priority'        => 30,
