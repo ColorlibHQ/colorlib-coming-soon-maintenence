@@ -46,7 +46,7 @@ class CCSM_Review {
 			return;
 		}
 
-		add_action( 'wp_ajax_epsilon_review', array( $this, 'ajax' ) );
+		add_action( 'wp_ajax_ccsm_epsilon_review', array( $this, 'ajax' ) );
 
 		if ( $this->check() ) {
 			add_action( 'admin_notices', array( $this, 'five_star_wp_rate_notice' ) );
@@ -65,14 +65,14 @@ class CCSM_Review {
 			return false;
 		}
 
-		if ( $this->value == $option ) {
+		if ( $this->value == $option && "" != $option ) {
 			return false;
 		}
 
 		if ( is_array( $this->when ) ) {
 			foreach($this->when as $et){
-			    if( date('Y-m-d',strtotime($currDate.' +'.$et.' days')) == $this->value){
-			        return true;
+                if ($et == $this->value) {
+                    return true;
                 }
 
 			}
@@ -101,7 +101,7 @@ class CCSM_Review {
 		$url = sprintf( $this->link, $this->slug );
 
 		?>
-        <div id="<?php echo $this->slug ?>-epsilon-review-notice" class="notice notice-success is-dismissible">
+        <div id="<?php echo esc_attr($this->slug); ?>-epsilon-review-notice" class="notice notice-success is-dismissible">
             <p><?php echo sprintf( wp_kses_post( $this->messages['notice'] ), $this->value ); ?></p>
             <p class="actions">
                 <a id="epsilon-rate" href="<?php echo esc_url( $url ) ?>"
@@ -122,7 +122,7 @@ class CCSM_Review {
 		$options = get_option( 'ccsm_settings', array() );
 
 		if ( isset( $_POST['epsilon-review'] ) ) {
-			$options['givemereview'] = 'already-rated';
+			$options['givemereview'] = "already-rated";
 		} else {
 			$options['givemereview'] = $this->value;
 		}
@@ -153,11 +153,11 @@ class CCSM_Review {
                     evt.preventDefault();
 
                     var data = {
-                        action: 'epsilon_review',
+                        action: 'ccsm_epsilon_review',
                         security: '<?php echo $ajax_nonce; ?>',
                     };
 
-                    if ('epsilon-rated' === id) {
+                    if ('epsilon-rated' === id || 'epsilon-rate' === id) {
                         data['epsilon-review'] = 1;
                     }
 
@@ -173,6 +173,21 @@ class CCSM_Review {
                     });
 
                 });
+
+	            $('#colorlib-coming-soon-maintenance-epsilon-review-notice .notice-dismiss').click(function(){
+
+		            var data = {
+			            action: 'ccsm_epsilon_review',
+			            security: '<?php echo $ajax_nonce; ?>',
+		            };
+
+		            $.post('<?php echo admin_url( 'admin-ajax.php' ) ?>', data, function (response) {
+			            $('#<?php echo $this->slug ?>-epsilon-review-notice').slideUp('fast', function () {
+				            $(this).remove();
+			            });
+
+		            });
+	            });
 
             });
         </script>

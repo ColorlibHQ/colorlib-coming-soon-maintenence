@@ -1,4 +1,4 @@
-jQuery(window).load(function () {
+jQuery(function () {
     jQuery('textarea.js-ccsm-editor').each(function () {
         var textareaId = jQuery(this).attr('id');
         var textareaEditor = jQuery(this);

@@ -3,10 +3,10 @@
 * Plugin Name: Coming Soon and Maintenance by Colorlib
 * Plugin URI: https://colorlib.com/
 * Description: Colorlib Coming Soon and Maintenance is a responsive coming soon WordPress plugin that comes with well designed coming soon page and lots of useful features including customization via Live Customizer, MailChimp integration, custom forms, and more.
-* Version: 1.0.9
+* Version: 1.0.98
 * Author: Colorlib
 * Author URI: https://colorlib.com/
-* Tested up to: 5.2
+* Tested up to: 5.6
 * Requires: 4.6 or higher
 * License: GPLv3 or later
 * License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -66,8 +66,8 @@ function ccsm_add_settings_link( $actions, $plugin_file ) {
 	}
 	if ( $plugin == $plugin_file ) {
 
-		$settings  = array( 'settings' => '<a href="options-general.php?page=ccsm_settings">' . __( 'Settings', 'colorlib-coming-soon-maintenance' ) . '</a>' );
-		$site_link = array( 'support' => '<a href="http://colorlib.com/wp/forums" target="_blank">' . __( 'Support', 'colorlib-coming-soon-maintenance' ) . '</a>' );
+		$settings  = array( 'settings' => '<a href="'.admin_url('options-general.php?page=ccsm_settings').'">' . __( 'Settings', 'colorlib-coming-soon-maintenance' ) . '</a>' );
+		$site_link = array( 'support' => '<a href="https://colorlib.com/wp/forums" target="_blank">' . __( 'Support', 'colorlib-coming-soon-maintenance' ) . '</a>' );
 
 		$actions = array_merge( $settings, $actions );
 		$actions = array_merge( $site_link, $actions );
@@ -603,23 +603,23 @@ function ccsm_style_enqueue( $template_name ) {
 
 
 function ccsm_customizer_preview_scripts() {
-	wp_register_script( 'colorlib-customizer-preview', CCSM_URL . 'assets/js/customizer-preview.js', array(
+	wp_register_script( 'colorlib-ccsm-customizer-preview', CCSM_URL . 'assets/js/customizer-preview.js', array(
 		'jquery',
 		'customize-preview'
 	), '', true );
-	wp_enqueue_script( 'colorlib-customizer-preview' );
+	wp_enqueue_script( 'colorlib-ccsm-customizer-preview' );
 	wp_enqueue_scripts( 'customize-selective-refresh' );
 }
 
 
 function ccsm_customizer_scripts() {
 	wp_enqueue_editor();
-	wp_register_script( 'colorlib-customizer-js', CCSM_URL . 'assets/js/customizer.js', array( 'customize-controls' ) );
-	wp_enqueue_script( 'colorlib-customizer-js' );
-	wp_register_style( 'colorlib-custom-controls-css', CCSM_URL . 'assets/css/ccsm-custom-controls.css', array(), '1.0', 'all' );
-	wp_enqueue_style( 'colorlib-custom-controls-css' );
+	wp_register_script( 'colorlib-ccsm-customizer-js', CCSM_URL . 'assets/js/customizer.js', array( 'customize-controls' ) );
+	wp_enqueue_script( 'colorlib-ccsm-customizer-js' );
+	wp_register_style( 'colorlib-ccsm-custom-controls-css', CCSM_URL . 'assets/css/ccsm-custom-controls.css', array(), '1.0', 'all' );
+	wp_enqueue_style( 'colorlib-ccsm-custom-controls-css' );
 	wp_localize_script(
-		'colorlib-customizer-js', 'CCSMurls', array(
+		'colorlib-ccsm-customizer-js', 'CCSMurls', array(
 			'siteurl' => get_option( 'siteurl' ),
 		)
 	);
@@ -676,7 +676,7 @@ function ccsm_counter_dates( $timerDate ) {
 			'minutes' => '0',
 			'seconds' => '0'
 		);
-		$dates['script']   = 'false';
+		$dates['script']   = false;
 
 	}
 
@@ -831,6 +831,7 @@ function ccsm_template_has_social() {
 	$ccsm_options        = get_option( 'ccsm_settings' );
 	$template_has_social = array(
 		'template_01',
+		'template_03',
 		'template_06',
 		'template_07',
 		'template_09',

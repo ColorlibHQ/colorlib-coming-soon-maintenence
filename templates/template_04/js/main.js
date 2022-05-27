@@ -21,7 +21,7 @@
 
 
     $('.validate-form .input100').each(function(){
-        $(this).focus(function(){
+        $(this).on('focus', function(){
            hideValidate(this);
         });
     });

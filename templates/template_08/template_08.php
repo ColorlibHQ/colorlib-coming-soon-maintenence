@@ -4,9 +4,17 @@ $counterActivation = $ccsm_options['colorlib_coming_soon_timer_activation'];
 $template          = $ccsm_options['colorlib_coming_soon_template_selection'];
 $counter           = $ccsm_options['colorlib_coming_soon_timer_option'];
 $dates             = ccsm_counter_dates( $counter );
+$bcg_url           = ($ccsm_options['colorlib_coming_soon_background_image']) ?  $ccsm_options['colorlib_coming_soon_background_image'] : '';
+
+if ( is_ssl()  ) {
+
+	if(!empty($bcg_url)){
+		$bcg_url = str_replace( 'http://', 'https://', $ccsm_options['colorlib_coming_soon_background_image'] );
+	}
+}
 ?>
     <div class="bg-img1 overlay1 size1 flex-w flex-c-m p-t-55 p-b-55 p-l-15 p-r-15"
-         style="background-image: url('<?php echo ( $ccsm_options['colorlib_coming_soon_background_image'] ) ? esc_url( $ccsm_options['colorlib_coming_soon_background_image'] ) : ''; ?>');">
+         style="background-image: url('<?php echo esc_url($bcg_url); ?>');">
         <div class="wsize1">
             <p class="txt-center p-b-23">
                 <i class="zmdi zmdi-card-giftcard cl0 fs-60"></i>

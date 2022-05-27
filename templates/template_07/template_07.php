@@ -4,16 +4,29 @@ $counterActivation = $ccsm_options['colorlib_coming_soon_timer_activation'];
 $template          = $ccsm_options['colorlib_coming_soon_template_selection'];
 $counter           = $ccsm_options['colorlib_coming_soon_timer_option'];
 $dates             = ccsm_counter_dates( $counter );
+$bcg_url           = ($ccsm_options['colorlib_coming_soon_background_image']) ?  $ccsm_options['colorlib_coming_soon_background_image'] : '';
+$logo_url          = ($ccsm_options['colorlib_coming_soon_plugin_logo']) ? $ccsm_options['colorlib_coming_soon_plugin_logo'] : false;
+
+if ( is_ssl()  ) {
+
+	if(!empty($bcg_url)){
+		$bcg_url = str_replace( 'http://', 'https://', $ccsm_options['colorlib_coming_soon_background_image'] );
+	}
+
+	if ( $logo_url ) {
+		$logo_url = str_replace( 'http://', 'https://', $logo_url );
+	}
+}
 ?>
     <div class="bg-img1 size1 overlay1"
-         style="background-image: url('<?php echo ( $ccsm_options['colorlib_coming_soon_background_image'] ) ? esc_url( $ccsm_options['colorlib_coming_soon_background_image'] ) : ''; ?>');">
+         style="background-image: url('<?php echo esc_url($bcg_url); ?>');">
         <div class="size1 p-l-15 p-r-15 p-t-30 p-b-50">
             <div class="flex-w flex-sb-m p-l-75 p-r-60 p-b-165 respon1">
                 <div class="wrappic1 m-r-30 m-t-10 m-b-10">
-					<?php if ( $ccsm_options['colorlib_coming_soon_plugin_logo'] ) {
+					<?php if ( $logo_url ) {
 						?>
                         <a href="<?php echo site_url(); ?>" class="logo-link"><img
-                                    src="<?php echo esc_url( $ccsm_options['colorlib_coming_soon_plugin_logo'] ); ?>"
+                                    src="<?php echo esc_url( $logo_url ); ?>"
                                     alt="<?php echo get_bloginfo(); ?>"></a>
 						<?php
 					}
