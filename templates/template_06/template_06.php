@@ -24,9 +24,9 @@ if ( is_ssl()  ) {
             <div class="wrappic1 m-r-30 m-t-10 m-b-10">
 				<?php if ( $logo_url ) {
 					?>
-                    <a href="<?php echo site_url(); ?>" class="logo-link"><img
+                    <a href="<?php echo esc_url( site_url() ); ?>" class="logo-link"><img
                                 src="<?php echo esc_url( $logo_url ); ?>"
-                                alt="<?php echo get_bloginfo(); ?>"></a>
+                                alt="<?php echo esc_url( get_bloginfo() ); ?>"></a>
 					<?php
 				}
 				?>
@@ -140,7 +140,7 @@ if ( is_ssl()  ) {
                     </p>
                 </div>
 			<?php } ?>
-            <p style="position:absolute;bottom:0;right:180px;" class="colorlib-copyright"><span><?php _e('Coming Soon Template designed by','colorlib-coming-soon-maintenance'); ?></span> <a href="https://colorlib.com/" target="_blank">Colorlib</a></p>
+            <p style="position:absolute;bottom:0;right:180px;" class="colorlib-copyright"><span><?php esc_html_e('Coming Soon Template designed by','colorlib-coming-soon-maintenance'); ?></span> <a href="https://colorlib.com/" target="_blank">Colorlib</a></p>
         </div>
     </div>
 <?php
@@ -159,12 +159,12 @@ if ( is_customize_preview() ) {
         jQuery('.cd100').countdown100({
             /*Set Endtime here*/
             /*Endtime must be > current time*/
-            endtimeYear: <?php echo $dates['script']['year']; ?>,
-            endtimeMonth: <?php echo $dates['script']['month']; ?>,
-            endtimeDate: <?php echo $dates['script']['day']; ?>,
-            endtimeHours: <?php echo $dates['script']['hour']; ?>,
-            endtimeMinutes: <?php echo $dates['script']['minute']; ?>,
-            endtimeSeconds: <?php echo $dates['script']['second']; ?>,
+            endtimeYear: <?php echo wp_json_encode( $dates['script']['year'] ); ?>,
+            endtimeMonth: <?php echo wp_json_encode( $dates['script']['month'] ); ?>,
+            endtimeDate: <?php echo wp_json_encode( $dates['script']['day'] ); ?>,
+            endtimeHours: <?php echo wp_json_encode( $dates['script']['hour'] ); ?>,
+            endtimeMinutes: <?php echo wp_json_encode( $dates['script']['minute'] ); ?>,
+            endtimeSeconds: <?php echo wp_json_encode( $dates['script']['second'] ); ?>,
             timeZone: ""
             // ex:  timeZone: "America/New_York"
             //go to " http://momentjs.com/timezone/ " to get timezone

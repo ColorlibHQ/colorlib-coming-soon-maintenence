@@ -40,14 +40,14 @@
     if(ccsm_template_has_background_color()){
         ?>
         body {
-            background-color: <?php echo $ccsm_options['colorlib_coming_soon_background_color']; ?> !important;
+            background-color: <?php echo wp_kses_post( $ccsm_options['colorlib_coming_soon_background_color'] ); ?> !important;
         }
 
         <?php
     }
 	?>
 
-        <?php  echo $ccsm_options['colorlib_coming_soon_page_custom_css']; ?>
+        <?php  echo wp_kses_post( $ccsm_options['colorlib_coming_soon_page_custom_css'] ); ?>
         .colorlib-copyright {
             text-align: center;
             left: 0;
