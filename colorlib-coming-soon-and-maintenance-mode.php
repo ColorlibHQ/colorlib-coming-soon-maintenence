@@ -50,6 +50,7 @@ add_action( 'ccsm_header', 'ccsm_style_enqueue', 20 );
 add_action( 'ccsm_header', 'wp_print_scripts' );
 add_filter( 'ccsm_skip_redirect', 'ccsm_skip_redirect' );
 add_filter( 'ccsm_force_redirect', 'ccsm_force_redirect' );
+add_filter( 'rest_authentication_errors', 'rest_restrict' );
 
 //loads the text domain for translation
 function ccsm_load_plugin_textdomain() {
@@ -117,6 +118,21 @@ function ccsm_template_redirect() {
             exit();
         }
     }
+}
+
+function rest_restrict( $response ) {
+
+	// If this is an admin page, don't restrict content
+	if ( is_admin() ) {
+		return $response;
+	}
+	$ccsm_options = get_option('ccsm_settings');
+	if ( !is_user_logged_in() && $ccsm_options['colorlib_coming_soon_activation'] == 1 ) {
+		wp_send_json_error( __( 'Sorry, this content is restricted', 'simple-restrict' ), 403 );
+	}
+
+	return $response;
+	
 }
 
 // enqueue template styles
