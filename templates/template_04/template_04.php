@@ -66,7 +66,7 @@ $dates             = ccsm_counter_dates( $counter );
         <div class="modal-dialog" role="document">
             <div class="modal-subscribe where1-parent bg0 bor2 size4 p-t-54 p-b-100 p-l-15 p-r-15">
                 <button class="btn-close-modal how-btn2 fs-26 where1 trans-04">
-                    <i class="zmdi zmdi-close"></i>
+                    <i class="zmdi zmdi-close" data-dismiss="modal"></i>
                 </button>
 
                 <div class="wsize1 m-lr-auto">
