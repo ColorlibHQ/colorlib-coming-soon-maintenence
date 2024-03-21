@@ -1,15 +1,15 @@
-# Copyright (C) 2022 Colorlib
+# Copyright (C) 2024 Colorlib
 # This file is distributed under the GPLv3 or later.
 msgid ""
 msgstr ""
-"Project-Id-Version: Coming Soon and Maintenance by Colorlib 1.0.99\n"
+"Project-Id-Version: Coming Soon and Maintenance by Colorlib 1.1.0\n"
 "Report-Msgid-Bugs-To: "
 "https://wordpress.org/support/plugin/colorlib-coming-soon-maintenence\n"
-"POT-Creation-Date: 2022-05-27 14:38:38+00:00\n"
+"POT-Creation-Date: 2024-03-21 09:42:05+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"PO-Revision-Date: 2022-MO-DA HO:MI+ZONE\n"
+"PO-Revision-Date: 2024-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: en\n"
@@ -25,16 +25,20 @@ msgstr ""
 "X-Textdomain-Support: yes\n"
 "X-Generator: grunt-wp-i18n 1.0.3\n"
 
-#: colorlib-coming-soon-and-maintenance-mode.php:69
+#: colorlib-coming-soon-and-maintenance-mode.php:70
 #: includes/class-ccsm-customizer.php:556
 msgid "Settings"
 msgstr ""
 
-#: colorlib-coming-soon-and-maintenance-mode.php:70
+#: colorlib-coming-soon-and-maintenance-mode.php:71
 msgid "Support"
 msgstr ""
 
-#: colorlib-coming-soon-and-maintenance-mode.php:924
+#: colorlib-coming-soon-and-maintenance-mode.php:138
+msgid "Sorry, this content is restricted!"
+msgstr ""
+
+#: colorlib-coming-soon-and-maintenance-mode.php:946
 msgid ""
 "For security reasons we have changed the Google Analytics setting. Please "
 "update your settings <a href=\"%s\">here</a> in order to correctly use the "
