@@ -71,6 +71,9 @@ If you enjoy using Colorlib Coming Soon for WordPress please leave a positive fe
 
 == Changelog ==
 
+= 1.1.1 - TBD =
+Fixed: Overflowing text on template no.15 ( https://github.com/ColorlibHQ/colorlib-coming-soon-maintenence/issues/77 )
+
 = 1.1.0 - 21.03.2024 =
 Fixed: XSS security
 
