@@ -398,12 +398,12 @@ function ccsm_style_enqueue( $template_name ) {
 		),
 		'template_14' => array(
 			array(
-				'name'     => 'main',
-				'location' => 'css/main.css',
-			),
-			array(
 				'name'     => 'util',
 				'location' => 'css/util.css',
+			),
+			array(
+				'name'     => 'main',
+				'location' => 'css/main.css',
 			),
 			array(
 				'name'     => 'Poppins-Playfair',

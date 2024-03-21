@@ -73,6 +73,7 @@ If you enjoy using Colorlib Coming Soon for WordPress please leave a positive fe
 
 = 1.1.1 - TBD =
 Fixed: Overflowing text on template no.15 ( https://github.com/ColorlibHQ/colorlib-coming-soon-maintenence/issues/77 )
+Fixed: Subscribe field is overlapped and social media icons are not arranged correctly on template no.14 ( https://github.com/ColorlibHQ/colorlib-coming-soon-maintenence/issues/75 )
 
 = 1.1.0 - 21.03.2024 =
 Fixed: XSS security

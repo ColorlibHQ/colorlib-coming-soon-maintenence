@@ -69,7 +69,7 @@ if ( is_ssl()  ) {
             </div>
 
             <div class="flex-w flex-m">
-				<span class="m2-txt2 p-r-40">
+				<span class="m2-txt2 p-r-40 w-full-md">
 					<?php echo esc_html__( 'Follow us', 'colorlib-coming-soon-maintenance' ); ?>
 				</span>
 				<?php
