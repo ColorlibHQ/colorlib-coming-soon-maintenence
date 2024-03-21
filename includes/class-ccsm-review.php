@@ -102,7 +102,7 @@ class CCSM_Review {
 
 		?>
         <div id="<?php echo esc_attr($this->slug); ?>-epsilon-review-notice" class="notice notice-success is-dismissible">
-            <p><?php echo sprintf( wp_kses_post( $this->messages['notice'] ), $this->value ); ?></p>
+            <p><?php echo sprintf( wp_kses_post( $this->messages['notice'] ), wp_kses_post( $this->value ) ); ?></p>
             <p class="actions">
                 <a id="epsilon-rate" href="<?php echo esc_url( $url ) ?>"
                    class="button button-primary epsilon-review-button"><?php echo esc_html( $this->messages['rate'] ); ?></a>
@@ -154,15 +154,15 @@ class CCSM_Review {
 
                     var data = {
                         action: 'ccsm_epsilon_review',
-                        security: '<?php echo $ajax_nonce; ?>',
+                        security: '<?php echo esc_html( $ajax_nonce ); ?>',
                     };
 
                     if ('epsilon-rated' === id || 'epsilon-rate' === id) {
                         data['epsilon-review'] = 1;
                     }
 
-                    $.post('<?php echo admin_url( 'admin-ajax.php' ) ?>', data, function (response) {
-                        $('#<?php echo $this->slug ?>-epsilon-review-notice').slideUp('fast', function () {
+                    $.post('<?php echo esc_url( admin_url( 'admin-ajax.php' ) ) ?>', data, function (response) {
+                        $('#<?php echo esc_html( $this->slug ) ?>-epsilon-review-notice').slideUp('fast', function () {
                             $(this).remove();
                         });
 
@@ -178,11 +178,11 @@ class CCSM_Review {
 
 		            var data = {
 			            action: 'ccsm_epsilon_review',
-			            security: '<?php echo $ajax_nonce; ?>',
+			            security: '<?php echo esc_html( $ajax_nonce ); ?>',
 		            };
 
-		            $.post('<?php echo admin_url( 'admin-ajax.php' ) ?>', data, function (response) {
-			            $('#<?php echo $this->slug ?>-epsilon-review-notice').slideUp('fast', function () {
+		            $.post('<?php echo esc_url( admin_url( 'admin-ajax.php' ) ) ?>', data, function (response) {
+			            $('#<?php echo esc_html( $this->slug ) ?>-epsilon-review-notice').slideUp('fast', function () {
 				            $(this).remove();
 			            });
 

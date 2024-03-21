@@ -28,7 +28,7 @@ if ( ccsm_template_has_text_color() ) {
 	<?php
 }
 ?>
-    <div class="simpleslide100" style="background-color:<?php echo $ccsm_options['colorlib_coming_soon_background_color']; ?>;">
+    <div class="simpleslide100" style="background-color:<?php echo esc_attr( $ccsm_options['colorlib_coming_soon_background_color'] ); ?>;">
         <div class="simpleslide100-item bg-img1"
              style="background-image: url('<?php echo esc_url($bcg_url); ?>');"></div>
     </div>
@@ -38,9 +38,9 @@ if ( ccsm_template_has_text_color() ) {
             <div class="wrappic1 m-r-30 m-t-10 m-b-10">
 				<?php if ( $logo_url ) {
 					?>
-                    <a href="<?php echo site_url(); ?>" class="logo-link"><img
+                    <a href="<?php echo esc_url( site_url() ); ?>" class="logo-link"><img
                                 src="<?php echo esc_url( $logo_url ); ?>"
-                                alt="<?php echo get_bloginfo(); ?>"></a>
+                                alt="<?php echo esc_url( get_bloginfo() ); ?>"></a>
 					<?php
 				}
 				?>
@@ -61,28 +61,28 @@ if ( ccsm_template_has_text_color() ) {
 			<?php if ( $counterActivation == '1' ) { ?>
                 <div class="flex-w flex-c cd100 respon2">
                     <div class="flex-col-c wsize1 m-b-30">
-                        <span class="l1-txt2 p-b-37 days"><?php echo $dates['template']['days']; ?></span>
+                        <span class="l1-txt2 p-b-37 days"><?php echo esc_html( $dates['template']['days'] ); ?></span>
                         <span class="m1-txt2 p-r-20"><?php echo esc_html__( 'Days', 'colorlib-coming-soon-maintenance' ); ?></span>
                     </div>
 
                     <span class="l1-txt2 p-t-15 dis-none-sm">:</span>
 
                     <div class="flex-col-c wsize1 m-b-30">
-                        <span class="l1-txt2 p-b-37 hours"><?php echo $dates['template']['hours']; ?></span>
+                        <span class="l1-txt2 p-b-37 hours"><?php echo esc_html( $dates['template']['hours'] ); ?></span>
                         <span class="m1-txt2 p-r-20"><?php echo esc_html__( 'Hr', 'colorlib-coming-soon-maintenance' ); ?></span>
                     </div>
 
                     <span class="l1-txt2 p-t-15 dis-none-lg">:</span>
 
                     <div class="flex-col-c wsize1 m-b-30">
-                        <span class="l1-txt2 p-b-37 minutes"><?php echo $dates['template']['minutes']; ?></span>
+                        <span class="l1-txt2 p-b-37 minutes"><?php echo esc_html( $dates['template']['minutes'] ); ?></span>
                         <span class="m1-txt2 p-r-20"><?php echo esc_html__( 'Min', 'colorlib-coming-soon-maintenance' ); ?></span>
                     </div>
 
                     <span class="l1-txt2 p-t-15 dis-none-sm">:</span>
 
                     <div class="flex-col-c wsize1 m-b-30">
-                        <span class="l1-txt2 p-b-37 seconds"><?php echo $dates['template']['seconds']; ?></span>
+                        <span class="l1-txt2 p-b-37 seconds"><?php echo esc_html( $dates['template']['seconds'] ); ?></span>
                         <span class="m1-txt2 p-r-20"><?php echo esc_html__( 'Sec', 'colorlib-coming-soon-maintenance' ); ?></span>
                     </div>
                 </div>
@@ -146,7 +146,7 @@ if ( ccsm_template_has_text_color() ) {
 			?>
 
         </div>
-        <p style="color:#fff;" class="colorlib-copyright"><span><?php _e('Coming Soon Template designed by','colorlib-coming-soon-maintenance'); ?></span> <a href="https://colorlib.com/" target="_blank">Colorlib</a></p>
+        <p style="color:#fff;" class="colorlib-copyright"><span><?php esc_html_e('Coming Soon Template designed by','colorlib-coming-soon-maintenance'); ?></span> <a href="https://colorlib.com/" target="_blank">Colorlib</a></p>
     </div>
 
 <?php
@@ -165,12 +165,12 @@ if ( is_customize_preview() ) {
         jQuery('.cd100').countdown100({
             /*Set Endtime here*/
             /*Endtime must be > current time*/
-            endtimeYear: <?php echo $dates['script']['year']; ?>,
-            endtimeMonth: <?php echo $dates['script']['month']; ?>,
-            endtimeDate: <?php echo $dates['script']['day']; ?>,
-            endtimeHours: <?php echo $dates['script']['hour']; ?>,
-            endtimeMinutes: <?php echo $dates['script']['minute']; ?>,
-            endtimeSeconds: <?php echo $dates['script']['second']; ?>,
+            endtimeYear: <?php echo wp_json_encode( $dates['script']['year'] ); ?>,
+            endtimeMonth: <?php echo wp_json_encode( $dates['script']['month'] ); ?>,
+            endtimeDate: <?php echo wp_json_encode( $dates['script']['day'] ); ?>,
+            endtimeHours: <?php echo wp_json_encode( $dates['script']['hour'] ); ?>,
+            endtimeMinutes: <?php echo wp_json_encode( $dates['script']['minute'] ); ?>,
+            endtimeSeconds: <?php echo wp_json_encode( $dates['script']['second'] ); ?>,
             timeZone: ""
             // ex:  timeZone: "America/New_York"
             //go to " http://momentjs.com/timezone/ " to get timezone

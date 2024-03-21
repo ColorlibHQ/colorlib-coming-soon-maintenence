@@ -3,10 +3,10 @@
 * Plugin Name: Coming Soon and Maintenance by Colorlib
 * Plugin URI: https://colorlib.com/
 * Description: Colorlib Coming Soon and Maintenance is a responsive coming soon WordPress plugin that comes with well designed coming soon page and lots of useful features including customization via Live Customizer, MailChimp integration, custom forms, and more.
-* Version: 1.0.98
+* Version: 1.1.0
 * Author: Colorlib
 * Author URI: https://colorlib.com/
-* Tested up to: 5.6
+* Tested up to: 6.5
 * Requires: 4.6 or higher
 * License: GPLv3 or later
 * License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -50,6 +50,7 @@ add_action( 'ccsm_header', 'ccsm_style_enqueue', 20 );
 add_action( 'ccsm_header', 'wp_print_scripts' );
 add_filter( 'ccsm_skip_redirect', 'ccsm_skip_redirect' );
 add_filter( 'ccsm_force_redirect', 'ccsm_force_redirect' );
+add_filter( 'rest_authentication_errors', 'ccsm_rest_restrict' );
 
 //loads the text domain for translation
 function ccsm_load_plugin_textdomain() {
@@ -117,6 +118,27 @@ function ccsm_template_redirect() {
             exit();
         }
     }
+}
+
+/**
+ * Restrict REST API access to non-logged-in users
+ *
+ * @param  WP_Error|mixed  $response  Result to send to the client. Usually a WP_REST_Response.
+ *
+ * @return WP_Error|mixed
+ */
+function ccsm_rest_restrict( $response ) {
+	// If user is logged in, don't restrict content
+	if ( is_user_logged_in() ) {
+		return $response;
+	}
+	$ccsm_options = get_option( 'ccsm_settings' );
+
+	if ( "1" === $ccsm_options['colorlib_coming_soon_activation'] ) {
+		return new WP_Error('403', __( 'Sorry, this content is restricted!', 'colorlib-coming-soon-maintenance' ));
+	}
+
+	return $response;
 }
 
 // enqueue template styles
@@ -912,6 +934,70 @@ function ccsm_check_for_review() {
 }
 
 ccsm_check_for_review();
+
+/**
+ * Notice for Google Analytics
+ *
+ * @return void
+ */
+function ccsm_google_analytics_notice() {
+    $options = get_option( 'ccsm_settings' );
+	if ( ! get_option( 'ccsm_ga_notice' ) && isset( $options['colorlib_coming_soon_google_analytics'] ) && '' !== $options['colorlib_coming_soon_google_analytics'] ) {
+		$message = sprintf( __('For security reasons we have changed the Google Analytics setting. Please update your settings <a href="%s">here</a> in order to correctly use the Google Analytics script.', 'colorlib-coming-soon-maintenance'), esc_url( admin_url( 'customize.php?autofocus[panel]=colorlib_coming_soon_general_panel' ) ));
+		printf('<div id="ccsm-ga-notice" class="notice notice-warning is-dismissible"><p>%1$s</p></div>', wp_kses_post( $message ) );
+	}
+}
+add_action( 'admin_notices', 'ccsm_google_analytics_notice' );
+
+/**
+ * AJAX script
+ *
+ * @since 1.0.99
+ */
+function ccsm_ajax_dismiss_script() {
+
+	$ajax_nonce = wp_create_nonce( 'ccsm-ga-notice' );
+
+	?>
+
+	<script type="text/javascript">
+        jQuery( document ).ready( function( $ ){
+
+            $(document).on('click','#ccsm-ga-notice .notice-dismiss', function( ){
+                var data = {
+                    action: 'ccsm-ga-notice_dismiss',
+                    security: '<?php echo $ajax_nonce; ?>',
+                };
+
+                $.post( '<?php echo esc_url( admin_url( 'admin-ajax.php' ) ); ?>', data, function( response ) {
+                    $( '#ccsm-ga-notice' ).slideUp( 'fast', function() {
+                        $( this ).remove();
+                    } );
+                });
+
+            } );
+
+        });
+	</script>
+
+	<?php
+}
+add_action( 'admin_print_footer_scripts', 'ccsm_ajax_dismiss_script' );
+
+/**
+ * Dismiss and update option for notice
+ *
+ * @return void
+ * @since 1.0.99
+ */
+function ccsm_ajax_dismiss_ga() {
+
+	check_ajax_referer( 'ccsm-ga-notice', 'security' );
+	update_option('ccsm_ga_notice', true );
+	wp_die( 'ok' );
+
+}
+add_action( 'wp_ajax_ccsm-ga-notice_dismiss', 'ccsm_ajax_dismiss_ga' );
 
 //Loading Plugin Theme Customizer Options
 require_once( 'includes/class-ccsm-customizer.php' );

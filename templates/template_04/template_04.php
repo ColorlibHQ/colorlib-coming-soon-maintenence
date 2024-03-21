@@ -19,22 +19,22 @@ $dates             = ccsm_counter_dates( $counter );
 			<?php if ( $counterActivation == '1' ) { ?>
                 <div class="flex-w flex-c cd100 p-b-82">
                     <div class="flex-col-c-m size2 how-countdown">
-                        <span class="l1-txt3 p-b-9 days"><?php echo $dates['template']['days']; ?></span>
+                        <span class="l1-txt3 p-b-9 days"><?php echo esc_html( $dates['template']['days'] ); ?></span>
                         <span class="s1-txt1"><?php echo esc_html__( 'Days', 'colorlib-coming-soon-maintenance' ); ?></span>
                     </div>
 
                     <div class="flex-col-c-m size2 how-countdown">
-                        <span class="l1-txt3 p-b-9 hours"><?php echo $dates['template']['hours']; ?></span>
+                        <span class="l1-txt3 p-b-9 hours"><?php echo esc_html( $dates['template']['hours'] ); ?></span>
                         <span class="s1-txt1"><?php echo esc_html__( 'Hours', 'colorlib-coming-soon-maintenance' ); ?></span>
                     </div>
 
                     <div class="flex-col-c-m size2 how-countdown">
-                        <span class="l1-txt3 p-b-9 minutes"><?php echo $dates['template']['minutes']; ?></span>
+                        <span class="l1-txt3 p-b-9 minutes"><?php echo esc_html( $dates['template']['minutes'] ); ?></span>
                         <span class="s1-txt1"><?php echo esc_html__( 'Minutes', 'colorlib-coming-soon-maintenance' ); ?></span>
                     </div>
 
                     <div class="flex-col-c-m size2 how-countdown">
-                        <span class="l1-txt3 p-b-9 seconds"><?php echo $dates['template']['days']; ?></span>
+                        <span class="l1-txt3 p-b-9 seconds"><?php echo esc_html( $dates['template']['days'] ); ?></span>
                         <span class="s1-txt1"><?php echo esc_html__( 'Seconds', 'colorlib-coming-soon-maintenance' ); ?></span>
                     </div>
                 </div>
@@ -53,7 +53,7 @@ $dates             = ccsm_counter_dates( $counter );
         </div>
 
         <span class="s1-txt3 txt-center colorlib-copyright">
-            <span><?php _e('Coming Soon Template designed by','colorlib-coming-soon-maintenance'); ?></span> <a href="https://colorlib.com/" target="_blank">Colorlib</a>
+            <span><?php esc_html_e('Coming Soon Template designed by','colorlib-coming-soon-maintenance'); ?></span> <a href="https://colorlib.com/" target="_blank">Colorlib</a>
 		</span>
 
     </div>
@@ -127,12 +127,12 @@ if ( is_customize_preview() ) {
         jQuery('.cd100').countdown100({
             /*Set Endtime here*/
             /*Endtime must be > current time*/
-            endtimeYear: <?php echo $dates['script']['year']; ?>,
-            endtimeMonth: <?php echo $dates['script']['month']; ?>,
-            endtimeDate: <?php echo $dates['script']['day']; ?>,
-            endtimeHours: <?php echo $dates['script']['hour']; ?>,
-            endtimeMinutes: <?php echo $dates['script']['minute']; ?>,
-            endtimeSeconds: <?php echo $dates['script']['second']; ?>,
+            endtimeYear: <?php echo wp_json_encode( $dates['script']['year'] ); ?>,
+            endtimeMonth: <?php echo wp_json_encode( $dates['script']['month'] ); ?>,
+            endtimeDate: <?php echo wp_json_encode( $dates['script']['day'] ); ?>,
+            endtimeHours: <?php echo wp_json_encode( $dates['script']['hour'] ); ?>,
+            endtimeMinutes: <?php echo wp_json_encode( $dates['script']['minute'] ); ?>,
+            endtimeSeconds: <?php echo wp_json_encode( $dates['script']['second'] ); ?>,
             timeZone: ""
             // ex:  timeZone: "America/New_York"
             //go to " http://momentjs.com/timezone/ " to get timezone

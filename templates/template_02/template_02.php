@@ -25,7 +25,7 @@ if ( ccsm_template_has_text_color() ) {
 ?>
 <div class="simpleslide100">
     <div class="simpleslide100-item bg-img1"
-         style="background-image: url('<?php echo esc_url($bcg_url); ?>');background-color:<?php echo $ccsm_options['colorlib_coming_soon_background_color']; ?>;"></div>
+         style="background-image: url('<?php echo esc_url($bcg_url); ?>');background-color:<?php echo esc_attr( $ccsm_options['colorlib_coming_soon_background_color'] ); ?>;"></div>
 </div>
 <div class="size1 overlay1">
     <div class="size1 flex-col-c-m p-l-15 p-r-15 p-t-50 p-b-50">
@@ -39,22 +39,22 @@ if ( ccsm_template_has_text_color() ) {
 		<?php if ( $counterActivation == '1' ) { ?>
             <div class="flex-w flex-c-m cd100 p-b-33">
                 <div class="flex-col-c-m size2 bor1 m-l-15 m-r-15 m-b-20">
-                    <span class="l2-txt1 p-b-9 days"><?php echo $dates['template']['days']; ?></span>
+                    <span class="l2-txt1 p-b-9 days"><?php echo esc_html( $dates['template']['days'] ); ?></span>
                     <span class="s2-txt1"><?php echo esc_html__( 'Days', 'colorlib-coming-soon-maintenance' ); ?></span>
                 </div>
 
                 <div class="flex-col-c-m size2 bor1 m-l-15 m-r-15 m-b-20">
-                    <span class="l2-txt1 p-b-9 hours"><?php echo $dates['template']['hours']; ?></span>
+                    <span class="l2-txt1 p-b-9 hours"><?php echo esc_html( $dates['template']['hours'] ); ?></span>
                     <span class="s2-txt1"><?php echo esc_html__( 'Hours', 'colorlib-coming-soon-maintenance' ); ?></span>
                 </div>
 
                 <div class="flex-col-c-m size2 bor1 m-l-15 m-r-15 m-b-20">
-                    <span class="l2-txt1 p-b-9 minutes"><?php echo $dates['template']['minutes']; ?></span>
+                    <span class="l2-txt1 p-b-9 minutes"><?php echo esc_html( $dates['template']['minutes'] ); ?></span>
                     <span class="s2-txt1"><?php echo esc_html__( 'Minutes', 'colorlib-coming-soon-maintenance' ); ?></span>
                 </div>
 
                 <div class="flex-col-c-m size2 bor1 m-l-15 m-r-15 m-b-20">
-                    <span class="l2-txt1 p-b-9 seconds"><?php echo $dates['template']['seconds']; ?></span>
+                    <span class="l2-txt1 p-b-9 seconds"><?php echo esc_html( $dates['template']['seconds'] ); ?></span>
                     <span class="s2-txt1"><?php echo esc_html__( 'Seconds', 'colorlib-coming-soon-maintenance' ); ?></span>
                 </div>
             </div>
@@ -78,7 +78,7 @@ if ( ccsm_template_has_text_color() ) {
                 </button>
             </form>
 		<?php } ?>
-        <p style="color:#fff;position:absolute;bottom:0;" class="colorlib-copyright"><span><?php _e('Coming Soon Template designed by','colorlib-coming-soon-maintenance'); ?></span>
+        <p style="color:#fff;position:absolute;bottom:0;" class="colorlib-copyright"><span><?php esc_html_e('Coming Soon Template designed by','colorlib-coming-soon-maintenance'); ?></span>
             <a href="https://colorlib.com/" target="_blank" style="color:#fff">Colorlib</a></p>
     </div>
 </div>
@@ -98,12 +98,12 @@ if ( is_customize_preview() ) {
         jQuery('.cd100').countdown100({
             /*Set Endtime here*/
             /*Endtime must be > current time*/
-            endtimeYear: <?php echo $dates['script']['year']; ?>,
-            endtimeMonth: <?php echo $dates['script']['month']; ?>,
-            endtimeDate: <?php echo $dates['script']['day']; ?>,
-            endtimeHours: <?php echo $dates['script']['hour']; ?>,
-            endtimeMinutes: <?php echo $dates['script']['minute']; ?>,
-            endtimeSeconds: <?php echo $dates['script']['second']; ?>,
+            endtimeYear: <?php echo wp_json_encode( $dates['script']['year'] ); ?>,
+            endtimeMonth: <?php echo wp_json_encode( $dates['script']['month'] ); ?>,
+            endtimeDate: <?php echo wp_json_encode( $dates['script']['day'] ); ?>,
+            endtimeHours: <?php echo wp_json_encode( $dates['script']['hour'] ); ?>,
+            endtimeMinutes: <?php echo wp_json_encode( $dates['script']['minute'] ); ?>,
+            endtimeSeconds: <?php echo wp_json_encode( $dates['script']['second'] ); ?>,
             timeZone: ""
             // ex:  timeZone: "America/New_York"
             //go to " http://momentjs.com/timezone/ " to get timezone

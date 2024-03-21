@@ -30,28 +30,28 @@ if ( is_ssl()  ) {
 			<?php if ( $counterActivation == '1' ) { ?>
                 <div class="flex-w flex-sa-m cd100 bor1 p-t-42 p-b-22 p-l-50 p-r-50 respon1">
                     <div class="flex-col-c-m wsize2 m-b-20">
-                        <span class="l1-txt2 p-b-4 days"><?php echo $dates['template']['days']; ?></span>
+                        <span class="l1-txt2 p-b-4 days"><?php echo esc_html( $dates['template']['days'] ); ?></span>
                         <span class="m2-txt2"><?php echo esc_html__( 'Days', 'colorlib-coming-soon-maintenance' ); ?></span>
                     </div>
 
                     <span class="l1-txt2 p-b-22">:</span>
 
                     <div class="flex-col-c-m wsize2 m-b-20">
-                        <span class="l1-txt2 p-b-4 hours"><?php echo $dates['template']['hours']; ?></span>
+                        <span class="l1-txt2 p-b-4 hours"><?php echo esc_html( $dates['template']['hours'] ); ?></span>
                         <span class="m2-txt2"><?php echo esc_html__( 'Hours', 'colorlib-coming-soon-maintenance' ); ?></span>
                     </div>
 
                     <span class="l1-txt2 p-b-22 respon2">:</span>
 
                     <div class="flex-col-c-m wsize2 m-b-20">
-                        <span class="l1-txt2 p-b-4 minutes"><?php echo $dates['template']['minutes']; ?></span>
+                        <span class="l1-txt2 p-b-4 minutes"><?php echo esc_html( $dates['template']['minutes'] ); ?></span>
                         <span class="m2-txt2"><?php echo esc_html__( 'Minutes', 'colorlib-coming-soon-maintenance' ); ?></span>
                     </div>
 
                     <span class="l1-txt2 p-b-22">:</span>
 
                     <div class="flex-col-c-m wsize2 m-b-20">
-                        <span class="l1-txt2 p-b-4 seconds"><?php echo $dates['template']['seconds']; ?></span>
+                        <span class="l1-txt2 p-b-4 seconds"><?php echo esc_html( $dates['template']['seconds'] ); ?></span>
                         <span class="m2-txt2"><?php echo esc_html__( 'Seconds', 'colorlib-coming-soon-maintenance' ); ?></span>
                     </div>
                 </div>
@@ -75,7 +75,7 @@ if ( is_ssl()  ) {
                 </form>
 			<?php } ?>
         </div>
-        <p style="position:absolute;bottom:0;right:30px;color:#fff;" class="colorlib-copyright"><span><?php _e('Coming Soon Template designed by','colorlib-coming-soon-maintenance'); ?></span> <a href="https://colorlib.com/" target="_blank">Colorlib</a></p>
+        <p style="position:absolute;bottom:0;right:30px;color:#fff;" class="colorlib-copyright"><span><?php esc_html_e('Coming Soon Template designed by','colorlib-coming-soon-maintenance'); ?></span> <a href="https://colorlib.com/" target="_blank">Colorlib</a></p>
     </div>
 <?php
 if ( is_customize_preview() ) {
@@ -93,12 +93,12 @@ if ( is_customize_preview() ) {
         jQuery('.cd100').countdown100({
             /*Set Endtime here*/
             /*Endtime must be > current time*/
-            endtimeYear: <?php echo $dates['script']['year']; ?>,
-            endtimeMonth: <?php echo $dates['script']['month']; ?>,
-            endtimeDate: <?php echo $dates['script']['day']; ?>,
-            endtimeHours: <?php echo $dates['script']['hour']; ?>,
-            endtimeMinutes: <?php echo $dates['script']['minute']; ?>,
-            endtimeSeconds: <?php echo $dates['script']['second']; ?>,
+            endtimeYear: <?php echo wp_json_encode( $dates['script']['year'] ); ?>,
+            endtimeMonth: <?php echo wp_json_encode( $dates['script']['month'] ); ?>,
+            endtimeDate: <?php echo wp_json_encode( $dates['script']['day'] ); ?>,
+            endtimeHours: <?php echo wp_json_encode( $dates['script']['hour'] ); ?>,
+            endtimeMinutes: <?php echo wp_json_encode( $dates['script']['minute'] ); ?>,
+            endtimeSeconds: <?php echo wp_json_encode( $dates['script']['second'] ); ?>,
             timeZone: ""
             // ex:  timeZone: "America/New_York"
             //go to " http://momentjs.com/timezone/ " to get timezone

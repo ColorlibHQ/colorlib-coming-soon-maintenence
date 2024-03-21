@@ -17,7 +17,7 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
                 <span class="description customize-control-description"><?php echo wp_kses_post($this->description); ?></span>
                 </span>
                 <textarea id="<?php echo esc_attr($id); ?>"
-                          class="widefat text wp-editor-area js-ccsm-editor" <?php echo $this->link(); ?><?php echo esc_textarea($this->value()); ?></textarea>
+                          class="widefat text wp-editor-area js-ccsm-editor" <?php echo esc_attr( $this->link() ); ?>><?php echo esc_textarea($this->value()); ?> </textarea>
 				<?php
 			}
 		}
