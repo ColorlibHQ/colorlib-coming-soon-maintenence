@@ -102,7 +102,7 @@ module.exports = function( grunt ) {
 					'!composer.json',
 					'!composer.lock',
 					'!set_tags.sh',
-					'!colorlib-coming-soon-maintenance.zip',
+					'!*.zip',
 					'!nbproject/**'
 				],
 				dest: 'build/'
