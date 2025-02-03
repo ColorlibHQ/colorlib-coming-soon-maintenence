@@ -3,10 +3,10 @@
 * Plugin Name: Coming Soon and Maintenance by Colorlib
 * Plugin URI: https://colorlib.com/
 * Description: Colorlib Coming Soon and Maintenance is a responsive coming soon WordPress plugin that comes with well designed coming soon page and lots of useful features including customization via Live Customizer, MailChimp integration, custom forms, and more.
-* Version: 1.1.0
+* Version: 1.1.1
 * Author: Colorlib
 * Author URI: https://colorlib.com/
-* Tested up to: 6.5
+* Tested up to: 6.7
 * Requires: 4.6 or higher
 * License: GPLv3 or later
 * License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -398,12 +398,12 @@ function ccsm_style_enqueue( $template_name ) {
 		),
 		'template_14' => array(
 			array(
-				'name'     => 'main',
-				'location' => 'css/main.css',
-			),
-			array(
 				'name'     => 'util',
 				'location' => 'css/util.css',
+			),
+			array(
+				'name'     => 'main',
+				'location' => 'css/main.css',
 			),
 			array(
 				'name'     => 'Poppins-Playfair',
