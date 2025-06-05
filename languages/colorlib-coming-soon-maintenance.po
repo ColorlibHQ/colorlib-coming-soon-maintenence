@@ -2,10 +2,10 @@
 # This file is distributed under the GPLv3 or later.
 msgid ""
 msgstr ""
-"Project-Id-Version: Coming Soon and Maintenance by Colorlib 1.1.1\n"
+"Project-Id-Version: Coming Soon and Maintenance by Colorlib 1.1.2\n"
 "Report-Msgid-Bugs-To: "
 "https://wordpress.org/support/plugin/colorlib-coming-soon-maintenence\n"
-"POT-Creation-Date: 2025-02-03 07:47:45+00:00\n"
+"POT-Creation-Date: 2025-06-05 06:53:19+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -38,7 +38,7 @@ msgstr ""
 msgid "Sorry, this content is restricted!"
 msgstr ""
 
-#: colorlib-coming-soon-and-maintenance-mode.php:946
+#: colorlib-coming-soon-and-maintenance-mode.php:943
 msgid ""
 "For security reasons we have changed the Google Analytics setting. Please "
 "update your settings <a href=\"%s\">here</a> in order to correctly use the "
