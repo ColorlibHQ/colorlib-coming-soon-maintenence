@@ -6,7 +6,7 @@
 * Version: 1.1.2
 * Author: Colorlib
 * Author URI: https://colorlib.com/
-* Tested up to: 6.8
+* Tested up to: 6.9
 * Requires: 4.6 or higher
 * License: GPLv3 or later
 * License URI: http://www.gnu.org/licenses/gpl-3.0.html
