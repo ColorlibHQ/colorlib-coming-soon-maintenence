@@ -102,7 +102,7 @@ class CCSM_Review {
 
 		?>
         <div id="<?php echo esc_attr($this->slug); ?>-epsilon-review-notice" class="notice notice-success is-dismissible">
-            <p><?php echo sprintf( wp_kses_post( $this->messages['notice'] ), wp_kses_post( $this->value ) ); ?></p>
+            <p><?php echo wp_kses_post( sprintf( $this->messages['notice'], $this->value ) ); ?></p>
             <p class="actions">
                 <a id="epsilon-rate" href="<?php echo esc_url( $url ) ?>"
                    class="button button-primary epsilon-review-button"><?php echo esc_html( $this->messages['rate'] ); ?></a>
