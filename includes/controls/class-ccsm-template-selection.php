@@ -13,13 +13,13 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
 			 */
 			public function render_content() {
 				$ccsm_options = get_option( 'ccsm_settings' );
-				$template     = $ccsm_options['colorlib_coming_soon_template_selection'];
+				$template     = isset( $ccsm_options['colorlib_coming_soon_template_selection'] ) ? $ccsm_options['colorlib_coming_soon_template_selection'] : 'template_01';
 				?>
                 <div class="colorlib_template_selection_radio">
                     <div class="colorlib-templates-wrapper">
 						<?php foreach ( $this->choices as $key => $value ) { ?>
 							<?php
-							if ( $key == $template ) {
+							if ( $key === $template ) {
 								$active = 'active';
 							} else {
 								$active = '';

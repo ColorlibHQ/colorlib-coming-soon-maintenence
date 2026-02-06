@@ -159,7 +159,7 @@ class CCSM_Customizer {
 
 		/*Settings - General - Timer*/
 		$wp_customize->add_setting( 'ccsm_settings[colorlib_coming_soon_timer_option]', array(
-			'default'           => date( 'Y-m-d H:i:s', strtotime( '+1 month' ) ),
+			'default'           => gmdate( 'Y-m-d H:i:s', strtotime( '+1 month' ) ),
 			'sanitize_callback' => 'ccsm_sanitize_text',
 			'type'              => 'option'
 		) );
@@ -300,7 +300,7 @@ class CCSM_Customizer {
 			'section'         => 'colorlib_coming_soon_section_general',
 			'priority'        => 30,
 			'input_attrs' => array(
-				'placeholder' => __( 'UA-xxxxxxxxx-x', 'colorlib-coming-soon-maintenance' ),
+				'placeholder' => __( 'G-XXXXXXXXXX', 'colorlib-coming-soon-maintenance' ),
 			)
 		) );
 	
@@ -554,7 +554,7 @@ class CCSM_Customizer {
 	 */
 	public function ccsm_add_settings_link( $links ) {
 		$settings_link = '<a href="options-general.php?page=ccsm__settings">' . __( 'Settings', 'colorlib-coming-soon-maintenance' ) . '</a>';
-		array_push( $links, $settings_link );
+		$links[] = $settings_link;
 
 		return $links;
 	}
@@ -566,8 +566,8 @@ class CCSM_Customizer {
 	 * @return void
 	 */
 	public function ccsm_redirect_customizer() {
-		if ( ! empty( $_GET['page'] ) ) { // Input var okay.
-			if ( 'ccsm_settings' === $_GET['page'] ) { // Input var okay.
+		if ( ! empty( $_GET['page'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+			if ( 'ccsm_settings' === sanitize_text_field( wp_unslash( $_GET['page'] ) ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
 
 				// Generate the redirect url.
 				$url = add_query_arg(

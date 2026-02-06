@@ -5,8 +5,11 @@
  */
 
 /* If uninstall is not called from WordPress exit. */
-if ( !defined( 'WP_UNINSTALL_PLUGIN' ) ) {
-	exit ();
+if ( ! defined( 'WP_UNINSTALL_PLUGIN' ) ) {
+	exit();
 }
 
-/* Place uninstall code below here. */
+/* Remove plugin options and transients. */
+delete_option( 'ccsm_settings' );
+delete_option( 'ccsm_ga_notice' );
+delete_transient( 'ccsm_review' );

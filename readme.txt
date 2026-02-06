@@ -1,75 +1,181 @@
 === Coming Soon & Maintenance Mode by Colorlib ===
-  Plugin URI: https://colorlib.com/
-  Description: Coming Soon & Maintenance Mode by Colorlib is a responsive coming soon WordPress plugin that comes with well designed coming soon page and lots of useful features including customization via Live Customizer, MailChimp integration, custom forms, and more.
-  Tags: maintenance mode, coming soon page, coming soon, under construction, launch page
-  Requires at least: 4.8
-  Tested up to: 6.9
-  Requires PHP: 5.6
-  Contributors: silkalns
-  Stable tag: 1.1.2
-  License: GPLv3 or later
-  License URI: http://www.gnu.org/licenses/gpl-3.0.html
+Contributors: silkalns
+Tags: coming soon, maintenance mode, under construction, countdown timer, landing page
+Requires at least: 6.0
+Tested up to: 6.9
+Requires PHP: 7.4
+Stable tag: 1.2.0
+License: GPLv3 or later
+License URI: http://www.gnu.org/licenses/gpl-3.0.html
+
+Create a coming soon page or maintenance mode screen with 15 responsive templates, countdown timer, MailChimp subscribe form, and social media links.
 
 == Description ==
 
-Colorlib Coming Soon & Maintenance Mode is a free WordPress plugin that allows you to create one of a kind coming soon and maintenance pages quickly directly from the Live Customizer. Easily work on your site while the plugin takes care of collecting your visitors’ email.
+**Coming Soon & Maintenance Mode by Colorlib** is a free WordPress plugin that lets you display a professional coming soon page, under construction page, or maintenance mode screen to your visitors while you work on your site behind the scenes. Set it up in minutes directly from the WordPress Live Customizer — no coding required.
 
-Colorlib Coming Soon and Maintenance Mode is extremely easy to use, user-friendly, versatile, and useful for anyone looking to develop unique and custom coming soon and maintenance mode pages. This plugin gives you complete control over the coming soon and maintenance mode pages and you will be able to change their layout directly from WordPress’ Customizer. While your website is in maintenance mode, you can easily collect your visitor’s information – while being fully compliant with GDPR.
+Choose from **15 fully responsive coming soon templates**, each pre-designed with modern layouts and fully customizable through the Customizer. Add your own logo, background image, heading text, countdown timer, and social media links. Collect email subscribers with the built-in MailChimp integration so you can build your audience before launch day.
 
-Colorlib Coming Soon and Maintenance Mode is free to use and has a bunch of incredible features that can be found in Appearance > Customize once you install and activate the plugin. With only one click you can turn on your coming soon page and maintenance mode so that you work on your website without visitors noticing.
+Logged-in users can browse and edit the site normally while non-logged-in visitors see only the coming soon or maintenance page. The plugin also blocks the WordPress REST API for visitors to prevent content exposure while your site is under construction.
 
-This plugin does not have a premium version available so you will not be disturbed by ads, upsells, or have limited features. All its features are available freely for everyone to use in order to create beautiful and custom under construction pages and coming soon pages.
+= Why Choose This Coming Soon Plugin? =
 
-Colorlib Coming Soon and Maintenance Mode is full of features, easy to use and install, and user-friendly. This incredible plugin comes with 15 coming soon and under construction page templates that you can use out of the box. Each coming soon page template was pre-designed to look professional and modern and they all are fully customizable. With a single click you can have a custom under construction page.
+- **100% free** — no premium version, no ads, no feature restrictions
+- **15 responsive templates** — professionally designed coming soon, maintenance mode, and under construction page layouts
+- **Live Customizer** — customize everything in real time without touching code
+- **Countdown timer** — display a launch countdown with configurable date and 12/24-hour format
+- **MailChimp subscribe form** — collect emails and grow your list while in maintenance mode
+- **Social media integration** — add links to Facebook, Twitter, Instagram, YouTube, Pinterest, and email
+- **Custom logo and background** — upload your brand logo and a custom background image
+- **Google Analytics 4** — track visitors to your coming soon page with GA4
+- **Custom CSS** — add your own styles for advanced customization
+- **REST API protection** — blocks public API access while the site is under construction
+- **Developer friendly** — use the `ccsm_skip_redirect` and `ccsm_force_redirect` filters to control redirect behavior
+- **Works with all WordPress themes** — self-contained templates run independently of your active theme
+- **GDPR compliant** — collect visitor information while respecting privacy regulations
 
-After you install and activate Colorlib Coming Soon and Maintenance Mode plugin you will find all its features under the General tab in Appearance > Customize > Colorlib Coming Soon Settings. Once here, you will be able to play around with the logo image, background image, heading, and footer text. From the General tab you can also enable or disable the Colorlib Coming Soon and Maintenance Mode plugin as well as set up a timer for your under construction page.
+= How It Works =
 
-From the Subscribe Form tab you will be able to set up the subscription form. You can obviously turn it on or off, and add a sign-up form to your coming soon/under construction page. Colorlib Coming Soon and Maintenance Mode has social media integration offering the possibility of adding social media buttons to the coming soon page.
+1. Install and activate the plugin
+2. Go to Appearance > Customize > Colorlib Coming Soon Settings
+3. Pick a template and customize the content, colors, images, and countdown timer
+4. Enable coming soon mode — visitors see your launch page, you keep working
 
-While this plugin is exceptionally easy to use and requires no custom coding to set up and use, it offers a custom CSS area where you can add custom styling if you feel like customizing it even more.
+= Links =
 
-=== Colorlib Coming Soon & Maintenance Mode Features ===
+- <a href="https://colorlib.com/wp/forums/">Documentation and Support</a>
+- <a href="https://github.com/ColorlibHQ/colorlib-coming-soon-maintenence">GitHub Repository</a>
 
-- Beautiful and responsive design
-- Works with all WordPress themes
-- MailChimp Integration
-- Quick and super easy to set up directly from the Customizer
-- Social media buttons (Facebook, Twitter, email, Pinterest, YouTube, and Instagram)
-- Custom CSS area
-- Disable/Enable subscription form
-- Disable/Enable under construction mode
-- Timer countdown option
-- Opening date
-- Logo and background images
-- Option to add heading and footer text
-- 15 pre-built unique and responsive templates
-
-
-Docs: https://colorlib.com/wp/forums/
-
-This plugin is developed and maintained by Colorlib. Which is well know for their free WordPress themes. However, now they are looking to extend their presence in plugin development and believe that Colorlib Coming Soon is a great way to start.
-
-If you are new to WordPress and want to learn more we have got you covered. Colorlib will teach you how to <a href="https://colorlib.com/">start a blog</a> or <a href="https://colorlib.com/wp/how-to-make-a-website/">create a website</a> and much more. If you are already familiar with WordPress you likely want to learn how to make it faster and more reliable. That’s when you want to look into hosting and more specifically <a href="http://colorlib.com/wp/wordpress-hosting">WordPress hosting</a>.
-
-If you enjoy using Colorlib Coming Soon for WordPress please leave a positive feedback. We are committed to make it the best Coming Soon plugin for WordPress.
+This plugin is developed and maintained by <a href="https://colorlib.com/">Colorlib</a>. If you enjoy using it, please leave a review — it helps other WordPress users discover the plugin.
 
 == Installation ==
 
-1. The plugin will automatically display the coming soon banner
-2. All of the options for the plugin are located under Appearance > Customize > Colorlib Coming Soon Settings
-3. Your mailchimp Signup URL can be found by following these directions: http://kb.mailchimp.com/lists/signup-forms/share-your-signup-form
+= From the WordPress Plugin Directory =
+
+1. Go to Plugins > Add New in your WordPress dashboard
+2. Search for "Coming Soon Colorlib"
+3. Click "Install Now" and then "Activate"
+
+= Manual Upload =
+
+1. Download the plugin ZIP file
+2. Go to Plugins > Add New > Upload Plugin
+3. Upload the ZIP file and click "Install Now"
+4. Activate the plugin
+
+= After Activation =
+
+1. Navigate to Appearance > Customize > Colorlib Coming Soon Settings
+2. Select a coming soon template from the Templates section
+3. Customize the heading, logo, background image, countdown timer, and social links
+4. Toggle "Activate Coming Soon" to enable the coming soon page for visitors
+5. To connect MailChimp, go to the Subscribe Form tab and paste your MailChimp signup form action URL (found in your MailChimp account under Audience > Signup Forms > Embedded Forms)
 
 
 == Frequently Asked Questions ==
 
-1. To disable your coming soon banner, navigate to Plugins and de-activate your Colorlib Coming Soon Plugin for WordPress.  This will disable the banner.
-2. You can disable the theme options previewer under Appearance > Customize > Colorlib Coming Soon Settings > General > Preview Coming Soon Page?
+= How do I enable or disable the coming soon page? =
+
+Go to Appearance > Customize > Colorlib Coming Soon Settings > General and toggle the "Activate Coming Soon" option. You can also deactivate the plugin entirely under Plugins to disable the coming soon page.
+
+= Who can see the coming soon page? =
+
+Only visitors who are not logged in to WordPress will see the coming soon page. Logged-in administrators and editors can browse the site normally while working on it. The login page at wp-login.php is always accessible.
+
+= How do I change the coming soon page template? =
+
+Navigate to Appearance > Customize > Colorlib Coming Soon Settings > Templates. You will see a visual preview of all 15 available templates. Click on the one you want to use and the preview will update immediately.
+
+= How do I set up the countdown timer? =
+
+Go to Appearance > Customize > Colorlib Coming Soon Settings > General and enable "Activate Timer Countdown." Then set your launch date and time using the date picker. The timer supports both 12-hour and 24-hour formats. Note that templates 12 and 14 do not display a countdown timer.
+
+= How do I connect MailChimp for email subscriptions? =
+
+Go to Appearance > Customize > Colorlib Coming Soon Settings > Subscribe Form and paste your MailChimp signup form action URL. You can find this URL in your MailChimp account under Lists > Signup Forms > Embedded Forms. Copy the URL from the form's action attribute.
+
+= Can I add social media links? =
+
+Yes. Go to Appearance > Customize > Colorlib Coming Soon Settings > Social Links and enter your profile URLs for Facebook, Twitter, YouTube, Pinterest, Instagram, or an email address. Social links are supported on most templates (all except templates 2, 5, and 8).
+
+= Can I customize the logo and background image? =
+
+Yes. Under Appearance > Customize > Colorlib Coming Soon Settings > General you can upload a custom logo image (recommended size: 80x80px) and a background image. Most templates support both options, though a few templates use fixed layouts without background images.
+
+= Can I add custom CSS to the coming soon page? =
+
+Yes. Go to Appearance > Customize > Colorlib Coming Soon Settings > Custom CSS. This provides a code editor where you can add CSS that applies only to the coming soon page without affecting the rest of your site.
+
+= How do I add Google Analytics tracking? =
+
+Go to Appearance > Customize > Colorlib Coming Soon Settings > General and enter your Google Analytics 4 measurement ID (e.g., G-XXXXXXXXXX) in the tracking code field.
+
+= Does the plugin work with caching plugins? =
+
+Most caching plugins will not interfere because the coming soon page is served via a template redirect before caching occurs. If you experience issues, exclude the front page from your caching plugin or clear the cache after enabling or disabling coming soon mode.
+
+= Can I allow specific pages to bypass the coming soon page? =
+
+Yes. Developers can use the `ccsm_skip_redirect` filter to allow specific pages or URLs to bypass the coming soon redirect. For example, you might want to keep a privacy policy page accessible.
+
+= Does the plugin block the REST API while in maintenance mode? =
+
+Yes. When coming soon mode is active, the plugin blocks REST API requests for non-logged-in users to prevent content exposure through endpoints like /wp-json/wp/v2/posts.
+
+= Is the plugin compatible with my theme? =
+
+Yes. The coming soon page uses its own self-contained templates with their own styles and scripts, so it works independently of your active WordPress theme.
+
+= What is the difference between coming soon mode and maintenance mode? =
+
+Both modes display a full-screen page to visitors and block access to the rest of your site. A coming soon page is typically used before a new website launches to build anticipation and collect emails. A maintenance mode page is used when an existing site is temporarily offline for updates. This plugin handles both scenarios with the same set of templates.
+
+= Can I use a countdown timer on the coming soon page? =
+
+Yes. The countdown timer can be enabled under Appearance > Customize > Colorlib Coming Soon Settings > General. Set your launch date and time and the countdown will display days, hours, minutes, and seconds until your site goes live. Most templates support the countdown timer.
+
+= Is the plugin free to use? =
+
+Yes. Coming Soon & Maintenance Mode by Colorlib is completely free with no premium version, no ads, and no feature limitations. All 15 templates, the MailChimp integration, countdown timer, social media links, custom CSS, and Google Analytics tracking are included at no cost.
+
+= Does the coming soon page work on mobile devices? =
+
+Yes. All 15 coming soon page templates are fully responsive and work on desktops, tablets, and mobile phones. The layouts adapt automatically to different screen sizes.
 
 == Screenshots ==
 
-1. Screenshots are located under /assets/screenshots/
+1. Template 1 — Split layout with subscribe form, countdown timer, and social media icons
+2. Template 2 — Full-screen background with centered countdown timer and email subscribe form
+3. Template 3 — Minimal card layout with flip-style countdown timer and subscribe form
+4. Template 4 — Bold gradient background with countdown timer and call-to-action button
+5. Template 5 — Vibrant gradient with top countdown timer and inline subscribe form
+6. Template 6 — Full-screen background with flip clock countdown, newsletter form, and social icons
+7. Template 7 — Purple overlay with subscribe form, countdown timer, and social media links
+8. Template 8 — Dark purple background with centered countdown timer and email notification form
+9. Template 9 — Fullscreen ocean background with large countdown timer and sign-up button
+10. Template 10 — Dark elegant layout with side countdown timer, subscribe form, and social icons
+11. Template 11 — Dramatic full-screen background with elegant countdown timer and sign-up button
+12. Template 12 — Clean split layout with subscribe form and social media icons
+13. Template 13 — Full-screen nature background with header countdown timer and sign-up button
+14. Template 14 — Split layout with mountain background, subscribe form, and social links
+15. Template 15 — City skyline with purple overlay, flip clock countdown, and social icons
 
 == Changelog ==
+
+= 1.2.0 - 06.02.2026 =
+Updated: Minimum PHP version raised to 7.4 (compatible up to PHP 8.5)
+Updated: Minimum WordPress version raised to 6.0
+Fixed: PHP 8.x strict type comparison warnings throughout
+Fixed: Uninitialized variables causing PHP warnings
+Fixed: Missing capability checks on AJAX handlers
+Fixed: Input sanitization on superglobal access
+Fixed: wp_enqueue_scripts() misuse (was using hook name as function)
+Fixed: Trailing spaces in default settings array keys
+Fixed: Missing return value in review check method
+Fixed: Template path validation for security
+Improved: Proper escaping of AJAX nonces in inline scripts
+Improved: Uninstall cleanup now removes plugin options and transients
+Improved: Updated Google Analytics placeholder to GA4 format
 
 = 1.1.2 - 05.06.2025 =
 Fixed: Textdomain fix for wordpress 6.8+

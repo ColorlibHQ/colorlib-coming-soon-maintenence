@@ -75,19 +75,22 @@ class ccsm_ajax {
 	 */
 	public static function ccsm_get_instance() {
 
-		// If the single instance hasn"t been set, set it now.
-		if ( null == self::$instance ) {
-			self::$instance = new self;
+		// If the single instance hasn't been set, set it now.
+		if ( null === self::$instance ) {
+			self::$instance = new self();
 		}
 
 		return self::$instance;
 	}
 
 	/**
-	 *
+	 * Handle MailChimp subscription AJAX request.
 	 */
 	public function ccsm_add_mailchimp() {
-		include( plugin_dir_path( __FILE__ ) . '/templates/post-subscribe.php' );
-		die();
+		$file = plugin_dir_path( __FILE__ ) . '/templates/post-subscribe.php';
+		if ( file_exists( $file ) ) {
+			include $file;
+		}
+		wp_die();
 	}
 }

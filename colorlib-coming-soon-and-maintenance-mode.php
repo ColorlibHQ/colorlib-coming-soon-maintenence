@@ -3,18 +3,18 @@
 * Plugin Name: Coming Soon and Maintenance by Colorlib
 * Plugin URI: https://colorlib.com/
 * Description: Colorlib Coming Soon and Maintenance is a responsive coming soon WordPress plugin that comes with well designed coming soon page and lots of useful features including customization via Live Customizer, MailChimp integration, custom forms, and more.
-* Version: 1.1.2
+* Version: 1.2.0
 * Author: Colorlib
 * Author URI: https://colorlib.com/
 * Tested up to: 6.9
-* Requires: 4.6 or higher
+* Requires at least: 6.0
 * License: GPLv3 or later
 * License URI: http://www.gnu.org/licenses/gpl-3.0.html
-* Requires PHP: 5.6
+* Requires PHP: 7.4
 * Text Domain: colorlib-coming-soon-maintenance
 * Domain Path: /languages
 *
-* Copyright 2018-2019 Colorlib support@colorlib.com
+* Copyright 2018-2026 Colorlib support@colorlib.com
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License, version 3, as
@@ -40,6 +40,18 @@ define( 'CCSM_PATH', plugin_dir_path( __FILE__ ) );
 define( 'CCSM_URL', plugin_dir_url( __FILE__ ) );
 define( 'CCSM_PLUGIN_BASE', plugin_basename( __FILE__ ) );
 define( 'CCSM_FILE_', __FILE__ );
+define( 'CCSM_VERSION', '1.2.0' );
+
+// PHP version check
+if ( version_compare( PHP_VERSION, '7.4', '<' ) ) {
+	add_action( 'admin_notices', function () {
+		printf(
+			'<div class="notice notice-error"><p>%s</p></div>',
+			esc_html__( 'Coming Soon and Maintenance by Colorlib requires PHP 7.4 or higher. Your server is running PHP ' . PHP_VERSION . '.', 'colorlib-coming-soon-maintenance' )
+		);
+	} );
+	return;
+}
 
 add_action( 'init', 'ccsm_skip_redirect_on_login' );
 add_action( 'plugins_loaded', 'ccsm_load_plugin_textdomain' );
@@ -50,7 +62,7 @@ add_action( 'ccsm_header', 'ccsm_style_enqueue', 20 );
 add_action( 'ccsm_header', 'wp_print_scripts' );
 add_filter( 'ccsm_skip_redirect', 'ccsm_skip_redirect' );
 add_filter( 'ccsm_force_redirect', 'ccsm_force_redirect' );
-add_filter( 'rest_authentication_errors', 'ccsm_rest_restrict' );
+add_filter( 'rest_pre_dispatch', 'ccsm_rest_restrict', 10, 3 );
 
 //loads the text domain for translation
 function ccsm_load_plugin_textdomain() {
@@ -65,7 +77,7 @@ function ccsm_add_settings_link( $actions, $plugin_file ) {
 	if ( ! isset( $plugin ) ) {
 		$plugin = plugin_basename( __FILE__ );
 	}
-	if ( $plugin == $plugin_file ) {
+	if ( $plugin === $plugin_file ) {
 
 		$settings  = array( 'settings' => '<a href="'.admin_url('options-general.php?page=ccsm_settings').'">' . __( 'Settings', 'colorlib-coming-soon-maintenance' ) . '</a>' );
 		$site_link = array( 'support' => '<a href="https://colorlib.com/wp/forums" target="_blank">' . __( 'Support', 'colorlib-coming-soon-maintenance' ) . '</a>' );
@@ -80,7 +92,7 @@ function ccsm_add_settings_link( $actions, $plugin_file ) {
 /* Redirect code that checks if on WP login page */
 function ccsm_skip_redirect_on_login() {
 	global $pagenow;
-	if ( 'wp-login.php' == $pagenow ) {
+	if ( 'wp-login.php' === $pagenow ) {
 		return;
 	} else {
 		add_action( 'template_redirect', 'ccsm_template_redirect' );
@@ -98,13 +110,19 @@ function ccsm_force_redirect($should_force=false){
 /* Coming Soon Redirect to Template */
 function ccsm_template_redirect() {
     global $wp_customize;
-    $ccsm_options = get_option('ccsm_settings');
+    $ccsm_options = get_option( 'ccsm_settings' );
+
+    if ( ! is_array( $ccsm_options ) ) {
+        return;
+    }
 
     // allow plugins & themes to control whether to force the check, regardless of any other settings
     $force = apply_filters('ccsm_force_redirect', false);
 
     // Checks for if user is logged in and CCSM is activated  OR if customizer is open on CCSM customization panel
-    $activated = (!is_user_logged_in() && $ccsm_options['colorlib_coming_soon_activation'] == 1 || is_customize_preview() && isset($_REQUEST['colorlib-coming-soon-customization'])) ? true : false;
+    $is_active    = ! is_user_logged_in() && isset( $ccsm_options['colorlib_coming_soon_activation'] ) && '1' === $ccsm_options['colorlib_coming_soon_activation'];
+    $in_customizer = is_customize_preview() && isset( $_REQUEST['colorlib-coming-soon-customization'] );
+    $activated    = $is_active || $in_customizer;
 
     // If something "forced" it - but not in customizer -, or the default case was met, we might redirect
     if ($force && !is_customize_preview() || $activated) {
@@ -121,24 +139,39 @@ function ccsm_template_redirect() {
 }
 
 /**
- * Restrict REST API access to non-logged-in users
+ * Restrict REST API access to non-logged-in users when coming soon mode is active.
  *
- * @param  WP_Error|mixed  $response  Result to send to the client. Usually a WP_REST_Response.
+ * Uses rest_pre_dispatch to block all REST API requests before endpoint callbacks run,
+ * preventing information exposure via public endpoints like wp/v2/posts and wp/v2/pages.
+ *
+ * @param  mixed            $result   Response to replace the requested version with.
+ * @param  WP_REST_Server   $server   Server instance.
+ * @param  WP_REST_Request  $request  Request used to generate the response.
  *
  * @return WP_Error|mixed
  */
-function ccsm_rest_restrict( $response ) {
+function ccsm_rest_restrict( $result, $server, $request ) {
+	// If already handled by another filter, pass through
+	if ( ! empty( $result ) ) {
+		return $result;
+	}
+
 	// If user is logged in, don't restrict content
 	if ( is_user_logged_in() ) {
-		return $response;
+		return $result;
 	}
+
 	$ccsm_options = get_option( 'ccsm_settings' );
 
-	if ( "1" === $ccsm_options['colorlib_coming_soon_activation'] ) {
-		return new WP_Error('403', __( 'Sorry, this content is restricted!', 'colorlib-coming-soon-maintenance' ));
+	if ( isset( $ccsm_options['colorlib_coming_soon_activation'] ) && "1" === $ccsm_options['colorlib_coming_soon_activation'] ) {
+		return new WP_Error(
+			'rest_forbidden',
+			__( 'Sorry, this content is restricted!', 'colorlib-coming-soon-maintenance' ),
+			array( 'status' => 403 )
+		);
 	}
 
-	return $response;
+	return $result;
 }
 
 // enqueue template styles
@@ -461,7 +494,7 @@ function ccsm_style_enqueue( $template_name ) {
 		),
 	);
 
-	if ( $template_name == 'template_06' || $template_name == 'template_15' ) {
+	if ( $template_name === 'template_06' || $template_name === 'template_15' ) {
 		$global_scripts[] = array(
 			'name'     => 'flipclock',
 			'location' => 'js/vendor/countdowntime/flipclock.js',
@@ -575,7 +608,9 @@ function ccsm_style_enqueue( $template_name ) {
 	);
 
 	//check if template and get the template arrays
-	if ( $template_name ) {
+	$encript_styles  = array();
+	$encript_scripts = array();
+	if ( $template_name && isset( $template_styles[ $template_name ] ) ) {
 		$encript_styles  = $template_styles[ $template_name ];
 		$encript_scripts = $template_scripts[ $template_name ];
 	}
@@ -583,7 +618,7 @@ function ccsm_style_enqueue( $template_name ) {
 	//print global styles
 	foreach ( $global_styles as $global_style ) {
 
-		if ( isset( $global_style['font'] ) && $global_style['font'] == 'true' ) {
+		if ( isset( $global_style['font'] ) && $global_style['font'] === 'true' ) {
 			wp_register_style( $global_style['name'], $global_style['location'] );
 			wp_print_styles( $global_style['name'] );
 		} else {
@@ -602,17 +637,15 @@ function ccsm_style_enqueue( $template_name ) {
 	}
 
 	//print styles depending on template
-	if ( $encript_styles != null && is_array( $encript_styles ) ) {
+	if ( ! empty( $encript_styles ) ) {
 		foreach ( $encript_styles as $encript_style ) {
-			if ( isset( $encript_style['font'] ) && $encript_style['font'] == 'true' ) {
+			if ( isset( $encript_style['font'] ) && $encript_style['font'] === 'true' ) {
 				wp_register_style( $encript_style['name'], $encript_style['location'] );
 				wp_print_styles( $encript_style['name'] );
 			} else {
 				wp_register_style( $template_name . '-' . $encript_style['name'], CCSM_URL . 'templates/' . $template_name . '/' . $encript_style['location'] );
 				wp_print_styles( $template_name . '-' . $encript_style['name'] );
 			}
-
-
 		}
 	}
 
@@ -630,7 +663,7 @@ function ccsm_customizer_preview_scripts() {
 		'customize-preview'
 	), '', true );
 	wp_enqueue_script( 'colorlib-ccsm-customizer-preview' );
-	wp_enqueue_scripts( 'customize-selective-refresh' );
+	wp_enqueue_script( 'customize-selective-refresh' );
 }
 
 
@@ -652,10 +685,10 @@ function ccsm_counter_dates( $timerDate ) {
 	if ( $timerDate ) {
 		$date = DateTime::createFromFormat( 'Y-m-d H:i:s', $timerDate );
 	} else {
-		$date = DateTime::createFromFormat( 'Y-m-d H:i:s', date( 'Y-m-d H:i:s', strtotime( '+1 month' ) ) );
+		$date = DateTime::createFromFormat( 'Y-m-d H:i:s', gmdate( 'Y-m-d H:i:s', strtotime( '+1 month' ) ) );
 	}
 
-	$cDate = new DateTime( date( 'Y-m-d H:i:s' ) );
+	$cDate = new DateTime( gmdate( 'Y-m-d H:i:s' ) );
 
 	$interval = $cDate->diff( $date );
 
@@ -709,16 +742,16 @@ function ccsm_counter_dates( $timerDate ) {
 register_activation_hook( __FILE__, 'ccsm_check_on_activation' );
 
 function ccsm_check_on_activation() {
-	if ( get_option( 'ccsm_settings' ) == null ) {
+	if ( false === get_option( 'ccsm_settings' ) ) {
 		$defaultSets = array(
 			'colorlib_coming_soon_activation'            => '1',
 			'colorlib_coming_soon_timer_activation'      => '1',
 			'colorlib_coming_soon_subscribe'             => '',
 			'colorlib_coming_soon_template_selection'    => 'template_01',
-			'colorlib_coming_soon_timer_option'          => date( 'Y-m-d H:i:s', strtotime( '+1 month' ) ),
+			'colorlib_coming_soon_timer_option'          => gmdate( 'Y-m-d H:i:s', strtotime( '+1 month' ) ),
 			'colorlib_coming_soon_plugin_logo'           => CCSM_URL . 'assets/images/logo.jpg',
 			'colorlib_coming_soon_page_heading'          => 'Something <strong>really good</strong> is coming <strong>very soon</strong>',
-			'colorlib_coming_soon_page_content'          => 'If you have something new you’re looking to launch, you’re going to want to start building a community of people interested in what you’re launching.',
+			'colorlib_coming_soon_page_content'          => 'If you have something new you\'re looking to launch, you\'re going to want to start building a community of people interested in what you\'re launching.',
 			'colorlib_coming_soon_page_footer'           => 'And don\'t worry, we hate spam too! You can unsubscribe at any time.',
 			'colorlib_coming_soon_social_facebook'       => 'https://facebook.com/',
 			'colorlib_coming_soon_social_twitter'        => 'https://twitter.com/',
@@ -726,20 +759,26 @@ function ccsm_check_on_activation() {
 			'colorlib_coming_soon_social_email'          => 'you@domain.com',
 			'colorlib_coming_soon_social_pinterest'      => 'https://pinterest.com/',
 			'colorlib_coming_soon_social_instagram'      => 'https://instagram.com/',
-			'colorlib_coming_soon_subscribe_form_url '   => ' ',
 			'colorlib_coming_soon_page_custom_css'       => '',
 			'colorlib_coming_soon_background_image'      => CCSM_URL . 'assets/images/logo.jpg',
 			'colorlib_coming_soon_background_color'      => '',
 			'colorlib_coming_soon_text_color'            => '',
 			'colorlib_coming_soon_subscribe_form_url'    => '',
-			'colorlib_coming_soon_subscribe_form_other ' => ''
+			'colorlib_coming_soon_subscribe_form_other'  => ''
 		);
 		update_option( 'ccsm_settings', $defaultSets );
 	}
 }
 
+function ccsm_get_selected_template() {
+	$ccsm_options = get_option( 'ccsm_settings' );
+	if ( ! is_array( $ccsm_options ) || ! isset( $ccsm_options['colorlib_coming_soon_template_selection'] ) ) {
+		return 'template_01';
+	}
+	return $ccsm_options['colorlib_coming_soon_template_selection'];
+}
+
 function ccsm_template_has_content() {
-	$ccsm_options         = get_option( 'ccsm_settings' );
 	$template_has_content = array(
 		'template_02',
 		'template_04',
@@ -750,15 +789,10 @@ function ccsm_template_has_content() {
 		'template_12',
 		'template_14'
 	);
-	if ( in_array( $ccsm_options['colorlib_coming_soon_template_selection'], $template_has_content ) ) {
-		return true;
-	}
-
-	return false;
+	return in_array( ccsm_get_selected_template(), $template_has_content, true );
 }
 
 function ccsm_template_has_footer() {
-	$ccsm_options        = get_option( 'ccsm_settings' );
 	$template_has_footer = array(
 		'template_01',
 		'template_03',
@@ -766,29 +800,19 @@ function ccsm_template_has_footer() {
 		'template_06',
 		'template_07'
 	);
-	if ( in_array( $ccsm_options['colorlib_coming_soon_template_selection'], $template_has_footer ) ) {
-		return true;
-	}
-
-	return false;
+	return in_array( ccsm_get_selected_template(), $template_has_footer, true );
 }
 
 
 function ccsm_template_has_background_image() {
-	$ccsm_options                  = get_option( 'ccsm_settings' );
-	$template_has_background_image = array(
+	$template_has_no_background_image = array(
 		'template_04',
 		'template_05'
 	);
-	if ( in_array( $ccsm_options['colorlib_coming_soon_template_selection'], $template_has_background_image ) ) {
-		return false;
-	}
-
-	return true;
+	return ! in_array( ccsm_get_selected_template(), $template_has_no_background_image, true );
 }
 
 function ccsm_template_has_background_color() {
-	$ccsm_options                  = get_option( 'ccsm_settings' );
 	$template_has_background_color = array(
 		'template_02',
 		'template_03',
@@ -799,16 +823,11 @@ function ccsm_template_has_background_color() {
 		'template_13',
 		'template_14'
 	);
-	if ( in_array( $ccsm_options['colorlib_coming_soon_template_selection'], $template_has_background_color ) ) {
-		return true;
-	}
-
-	return false;
+	return in_array( ccsm_get_selected_template(), $template_has_background_color, true );
 }
 
 function ccsm_template_has_text_color() {
-	$ccsm_options            = get_option( 'ccsm_settings' );
-	$template_has_text_color = array(
+	$template_has_no_text_color = array(
 		'template_04',
 		'template_05',
 		'template_03',
@@ -819,15 +838,10 @@ function ccsm_template_has_text_color() {
 		'template_14',
 		'template_15'
 	);
-	if ( in_array( $ccsm_options['colorlib_coming_soon_template_selection'], $template_has_text_color ) ) {
-		return false;
-	}
-
-	return true;
+	return ! in_array( ccsm_get_selected_template(), $template_has_no_text_color, true );
 }
 
 function ccsm_template_has_logo() {
-	$ccsm_options      = get_option( 'ccsm_settings' );
 	$template_has_logo = array(
 		'template_01',
 		'template_03',
@@ -841,16 +855,10 @@ function ccsm_template_has_logo() {
 		'template_14',
 		'template_15'
 	);
-
-	if ( in_array( $ccsm_options['colorlib_coming_soon_template_selection'], $template_has_logo ) ) {
-		return true;
-	} else {
-		return false;
-	}
+	return in_array( ccsm_get_selected_template(), $template_has_logo, true );
 }
 
 function ccsm_template_has_social() {
-	$ccsm_options        = get_option( 'ccsm_settings' );
 	$template_has_social = array(
 		'template_01',
 		'template_03',
@@ -864,62 +872,34 @@ function ccsm_template_has_social() {
 		'template_14',
 		'template_15'
 	);
-
-	if ( in_array( $ccsm_options['colorlib_coming_soon_template_selection'], $template_has_social ) ) {
-		return true;
-	} else {
-		return false;
-	}
-
+	return in_array( ccsm_get_selected_template(), $template_has_social, true );
 }
 
 function ccsm_template_has_timer() {
-
-	$ccsm_options       = get_option( 'ccsm_settings' );
-	$template_has_timer = array(
+	$template_has_no_timer = array(
 		'template_12',
 		'template_14'
 	);
-
-	if ( in_array( $ccsm_options['colorlib_coming_soon_template_selection'], $template_has_timer ) ) {
-		return false;
-	} else {
-		return true;
-	}
-
+	return ! in_array( ccsm_get_selected_template(), $template_has_no_timer, true );
 }
 
 function ccsm_template_has_subscribe_form() {
-	$ccsm_options                = get_option( 'ccsm_settings' );
-	$template_has_subscribe_form = array(
+	$template_has_no_subscribe_form = array(
 		'template_15',
 		'template_09',
-		//'template_10',
 		'template_11',
-		//'template_13'
 	);
-
-	if ( in_array( $ccsm_options['colorlib_coming_soon_template_selection'], $template_has_subscribe_form ) ) {
-		return false;
-	} else {
-		return true;
-	}
+	return ! in_array( ccsm_get_selected_template(), $template_has_no_subscribe_form, true );
 }
 
 function ccsm_template_has_subscribe_signup() {
-	$ccsm_options                  = get_option( 'ccsm_settings' );
 	$template_has_subscribe_signup = array(
 		'template_09',
 		'template_10',
 		'template_11',
 		'template_13'
 	);
-
-	if ( in_array( $ccsm_options['colorlib_coming_soon_template_selection'], $template_has_subscribe_signup ) ) {
-		return true;
-	} else {
-		return false;
-	}
+	return in_array( ccsm_get_selected_template(), $template_has_subscribe_signup, true );
 }
 
 function ccsm_check_for_review() {
@@ -963,7 +943,7 @@ function ccsm_ajax_dismiss_script() {
             $(document).on('click','#ccsm-ga-notice .notice-dismiss', function( ){
                 var data = {
                     action: 'ccsm-ga-notice_dismiss',
-                    security: '<?php echo $ajax_nonce; ?>',
+                    security: '<?php echo esc_js( $ajax_nonce ); ?>',
                 };
 
                 $.post( '<?php echo esc_url( admin_url( 'admin-ajax.php' ) ); ?>', data, function( response ) {
