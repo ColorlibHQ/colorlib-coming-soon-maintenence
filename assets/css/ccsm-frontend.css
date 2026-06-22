@@ -12,3 +12,34 @@
     fill: currentColor;
     flex: none;
 }
+
+/*
+ * Countdown digits for templates that ship an empty .cd100 container
+ * (formerly rendered by the jQuery FlipClock plugin). Colors are inherited
+ * so the digits adapt to each template's text color.
+ */
+.ccsm-cd {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 18px;
+}
+
+.ccsm-cd-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 78px;
+}
+
+.ccsm-cd-num {
+    font-size: 54px;
+    line-height: 1;
+    font-weight: 700;
+}
+
+.ccsm-cd-label {
+    margin-top: 8px;
+    font-size: 13px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}

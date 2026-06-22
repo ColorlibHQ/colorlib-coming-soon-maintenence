@@ -447,153 +447,22 @@ function ccsm_style_enqueue( $template_name ) {
 		),
 	);
 
-	// Front-end scripts are scoped to the templates that actually use them.
-	// The countdown runs on the native Date object (timeZone is always ""),
-	// so Moment.js and the Moment Timezone libraries are no longer loaded.
-	$global_scripts = array();
-
-	// jQuery Tilt 3D effect: only template_01 uses the .js-tilt hook.
-	if ( $template_name === 'template_01' ) {
-		$global_scripts[] = array(
-			'name'     => 'tilt',
-			'location' => 'js/vendor/tilt/tilt.jquery.min.js',
-			'template' => 'global'
-		);
-	}
-
-	// Bootstrap modal: only template_04 uses it (data-toggle="modal").
-	if ( $template_name === 'template_04' ) {
-		$global_scripts[] = array(
-			'name'     => 'popper',
-			'location' => 'js/vendor/bootstrap/js/popper.min.js',
-			'template' => 'global'
-		);
-		$global_scripts[] = array(
-			'name'     => 'bootstrap',
-			'location' => 'js/vendor/bootstrap/js/bootstrap.min.js',
-			'template' => 'global'
-		);
-	}
-
-	if ( $template_name === 'template_06' || $template_name === 'template_15' ) {
-		$global_scripts[] = array(
-			'name'     => 'flipclock',
-			'location' => 'js/vendor/countdowntime/flipclock.min.js',
-			'template' => 'global'
-		);
-		$global_scripts[] = array(
-			'name'     => 'coutdowntime-2',
-			'location' => 'js/vendor/countdowntime/countdowntime-2.js',
-			'template' => 'global'
-		);
-	} else {
-		$global_scripts[] = array(
-			'name'     => 'coutdowntime',
-			'location' => 'js/vendor/countdowntime/countdowntime.js',
-			'template' => 'global'
-		);
-	}
-
-	// scripts based on each template
-	$template_scripts = array(
-		'template_01' => array(
-			array(
-				'name'     => 'main',
-				'location' => 'js/main.js',
-			),
-		),
-		'template_02' => array(
-			array(
-				'name'     => 'main',
-				'location' => 'js/main.js',
-			),
-		),
-		'template_03' => array(
-			array(
-				'name'     => 'main',
-				'location' => 'js/main.js',
-			),
-		),
-		'template_04' => array(
-			array(
-				'name'     => 'main',
-				'location' => 'js/main.js',
-			),
-		),
-		'template_05' => array(
-			array(
-				'name'     => 'main',
-				'location' => 'js/main.js',
-			),
-		),
-		'template_06' => array(
-			array(
-				'name'     => 'main',
-				'location' => 'js/main.js',
-			),
-		),
-		'template_07' => array(
-			array(
-				'name'     => 'main',
-				'location' => 'js/main.js',
-			),
-		),
-		'template_08' => array(
-			array(
-				'name'     => 'main',
-				'location' => 'js/main.js',
-			),
-		),
-		'template_09' => array(
-			array(
-				'name'     => 'main',
-				'location' => 'js/main.js',
-			),
-		),
-		'template_10' => array(
-			array(
-				'name'     => 'main',
-				'location' => 'js/main.js',
-			),
-		),
-		'template_11' => array(
-			array(
-				'name'     => 'main',
-				'location' => 'js/main.js',
-			),
-		),
-		'template_12' => array(
-			array(
-				'name'     => 'main',
-				'location' => 'js/main.js',
-			),
-		),
-		'template_13' => array(
-			array(
-				'name'     => 'main',
-				'location' => 'js/main.js',
-			),
-		),
-		'template_14' => array(
-			array(
-				'name'     => 'main',
-				'location' => 'js/main.js',
-			),
-		),
-		'template_15' => array(
-			array(
-				'name'     => 'main',
-				'location' => 'js/main.js',
-			),
+	// Single vanilla front-end script (no jQuery). Handles form validation,
+	// the background slideshow, the subscribe modal, the tilt effect and the
+	// countdown timer, each feature-detected so it only runs where present.
+	$global_scripts = array(
+		array(
+			'name'     => 'ccsm-frontend',
+			'location' => 'js/ccsm-frontend.js',
 		),
 	);
 
-	//check if template and get the template arrays
+	// Per-template JS is now handled by the single shared ccsm-frontend.js
+	// global script, so only template-specific styles remain.
 	$encript_styles  = array();
 	$encript_scripts = array();
 	if ( $template_name && isset( $template_styles[ $template_name ] ) ) {
-		$encript_styles  = $template_styles[ $template_name ];
-		$encript_scripts = $template_scripts[ $template_name ];
+		$encript_styles = $template_styles[ $template_name ];
 	}
 
 	//print global styles
@@ -607,9 +476,6 @@ function ccsm_style_enqueue( $template_name ) {
 			wp_print_styles( $global_style['name'] );
 		}
 	}
-
-	//print wordpress default jquery
-	wp_print_scripts( 'jquery' );
 
 	//print global scripts
 	foreach ( $global_scripts as $global_script ) {
@@ -760,7 +626,7 @@ function ccsm_counter_dates( $timerDate ) {
 		$month = $date->format( 'm' );
 		$day   = $date->format( 'd' );
 		$hour = $date->format('H');
-		$minute = $date->format('I');
+		$minute = $date->format('i');
         $second = $date->format('s');
 
 		$dates['template'] = array(

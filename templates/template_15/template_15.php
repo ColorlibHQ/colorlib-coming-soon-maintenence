@@ -41,7 +41,24 @@ if ( is_ssl()  ) {
             </h3>
 
 			<?php if ( $counterActivation == '1' ) { ?>
-                <div class="cd100"></div><?php } ?>
+                <div class="cd100 ccsm-cd">
+                    <div class="ccsm-cd-item">
+                        <span class="ccsm-cd-num days"><?php echo esc_html( $dates['template']['days'] ); ?></span>
+                        <span class="ccsm-cd-label"><?php echo esc_html__( 'Days', 'colorlib-coming-soon-maintenance' ); ?></span>
+                    </div>
+                    <div class="ccsm-cd-item">
+                        <span class="ccsm-cd-num hours"><?php echo esc_html( $dates['template']['hours'] ); ?></span>
+                        <span class="ccsm-cd-label"><?php echo esc_html__( 'Hours', 'colorlib-coming-soon-maintenance' ); ?></span>
+                    </div>
+                    <div class="ccsm-cd-item">
+                        <span class="ccsm-cd-num minutes"><?php echo esc_html( $dates['template']['minutes'] ); ?></span>
+                        <span class="ccsm-cd-label"><?php echo esc_html__( 'Minutes', 'colorlib-coming-soon-maintenance' ); ?></span>
+                    </div>
+                    <div class="ccsm-cd-item">
+                        <span class="ccsm-cd-num seconds"><?php echo esc_html( $dates['template']['seconds'] ); ?></span>
+                        <span class="ccsm-cd-label"><?php echo esc_html__( 'Seconds', 'colorlib-coming-soon-maintenance' ); ?></span>
+                    </div>
+                </div><?php } ?>
 
         </div>
         <div class="flex-w flex-c-m p-b-35">
@@ -116,18 +133,13 @@ if ( is_customize_preview() ) {
 ?>
 <?php if ( $counterActivation == '1' && $dates['script'] != false ) { ?>
     <script>
-        jQuery('.cd100').countdown100({
-            /*Set Endtime here*/
-            /*Endtime must be > current time*/
-            endtimeYear: <?php echo wp_json_encode( $dates['script']['year'] ); ?>,
-            endtimeMonth: <?php echo wp_json_encode( $dates['script']['month'] ); ?>,
-            endtimeDate: <?php echo wp_json_encode( $dates['script']['day'] ); ?>,
-            endtimeHours: <?php echo wp_json_encode( $dates['script']['hour'] ); ?>,
-            endtimeMinutes: <?php echo wp_json_encode( $dates['script']['minute'] ); ?>,
-            endtimeSeconds: <?php echo wp_json_encode( $dates['script']['second'] ); ?>,
-            timeZone: ""
-            // ex:  timeZone: "America/New_York"
-            //go to " http://momentjs.com/timezone/ " to get timezone
-        });
+        window.CCSM_COUNTDOWN = {
+            year: <?php echo wp_json_encode( $dates['script']['year'] ); ?>,
+            month: <?php echo wp_json_encode( $dates['script']['month'] ); ?>,
+            day: <?php echo wp_json_encode( $dates['script']['day'] ); ?>,
+            hour: <?php echo wp_json_encode( $dates['script']['hour'] ); ?>,
+            minute: <?php echo wp_json_encode( $dates['script']['minute'] ); ?>,
+            second: <?php echo wp_json_encode( $dates['script']['second'] ); ?>
+        };
     </script>
 <?php } ?>
