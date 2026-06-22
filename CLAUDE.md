@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-WordPress plugin: **Coming Soon and Maintenance by Colorlib** (v1.2.0). Displays a coming soon or maintenance mode page to non-logged-in visitors using one of 15 selectable templates. Configuration is done via the WordPress Live Customizer.
+WordPress plugin: **Coming Soon and Maintenance by Colorlib** (v1.3.0). Displays a coming soon or maintenance mode page to non-logged-in visitors using one of 15 selectable templates. Configuration is done via the WordPress Live Customizer.
 
 - **Requires:** WordPress 6.0+, PHP 7.4+
 - **Tested up to:** WordPress 6.9
@@ -87,7 +87,7 @@ All settings are stored in a single option: `ccsm_settings`. Keys follow the pat
 - `CCSM_URL` — plugin directory URL
 - `CCSM_PLUGIN_BASE` — plugin basename for hooks
 - `CCSM_FILE_` — main plugin file path (note the trailing underscore)
-- `CCSM_VERSION` — current version string (`1.2.0`); keep in sync with the plugin header, `readme.txt` `Stable tag`, and `package.json`
+- `CCSM_VERSION` — current version string (`1.3.0`); keep in sync with the plugin header, `readme.txt` `Stable tag`, and `package.json`
 
 ## Filters
 

@@ -4,7 +4,7 @@ Tags: coming soon, maintenance mode, under construction, countdown timer, landin
 Requires at least: 6.0
 Tested up to: 6.9
 Requires PHP: 7.4
-Stable tag: 1.2.0
+Stable tag: 1.3.0
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -149,7 +149,7 @@ Yes. All 15 coming soon page templates are fully responsive and work on desktops
 3. Template 3 — Minimal card layout with flip-style countdown timer and subscribe form
 4. Template 4 — Bold gradient background with countdown timer and call-to-action button
 5. Template 5 — Vibrant gradient with top countdown timer and inline subscribe form
-6. Template 6 — Full-screen background with flip clock countdown, newsletter form, and social icons
+6. Template 6 — Full-screen background with countdown timer, newsletter form, and social icons
 7. Template 7 — Purple overlay with subscribe form, countdown timer, and social media links
 8. Template 8 — Dark purple background with centered countdown timer and email notification form
 9. Template 9 — Fullscreen ocean background with large countdown timer and sign-up button
@@ -158,9 +158,20 @@ Yes. All 15 coming soon page templates are fully responsive and work on desktops
 12. Template 12 — Clean split layout with subscribe form and social media icons
 13. Template 13 — Full-screen nature background with header countdown timer and sign-up button
 14. Template 14 — Split layout with mountain background, subscribe form, and social links
-15. Template 15 — City skyline with purple overlay, flip clock countdown, and social icons
+15. Template 15 — City skyline with purple overlay, countdown timer, and social icons
 
 == Changelog ==
+
+= 1.3.0 - 22.06.2026 =
+Improved: Removed Bootstrap and jQuery from the front end — coming-soon pages are now framework-free and load dramatically faster
+Improved: Replaced jQuery, Moment.js, FlipClock, Tilt and Bootstrap JS with a single ~6 KB dependency-free vanilla script
+Improved: Replaced the Font Awesome and Material Design icon-font CDNs with inline SVG icons — no third-party requests and no more broken icons from the retired stackpath CDN
+Improved: Dropped the Bootstrap CSS framework (122 KB); each template is fully self-contained
+Improved: Removed ~2 MB of unused vendored libraries (Select2, Ionicons, Moment timezone database, duplicate/source-map files)
+Improved: Google Fonts now load with preconnect and font-display: swap to prevent invisible-text flashes
+Improved: Front-end assets are versioned so browser caches refresh correctly on updates
+Fixed: Countdown timer used the daylight-saving flag instead of the minutes value when setting the target time
+Fixed: Prevented a fatal error on PHP 8 when a malformed countdown date was stored
 
 = 1.2.0 - 06.02.2026 =
 Updated: Minimum PHP version raised to 7.4 (compatible up to PHP 8.5)
