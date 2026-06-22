@@ -461,21 +461,25 @@ function ccsm_style_enqueue( $template_name ) {
 		$encript_styles = $template_styles[ $template_name ];
 	}
 
+	// Preconnect to the Google Fonts hosts (fonts are loaded per template below).
+	echo '<link rel="preconnect" href="https://fonts.googleapis.com">' . "\n";
+	echo '<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>' . "\n";
+
 	//print global styles
 	foreach ( $global_styles as $global_style ) {
 
 		if ( isset( $global_style['font'] ) && $global_style['font'] === 'true' ) {
-			wp_register_style( $global_style['name'], $global_style['location'] );
+			wp_register_style( $global_style['name'], $global_style['location'] . '&display=swap', array(), null );
 			wp_print_styles( $global_style['name'] );
 		} else {
-			wp_register_style( $global_style['name'], CCSM_URL . 'assets/' . $global_style['location'] );
+			wp_register_style( $global_style['name'], CCSM_URL . 'assets/' . $global_style['location'], array(), CCSM_VERSION );
 			wp_print_styles( $global_style['name'] );
 		}
 	}
 
 	//print global scripts
 	foreach ( $global_scripts as $global_script ) {
-		wp_register_script( $global_script['name'], CCSM_URL . 'assets/' . $global_script['location'] );
+		wp_register_script( $global_script['name'], CCSM_URL . 'assets/' . $global_script['location'], array(), CCSM_VERSION, true );
 		wp_print_scripts( $global_script['name'] );
 	}
 
@@ -483,10 +487,10 @@ function ccsm_style_enqueue( $template_name ) {
 	if ( ! empty( $encript_styles ) ) {
 		foreach ( $encript_styles as $encript_style ) {
 			if ( isset( $encript_style['font'] ) && $encript_style['font'] === 'true' ) {
-				wp_register_style( $encript_style['name'], $encript_style['location'] );
+				wp_register_style( $encript_style['name'], $encript_style['location'] . '&display=swap', array(), null );
 				wp_print_styles( $encript_style['name'] );
 			} else {
-				wp_register_style( $template_name . '-' . $encript_style['name'], CCSM_URL . 'templates/' . $template_name . '/' . $encript_style['location'] );
+				wp_register_style( $template_name . '-' . $encript_style['name'], CCSM_URL . 'templates/' . $template_name . '/' . $encript_style['location'], array(), CCSM_VERSION );
 				wp_print_styles( $template_name . '-' . $encript_style['name'] );
 			}
 		}

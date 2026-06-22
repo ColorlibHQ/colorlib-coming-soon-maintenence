@@ -14,7 +14,10 @@ if (class_exists('WP_Customize_Section')) {
 
             $array['button_label']    = esc_html__( 'Change', 'colorlib-coming-soon-maintenance' );
             $ccsm_options = get_option('ccsm_settings');
-            $array['active_template'] = str_replace( '_', ' ', $ccsm_options['colorlib_coming_soon_template_selection'] );
+            $selected     = ( is_array( $ccsm_options ) && ! empty( $ccsm_options['colorlib_coming_soon_template_selection'] ) )
+                ? $ccsm_options['colorlib_coming_soon_template_selection']
+                : 'template_01';
+            $array['active_template'] = str_replace( '_', ' ', $selected );
 
             return $array;
         }
