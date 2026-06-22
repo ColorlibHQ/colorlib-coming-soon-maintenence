@@ -675,6 +675,12 @@ function ccsm_counter_dates( $timerDate ) {
 		$date = DateTime::createFromFormat( 'Y-m-d H:i:s', gmdate( 'Y-m-d H:i:s', strtotime( '+1 month' ) ) );
 	}
 
+	// createFromFormat() returns false on a malformed stored timer value;
+	// passing false to DateTime::diff() is a fatal TypeError on PHP 8+.
+	if ( ! $date instanceof DateTime ) {
+		$date = new DateTime( gmdate( 'Y-m-d H:i:s', strtotime( '+1 month' ) ) );
+	}
+
 	$cDate = new DateTime( gmdate( 'Y-m-d H:i:s' ) );
 
 	$interval = $cDate->diff( $date );
