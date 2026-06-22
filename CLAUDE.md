@@ -7,7 +7,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 WordPress plugin: **Coming Soon and Maintenance by Colorlib** (v1.3.0). Displays a coming soon or maintenance mode page to non-logged-in visitors using one of 15 selectable templates. Configuration is done via the WordPress Live Customizer.
 
 - **Requires:** WordPress 6.0+, PHP 7.4+
-- **Tested up to:** WordPress 6.9
+- **Tested up to:** WordPress 7.0
 - **Text Domain:** `colorlib-coming-soon-maintenance`
 - **Main plugin file:** `colorlib-coming-soon-and-maintenance-mode.php`
 
