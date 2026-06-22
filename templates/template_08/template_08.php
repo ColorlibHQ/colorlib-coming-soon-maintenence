@@ -17,7 +17,7 @@ if ( is_ssl()  ) {
          style="background-image: url('<?php echo esc_url($bcg_url); ?>');">
         <div class="wsize1">
             <p class="txt-center p-b-23">
-                <i class="zmdi zmdi-card-giftcard cl0 fs-60"></i>
+                <?php echo ccsm_icon('card-giftcard', 'cl0 fs-60'); ?>
             </p>
 
             <h3 class="l1-txt1 txt-center p-b-22" id="colorlib_coming_soon_page_heading">

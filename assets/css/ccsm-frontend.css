@@ -1,0 +1,14 @@
+/*
+ * Coming Soon & Maintenance by Colorlib — shared front-end styles.
+ * Replaces the former Font Awesome / Material icon-font CDNs.
+ */
+
+/* Inline SVG icons (output by ccsm_icon()). Inherit color + scale with font-size. */
+.ccsm-icon {
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+    vertical-align: -0.125em;
+    fill: currentColor;
+    flex: none;
+}

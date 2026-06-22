@@ -86,7 +86,7 @@ if ( ccsm_template_has_text_color() ) {
 
             <div>
                 <button class="how-btn-play1 flex-c-m">
-                    <i class="zmdi zmdi-play"></i>
+                    <?php echo ccsm_icon('play'); ?>
                 </button>
             </div>
         </div>
@@ -99,7 +99,7 @@ if ( ccsm_template_has_text_color() ) {
                     <a href="<?php echo esc_url( $ccsm_options['colorlib_coming_soon_social_facebook'] ); ?>"
                        id="colorlib_coming_soon_social_facebook"
                        class="size3 flex-c-m how-social trans-04 m-r-3 m-l-3 m-b-3 m-t-3">
-                        <i class="fa fa-facebook"></i>
+                        <?php echo ccsm_icon('facebook'); ?>
                     </a>
 					<?php
 				}
@@ -108,7 +108,7 @@ if ( ccsm_template_has_text_color() ) {
                     <a href="<?php echo esc_url( $ccsm_options['colorlib_coming_soon_social_twitter'] ); ?>"
                        id="colorlib_coming_soon_social_twitter"
                        class="size3 flex-c-m how-social trans-04 m-r-3 m-l-3 m-b-3 m-t-3">
-                        <i class="fa fa-twitter"></i>
+                        <?php echo ccsm_icon('twitter'); ?>
                     </a>
 					<?php
 				}
@@ -117,7 +117,7 @@ if ( ccsm_template_has_text_color() ) {
                     <a href="<?php echo esc_url( $ccsm_options['colorlib_coming_soon_social_youtube'] ); ?>"
                        id="colorlib_coming_soon_social_youtube"
                        class="size3 flex-c-m how-social trans-04 m-r-3 m-l-3 m-b-3 m-t-3">
-                        <i class="fa fa-youtube-play"></i>
+                        <?php echo ccsm_icon('youtube-play'); ?>
                     </a>
 					<?php
 				}
@@ -126,7 +126,7 @@ if ( ccsm_template_has_text_color() ) {
                     <a href="mailto:<?php echo esc_html( antispambot( $ccsm_options['colorlib_coming_soon_social_email'] ) ); ?>"
                        id="colorlib_coming_soon_social_email"
                        class="size3 flex-c-m how-social trans-04 m-r-3 m-l-3 m-b-3 m-t-3">
-                        <i class="fa fa-envelope"></i>
+                        <?php echo ccsm_icon('envelope'); ?>
                     </a>
 					<?php
 				}
@@ -135,7 +135,7 @@ if ( ccsm_template_has_text_color() ) {
                     <a href="<?php echo esc_url( $ccsm_options['colorlib_coming_soon_social_pinterest'] ); ?>"
                        id="colorlib_coming_soon_social_pinterest"
                        class="size3 flex-c-m how-social trans-04 m-r-3 m-l-3 m-b-3 m-t-3">
-                        <i class="fa fa-pinterest"></i>
+                        <?php echo ccsm_icon('pinterest'); ?>
                     </a>
 					<?php
 				}
@@ -144,7 +144,7 @@ if ( ccsm_template_has_text_color() ) {
                     <a href="<?php echo esc_url( $ccsm_options['colorlib_coming_soon_social_instagram'] ); ?>"
                        id="colorlib_coming_soon_social_instagram"
                        class="size3 flex-c-m how-social trans-04 m-r-3 m-l-3 m-b-3 m-t-3">
-                        <i class="fa fa-instagram"></i>
+                        <?php echo ccsm_icon('instagram'); ?>
                     </a>
 					<?php
 				}
@@ -163,7 +163,7 @@ if ( ccsm_template_has_text_color() ) {
                                placeholder="<?php echo esc_attr__( 'Email Address', 'colorlib-coming-soon-maintenance' ); ?>">
 
                         <button class="flex-c-m ab-t-r size4 s1-txt1 hov1" name="subscribe">
-                            <i class="zmdi zmdi-long-arrow-right fs-16 cl1 trans-04"></i>
+                            <?php echo ccsm_icon('long-arrow-right', 'fs-16 cl1 trans-04'); ?>
                         </button>
                     </div>
                 </form>

@@ -109,8 +109,8 @@ Primary use:
 }
 
 .alert-validate::after {
-    content: "\f071";
-    font-family: FontAwesome;
+    content: "\26A0\FE0E";
+    font-family: sans-serif;
     display: block;
     position: absolute;
     color: #c80000;
