@@ -453,43 +453,38 @@ function ccsm_style_enqueue( $template_name ) {
 		),
 	);
 
-	$global_scripts = array(
-		array(
-			'name'     => 'popper',
-			'location' => 'js/vendor/bootstrap/js/popper.js',
-			'template' => 'global',
-		),
-		array(
-			'name'     => 'bootstrap',
-			'location' => 'js/vendor/bootstrap/js/bootstrap.min.js',
-			'template' => 'global'
-		),
-		array(
-			'name'     => 'moment',
-			'location' => 'js/vendor/countdowntime/moment.min.js',
-			'template' => 'global'
-		),
-		array(
-			'name'     => 'moment-timezone',
-			'location' => 'js/vendor/countdowntime/moment-timezone.min.js',
-			'template' => 'global'
-		),
-		array(
-			'name'     => 'timezone',
-			'location' => 'js/vendor/countdowntime/moment-timezone-with-data.min.js',
-			'template' => 'global'
-		),
-		array(
+	// Front-end scripts are scoped to the templates that actually use them.
+	// The countdown runs on the native Date object (timeZone is always ""),
+	// so Moment.js and the Moment Timezone libraries are no longer loaded.
+	$global_scripts = array();
+
+	// jQuery Tilt 3D effect: only template_01 uses the .js-tilt hook.
+	if ( $template_name === 'template_01' ) {
+		$global_scripts[] = array(
 			'name'     => 'tilt',
 			'location' => 'js/vendor/tilt/tilt.jquery.min.js',
 			'template' => 'global'
-		),
-	);
+		);
+	}
+
+	// Bootstrap modal: only template_04 uses it (data-toggle="modal").
+	if ( $template_name === 'template_04' ) {
+		$global_scripts[] = array(
+			'name'     => 'popper',
+			'location' => 'js/vendor/bootstrap/js/popper.min.js',
+			'template' => 'global'
+		);
+		$global_scripts[] = array(
+			'name'     => 'bootstrap',
+			'location' => 'js/vendor/bootstrap/js/bootstrap.min.js',
+			'template' => 'global'
+		);
+	}
 
 	if ( $template_name === 'template_06' || $template_name === 'template_15' ) {
 		$global_scripts[] = array(
 			'name'     => 'flipclock',
-			'location' => 'js/vendor/countdowntime/flipclock.js',
+			'location' => 'js/vendor/countdowntime/flipclock.min.js',
 			'template' => 'global'
 		);
 		$global_scripts[] = array(
