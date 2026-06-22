@@ -60,18 +60,22 @@ The activation toggle (`colorlib_coming_soon_activation`) is the master on/off s
 15 self-contained templates in `templates/template_01/` through `templates/template_15/`. Each has:
 - `template_XX.php` — markup (uses Customizer option values via `get_option('ccsm_settings')`)
 - `template_XX.jpg` — preview screenshot
-- `css/main.css` + `css/util.css` — template-specific styles
-- `js/` — template-specific scripts (countdown initialization, etc.)
+- `css/main.css` + `css/util.css` — template-specific styles (`util.css` includes the reset)
+
+All front-end behavior (validation, countdown, slideshow, modal, tilt) is handled by the single shared `assets/js/ccsm-frontend.js`; templates no longer ship their own `js/` directory.
 
 Templates are selected via a radio control in the Customizer and stored in `ccsm_settings['colorlib_coming_soon_template_selection']`.
 
-### Current Frontend Stack
+### Current Frontend Stack (dependency-free)
 
-- **Bootstrap 4.0.0-beta** (vendored in `assets/css/vendor/bootstrap/` and `assets/js/vendor/bootstrap/`)
-- **jQuery** (WordPress-bundled) — all JS is jQuery-dependent
-- **Vendor JS:** Moment.js + Moment Timezone, FlipClock.js, countdowntime.js, jQuery Tilt, Select2
-- **Icon fonts:** Ionicons (local), Font Awesome 4.7 (CDN), Material Design Icons 2.2 (CDN)
-- **Google Fonts** loaded per-template via `<link>` tags
+The front end was stripped of all frameworks. There is **no Bootstrap, no jQuery, and no vendor JS** (`assets/js/vendor/` and `assets/css/vendor/` are gone).
+
+- **Front-end JS:** one shared, dependency-free `assets/js/ccsm-frontend.js` (~6 KB). Feature-detected modules: form validation, background slideshow (cross-fade), subscribe modal, tilt effect, and the countdown timer (native `Date`). There are no per-template JS files anymore.
+- **Front-end CSS:** global `assets/css/ccsm-frontend.css` (SVG-icon + `.ccsm-cd` countdown styles) plus each template's self-contained `css/main.css` + `css/util.css` (each `util.css` ships its own reset/reboot, so no framework CSS is needed).
+- **Icons:** inline SVG via the `ccsm_icon( $name, $classes )` helper in the main plugin file (Simple Icons for brands, Bootstrap Icons for UI glyphs). No icon fonts, no CDNs. Icons inherit color via `currentColor` and scale with font-size.
+- **Countdown:** `ccsm_counter_dates()` emits a per-page `window.CCSM_COUNTDOWN` config; `ccsm-frontend.js` runs it. Templates 06 & 15 (formerly jQuery FlipClock) use the same `.ccsm-cd` digit layout as the rest.
+- **Google Fonts:** loaded per-template with `<link rel="preconnect">` + `&display=swap`.
+- **Admin/Customizer JS** (`assets/js/customizer*.js`, `assets/js/main.js`) **still uses jQuery** — WordPress bundles jQuery in wp-admin, so this is intentional and entirely separate from the front end.
 
 ### Customizer Options Namespace
 
