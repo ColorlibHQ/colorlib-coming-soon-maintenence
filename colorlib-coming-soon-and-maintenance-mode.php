@@ -179,10 +179,6 @@ function ccsm_style_enqueue( $template_name ) {
 
 	$global_styles = array(
 		array(
-			'name'     => 'animate',
-			'location' => 'css/vendor/animate/animate.css',
-		),
-		array(
 			'name'     => 'bootstrap',
 			'location' => 'css/vendor/bootstrap/css/bootstrap.min.css',
 		),
@@ -190,10 +186,6 @@ function ccsm_style_enqueue( $template_name ) {
 			'name'     => 'font-awesome',
 			'location' => 'https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css',
 			'font'     => 'true'
-		),
-		array(
-			'name'     => 'select-2',
-			'location' => 'css/vendor/select2/select2.min.css',
 		),
 		array(
 			'name'     => 'iconic',

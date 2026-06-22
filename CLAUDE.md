@@ -33,10 +33,16 @@ No SCSS pipeline — CSS is authored directly. No test suite exists.
 
 ### Request Flow
 
-1. `ccsm_template_redirect()` hooks into `template_redirect` — intercepts all front-end requests for non-logged-in users
-2. Loads `includes/colorlib-template.php` as the HTML wrapper (doctype, head, body)
+1. `ccsm_template_redirect()` hooks into `template_redirect`. It redirects only when the master toggle `ccsm_settings['colorlib_coming_soon_activation'] === '1'` AND the visitor is not logged in — OR when the Customizer preview is open on the CCSM panel (`$_REQUEST['colorlib-coming-soon-customization']`). The `ccsm_force_redirect` / `ccsm_skip_redirect` filters can override this gating.
+2. Loads `includes/colorlib-template.php` as the HTML wrapper (doctype, head, body), then `exit()`s — the normal theme is never rendered
 3. The wrapper fires `do_action('ccsm_header', $template)` which enqueues per-template styles/scripts via `ccsm_style_enqueue()`
 4. Includes the selected template PHP from `templates/template_XX/template_XX.php`
+
+**Two other front-end guards run alongside the redirect:**
+- `ccsm_rest_restrict()` (on `rest_pre_dispatch`) returns a `403 rest_forbidden` for all REST API requests from non-logged-in visitors while activation is on — prevents content leaking via `wp/v2/posts` etc. Logged-in users and already-handled requests pass through.
+- `ccsm_skip_redirect_on_login()` (on `init`) ensures `wp-login.php` stays reachable so admins can still log in.
+
+The activation toggle (`colorlib_coming_soon_activation`) is the master on/off switch — distinct from `colorlib_coming_soon_template_selection`, which only chooses *which* template renders.
 
 ### Key Files
 
@@ -76,13 +82,16 @@ All settings are stored in a single option: `ccsm_settings`. Keys follow the pat
 - `CCSM_PATH` — plugin directory path (filesystem)
 - `CCSM_URL` — plugin directory URL
 - `CCSM_PLUGIN_BASE` — plugin basename for hooks
-- `CCSM_FILE_` — main plugin file path
+- `CCSM_FILE_` — main plugin file path (note the trailing underscore)
+- `CCSM_VERSION` — current version string (`1.2.0`); keep in sync with the plugin header, `readme.txt` `Stable tag`, and `package.json`
 
 ## Filters
 
 - `ccsm_skip_redirect` — skip the coming-soon redirect (e.g., for specific pages)
 - `ccsm_force_redirect` — force redirect even for logged-in users
 
-## .gitignore Gaps
+## Release Build Notes
 
-The current `.gitignore` is missing `.sass-cache/` and `*.map`. These should be added before any SCSS pipeline is introduced.
+- `grunt build-archive` copies the plugin into `build/` (excluding dev files — see the `copy` task allow/deny list in `Gruntfile.js`), then compresses it to `colorlib-coming-soon-maintenance-<version>.zip` in the repo root. The `*.zip` artifact is gitignored.
+- `grunt mincss` runs `clean:css` then `cssmin` over `assets/css/*.css`, writing `*.min.css` siblings. `clean:css` deliberately preserves `jquery-ui.min.css`.
+- The vendored Bootstrap `*.map` source maps under `assets/css/vendor/bootstrap/` are intentionally shipped — do not add `*.map` to `.gitignore`. (There is no SCSS pipeline, so `.sass-cache/` is not relevant here despite the global convention.)
