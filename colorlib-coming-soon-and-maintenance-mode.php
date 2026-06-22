@@ -179,10 +179,6 @@ function ccsm_style_enqueue( $template_name ) {
 
 	$global_styles = array(
 		array(
-			'name'     => 'bootstrap',
-			'location' => 'css/vendor/bootstrap/css/bootstrap.min.css',
-		),
-		array(
 			'name'     => 'ccsm-frontend',
 			'location' => 'css/ccsm-frontend.css',
 		),
