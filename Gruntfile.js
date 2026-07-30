@@ -64,7 +64,8 @@ module.exports = function( grunt ) {
 					'!MODERNIZATION_PLAN.md',
 					'!.gitignore',
 					'!.git/**',
-					'!.claude/**'
+					'!.claude/**',
+					'!tests/**'
 				],
 				dest: 'build/'
 			}
