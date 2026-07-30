@@ -64,7 +64,18 @@ merged from two Google Fonts requests to one, and lazy-loaded thumbnails.
 
 **Purge safety rule** (keep this if you re-purge): drop a class rule only when *every* class it
 references is absent from the template PHP, the shell, the front-end JS and the template CSS.
-Verified by re-parsing both files and diffing the class sets.
+
+**Visual regression evidence.** The 45k deleted lines are 94% duplicate `util.css` copies — the
+15 files reduce to only *two* distinct checksums, so 13 were literal duplicates. The single file
+that can affect rendering went 2,890 → 280 lines, so it was tested directly: every template was
+screenshotted with the original 2,890-line stylesheet and again with the purged one, at 1280px and
+390px. **All 15 were pixel-identical at both widths**, except two antialiasing clusters (34 and 8
+pixels, max channel delta 1, drifting in both directions on icon edges).
+
+**Retained classes.** A purge cannot see what lives in the database: heading/content/footer are
+rich-text fields, so a site owner who used the Text tab may have typed utility classes of their
+own. The font-size, text-alignment and colour families are therefore kept even though no shipped
+template uses them (196 rules, 5.7 KB). Final stylesheet 11.8 KB vs the 78 KB original.
 
 ### Phase 4 — Accessibility (commit `40e83e1`)
 
