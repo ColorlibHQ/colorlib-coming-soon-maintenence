@@ -87,6 +87,12 @@ $ccsm_options = ccsm_get_options();
 
         .colorlib-copyright a {
             opacity: 1;
+            /* Templates that need a specific colour set one inline; the rest
+               should follow the surrounding text rather than fall back to the
+               browser's default link blue. Keep the underline: it is the only
+               remaining affordance that this is a link. */
+            color: inherit;
+            text-decoration: underline;
         }
     </style>
 </head>
