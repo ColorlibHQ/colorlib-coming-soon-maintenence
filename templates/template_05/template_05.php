@@ -38,9 +38,9 @@ $dates             = ccsm_counter_dates( $counter );
 
 
         <div class="flex-col-c w-full p-t-50 p-b-80">
-            <h3 class="l1-txt1 txt-center p-b-10" id="colorlib_coming_soon_page_heading">
+            <h1 class="l1-txt1 txt-center p-b-10" id="colorlib_coming_soon_page_heading">
 				<?php echo wp_kses_post( $ccsm_options['colorlib_coming_soon_page_heading'] ); ?>
-            </h3>
+            </h1>
 
             <p class="txt-center l1-txt2 p-b-43 wsize2" id="colorlib_coming_soon_page_content">
 				<?php echo wp_kses_post( $ccsm_options['colorlib_coming_soon_page_content'] ); ?>
@@ -53,13 +53,17 @@ $dates             = ccsm_counter_dates( $counter );
                       action="<?php echo esc_url( $ccsm_options['colorlib_coming_soon_subscribe_form_url'] ); ?>" method="POST">
                     <div class="wrap-input100 validate-input where1"
                          data-validate="<?php echo esc_attr__( 'Name is required', 'colorlib-coming-soon-maintenance' ); ?>">
-                        <input class="s1-txt3 placeholder0 input100" type="text" name="FNAME"
+                        <label class="ccsm-sr-only" for="ccsm-fname-05"><?php echo esc_html__( 'Name', 'colorlib-coming-soon-maintenance' ); ?></label>
+                        <input class="s1-txt3 placeholder0 input100" type="text" name="FNAME" id="ccsm-fname-05"
+                               autocomplete="given-name"
                                placeholder="<?php echo esc_attr__( 'Name', 'colorlib-coming-soon-maintenance' ); ?>">
                     </div>
 
                     <div class="wrap-input100 validate-input where1"
                          data-validate="<?php echo esc_attr__( 'Email is required: ex@abc.xyz', 'colorlib-coming-soon-maintenance' ); ?>">
-                        <input class="s1-txt3 placeholder0 input100" type="text" name="EMAIL"
+                        <label class="ccsm-sr-only" for="ccsm-email-05"><?php echo esc_html__( 'Email', 'colorlib-coming-soon-maintenance' ); ?></label>
+                        <input class="s1-txt3 placeholder0 input100" type="email" name="EMAIL" id="ccsm-email-05"
+                               autocomplete="email"
                                placeholder="<?php echo esc_attr__( 'Email', 'colorlib-coming-soon-maintenance' ); ?>">
                     </div>
 
@@ -72,7 +76,7 @@ $dates             = ccsm_counter_dates( $counter );
         </div>
 
         <span class="s1-txt2 txt-center colorlib-copyright">
-            <span><?php esc_html_e('Coming Soon Template designed by','colorlib-coming-soon-maintenance'); ?></span> <a href="https://colorlib.com/" target="_blank">Colorlib</a>
+            <span><?php esc_html_e('Coming Soon Template designed by','colorlib-coming-soon-maintenance'); ?></span> <a href="https://colorlib.com/" target="_blank" rel="noopener noreferrer">Colorlib</a>
 		</span>
 
     </div>

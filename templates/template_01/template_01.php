@@ -75,9 +75,9 @@ if ( ccsm_template_has_text_color() ) {
         </div>
 
         <div class="p-t-50 p-b-60">
-            <p class="m1-txt1 p-b-36" id="colorlib_coming_soon_page_heading">
+            <h1 class="m1-txt1 p-b-36" id="colorlib_coming_soon_page_heading">
 				<?php echo wp_kses_post( $ccsm_options['colorlib_coming_soon_page_heading'] ); ?>
-            </p>
+            </h1>
 			<?php 
 			    do_action('colorlib_coming_soon_before_forms'); 
  			    if ( $ccsm_options['colorlib_coming_soon_subscribe'] != '1' ) {  
@@ -86,14 +86,18 @@ if ( ccsm_template_has_text_color() ) {
                       action="<?php echo esc_url( $ccsm_options['colorlib_coming_soon_subscribe_form_url'] ); ?>" method="POST">
                     <div class="wrap-input100 m-b-10 validate-input"
                          data-validate="<?php echo esc_attr__( 'Name is required', 'colorlib-coming-soon-maintenance' ); ?>">
-                        <input class="s2-txt1 placeholder0 input100" type="text" name="FNAME"
+                        <label class="ccsm-sr-only" for="ccsm-fname-01"><?php echo esc_html__( 'Your Name', 'colorlib-coming-soon-maintenance' ); ?></label>
+                        <input class="s2-txt1 placeholder0 input100" type="text" name="FNAME" id="ccsm-fname-01"
+                               autocomplete="given-name"
                                placeholder="<?php echo esc_attr__( 'Your Name', 'colorlib-coming-soon-maintenance' ); ?>">
                         <span class="focus-input100"></span>
                     </div>
 
                     <div class="wrap-input100 m-b-20 validate-input"
                          data-validate="<?php echo esc_attr__( 'Email is required: ex@abc.xyz', 'colorlib-coming-soon-maintenance' ); ?>">
-                        <input class="s2-txt1 placeholder0 input100" type="text" name="EMAIL"
+                        <label class="ccsm-sr-only" for="ccsm-email-01"><?php echo esc_html__( 'Email Address', 'colorlib-coming-soon-maintenance' ); ?></label>
+                        <input class="s2-txt1 placeholder0 input100" type="email" name="EMAIL" id="ccsm-email-01"
+                               autocomplete="email"
                                placeholder="<?php echo esc_attr__( 'Email Address', 'colorlib-coming-soon-maintenance' ); ?>">
                         <span class="focus-input100"></span>
                     </div>
@@ -168,7 +172,7 @@ if ( ccsm_template_has_text_color() ) {
 			}
 			?>
         </div>
-        <p class="colorlib-copyright"><span><?php esc_html_e('Coming Soon Template designed by','colorlib-coming-soon-maintenance'); ?></span> <a href="https://colorlib.com/" target="_blank">Colorlib</a>
+        <p class="colorlib-copyright"><span><?php esc_html_e('Coming Soon Template designed by','colorlib-coming-soon-maintenance'); ?></span> <a href="https://colorlib.com/" target="_blank" rel="noopener noreferrer">Colorlib</a>
         </p>
     </div>
 </div>

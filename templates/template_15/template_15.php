@@ -41,9 +41,9 @@ if ( is_ssl()  ) {
 				?>
             </div>
 
-            <h3 class="l1-txt1 txt-center p-t-30 p-b-100" id="colorlib_coming_soon_page_heading">
+            <h1 class="l1-txt1 txt-center p-t-30 p-b-100" id="colorlib_coming_soon_page_heading">
 				<?php echo wp_kses_post( $ccsm_options['colorlib_coming_soon_page_heading'] ); ?>
-            </h3>
+            </h1>
 
 			<?php if ( $counterActivation == '1' ) { ?>
                 <div class="cd100 ccsm-cd">
@@ -123,7 +123,7 @@ if ( is_ssl()  ) {
 			}
 			?>
         </div>
-        <p style="color:#fff;" class="colorlib-copyright"><span><?php esc_html_e('Coming Soon Template designed by','colorlib-coming-soon-maintenance'); ?></span> <a href="https://colorlib.com/" target="_blank">Colorlib</a></p>
+        <p style="color:#fff;" class="colorlib-copyright"><span><?php esc_html_e('Coming Soon Template designed by','colorlib-coming-soon-maintenance'); ?></span> <a href="https://colorlib.com/" target="_blank" rel="noopener noreferrer">Colorlib</a></p>
     </div>
 <?php
 if ( is_customize_preview() ) {

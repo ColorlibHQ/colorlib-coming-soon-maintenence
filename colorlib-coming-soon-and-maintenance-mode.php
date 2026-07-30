@@ -337,6 +337,24 @@ function ccsm_rest_restrict( $result, $server, $request ) {
 	return $result;
 }
 
+/**
+ * Resolve a stylesheet URL, preferring the minified sibling when the build
+ * produced one ("grunt mincss").
+ *
+ * @param string $relative Path relative to the plugin root, e.g. 'assets/css/x.css'.
+ * @return string
+ */
+function ccsm_style_url( $relative ) {
+	if ( '.min.css' !== substr( $relative, -8 ) ) {
+		$min = substr( $relative, 0, -4 ) . '.min.css';
+		if ( file_exists( CCSM_PATH . $min ) ) {
+			$relative = $min;
+		}
+	}
+
+	return CCSM_URL . $relative;
+}
+
 // enqueue template styles
 function ccsm_style_enqueue( $template_name ) {
 
@@ -619,7 +637,7 @@ function ccsm_style_enqueue( $template_name ) {
 			wp_register_style( $global_style['name'], $global_style['location'] . '&display=swap', array(), null );
 			wp_print_styles( $global_style['name'] );
 		} else {
-			wp_register_style( $global_style['name'], CCSM_URL . 'assets/' . $global_style['location'], array(), CCSM_VERSION );
+			wp_register_style( $global_style['name'], ccsm_style_url( 'assets/' . $global_style['location'] ), array(), CCSM_VERSION );
 			wp_print_styles( $global_style['name'] );
 		}
 	}
@@ -637,10 +655,10 @@ function ccsm_style_enqueue( $template_name ) {
 				wp_print_styles( $encript_style['name'] );
 			} elseif ( isset( $encript_style['shared'] ) && 'true' === $encript_style['shared'] ) {
 				// One shared copy for every template, resolved from assets/.
-				wp_register_style( 'ccsm-' . $encript_style['name'], CCSM_URL . $encript_style['location'], array(), CCSM_VERSION );
+				wp_register_style( 'ccsm-' . $encript_style['name'], ccsm_style_url( $encript_style['location'] ), array(), CCSM_VERSION );
 				wp_print_styles( 'ccsm-' . $encript_style['name'] );
 			} else {
-				wp_register_style( $template_name . '-' . $encript_style['name'], CCSM_URL . 'templates/' . $template_name . '/' . $encript_style['location'], array(), CCSM_VERSION );
+				wp_register_style( $template_name . '-' . $encript_style['name'], ccsm_style_url( 'templates/' . $template_name . '/' . $encript_style['location'] ), array(), CCSM_VERSION );
 				wp_print_styles( $template_name . '-' . $encript_style['name'] );
 			}
 		}
@@ -706,7 +724,9 @@ function ccsm_customizer_scripts() {
 	wp_enqueue_style( 'colorlib-ccsm-custom-controls-css' );
 	wp_localize_script(
 		'colorlib-ccsm-customizer-js', 'CCSMurls', array(
-			'siteurl' => get_option( 'siteurl' ),
+			// home_url(), not siteurl: they differ when WordPress lives in a
+			// subdirectory, and the preview has to point at the site address.
+			'siteurl' => home_url( '/' ),
 		)
 	);
 }
@@ -751,7 +771,12 @@ function ccsm_svg_allowed_html() {
 	);
 }
 
-function ccsm_icon( $name, $classes = '' ) {
+/**
+ * @param string $label Accessible name. Pass one whenever the icon is the only
+ *                      content of a link or button, otherwise that control has
+ *                      no accessible name at all.
+ */
+function ccsm_icon( $name, $classes = '', $label = '' ) {
 	$icons = array(
 		'facebook'          => array( 24, 'M9.101 23.691v-7.98H6.627v-3.667h2.474v-1.58c0-4.085 1.848-5.978 5.858-5.978.401 0 .955.042 1.468.103a8.68 8.68 0 0 1 1.141.195v3.325a8.623 8.623 0 0 0-.653-.036 26.805 26.805 0 0 0-.733-.009c-.707 0-1.259.096-1.675.309a1.686 1.686 0 0 0-.679.622c-.258.42-.374.995-.374 1.752v1.297h3.919l-.386 2.103-.287 1.564h-3.246v8.245C19.396 23.238 24 18.179 24 12.044c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.628 3.874 10.35 9.101 11.647Z' ),
 		'twitter'           => array( 24, 'M21.543 7.104c.015.211.015.423.015.636 0 6.507-4.954 14.01-14.01 14.01v-.003A13.94 13.94 0 0 1 0 19.539a9.88 9.88 0 0 0 7.287-2.041 4.93 4.93 0 0 1-4.6-3.42 4.916 4.916 0 0 0 2.223-.084A4.926 4.926 0 0 1 .96 9.167v-.062a4.887 4.887 0 0 0 2.235.616A4.928 4.928 0 0 1 1.67 3.148 13.98 13.98 0 0 0 11.82 8.292a4.929 4.929 0 0 1 8.39-4.49 9.868 9.868 0 0 0 3.128-1.196 4.941 4.941 0 0 1-2.165 2.724A9.828 9.828 0 0 0 24 4.555a10.019 10.019 0 0 1-2.457 2.549z' ),
@@ -792,7 +817,9 @@ function ccsm_icon( $name, $classes = '' ) {
 		'instagram' => 'Instagram',
 		'envelope'  => 'Email',
 	);
-	$label = isset( $labels[ $name ] ) ? $labels[ $name ] : '';
+	if ( '' === $label ) {
+		$label = isset( $labels[ $name ] ) ? $labels[ $name ] : '';
+	}
 
 	$a11y = ( '' !== $label )
 		? ' role="img" aria-label="' . esc_attr( $label ) . '"'
@@ -931,7 +958,20 @@ function ccsm_get_options() {
 		$options = array();
 	}
 
-	return wp_parse_args( $options, ccsm_defaults() );
+	$options = wp_parse_args( $options, ccsm_defaults() );
+
+	/*
+	 * With no action URL configured the subscribe form posts back to the coming
+	 * soon page itself, so a fresh install shows a form that silently reloads
+	 * and looks broken. Hide it until an action URL is set - but keep it visible
+	 * in the Customizer preview, where the admin needs to see what they are
+	 * configuring. Templates read the 'subscribe' key as "hide the form".
+	 */
+	if ( '' === trim( (string) $options['colorlib_coming_soon_subscribe_form_url'] ) && ! is_customize_preview() ) {
+		$options['colorlib_coming_soon_subscribe'] = '1';
+	}
+
+	return $options;
 }
 
 /**
@@ -1161,7 +1201,7 @@ function ccsm_ajax_dismiss_script() {
 	?>
 
 	<script type="text/javascript">
-        jQuery( document ).ready( function( $ ){
+        jQuery( function( $ ) {
 
             $(document).on('click','#ccsm-ga-notice .notice-dismiss', function( ){
                 var data = {

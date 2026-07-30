@@ -161,9 +161,9 @@ class CCSM_Review {
 		?>
 
         <script type="text/javascript">
-            jQuery(document).ready(function ($) {
+            jQuery(function ($) {
 
-                $('.epsilon-review-button').click(function (evt) {
+                $('.epsilon-review-button').on('click', function (evt) {
                     var href = $(this).attr('href'),
                         id = $(this).attr('id');
 
@@ -191,7 +191,7 @@ class CCSM_Review {
 
                 });
 
-	            $('#colorlib-coming-soon-maintenance-epsilon-review-notice .notice-dismiss').click(function(){
+	            $('#colorlib-coming-soon-maintenance-epsilon-review-notice .notice-dismiss').on('click', function () {
 
 		            var data = {
 			            action: 'ccsm_epsilon_review',

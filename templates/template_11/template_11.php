@@ -60,9 +60,9 @@ if ( ccsm_template_has_text_color() ) {
         </div>
 
         <div class="flex-col-c-m p-l-15 p-r-15 p-t-50 p-b-120">
-            <h3 class="l1-txt1 txt-center p-b-35 respon1" id="colorlib_coming_soon_page_heading">
+            <h1 class="l1-txt1 txt-center p-b-35 respon1" id="colorlib_coming_soon_page_heading">
 				<?php echo wp_kses_post( $ccsm_options['colorlib_coming_soon_page_heading'] ); ?>
-            </h3>
+            </h1>
 			<?php if ( $counterActivation == '1' ) { ?>
                 <div class="flex-w flex-c cd100 respon2">
                     <div class="flex-col-c wsize1 m-b-30">
@@ -74,21 +74,21 @@ if ( ccsm_template_has_text_color() ) {
 
                     <div class="flex-col-c wsize1 m-b-30">
                         <span class="l1-txt2 p-b-37 hours"><?php echo esc_html( $dates['template']['hours'] ); ?></span>
-                        <span class="m1-txt2 p-r-20"><?php echo esc_html__( 'Hr', 'colorlib-coming-soon-maintenance' ); ?></span>
+                        <span class="m1-txt2 p-r-20"><?php echo esc_html__( 'Hours', 'colorlib-coming-soon-maintenance' ); ?></span>
                     </div>
 
                     <span class="l1-txt2 p-t-15 dis-none-lg">:</span>
 
                     <div class="flex-col-c wsize1 m-b-30">
                         <span class="l1-txt2 p-b-37 minutes"><?php echo esc_html( $dates['template']['minutes'] ); ?></span>
-                        <span class="m1-txt2 p-r-20"><?php echo esc_html__( 'Min', 'colorlib-coming-soon-maintenance' ); ?></span>
+                        <span class="m1-txt2 p-r-20"><?php echo esc_html__( 'Minutes', 'colorlib-coming-soon-maintenance' ); ?></span>
                     </div>
 
                     <span class="l1-txt2 p-t-15 dis-none-sm">:</span>
 
                     <div class="flex-col-c wsize1 m-b-30">
                         <span class="l1-txt2 p-b-37 seconds"><?php echo esc_html( $dates['template']['seconds'] ); ?></span>
-                        <span class="m1-txt2 p-r-20"><?php echo esc_html__( 'Sec', 'colorlib-coming-soon-maintenance' ); ?></span>
+                        <span class="m1-txt2 p-r-20"><?php echo esc_html__( 'Seconds', 'colorlib-coming-soon-maintenance' ); ?></span>
                     </div>
                 </div>
 			<?php } ?>
@@ -151,7 +151,7 @@ if ( ccsm_template_has_text_color() ) {
 			?>
 
         </div>
-        <p style="color:#fff;" class="colorlib-copyright"><span><?php esc_html_e('Coming Soon Template designed by','colorlib-coming-soon-maintenance'); ?></span> <a href="https://colorlib.com/" target="_blank">Colorlib</a></p>
+        <p style="color:#fff;" class="colorlib-copyright"><span><?php esc_html_e('Coming Soon Template designed by','colorlib-coming-soon-maintenance'); ?></span> <a href="https://colorlib.com/" target="_blank" rel="noopener noreferrer">Colorlib</a></p>
     </div>
 
 <?php

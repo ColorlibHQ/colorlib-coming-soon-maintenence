@@ -25,9 +25,9 @@ if ( is_ssl()  ) {
                 <?php echo wp_kses( ccsm_icon('card-giftcard', 'cl0 fs-60'), ccsm_svg_allowed_html() ); ?>
             </p>
 
-            <h3 class="l1-txt1 txt-center p-b-22" id="colorlib_coming_soon_page_heading">
+            <h1 class="l1-txt1 txt-center p-b-22" id="colorlib_coming_soon_page_heading">
 				<?php echo wp_kses_post( $ccsm_options['colorlib_coming_soon_page_heading'] ); ?>
-            </h3>
+            </h1>
 
             <p class="txt-center m2-txt1 p-b-67" id="colorlib_coming_soon_page_content">
 				<?php echo wp_kses_post( $ccsm_options['colorlib_coming_soon_page_content'] ); ?>
@@ -69,7 +69,9 @@ if ( is_ssl()  ) {
                       action="<?php echo esc_url( $ccsm_options['colorlib_coming_soon_subscribe_form_url'] ); ?>" method="POST">
                     <div class="wrap-input100 validate-input where1"
                          data-validate="<?php echo esc_attr__( 'Email is required: ex@abc.xyz', 'colorlib-coming-soon-maintenance' ); ?>">
-                        <input class="s1-txt1 placeholder0 input100" type="text" name="EMAIL"
+                        <label class="ccsm-sr-only" for="ccsm-email-08"><?php echo esc_html__( 'Email Address', 'colorlib-coming-soon-maintenance' ); ?></label>
+                        <input class="s1-txt1 placeholder0 input100" type="email" id="ccsm-email-08" name="EMAIL"
+                               autocomplete="email"
                                placeholder="<?php echo esc_attr__( 'Email Address', 'colorlib-coming-soon-maintenance' ); ?>">
                         <span class="focus-input100"></span>
                     </div>
@@ -80,7 +82,7 @@ if ( is_ssl()  ) {
                 </form>
 			<?php } ?>
         </div>
-        <p style="position:absolute;bottom:0;right:30px;color:#fff;" class="colorlib-copyright"><span><?php esc_html_e('Coming Soon Template designed by','colorlib-coming-soon-maintenance'); ?></span> <a href="https://colorlib.com/" target="_blank">Colorlib</a></p>
+        <p style="position:absolute;bottom:0;right:30px;color:#fff;" class="colorlib-copyright"><span><?php esc_html_e('Coming Soon Template designed by','colorlib-coming-soon-maintenance'); ?></span> <a href="https://colorlib.com/" target="_blank" rel="noopener noreferrer">Colorlib</a></p>
     </div>
 <?php
 if ( is_customize_preview() ) {

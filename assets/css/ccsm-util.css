@@ -20,7 +20,6 @@ html {
 	-moz-box-sizing: border-box;
 	box-sizing: border-box;
 }
-a:focus {outline: none;}
 a:hover {text-decoration: none;}
 h1,
 h2,
@@ -38,16 +37,13 @@ input,
 textarea,
 label {
 	display: block;
-	outline: none;
 	border: none;
 }
 button {
-	outline: none;
 	border: none;
 	background: transparent;
 	cursor: pointer;
 }
-button:focus {outline: none;}
 iframe {border: none;}
 .fs-15 {font-size: 15px;}
 .fs-16 {font-size: 16px;}

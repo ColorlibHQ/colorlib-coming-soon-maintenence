@@ -39,9 +39,9 @@ if ( is_ssl()  ) {
 
             <div class="w-full flex-c-m p-t-80 p-b-90">
                 <div class="wsize2">
-                    <h3 class="l1-txt1 p-b-34 respon3" id="colorlib_coming_soon_page_heading">
+                    <h1 class="l1-txt1 p-b-34 respon3" id="colorlib_coming_soon_page_heading">
 						<?php echo wp_kses_post( $ccsm_options['colorlib_coming_soon_page_heading'] ); ?>
-                    </h3>
+                    </h1>
 
                     <p class="m2-txt1 p-b-46" id="colorlib_coming_soon_page_content">
 						<?php echo wp_kses_post( $ccsm_options['colorlib_coming_soon_page_content'] ); ?>
@@ -54,11 +54,12 @@ if ( is_ssl()  ) {
                               action="<?php echo esc_url( $ccsm_options['colorlib_coming_soon_subscribe_form_url'] ); ?>" method="POST">
                             <div class="wrap-input100 validate-input m-lr-auto-lg"
                                  data-validate="<?php echo esc_attr__( 'Email is required: ex@abc.xyz', 'colorlib-coming-soon-maintenance' ); ?>">
-                                <input class="s2-txt1 placeholder0 input100 trans-04" type="text" name="EMAIL"
+                                <label class="ccsm-sr-only" for="ccsm-email-12"><?php echo esc_html__( 'Email Address', 'colorlib-coming-soon-maintenance' ); ?></label>
+                                <input class="s2-txt1 placeholder0 input100 trans-04" type="email" id="ccsm-email-12" name="EMAIL" autocomplete="email"
                                        placeholder="<?php echo esc_attr__( 'Email Address', 'colorlib-coming-soon-maintenance' ); ?>">
 
                                 <button class="flex-c-m ab-t-r size2 hov1" name="subscribe">
-                                    <?php echo wp_kses( ccsm_icon('long-arrow-right', 'fs-30 cl1 trans-04'), ccsm_svg_allowed_html() ); ?>
+                                    <?php echo wp_kses( ccsm_icon('long-arrow-right', 'fs-30 cl1 trans-04', esc_attr__( 'Subscribe', 'colorlib-coming-soon-maintenance' )), ccsm_svg_allowed_html() ); ?>
                                 </button>
                             </div>
                         </form>
@@ -132,7 +133,7 @@ if ( is_ssl()  ) {
                      style="background-image: url('<?php echo esc_url($bcg_url); ?>');"></div>
             </div>
             <p style="color:#fff;position:absolute;bottom:0px;" class="colorlib-copyright"><span><?php esc_html_e('Coming Soon Template designed by','colorlib-coming-soon-maintenance'); ?></span>
-                <a href="https://colorlib.com/" target="_blank" style="color:#fff;">Colorlib</a></p>
+                <a href="https://colorlib.com/" target="_blank" rel="noopener noreferrer" style="color:#fff;">Colorlib</a></p>
         </div>
     </div>
 

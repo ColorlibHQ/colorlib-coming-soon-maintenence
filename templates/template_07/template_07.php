@@ -98,9 +98,9 @@ if ( is_ssl()  ) {
             </div>
 
             <div class="wsize1 m-lr-auto">
-                <p class="txt-center l1-txt1 p-b-60" id="colorlib_coming_soon_page_heading">
+                <h1 class="txt-center l1-txt1 p-b-60" id="colorlib_coming_soon_page_heading">
 					<?php echo wp_kses_post( $ccsm_options['colorlib_coming_soon_page_heading'] ); ?>
-                </p>
+                </h1>
 				<?php 
 				    do_action('colorlib_coming_soon_before_forms'); 
  				    if ( $ccsm_options['colorlib_coming_soon_subscribe'] != '1' ) {  
@@ -110,7 +110,9 @@ if ( is_ssl()  ) {
 
                         <div class="wrap-input100 validate-input m-b-20"
                              data-validate="<?php echo esc_attr__( 'Valid email is required: ex@abc.xyz', 'colorlib-coming-soon-maintenance' ); ?>">
-                            <input class="input100 placeholder0 m1-txt1" type="text" name="EMAIL"
+                            <label class="ccsm-sr-only" for="ccsm-email-07"><?php echo esc_html__( 'Email Address', 'colorlib-coming-soon-maintenance' ); ?></label>
+                            <input class="input100 placeholder0 m1-txt1" type="email" id="ccsm-email-07" name="EMAIL"
+                                   autocomplete="email"
                                    placeholder="<?php echo esc_attr__( 'Email Address', 'colorlib-coming-soon-maintenance' ); ?>">
                             <span class="focus-input100"></span>
                         </div>
@@ -150,7 +152,7 @@ if ( is_ssl()  ) {
                     </div>
                 </div>
 			<?php } ?>
-            <p class="colorlib-copyright"><span><?php esc_html_e('Coming Soon Template designed by','colorlib-coming-soon-maintenance'); ?></span> <a href="https://colorlib.com/" target="_blank">Colorlib</a></p>
+            <p class="colorlib-copyright"><span><?php esc_html_e('Coming Soon Template designed by','colorlib-coming-soon-maintenance'); ?></span> <a href="https://colorlib.com/" target="_blank" rel="noopener noreferrer">Colorlib</a></p>
         </div>
     </div>
 <?php

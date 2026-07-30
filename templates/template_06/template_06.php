@@ -97,13 +97,13 @@ if ( is_ssl()  ) {
 
         <div class="flex-w flex-sa p-r-200 respon1">
             <div class="p-t-34 p-b-60 respon3">
-                <p class="l1-txt1 p-b-10 respon2" id="colorlib_coming_soon_page_heading">
+                <h1 class="l1-txt2 p-b-45 respon2 respon4" id="colorlib_coming_soon_page_heading">
 					<?php echo wp_kses_post( $ccsm_options['colorlib_coming_soon_page_heading'] ); ?>
-                </p>
+                </h1>
 
-                <h3 class="l1-txt2 p-b-45 respon2 respon4" id="colorlib_coming_soon_page_content">
+                <p class="l1-txt1 p-b-10 respon2" id="colorlib_coming_soon_page_content">
 					<?php echo wp_kses_post( $ccsm_options['colorlib_coming_soon_page_content'] ); ?>
-                </h3>
+                </p>
 
 				<?php if ( $counterActivation == '1' ) { ?>
                     <div class="cd100 ccsm-cd">
@@ -140,14 +140,18 @@ if ( is_ssl()  ) {
 
                         <div class="wrap-input100 validate-input m-b-10"
                              data-validate="<?php echo esc_attr__( 'Name is required', 'colorlib-coming-soon-maintenance' ); ?>">
-                            <input class="input100 placeholder0 s1-txt1" type="text" name="FNAME"
+                            <label class="ccsm-sr-only" for="ccsm-name-06"><?php echo esc_html__( 'Name', 'colorlib-coming-soon-maintenance' ); ?></label>
+                            <input class="input100 placeholder0 s1-txt1" type="text" id="ccsm-name-06" name="FNAME"
+                                   autocomplete="given-name"
                                    placeholder="<?php echo esc_attr__( 'Name', 'colorlib-coming-soon-maintenance' ); ?>">
                             <span class="focus-input100"></span>
                         </div>
 
                         <div class="wrap-input100 validate-input m-b-20"
                              data-validate="<?php echo esc_attr__( 'Valid email is required: ex@abc.xyz', 'colorlib-coming-soon-maintenance' ); ?>">
-                            <input class="input100 placeholder0 s1-txt1" type="text" name="EMAIL"
+                            <label class="ccsm-sr-only" for="ccsm-email-06"><?php echo esc_html__( 'Email', 'colorlib-coming-soon-maintenance' ); ?></label>
+                            <input class="input100 placeholder0 s1-txt1" type="email" id="ccsm-email-06" name="EMAIL"
+                                   autocomplete="email"
                                    placeholder="<?php echo esc_attr__( 'Email', 'colorlib-coming-soon-maintenance' ); ?>">
                             <span class="focus-input100"></span>
                         </div>
@@ -162,7 +166,7 @@ if ( is_ssl()  ) {
                     </p>
                 </div>
 			<?php } ?>
-            <p style="position:absolute;bottom:0;right:180px;" class="colorlib-copyright"><span><?php esc_html_e('Coming Soon Template designed by','colorlib-coming-soon-maintenance'); ?></span> <a href="https://colorlib.com/" target="_blank">Colorlib</a></p>
+            <p style="position:absolute;bottom:0;right:180px;" class="colorlib-copyright"><span><?php esc_html_e('Coming Soon Template designed by','colorlib-coming-soon-maintenance'); ?></span> <a href="https://colorlib.com/" target="_blank" rel="noopener noreferrer">Colorlib</a></p>
         </div>
     </div>
 <?php

@@ -61,9 +61,9 @@ if ( ccsm_template_has_text_color() ) {
 
         <div class="flex-sb flex-row-rev where3-parent p-l-58 p-r-46 respon2">
             <div class="where3 wsize2 respon1">
-                <h3 class="l1-txt2 p-b-30 respon6 respon7" id="colorlib_coming_soon_page_heading">
+                <h1 class="l1-txt2 p-b-30 respon6 respon7" id="colorlib_coming_soon_page_heading">
 					<?php echo wp_kses_post( $ccsm_options['colorlib_coming_soon_page_heading'] ); ?>
-                </h3>
+                </h1>
 
                 <p class="m2-txt1 respon6" id="colorlib_coming_soon_page_content">
 					<?php echo wp_kses_post( $ccsm_options['colorlib_coming_soon_page_content'] ); ?>
@@ -76,11 +76,13 @@ if ( ccsm_template_has_text_color() ) {
                           action="<?php echo esc_url( $ccsm_options['colorlib_coming_soon_subscribe_form_url'] ); ?>" method="POST">
                         <div class="wrap-input100 validate-input m-lr-auto-lg"
                              data-validate="<?php echo esc_attr__( 'Email is required: ex@abc.xyz', 'colorlib-coming-soon-maintenance' ); ?>">
-                            <input class="s2-txt1 placeholder0 input100 trans-04" type="text" name="EMAIL"
+                            <label class="ccsm-sr-only" for="ccsm-email-10"><?php echo esc_html__( 'Email Address', 'colorlib-coming-soon-maintenance' ); ?></label>
+                            <input class="s2-txt1 placeholder0 input100 trans-04" type="email" id="ccsm-email-10" name="EMAIL"
+                                   autocomplete="email"
                                    placeholder="<?php echo esc_attr__( 'Email Address', 'colorlib-coming-soon-maintenance' ); ?>">
 
                             <button class="flex-c-m ab-t-r size4 s1-txt1 hov1 trans-04" name="subscribe">
-                                <?php echo wp_kses( ccsm_icon('paper-plane', 'fs-15 cl0'), ccsm_svg_allowed_html() ); ?>
+                                <?php echo wp_kses( ccsm_icon('paper-plane', 'fs-15 cl0', esc_attr__( 'Subscribe', 'colorlib-coming-soon-maintenance' )), ccsm_svg_allowed_html() ); ?>
                             </button>
                         </div>
                     </form>
@@ -171,7 +173,7 @@ if ( ccsm_template_has_text_color() ) {
 				?>
             </div>
         </div>
-        <p style="color:#fff;position: absolute;right:30px;bottom:0;" class="colorlib-copyright"><span><?php esc_html_e('Coming Soon Template designed by','colorlib-coming-soon-maintenance'); ?></span> <a href="https://colorlib.com/" target="_blank" style="color:#fff;">Colorlib</a></p>
+        <p style="color:#fff;position: absolute;right:30px;bottom:0;" class="colorlib-copyright"><span><?php esc_html_e('Coming Soon Template designed by','colorlib-coming-soon-maintenance'); ?></span> <a href="https://colorlib.com/" target="_blank" rel="noopener noreferrer" style="color:#fff;">Colorlib</a></p>
     </div>
 <?php
 if ( is_customize_preview() ) {

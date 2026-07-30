@@ -3,7 +3,12 @@ jQuery(function () {
         var textareaId = jQuery(this).attr('id');
         var textareaEditor = jQuery(this);
 
-        wp.editor.initialize(textareaId, {
+        // wp.editor is the classic editor bridge, but @wordpress/editor
+        // overwrites that global wherever block assets load. wp.oldEditor is
+        // the stable handle for the classic API.
+        var editorApi = (window.wp && wp.oldEditor) ? wp.oldEditor : wp.editor;
+
+        editorApi.initialize(textareaId, {
             tinymce: {
                 wpautop: true,
                 browser_spellcheck: true,

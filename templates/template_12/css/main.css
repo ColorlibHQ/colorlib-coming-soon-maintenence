@@ -182,7 +182,7 @@ Primary use:
 .m2-txt1 {
     font-family: 'Poppins', sans-serif;
     font-size: 24px;
-    color: #999;
+    color: #6e6e6e;
     line-height: 1.2;
 }
 
@@ -253,19 +253,19 @@ Primary use:
  HOW HOW HOW HOW HOW HOW HOW HOW HOW HOW HOW HOW HOW HOW HOW HOW HOW 
 ==================================================================*/
 .placeholder0::-webkit-input-placeholder {
-    color: #999999;
+    color: #6e6e6e;
 }
 
 .placeholder0:-moz-placeholder {
-    color: #999999;
+    color: #6e6e6e;
 }
 
 .placeholder0::-moz-placeholder {
-    color: #999999;
+    color: #6e6e6e;
 }
 
 .placeholder0:-ms-input-placeholder {
-    color: #999999;
+    color: #6e6e6e;
 }
 
 /*---------------------------------------------*/

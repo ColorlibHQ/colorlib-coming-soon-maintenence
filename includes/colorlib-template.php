@@ -7,12 +7,23 @@ if ( ! defined( 'ABSPATH' ) ) {
 $ccsm_options = ccsm_get_options();
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html <?php language_attributes(); ?>>
 <head>
-    <meta charset="utf-8">
+    <meta charset="<?php bloginfo( 'charset' ); ?>">
     <title><?php bloginfo( 'name' ); ?></title>
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <?php /* No maximum-scale: it blocks pinch zoom (WCAG 1.4.4). */ ?>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 	<?php
+	$site_description = get_bloginfo( 'description', 'display' );
+	if ( '' !== $site_description ) {
+		printf( '<meta name="description" content="%s">' . "\n", esc_attr( $site_description ) );
+	}
+
+	// The theme never loads here, so the Site Icon has to be printed by hand.
+	if ( function_exists( 'wp_site_icon' ) && has_site_icon() ) {
+		wp_site_icon();
+	}
+
 	if ( ! empty( $ccsm_options['colorlib_coming_soon_noindex'] ) || 'maintenance' === ccsm_get_mode() ) {
 		echo '<meta name="robots" content="noindex, nofollow">' . "\n";
 	}
@@ -81,9 +92,12 @@ $ccsm_options = ccsm_get_options();
 </head>
 <body>
 
+<main id="ccsm-main">
 <?php
 include CCSM_PATH . 'templates/' . $template . '/' . $template . '.php';
-
+?>
+</main>
+<?php
 do_action( 'ccsm_footer', $template );
 ?>
 
