@@ -108,7 +108,12 @@
 			});
 
 			inputs.forEach(function (input) {
-				input.addEventListener('focus', function () {
+				/*
+				 * Clear on input, not on focus. Submitting moves focus to the
+				 * first invalid field, and a focus handler would wipe the very
+				 * message that move was meant to announce.
+				 */
+				input.addEventListener('input', function () {
 					hideValidate(input);
 				});
 			});

@@ -136,7 +136,7 @@ if ( is_ssl()  ) {
 						<?php echo esc_html__( 'Newsletter', 'colorlib-coming-soon-maintenance' ); ?>
                     </h3>
 
-                    <form class="w-full validate-form"
+                    <form class="w-full validate-form" novalidate
                           action="<?php echo esc_url( $ccsm_options['colorlib_coming_soon_subscribe_form_url'] ); ?>" method="POST">
 
                         <div class="wrap-input100 validate-input m-b-10"

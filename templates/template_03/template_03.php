@@ -77,7 +77,7 @@ if ( ccsm_template_has_text_color() ) {
 		    do_action('colorlib_coming_soon_before_forms');
  		    if ( $ccsm_options['colorlib_coming_soon_subscribe'] != '1' ) {
 		?>
-            <form class="flex-w flex-c-m contact100-form validate-form p-t-55" action="<?php echo esc_url($ccsm_options['colorlib_coming_soon_subscribe_form_url']); ?>" method="POST">
+            <form class="flex-w flex-c-m contact100-form validate-form p-t-55" novalidate action="<?php echo esc_url($ccsm_options['colorlib_coming_soon_subscribe_form_url']); ?>" method="POST">
                 <div class="wrap-input100 validate-input where1" data-validate="<?php echo esc_attr__('Email is required: ex@abc.xyz','colorlib-coming-soon-maintenance'); ?>">
                     <label class="ccsm-sr-only" for="ccsm-email-03"><?php echo esc_html__('Your Email','colorlib-coming-soon-maintenance'); ?></label>
                     <input class="s1-txt2 placeholder0 input100" type="email" name="EMAIL" id="ccsm-email-03" autocomplete="email" placeholder="<?php echo esc_attr__('Your Email','colorlib-coming-soon-maintenance'); ?>">

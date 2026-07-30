@@ -69,7 +69,7 @@ if ( ccsm_template_has_text_color() ) {
 		    do_action('colorlib_coming_soon_before_forms');
  		    if ( $ccsm_options['colorlib_coming_soon_subscribe'] != '1' ) {  
 		?>
-            <form class="w-full flex-w flex-c-m validate-form"
+            <form class="w-full flex-w flex-c-m validate-form" novalidate
                   action="<?php echo esc_url( $ccsm_options['colorlib_coming_soon_subscribe_form_url'] ); ?>" method="POST">
 
                 <div class="wrap-input100 validate-input where1"

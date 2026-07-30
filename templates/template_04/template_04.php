@@ -84,7 +84,7 @@ $ccsm_dates             = ccsm_counter_dates( $ccsm_counter );
 						<?php echo esc_html__( 'Follow us for update now!', 'colorlib-coming-soon-maintenance' ); ?>
                     </p>
 
-                    <form class="contact100-form validate-form"
+                    <form class="contact100-form validate-form" novalidate
                           action="<?php echo esc_url( $ccsm_options['colorlib_coming_soon_subscribe_form_url'] ); ?>" method="POST">
                         <div class="wrap-input100 m-b-10 validate-input"
                              data-validate="<?php echo esc_attr__( 'Name is required', 'colorlib-coming-soon-maintenance' ); ?>">

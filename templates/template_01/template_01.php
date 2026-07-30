@@ -83,7 +83,7 @@ if ( ccsm_template_has_text_color() ) {
 			    do_action('colorlib_coming_soon_before_forms'); 
  			    if ( $ccsm_options['colorlib_coming_soon_subscribe'] != '1' ) {  
 			?>
-                <form class="contact100-form validate-form"
+                <form class="contact100-form validate-form" novalidate
                       action="<?php echo esc_url( $ccsm_options['colorlib_coming_soon_subscribe_form_url'] ); ?>" method="POST">
                     <div class="wrap-input100 m-b-10 validate-input"
                          data-validate="<?php echo esc_attr__( 'Name is required', 'colorlib-coming-soon-maintenance' ); ?>">
