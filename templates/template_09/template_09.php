@@ -1,4 +1,9 @@
 <?php
+// Exit if accessed directly
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 $ccsm_options      = get_option( 'ccsm_settings' );
 $counterActivation = $ccsm_options['colorlib_coming_soon_timer_activation'];
 $template          = $ccsm_options['colorlib_coming_soon_template_selection'];
@@ -41,7 +46,7 @@ if ( ccsm_template_has_text_color() ) {
 					?>
                     <a href="<?php echo esc_url( site_url() ); ?>" class="logo-link"><img
                                 src="<?php echo esc_url( $logo_url ); ?>"
-                                alt="<?php echo esc_url( get_bloginfo() ); ?>"></a>
+                                alt="<?php echo esc_attr( get_bloginfo( 'name' ) ); ?>"></a>
 					<?php
 				}
 				?>

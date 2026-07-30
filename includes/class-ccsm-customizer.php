@@ -1,6 +1,11 @@
 <?php
 /* Colorlib Coming Soon Customizer Options */
 
+// Exit if accessed directly
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 
 class CCSM_Customizer {
 
@@ -87,6 +92,43 @@ class CCSM_Customizer {
 				'label'       => esc_html__( 'Activate Colorlib Coming Soon Page?', 'colorlib-coming-soon-maintenance' ),
 				'section'     => 'colorlib_coming_soon_section_general',
 				'priority'    => 10,
+			) )
+		);
+
+
+		/* Setting - Coming Soon - Mode */
+		$wp_customize->add_setting( 'ccsm_settings[colorlib_coming_soon_mode]', array(
+			'default'           => 'coming_soon',
+			'sanitize_callback' => 'ccsm_sanitize_mode',
+			'type'              => 'option',
+		) );
+
+		$wp_customize->add_control( 'ccsm_settings[colorlib_coming_soon_mode]', array(
+				'label'       => esc_html__( 'Page Mode', 'colorlib-coming-soon-maintenance' ),
+				'description' => esc_html__( 'Coming Soon answers with HTTP 200, so search engines may index the page. Maintenance answers with HTTP 503 and Retry-After, which tells search engines the downtime is temporary and keeps your existing rankings.', 'colorlib-coming-soon-maintenance' ),
+				'section'     => 'colorlib_coming_soon_section_general',
+				'type'        => 'radio',
+				'priority'    => 11,
+				'choices'     => array(
+					'coming_soon' => esc_html__( 'Coming Soon (new site)', 'colorlib-coming-soon-maintenance' ),
+					'maintenance' => esc_html__( 'Maintenance (existing site, temporary)', 'colorlib-coming-soon-maintenance' ),
+				),
+			)
+		);
+
+
+		/* Setting - Coming Soon - Discourage search engines */
+		$wp_customize->add_setting( 'ccsm_settings[colorlib_coming_soon_noindex]', array(
+			'default'           => '',
+			'sanitize_callback' => 'ccsm_sanitize_checkbox',
+			'type'              => 'option',
+		) );
+
+		$wp_customize->add_control( new CCSM_Control_Toggle ( $wp_customize, 'ccsm_settings[colorlib_coming_soon_noindex]', array(
+				'label'       => esc_html__( 'Discourage search engines from indexing this page?', 'colorlib-coming-soon-maintenance' ),
+				'description' => esc_html__( 'Adds a noindex robots tag. Maintenance mode also blocks crawlers via robots.txt.', 'colorlib-coming-soon-maintenance' ),
+				'section'     => 'colorlib_coming_soon_section_general',
+				'priority'    => 12,
 			) )
 		);
 
@@ -537,7 +579,7 @@ class CCSM_Customizer {
 	}
 
 	public function ccsm_add_menu_item() {
-		$page = add_menu_page(
+		add_menu_page(
 			esc_html__( 'Colorlib Coming Soon', 'colorlib-coming-soon-maintenance' ), esc_html__( 'Coming Soon', 'colorlib-coming-soon-maintenance' ), 'manage_options', 'ccsm_settings', array(
 			$this,
 			'settings_page',
@@ -546,17 +588,27 @@ class CCSM_Customizer {
 	}
 
 	/**
-	 * Add settings link to plugin list table
+	 * Render the settings page.
 	 *
-	 * @param  array $links Existing links
+	 * ccsm_redirect_customizer() normally sends the browser to the Customizer
+	 * before this runs, so it is only reached if that redirect was filtered out
+	 * or the headers were already sent.
 	 *
-	 * @return array        Modified links
+	 * @access public
+	 * @return void
 	 */
-	public function ccsm_add_settings_link( $links ) {
-		$settings_link = '<a href="options-general.php?page=ccsm__settings">' . __( 'Settings', 'colorlib-coming-soon-maintenance' ) . '</a>';
-		$links[] = $settings_link;
+	public function settings_page() {
+		$url = add_query_arg(
+			array( 'autofocus[panel]' => 'colorlib_coming_soon_general_panel' ),
+			admin_url( 'customize.php' )
+		);
 
-		return $links;
+		printf(
+			'<div class="wrap"><h1>%1$s</h1><p><a class="button button-primary" href="%2$s">%3$s</a></p></div>',
+			esc_html__( 'Colorlib Coming Soon', 'colorlib-coming-soon-maintenance' ),
+			esc_url( $url ),
+			esc_html__( 'Open the Coming Soon settings', 'colorlib-coming-soon-maintenance' )
+		);
 	}
 
 	/**
@@ -578,6 +630,7 @@ class CCSM_Customizer {
 				);
 
 				wp_safe_redirect( $url );
+				exit;
 			}
 		}
 	}
@@ -592,5 +645,25 @@ function ccsm_sanitize_text( $input ) {
 
 function ccsm_sanitize_google_analytics( $input ) {
 	return esc_html( $input );
+}
+
+/**
+ * Sanitize the page mode radio.
+ *
+ * @param string $input Raw value.
+ * @return string 'coming_soon' or 'maintenance'.
+ */
+function ccsm_sanitize_mode( $input ) {
+	return 'maintenance' === $input ? 'maintenance' : 'coming_soon';
+}
+
+/**
+ * Sanitize a toggle control value.
+ *
+ * @param mixed $input Raw value.
+ * @return string '1' when on, '' when off.
+ */
+function ccsm_sanitize_checkbox( $input ) {
+	return ( '1' === $input || 1 === $input || true === $input ) ? '1' : '';
 }
 

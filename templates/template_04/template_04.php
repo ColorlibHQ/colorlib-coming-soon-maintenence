@@ -1,4 +1,9 @@
 <?php
+// Exit if accessed directly
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 $ccsm_options      = get_option( 'ccsm_settings' );
 $counterActivation = $ccsm_options['colorlib_coming_soon_timer_activation'];
 $template          = $ccsm_options['colorlib_coming_soon_template_selection'];
@@ -34,7 +39,7 @@ $dates             = ccsm_counter_dates( $counter );
                     </div>
 
                     <div class="flex-col-c-m size2 how-countdown">
-                        <span class="l1-txt3 p-b-9 seconds"><?php echo esc_html( $dates['template']['days'] ); ?></span>
+                        <span class="l1-txt3 p-b-9 seconds"><?php echo esc_html( $dates['template']['seconds'] ); ?></span>
                         <span class="s1-txt1"><?php echo esc_html__( 'Seconds', 'colorlib-coming-soon-maintenance' ); ?></span>
                     </div>
                 </div>

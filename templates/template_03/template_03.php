@@ -1,4 +1,9 @@
 <?php
+// Exit if accessed directly
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 $ccsm_options      = get_option( 'ccsm_settings' );
 $counterActivation = $ccsm_options['colorlib_coming_soon_timer_activation'];
 $template          = $ccsm_options['colorlib_coming_soon_template_selection'];
@@ -35,13 +40,13 @@ if ( ccsm_template_has_text_color() ) {
 			<?php if ( $logo_url ) {
 				?>
                 <a href="<?php echo esc_url( site_url() ); ?>" class="logo-link"><img src="<?php echo esc_url($logo_url); ?>"
-                                 alt="<?php echo esc_url( get_bloginfo() ); ?>"></a>
+                                 alt="<?php echo esc_attr( get_bloginfo( 'name' ) ); ?>"></a>
 				<?php
 			}
 			?>
         </div>
 
-        <p class="txt-center m1-txt1 p-t-33 p-b-68" id="colorlib_coming_soon_page_content">
+        <p class="txt-center m1-txt1 p-t-33 p-b-68" id="colorlib_coming_soon_page_heading">
 			<?php echo wp_kses_post( $ccsm_options['colorlib_coming_soon_page_heading'] ); ?>
         </p>
 		<?php if ( $counterActivation == '1' ) { ?>
@@ -83,6 +88,7 @@ if ( ccsm_template_has_text_color() ) {
                 </button>
 
             </form>
+			<?php } ?>
 
             <div class="flex-w justify-content-center p-2">
 			<?php
@@ -145,7 +151,6 @@ if ( ccsm_template_has_text_color() ) {
             <p class="s1-txt4 txt-center p-t-10" id="colorlib_coming_soon_page_footer">
 				<?php echo wp_kses_post( $ccsm_options['colorlib_coming_soon_page_footer'] ); ?>
             </p>
-		<?php } ?>
         <p class="colorlib-copyright"><span><?php esc_html_e('Coming Soon Template designed by','colorlib-coming-soon-maintenance'); ?></span> <a href="https://colorlib.com/" target="_blank">Colorlib</a></p>
     </div>
 </div>

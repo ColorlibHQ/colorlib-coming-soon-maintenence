@@ -1,4 +1,9 @@
 <?php
+// Exit if accessed directly
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 $ccsm_options      = get_option( 'ccsm_settings' );
 $counterActivation = $ccsm_options['colorlib_coming_soon_timer_activation'];
 $template          = $ccsm_options['colorlib_coming_soon_template_selection'];
@@ -30,7 +35,7 @@ if ( is_ssl()  ) {
 					?>
                     <a href="<?php echo esc_url( site_url() ); ?>" class="logo-link"><img
                                 src="<?php echo esc_url( $logo_url ); ?>"
-                                alt="<?php echo esc_url( get_bloginfo() ); ?>"></a>
+                                alt="<?php echo esc_attr( get_bloginfo( 'name' ) ); ?>"></a>
 					<?php
 				}
 				?>
@@ -60,7 +65,7 @@ if ( is_ssl()  ) {
                             </button>
 
                             <div class="flex-c-m ab-t-l s2-txt1 size4 bor1 respon4">
-                                <span><?php echo esc_html__( 'Subcribe Now', 'colorlib-coming-soon-maintenance' ); ?>:</span>
+                                <span><?php echo esc_html__( 'Subscribe Now', 'colorlib-coming-soon-maintenance' ); ?>:</span>
                             </div>
                         </div>
                     </form>

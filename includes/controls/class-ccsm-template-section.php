@@ -1,4 +1,9 @@
 <?php
+// Exit if accessed directly
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 if (class_exists('WP_Customize_Section')) {
     class CCSM_Templates_Section extends WP_Customize_Section {
 

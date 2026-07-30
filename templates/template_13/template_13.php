@@ -1,4 +1,9 @@
 <?php
+// Exit if accessed directly
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 $ccsm_options      = get_option( 'ccsm_settings' );
 $counterActivation = $ccsm_options['colorlib_coming_soon_timer_activation'];
 $template          = $ccsm_options['colorlib_coming_soon_template_selection'];
@@ -41,7 +46,7 @@ if ( ccsm_template_has_text_color() ) {
 					?>
                     <a href="<?php echo esc_url( site_url() ); ?>" class="logo-link"><img
                                 src="<?php echo esc_url( $logo_url ); ?>"
-                                alt="<?php echo esc_url( get_bloginfo() ); ?>"></a>
+                                alt="<?php echo esc_attr( get_bloginfo( 'name' ) ); ?>"></a>
 					<?php
 				}
 				?>
@@ -84,11 +89,6 @@ if ( ccsm_template_has_text_color() ) {
 				<?php echo wp_kses_post( $ccsm_options['colorlib_coming_soon_page_heading'] ); ?>
             </h3>
 
-            <div>
-                <button class="how-btn-play1 flex-c-m">
-                    <?php echo ccsm_icon('play'); ?>
-                </button>
-            </div>
         </div>
 
         <div class="flex-sb-m flex-w w-full">

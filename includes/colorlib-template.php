@@ -1,15 +1,24 @@
+<?php
+// Exit if accessed directly
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
+$ccsm_options = get_option( 'ccsm_settings' );
+
+if ( ! is_array( $ccsm_options ) ) {
+	$ccsm_options = array();
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title><?php bloginfo( 'name' );
-		$site_description = get_bloginfo( 'description' ); ?></title>
+    <title><?php bloginfo( 'name' ); ?></title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 	<?php
-	$ccsm_options = get_option( 'ccsm_settings' );
-
-	if ( ! is_array( $ccsm_options ) ) {
-		return;
+	if ( ! empty( $ccsm_options['colorlib_coming_soon_noindex'] ) || 'maintenance' === ccsm_get_mode() ) {
+		echo '<meta name="robots" content="noindex, nofollow">' . "\n";
 	}
 
     if ( isset( $ccsm_options['colorlib_coming_soon_google_analytics_id'] ) && '' !== $ccsm_options['colorlib_coming_soon_google_analytics_id'] ) {
