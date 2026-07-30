@@ -14,7 +14,56 @@ class CCSM_Customizer {
 		add_action( 'customize_register', array( $this, 'ccsm_customizer_controls' ) );
 		add_action( 'customize_register', array( $this, 'ccsm_panels_initialize' ) );
 		add_action( 'admin_menu', array( $this, 'ccsm_add_menu_item' ) );
-		add_action( 'admin_init', array( $this, 'ccsm_redirect_customizer' ) );
+		add_action( 'admin_init', array( $this, 'handle_tools_actions' ) );
+	}
+
+	/**
+	 * Handle the export / import / regenerate actions posted from the settings page.
+	 */
+	public function handle_tools_actions() {
+		if ( empty( $_POST['ccsm_action'] ) || ! current_user_can( 'manage_options' ) ) {
+			return;
+		}
+
+		check_admin_referer( 'ccsm_tools' );
+
+		$action = sanitize_text_field( wp_unslash( $_POST['ccsm_action'] ) );
+		$notice = '';
+
+		if ( 'regenerate_token' === $action ) {
+			$options = get_option( 'ccsm_settings' );
+			if ( is_array( $options ) ) {
+				$options['colorlib_coming_soon_bypass_token'] = wp_generate_password( 24, false );
+				update_option( 'ccsm_settings', $options );
+			}
+			$notice = 'token';
+		}
+
+		if ( 'import' === $action && isset( $_POST['ccsm_import'] ) ) {
+			$raw      = trim( wp_unslash( $_POST['ccsm_import'] ) ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput -- decoded and filtered below.
+			$imported = json_decode( $raw, true );
+			$notice   = 'import_failed';
+
+			if ( is_array( $imported ) ) {
+				// Only accept keys the plugin actually defines, and run each
+				// through the same sanitizer the Customizer uses.
+				$clean = array();
+				foreach ( ccsm_defaults() as $key => $default ) {
+					if ( array_key_exists( $key, $imported ) ) {
+						$clean[ $key ] = ccsm_sanitize_setting( $key, $imported[ $key ] );
+					}
+				}
+
+				if ( $clean ) {
+					$existing = get_option( 'ccsm_settings' );
+					update_option( 'ccsm_settings', array_merge( is_array( $existing ) ? $existing : array(), $clean ) );
+					$notice = 'imported';
+				}
+			}
+		}
+
+		wp_safe_redirect( add_query_arg( 'ccsm_notice', $notice, admin_url( 'admin.php?page=ccsm_settings' ) ) );
+		exit;
 	}
 
 	public function ccsm_panels_initialize( $wp_customize ) {
@@ -601,50 +650,121 @@ class CCSM_Customizer {
 	/**
 	 * Render the settings page.
 	 *
-	 * ccsm_redirect_customizer() normally sends the browser to the Customizer
-	 * before this runs, so it is only reached if that redirect was filtered out
-	 * or the headers were already sent.
+	 * This used to redirect straight to the Customizer from admin_init, which
+	 * left nowhere to surface the preview link or the export tools - and on a
+	 * block theme the Customizer has no menu entry of its own, so this page is
+	 * the only signposted way in.
 	 *
 	 * @access public
 	 * @return void
 	 */
 	public function settings_page() {
-		$url = add_query_arg(
+		$customizer = add_query_arg(
 			array( 'autofocus[panel]' => 'colorlib_coming_soon_general_panel' ),
 			admin_url( 'customize.php' )
 		);
 
-		printf(
-			'<div class="wrap"><h1>%1$s</h1><p><a class="button button-primary" href="%2$s">%3$s</a></p></div>',
-			esc_html__( 'Colorlib Coming Soon', 'colorlib-coming-soon-maintenance' ),
-			esc_url( $url ),
-			esc_html__( 'Open the Coming Soon settings', 'colorlib-coming-soon-maintenance' )
+		$options = ccsm_get_options();
+		$active  = '1' === $options['colorlib_coming_soon_activation'];
+		$mode    = ccsm_get_mode();
+		$notice  = isset( $_GET['ccsm_notice'] ) ? sanitize_text_field( wp_unslash( $_GET['ccsm_notice'] ) ) : ''; // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+
+		$messages = array(
+			'imported'      => array( 'success', __( 'Settings imported.', 'colorlib-coming-soon-maintenance' ) ),
+			'import_failed' => array( 'error', __( 'Could not import those settings. Paste the exact JSON produced by Export.', 'colorlib-coming-soon-maintenance' ) ),
+			'token'         => array( 'success', __( 'A new preview link was generated. The previous one no longer works.', 'colorlib-coming-soon-maintenance' ) ),
 		);
+		?>
+		<div class="wrap">
+			<h1><?php esc_html_e( 'Coming Soon and Maintenance', 'colorlib-coming-soon-maintenance' ); ?></h1>
+
+			<?php if ( isset( $messages[ $notice ] ) ) : ?>
+				<div class="notice notice-<?php echo esc_attr( $messages[ $notice ][0] ); ?> is-dismissible">
+					<p><?php echo esc_html( $messages[ $notice ][1] ); ?></p>
+				</div>
+			<?php endif; ?>
+
+			<p>
+				<?php if ( $active && 'maintenance' === $mode ) : ?>
+					<strong><?php esc_html_e( 'Maintenance mode is on.', 'colorlib-coming-soon-maintenance' ); ?></strong>
+					<?php esc_html_e( 'Visitors get the maintenance page with an HTTP 503 status.', 'colorlib-coming-soon-maintenance' ); ?>
+				<?php elseif ( $active ) : ?>
+					<strong><?php esc_html_e( 'Coming soon mode is on.', 'colorlib-coming-soon-maintenance' ); ?></strong>
+					<?php esc_html_e( 'Visitors get the coming soon page.', 'colorlib-coming-soon-maintenance' ); ?>
+				<?php else : ?>
+					<strong><?php esc_html_e( 'The coming soon page is off.', 'colorlib-coming-soon-maintenance' ); ?></strong>
+					<?php esc_html_e( 'Your site is visible to everyone.', 'colorlib-coming-soon-maintenance' ); ?>
+				<?php endif; ?>
+			</p>
+
+			<p>
+				<a class="button button-primary button-hero" href="<?php echo esc_url( $customizer ); ?>">
+					<?php esc_html_e( 'Edit the page and settings', 'colorlib-coming-soon-maintenance' ); ?>
+				</a>
+			</p>
+
+			<hr>
+
+			<h2><?php esc_html_e( 'Share a preview with a client', 'colorlib-coming-soon-maintenance' ); ?></h2>
+			<p class="description">
+				<?php esc_html_e( 'Anyone who opens this link sees the real site for a week, without an account. Treat it as a password.', 'colorlib-coming-soon-maintenance' ); ?>
+			</p>
+			<p>
+				<input type="text" class="large-text code" readonly
+				       onfocus="this.select()"
+				       value="<?php echo esc_url( ccsm_get_bypass_url() ); ?>">
+			</p>
+			<form method="post">
+				<?php wp_nonce_field( 'ccsm_tools' ); ?>
+				<input type="hidden" name="ccsm_action" value="regenerate_token">
+				<?php submit_button( __( 'Generate a new link', 'colorlib-coming-soon-maintenance' ), 'secondary', 'submit', false ); ?>
+			</form>
+
+			<hr>
+
+			<h2><?php esc_html_e( 'Export and import', 'colorlib-coming-soon-maintenance' ); ?></h2>
+			<p class="description">
+				<?php esc_html_e( 'Copy these settings to another site. The preview link is not included.', 'colorlib-coming-soon-maintenance' ); ?>
+			</p>
+
+			<h3><?php esc_html_e( 'Export', 'colorlib-coming-soon-maintenance' ); ?></h3>
+			<textarea class="large-text code" rows="6" readonly onfocus="this.select()"><?php
+				echo esc_textarea( $this->export_json() );
+			?></textarea>
+
+			<h3><?php esc_html_e( 'Import', 'colorlib-coming-soon-maintenance' ); ?></h3>
+			<form method="post">
+				<?php wp_nonce_field( 'ccsm_tools' ); ?>
+				<input type="hidden" name="ccsm_action" value="import">
+				<p>
+					<label class="screen-reader-text" for="ccsm_import"><?php esc_html_e( 'Settings JSON', 'colorlib-coming-soon-maintenance' ); ?></label>
+					<textarea class="large-text code" rows="6" name="ccsm_import" id="ccsm_import"
+					          placeholder="<?php esc_attr_e( 'Paste exported settings here', 'colorlib-coming-soon-maintenance' ); ?>"></textarea>
+				</p>
+				<?php submit_button( __( 'Import settings', 'colorlib-coming-soon-maintenance' ), 'secondary', 'submit', false ); ?>
+			</form>
+		</div>
+		<?php
 	}
 
 	/**
-	 * Hook to redirect the page for the Customizer.
+	 * The current settings as portable JSON, minus anything site-specific.
 	 *
-	 * @access public
-	 * @return void
+	 * @return string
 	 */
-	public function ccsm_redirect_customizer() {
-		if ( ! empty( $_GET['page'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
-			if ( 'ccsm_settings' === sanitize_text_field( wp_unslash( $_GET['page'] ) ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+	private function export_json() {
+		$options = get_option( 'ccsm_settings' );
 
-				// Generate the redirect url.
-				$url = add_query_arg(
-					array(
-						'autofocus[panel]' => 'colorlib_coming_soon_general_panel',
-					),
-					admin_url( 'customize.php' )
-				);
-
-				wp_safe_redirect( $url );
-				exit;
-			}
+		if ( ! is_array( $options ) ) {
+			return '{}';
 		}
+
+		// The token is a credential and 'givemereview' is local review-notice state.
+		unset( $options['colorlib_coming_soon_bypass_token'], $options['givemereview'] );
+
+		return wp_json_encode( $options, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES );
 	}
+
 
 }
 
@@ -652,6 +772,61 @@ $cl = new CCSM_Customizer();
 
 function ccsm_sanitize_text( $input ) {
 	return wp_kses_post( force_balance_tags( $input ) );
+}
+
+/**
+ * Map a setting key to its sanitizer.
+ *
+ * Mirrors the sanitize_callback each setting is registered with, so imported
+ * values go through exactly the same filtering as values saved in the
+ * Customizer.
+ *
+ * @return array key => callable
+ */
+function ccsm_setting_sanitizers() {
+	return array(
+		'colorlib_coming_soon_activation'           => 'ccsm_sanitize_checkbox',
+		'colorlib_coming_soon_timer_activation'     => 'ccsm_sanitize_checkbox',
+		'colorlib_coming_soon_subscribe'            => 'ccsm_sanitize_checkbox',
+		'colorlib_coming_soon_noindex'              => 'ccsm_sanitize_checkbox',
+		'colorlib_coming_soon_mode'                 => 'ccsm_sanitize_mode',
+		'colorlib_coming_soon_page_custom_css'      => 'ccsm_sanitize_css',
+		'colorlib_coming_soon_template_selection'   => 'ccsm_sanitize_template',
+		'colorlib_coming_soon_timer_option'         => 'ccsm_sanitize_datetime',
+		'colorlib_coming_soon_google_analytics_id'  => 'ccsm_sanitize_google_analytics',
+		'colorlib_coming_soon_plugin_logo'          => 'esc_url_raw',
+		'colorlib_coming_soon_background_image'     => 'esc_url_raw',
+		'colorlib_coming_soon_subscribe_form_url'   => 'esc_url_raw',
+		'colorlib_coming_soon_subscribe_form_other' => 'esc_url_raw',
+		'colorlib_coming_soon_social_facebook'      => 'esc_url_raw',
+		'colorlib_coming_soon_social_twitter'       => 'esc_url_raw',
+		'colorlib_coming_soon_social_youtube'       => 'esc_url_raw',
+		'colorlib_coming_soon_social_pinterest'     => 'esc_url_raw',
+		'colorlib_coming_soon_social_instagram'     => 'esc_url_raw',
+		'colorlib_coming_soon_social_email'         => 'sanitize_email',
+		'colorlib_coming_soon_background_color'     => 'sanitize_hex_color',
+		'colorlib_coming_soon_text_color'           => 'sanitize_hex_color',
+		'colorlib_coming_soon_page_heading'         => 'ccsm_sanitize_text',
+		'colorlib_coming_soon_page_content'         => 'ccsm_sanitize_text',
+		'colorlib_coming_soon_page_footer'          => 'ccsm_sanitize_text',
+	);
+}
+
+/**
+ * Sanitize one setting by key.
+ *
+ * @param string $key   Setting key.
+ * @param mixed  $value Raw value.
+ * @return mixed Sanitized value, or '' for a key with no sanitizer.
+ */
+function ccsm_sanitize_setting( $key, $value ) {
+	$sanitizers = ccsm_setting_sanitizers();
+
+	if ( ! isset( $sanitizers[ $key ] ) || ! is_scalar( $value ) ) {
+		return '';
+	}
+
+	return call_user_func( $sanitizers[ $key ], $value );
 }
 
 /**

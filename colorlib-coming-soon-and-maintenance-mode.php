@@ -3,7 +3,7 @@
 * Plugin Name: Coming Soon and Maintenance by Colorlib
 * Plugin URI: https://colorlib.com/
 * Description: Colorlib Coming Soon and Maintenance is a responsive coming soon WordPress plugin that comes with well designed coming soon page and lots of useful features including customization via Live Customizer, MailChimp integration, custom forms, and more.
-* Version: 1.3.0
+* Version: 1.4.0
 * Author: Colorlib
 * Author URI: https://colorlib.com/
 * Tested up to: 7.0
@@ -40,7 +40,7 @@ define( 'CCSM_PATH', plugin_dir_path( __FILE__ ) );
 define( 'CCSM_URL', plugin_dir_url( __FILE__ ) );
 define( 'CCSM_PLUGIN_BASE', plugin_basename( __FILE__ ) );
 define( 'CCSM_FILE_', __FILE__ );
-define( 'CCSM_VERSION', '1.3.0' );
+define( 'CCSM_VERSION', '1.4.0' );
 
 // PHP version check
 if ( version_compare( PHP_VERSION, '7.4', '<' ) ) {
@@ -131,6 +131,11 @@ function ccsm_is_active_for_visitor() {
 		return false;
 	}
 
+	// A client holding the secret preview link sees the real site.
+	if ( ccsm_has_bypass_cookie() ) {
+		return false;
+	}
+
 	if ( ! is_user_logged_in() ) {
 		return true;
 	}
@@ -148,6 +153,82 @@ function ccsm_is_active_for_visitor() {
 
 	return ! current_user_can( $capability );
 }
+
+/**
+ * The secret token that unlocks the site through a shareable link.
+ *
+ * Generated once, on demand, so sites upgrading from an older version get one
+ * without needing to reactivate the plugin.
+ *
+ * @return string
+ */
+function ccsm_get_bypass_token() {
+	$options = get_option( 'ccsm_settings' );
+
+	if ( is_array( $options ) && ! empty( $options['colorlib_coming_soon_bypass_token'] ) ) {
+		return $options['colorlib_coming_soon_bypass_token'];
+	}
+
+	if ( ! is_array( $options ) ) {
+		return '';
+	}
+
+	$options['colorlib_coming_soon_bypass_token'] = wp_generate_password( 24, false );
+	update_option( 'ccsm_settings', $options );
+
+	return $options['colorlib_coming_soon_bypass_token'];
+}
+
+/**
+ * The shareable link that lets a client preview the real site.
+ *
+ * @return string
+ */
+function ccsm_get_bypass_url() {
+	return add_query_arg( 'ccsm_bypass', ccsm_get_bypass_token(), home_url( '/' ) );
+}
+
+/**
+ * Whether this visitor already redeemed the bypass link.
+ *
+ * @return bool
+ */
+function ccsm_has_bypass_cookie() {
+	if ( empty( $_COOKIE['ccsm_bypass'] ) ) {
+		return false;
+	}
+
+	$token = ccsm_get_bypass_token();
+
+	if ( '' === $token ) {
+		return false;
+	}
+
+	return hash_equals( $token, sanitize_text_field( wp_unslash( $_COOKIE['ccsm_bypass'] ) ) );
+}
+
+/**
+ * Redeem ?ccsm_bypass=<token>: store the cookie, then drop the token from the URL
+ * so it does not end up in referrers, logs or shared screenshots.
+ */
+function ccsm_maybe_grant_bypass() {
+	if ( empty( $_GET['ccsm_bypass'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+		return;
+	}
+
+	$token = ccsm_get_bypass_token();
+	$given = sanitize_text_field( wp_unslash( $_GET['ccsm_bypass'] ) ); // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+
+	if ( '' === $token || ! hash_equals( $token, $given ) ) {
+		return;
+	}
+
+	setcookie( 'ccsm_bypass', $token, time() + WEEK_IN_SECONDS, COOKIEPATH ? COOKIEPATH : '/', COOKIE_DOMAIN, is_ssl(), true );
+
+	wp_safe_redirect( remove_query_arg( 'ccsm_bypass' ) );
+	exit;
+}
+add_action( 'init', 'ccsm_maybe_grant_bypass', 1 );
 
 /**
  * Return the configured display mode: 'coming_soon' (HTTP 200) or 'maintenance' (HTTP 503).
@@ -918,6 +999,7 @@ function ccsm_defaults() {
 		'colorlib_coming_soon_activation'            => '1',
 		'colorlib_coming_soon_mode'                  => 'coming_soon',
 		'colorlib_coming_soon_noindex'               => '',
+		'colorlib_coming_soon_bypass_token'          => '',
 		'colorlib_coming_soon_timer_activation'      => '1',
 		'colorlib_coming_soon_subscribe'             => '',
 		'colorlib_coming_soon_template_selection'    => 'template_01',

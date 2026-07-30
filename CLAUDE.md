@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-WordPress plugin: **Coming Soon and Maintenance by Colorlib** (v1.3.0). Displays a coming soon or maintenance mode page to non-logged-in visitors using one of 15 selectable templates. Configuration is done via the WordPress Live Customizer.
+WordPress plugin: **Coming Soon and Maintenance by Colorlib** (v1.4.0). Displays a coming soon or maintenance mode page to visitors without editing rights, using one of 15 selectable templates. Content is configured in the WordPress Live Customizer; the plugin's own admin page (**Coming Soon** in the admin menu) holds the status, the client preview link and settings export/import.
 
 - **Requires:** WordPress 6.0+, PHP 7.4+
 - **Tested up to:** WordPress 7.0
@@ -17,15 +17,19 @@ WordPress plugin: **Coming Soon and Maintenance by Colorlib** (v1.3.0). Displays
 # Install dependencies
 npm install
 
-# Minify CSS (cleans old .min.css files, then generates new ones)
+# Minify CSS (assets/css AND templates/*/css; writes .min.css siblings)
 grunt mincss
 
-# Check text domain & generate POT translation file
-grunt i18n
+# Generate the POT translation file (requires WP-CLI)
+npm run i18n
 
-# Build release ZIP archive (runs i18n → copy → compress)
+# Build release ZIP archive (clean → mincss → copy → compress)
 grunt build-archive
 ```
+
+`.min.css` files are build artifacts and gitignored. `ccsm_style_url()` serves the
+minified sibling automatically whenever one exists, so a release zip is minified
+and a git checkout is not.
 
 No SCSS pipeline — CSS is authored directly. No test suite exists.
 
@@ -33,16 +37,26 @@ No SCSS pipeline — CSS is authored directly. No test suite exists.
 
 ### Request Flow
 
-1. `ccsm_template_redirect()` hooks into `template_redirect`. It redirects only when the master toggle `ccsm_settings['colorlib_coming_soon_activation'] === '1'` AND the visitor is not logged in — OR when the Customizer preview is open on the CCSM panel (`$_REQUEST['colorlib-coming-soon-customization']`). The `ccsm_force_redirect` / `ccsm_skip_redirect` filters can override this gating.
-2. Loads `includes/colorlib-template.php` as the HTML wrapper (doctype, head, body), then `exit()`s — the normal theme is never rendered
-3. The wrapper fires `do_action('ccsm_header', $template)` which enqueues per-template styles/scripts via `ccsm_style_enqueue()`
-4. Includes the selected template PHP from `templates/template_XX/template_XX.php`
+1. `ccsm_template_redirect()` hooks `template_redirect` at **priority 0**. The priority is load-bearing: core registers `redirect_canonical` and the sitemap renderer on earlier-registered callbacks that `exit` first, so at the default priority 10 the guard never ran for `/?p=123` probes or `wp-sitemap*.xml`, and both leaked the site's content inventory. Register it at load time, not from inside an `init` callback.
+2. Sends `nocache_headers()`, plus `status_header(503)` and `Retry-After` in maintenance mode.
+3. Loads `includes/colorlib-template.php` as the HTML wrapper (doctype, head, body), then `exit()`s — the normal theme is never rendered.
+4. The wrapper fires `do_action('ccsm_header', $template)` (enqueues styles) and `do_action('ccsm_footer', $template)` before `</body>` (prints the script).
+5. Includes the selected template PHP from `templates/template_XX/template_XX.php`.
 
-**Two other front-end guards run alongside the redirect:**
-- `ccsm_rest_restrict()` (on `rest_pre_dispatch`) returns a `403 rest_forbidden` for all REST API requests from non-logged-in visitors while activation is on — prevents content leaking via `wp/v2/posts` etc. Logged-in users and already-handled requests pass through.
-- `ccsm_skip_redirect_on_login()` (on `init`) ensures `wp-login.php` stays reachable so admins can still log in.
+`is_robots()` and `is_favicon()` deliberately return early so robots.txt keeps
+working — maintenance mode adds `Disallow: /` through the `robots_txt` filter.
 
-The activation toggle (`colorlib_coming_soon_activation`) is the master on/off switch — distinct from `colorlib_coming_soon_template_selection`, which only chooses *which* template renders.
+**Who is locked out** is decided in one place, `ccsm_is_active_for_visitor()`. Every
+guard calls it so they cannot disagree. It requires the `edit_posts` capability
+(filter: `ccsm_bypass_capability`) rather than merely being logged in, and it honours
+the shareable preview cookie set by `?ccsm_bypass=<token>`.
+
+**Other front-end guards:**
+- `ccsm_rest_restrict()` (`rest_pre_dispatch`) returns `403 rest_forbidden`.
+- `ccsm_guard_front_doors()` (`init`, priority 0) closes what `template_redirect` cannot reach: XML sitemaps, XML-RPC (including the pingback methods), `wp-links-opml.php`, and logged-out `admin-ajax.php` / `admin-post.php` actions (allowlist filter: `ccsm_allowed_nopriv_actions`).
+- `wp-login.php` never reaches `template_redirect`, so it stays reachable with no special case.
+
+The activation toggle (`colorlib_coming_soon_activation`) is the master on/off switch — distinct from `colorlib_coming_soon_mode` (coming soon = 200, maintenance = 503) and from `colorlib_coming_soon_template_selection`, which only chooses *which* template renders.
 
 ### Key Files
 
@@ -50,8 +64,7 @@ The activation toggle (`colorlib_coming_soon_activation`) is the master on/off s
 |------|---------|
 | `colorlib-coming-soon-and-maintenance-mode.php` | Plugin bootstrap, hooks, style/script enqueuing, redirect logic, countdown date math |
 | `includes/colorlib-template.php` | HTML shell that wraps the active template |
-| `includes/class-ccsm-customizer.php` | Registers all Customizer sections, settings, and controls |
-| `includes/class-ccsm-ajax.php` | MailChimp subscription AJAX handler |
+| `includes/class-ccsm-customizer.php` | Customizer sections/settings/controls, the admin settings page, export/import, and the per-setting sanitizers |
 | `includes/class-ccsm-review.php` | Admin review request notice |
 | `includes/controls/` | Custom Customizer control classes (toggle, text editor, template selector) |
 
@@ -63,6 +76,14 @@ The activation toggle (`colorlib_coming_soon_activation`) is the master on/off s
 - `css/main.css` + `css/util.css` — template-specific styles (`util.css` includes the reset)
 
 All front-end behavior (validation, countdown, slideshow, modal, tilt) is handled by the single shared `assets/js/ccsm-frontend.js`; templates no longer ship their own `js/` directory.
+
+`util.css` is **no longer per-template**. It used to be an 80 KB file copied into all
+15 template directories with ~99% of its selectors unused. It is now one purged
+`assets/css/ccsm-util.css` (~6 KB), referenced through a `'shared' => 'true'` flag on
+the style entry so it still loads *after* the template's `main.css`, preserving the
+original cascade order. If you re-purge it, keep the rule: drop a class rule only when
+every class it references is absent from the template PHP, the shell, the front-end JS
+and the template CSS.
 
 Templates are selected via a radio control in the Customizer and stored in `ccsm_settings['colorlib_coming_soon_template_selection']`.
 
@@ -93,9 +114,13 @@ All settings are stored in a single option: `ccsm_settings`. Keys follow the pat
 
 - `ccsm_skip_redirect` — skip the coming-soon redirect (e.g., for specific pages)
 - `ccsm_force_redirect` — force redirect even for logged-in users
+- `ccsm_bypass_capability` — capability a logged-in user needs to see the real site (default `edit_posts`; return `read` for the pre-1.4.0 "any logged-in user" behaviour)
+- `ccsm_allowed_nopriv_actions` — array of `admin-ajax.php` / `admin-post.php` actions that stay reachable for logged-out visitors
+- `ccsm_retry_after` — seconds sent in the `Retry-After` header in maintenance mode (default 1 hour)
 
 ## Release Build Notes
 
 - `grunt build-archive` copies the plugin into `build/` (excluding dev files — see the `copy` task allow/deny list in `Gruntfile.js`), then compresses it to `colorlib-coming-soon-maintenance-<version>.zip` in the repo root. The `*.zip` artifact is gitignored.
-- `grunt mincss` runs `clean:css` then `cssmin` over `assets/css/*.css`, writing `*.min.css` siblings. `clean:css` deliberately preserves `jquery-ui.min.css`.
-- The vendored Bootstrap `*.map` source maps under `assets/css/vendor/bootstrap/` are intentionally shipped — do not add `*.map` to `.gitignore`. (There is no SCSS pipeline, so `.sass-cache/` is not relevant here despite the global convention.)
+- `grunt mincss` runs `clean:css` then `cssmin` over both `assets/css/*.css` and `templates/*/css/*.css`, writing `*.min.css` siblings. Those are gitignored build artifacts.
+- Translations are generated with WP-CLI (`npm run i18n`), not grunt — `grunt-wp-i18n` and `grunt-checktextdomain` were unmaintained and blind to strings in JS.
+- There is no SCSS pipeline and no vendored framework CSS, so neither `.sass-cache/` nor `*.map` is relevant here despite the global convention.
