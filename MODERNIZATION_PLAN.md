@@ -121,16 +121,28 @@ rendering with one `h1`, a `main` landmark and **zero PHP warnings**, and screen
   image. Not statically decidable — needs a per-template design pass.
 - **`WP_Customize_Date_Time_Control`** is core-internal with no deprecation path; ship a copy or a
   plain `datetime-local` control.
-- **POT not regenerated** — WP-CLI is not installed on this machine. Run `npm run i18n` before
-  release.
 - **Heading order in template_04**: the modal heading stays `<h3>` under the page `<h1>`, so the
   document skips `<h2>`. Best-practice issue, not a WCAG A/AA failure.
 
+## Verified with Local's bundled tooling
+
+Local ships WP-CLI and a MySQL client inside the app bundle, so no extra install was needed:
+
+- `wp-cli.phar` — `/Applications/Local.app/Contents/Resources/extraResources/bin/wp-cli/wp-cli.phar`
+- PHP 8.2 — `.../lightning-services/php-8.2.29+0/bin/darwin-arm64/bin/php`
+- MySQL client — `.../lightning-services/mysql-8.4.0/bin/darwin-arm64/bin`
+
+The bundled PHP does not know Local's socket, so pass it explicitly:
+`php -d mysqli.default_socket="$HOME/Library/Application Support/Local/run/X6odgxrlw/mysql/mysqld.sock" wp-cli.phar --path=<site> ...`
+
+**POT regenerated** (120 strings, stamped 1.4.0) and **Plugin Check reports zero errors and zero
+warnings on the built release archive.** Check the archive under its real slug — a different
+folder name makes the text-domain rule fire ~150 times spuriously.
+
 ## Release checklist
 
-1. `npm run i18n` (needs WP-CLI) to regenerate the POT.
-2. Run **Plugin Check**. The escaping, i18n-concatenation and missing-`$ver` findings the audit
-   predicted are already addressed.
-3. `for f in $(find . -name "*.php"); do php -l "$f"; done` — currently clean on PHP 8.5.6.
+1. `for f in $(find . -name "*.php"); do php -l "$f"; done` — clean on PHP 8.5.6.
+2. `npm run i18n` if strings changed since the last POT.
+3. `npx grunt build-archive` → `colorlib-coming-soon-maintenance-1.4.0.zip` (812 KB, dev files
+   excluded, 18 minified stylesheets, POT included). The `*.zip` is gitignored.
 4. Merge `modernization-1.4.0`, tag `1.4.0`, then SVN trunk + `tags/1.4.0`.
-5. Exclude `MODERNIZATION_PLAN.md` and `CLAUDE.md` from the release (the grunt `copy` task now does).
