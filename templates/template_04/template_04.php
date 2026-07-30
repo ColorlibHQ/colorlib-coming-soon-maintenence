@@ -4,7 +4,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-$ccsm_options      = get_option( 'ccsm_settings' );
+$ccsm_options      = ccsm_get_options();
 $counterActivation = $ccsm_options['colorlib_coming_soon_timer_activation'];
 $template          = $ccsm_options['colorlib_coming_soon_template_selection'];
 $counter           = $ccsm_options['colorlib_coming_soon_timer_option'];
@@ -71,7 +71,7 @@ $dates             = ccsm_counter_dates( $counter );
         <div class="modal-dialog" role="document">
             <div class="modal-subscribe where1-parent bg0 bor2 size4 p-t-54 p-b-100 p-l-15 p-r-15">
                 <button class="btn-close-modal how-btn2 fs-26 where1 trans-04">
-                    <?php echo ccsm_icon('close'); ?>
+                    <?php echo wp_kses( ccsm_icon('close'), ccsm_svg_allowed_html() ); ?>
                 </button>
 
                 <div class="wsize1 m-lr-auto">

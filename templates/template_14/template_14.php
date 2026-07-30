@@ -4,7 +4,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-$ccsm_options      = get_option( 'ccsm_settings' );
+$ccsm_options      = ccsm_get_options();
 $counterActivation = $ccsm_options['colorlib_coming_soon_timer_activation'];
 $template          = $ccsm_options['colorlib_coming_soon_template_selection'];
 $counter           = $ccsm_options['colorlib_coming_soon_timer_option'];
@@ -61,7 +61,7 @@ if ( is_ssl()  ) {
                                    placeholder="<?php echo esc_attr__( 'Email Address', 'colorlib-coming-soon-maintenance' ); ?>">
 
                             <button class="flex-c-m ab-t-r size2 hov1 respon5" name="subscribe">
-                                <?php echo ccsm_icon('long-arrow-right', 'fs-30 cl1 trans-04'); ?>
+                                <?php echo wp_kses( ccsm_icon('long-arrow-right', 'fs-30 cl1 trans-04'), ccsm_svg_allowed_html() ); ?>
                             </button>
 
                             <div class="flex-c-m ab-t-l s2-txt1 size4 bor1 respon4">
@@ -83,7 +83,7 @@ if ( is_ssl()  ) {
                     <a href="<?php echo esc_url( $ccsm_options['colorlib_coming_soon_social_facebook'] ); ?>"
                        id="colorlib_coming_soon_social_facebook"
                        class="size3 flex-c-m how-social trans-04 m-r-15 m-b-5 m-t-5">
-                        <?php echo ccsm_icon('facebook'); ?>
+                        <?php echo wp_kses( ccsm_icon('facebook'), ccsm_svg_allowed_html() ); ?>
                     </a>
 					<?php
 				}
@@ -92,7 +92,7 @@ if ( is_ssl()  ) {
                     <a href="<?php echo esc_url( $ccsm_options['colorlib_coming_soon_social_twitter'] ); ?>"
                        id="colorlib_coming_soon_social_twitter"
                        class="size3 flex-c-m how-social trans-04 m-r-15 m-b-5 m-t-5">
-                        <?php echo ccsm_icon('twitter'); ?>
+                        <?php echo wp_kses( ccsm_icon('twitter'), ccsm_svg_allowed_html() ); ?>
                     </a>
 					<?php
 				}
@@ -101,7 +101,7 @@ if ( is_ssl()  ) {
                     <a href="<?php echo esc_url( $ccsm_options['colorlib_coming_soon_social_youtube'] ); ?>"
                        id="colorlib_coming_soon_social_youtube"
                        class="size3 flex-c-m how-social trans-04 m-r-15 m-b-5 m-t-5">
-                        <?php echo ccsm_icon('youtube-play'); ?>
+                        <?php echo wp_kses( ccsm_icon('youtube-play'), ccsm_svg_allowed_html() ); ?>
                     </a>
 					<?php
 				}
@@ -110,7 +110,7 @@ if ( is_ssl()  ) {
                     <a href="mailto:<?php echo esc_html( antispambot( $ccsm_options['colorlib_coming_soon_social_email'] ) ); ?>"
                        id="colorlib_coming_soon_social_email"
                        class="size3 flex-c-m how-social trans-04 m-r-15 m-b-5 m-t-5">
-                        <?php echo ccsm_icon('envelope'); ?>
+                        <?php echo wp_kses( ccsm_icon('envelope'), ccsm_svg_allowed_html() ); ?>
                     </a>
 					<?php
 				}
@@ -119,7 +119,7 @@ if ( is_ssl()  ) {
                     <a href="<?php echo esc_url( $ccsm_options['colorlib_coming_soon_social_pinterest'] ); ?>"
                        id="colorlib_coming_soon_social_pinterest"
                        class="size3 flex-c-m how-social trans-04 m-r-15 m-b-5 m-t-5">
-                        <?php echo ccsm_icon('pinterest'); ?>
+                        <?php echo wp_kses( ccsm_icon('pinterest'), ccsm_svg_allowed_html() ); ?>
                     </a>
 					<?php
 				}
@@ -128,7 +128,7 @@ if ( is_ssl()  ) {
                     <a href="<?php echo esc_url( $ccsm_options['colorlib_coming_soon_social_instagram'] ); ?>"
                        id="colorlib_coming_soon_social_instagram"
                        class="size3 flex-c-m how-social trans-04 m-r-15 m-b-5 m-t-5">
-                        <?php echo ccsm_icon('instagram'); ?>
+                        <?php echo wp_kses( ccsm_icon('instagram'), ccsm_svg_allowed_html() ); ?>
                     </a>
 					<?php
 				}

@@ -4,7 +4,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-$ccsm_options      = get_option( 'ccsm_settings' );
+$ccsm_options      = ccsm_get_options();
 $counterActivation = $ccsm_options['colorlib_coming_soon_timer_activation'];
 $template          = $ccsm_options['colorlib_coming_soon_template_selection'];
 $counter           = $ccsm_options['colorlib_coming_soon_timer_option'];
@@ -22,7 +22,7 @@ if ( ccsm_template_has_text_color() ) {
 	?>
     <style>
         h1,h2,h3,p,span,li {
-            color: <?php echo esc_html($ccsm_options['colorlib_coming_soon_text_color']); ?> !important;
+            color: <?php echo esc_attr( ccsm_hex_color( $ccsm_options['colorlib_coming_soon_text_color'] ) ); ?> !important;
         }
     </style>
 	<?php
@@ -30,7 +30,7 @@ if ( ccsm_template_has_text_color() ) {
 ?>
 <div class="simpleslide100">
     <div class="simpleslide100-item bg-img1"
-         style="background-image: url('<?php echo esc_url($bcg_url); ?>');background-color:<?php echo esc_attr( $ccsm_options['colorlib_coming_soon_background_color'] ); ?>;"></div>
+         style="background-image: url('<?php echo esc_url($bcg_url); ?>');background-color:<?php echo esc_attr( ccsm_hex_color( $ccsm_options['colorlib_coming_soon_background_color'] ) ); ?>;"></div>
 </div>
 <div class="size1 overlay1">
     <div class="size1 flex-col-c-m p-l-15 p-r-15 p-t-50 p-b-50">

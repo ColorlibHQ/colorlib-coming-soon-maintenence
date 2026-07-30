@@ -4,7 +4,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-$ccsm_options      = get_option( 'ccsm_settings' );
+$ccsm_options      = ccsm_get_options();
 $counterActivation = $ccsm_options['colorlib_coming_soon_timer_activation'];
 $template          = $ccsm_options['colorlib_coming_soon_template_selection'];
 $counter           = $ccsm_options['colorlib_coming_soon_timer_option'];
@@ -22,7 +22,7 @@ if ( is_ssl()  ) {
          style="background-image: url('<?php echo esc_url($bcg_url); ?>');">
         <div class="wsize1">
             <p class="txt-center p-b-23">
-                <?php echo ccsm_icon('card-giftcard', 'cl0 fs-60'); ?>
+                <?php echo wp_kses( ccsm_icon('card-giftcard', 'cl0 fs-60'), ccsm_svg_allowed_html() ); ?>
             </p>
 
             <h3 class="l1-txt1 txt-center p-b-22" id="colorlib_coming_soon_page_heading">

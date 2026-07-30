@@ -132,6 +132,12 @@ class CCSM_Review {
 
 		$options = get_option( 'ccsm_settings', array() );
 
+		// A corrupted option can come back as a scalar; writing an offset on it
+		// is a TypeError on PHP 8.
+		if ( ! is_array( $options ) ) {
+			$options = array();
+		}
+
 		if ( isset( $_POST['epsilon-review'] ) ) { // phpcs:ignore WordPress.Security.ValidatedSanitizedInput
 			$options['givemereview'] = 'already-rated';
 		} else {

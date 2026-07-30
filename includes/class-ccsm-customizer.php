@@ -84,7 +84,7 @@ class CCSM_Customizer {
 		/* Setting - Coming Soon - Activation */
 		$wp_customize->add_setting( 'ccsm_settings[colorlib_coming_soon_activation]', array(
 			'default'           => '1',
-			'sanitize_callback' => 'ccsm_sanitize_text',
+			'sanitize_callback' => 'ccsm_sanitize_checkbox',
 			'type'              => 'option',
 		) );
 
@@ -136,7 +136,7 @@ class CCSM_Customizer {
 		/* Setting - Coming Soon - Timer Activation */
 		$wp_customize->add_setting( 'ccsm_settings[colorlib_coming_soon_timer_activation]', array(
 			'default'           => '1',
-			'sanitize_callback' => 'ccsm_sanitize_text',
+			'sanitize_callback' => 'ccsm_sanitize_checkbox',
 			'type'              => 'option',
 		) );
 
@@ -151,7 +151,7 @@ class CCSM_Customizer {
 
 		/* Setting - Coming Soon - Custom CSS */
 		$wp_customize->add_setting( 'ccsm_settings[colorlib_coming_soon_page_custom_css]', array(
-			'sanitize_callback' => 'ccsm_sanitize_text',
+			'sanitize_callback' => 'ccsm_sanitize_css',
 			'type'              => 'option'
 		) );
 
@@ -170,7 +170,7 @@ class CCSM_Customizer {
 		/* Setting - Coming Soon - Templates Selection */
 		$wp_customize->add_setting( 'ccsm_settings[colorlib_coming_soon_template_selection]', array(
 			'default'           => 'template_01',
-			'sanitize_callback' => 'ccsm_sanitize_text',
+			'sanitize_callback' => 'ccsm_sanitize_template',
 			'type'              => 'option'
 		) );
 
@@ -202,7 +202,7 @@ class CCSM_Customizer {
 		/*Settings - General - Timer*/
 		$wp_customize->add_setting( 'ccsm_settings[colorlib_coming_soon_timer_option]', array(
 			'default'           => gmdate( 'Y-m-d H:i:s', strtotime( '+1 month' ) ),
-			'sanitize_callback' => 'ccsm_sanitize_text',
+			'sanitize_callback' => 'ccsm_sanitize_datetime',
 			'type'              => 'option'
 		) );
 
@@ -225,7 +225,7 @@ class CCSM_Customizer {
 		/* Setting - General - Site Logo */
 		$wp_customize->add_setting( 'ccsm_settings[colorlib_coming_soon_plugin_logo]', array(
 			'default'           => CCSM_URL . 'assets/images/logo.jpg',
-			'sanitize_callback' => 'ccsm_sanitize_text',
+			'sanitize_callback' => 'esc_url_raw',
 			'type'              => 'option'
 		) );
 
@@ -248,7 +248,7 @@ class CCSM_Customizer {
 		/* Setting - General - Site Background Image */
 		$wp_customize->add_setting( 'ccsm_settings[colorlib_coming_soon_background_image]', array(
 			'default'           => CCSM_URL . 'assets/images/logo.jpg',
-			'sanitize_callback' => 'ccsm_sanitize_text',
+			'sanitize_callback' => 'esc_url_raw',
 			'type'              => 'option'
 		) );
 
@@ -263,7 +263,7 @@ class CCSM_Customizer {
 		/* Setting - General - Site Background Color */
 		$wp_customize->add_setting( 'ccsm_settings[colorlib_coming_soon_background_color]', array(
 			'default'           => '',
-			'sanitize_callback' => 'ccsm_sanitize_text',
+			'sanitize_callback' => 'sanitize_hex_color',
 			'type'              => 'option'
 		) );
 
@@ -278,7 +278,7 @@ class CCSM_Customizer {
 		/* Setting - General - Site Text Color */
 		$wp_customize->add_setting( 'ccsm_settings[colorlib_coming_soon_text_color]', array(
 			'default'           => '',
-			'sanitize_callback' => 'ccsm_sanitize_text',
+			'sanitize_callback' => 'sanitize_hex_color',
 			'type'              => 'option',
 		) );
 
@@ -381,7 +381,7 @@ class CCSM_Customizer {
 
 		/* Setting - Coming Soon - Subscribe Form Activation */
 		$wp_customize->add_setting( 'ccsm_settings[colorlib_coming_soon_subscribe]', array(
-			'sanitize_callback' => 'ccsm_sanitize_text',
+			'sanitize_callback' => 'ccsm_sanitize_checkbox',
 			'default'           => '',
 			'type'              => 'option'
 		) );
@@ -397,7 +397,7 @@ class CCSM_Customizer {
 
 		/* Setting - Coming Soon - Subscribe Form URL */
 		$wp_customize->add_setting( 'ccsm_settings[colorlib_coming_soon_subscribe_form_url]', array(
-			'sanitize_callback' => 'ccsm_sanitize_text',
+			'sanitize_callback' => 'esc_url_raw',
 			'type'              => 'option'
 		) );
 
@@ -420,7 +420,7 @@ class CCSM_Customizer {
 
 		/* Setting - Coming Soon - Subscribe Form Other */
 		$wp_customize->add_setting( 'ccsm_settings[colorlib_coming_soon_subscribe_form_other]', array(
-			'sanitize_callback' => 'ccsm_sanitize_text',
+			'sanitize_callback' => 'esc_url_raw',
 			'type'              => 'option'
 		) );
 
@@ -445,7 +445,7 @@ class CCSM_Customizer {
 		/* Setting - Coming Soon - Social Links  Facebook*/
 		$wp_customize->add_setting( 'ccsm_settings[colorlib_coming_soon_social_facebook]', array(
 			'default'           => 'https://www.facebook.com/',
-			'sanitize_callback' => 'ccsm_sanitize_text',
+			'sanitize_callback' => 'esc_url_raw',
 			'type'              => 'option'
 		) );
 
@@ -468,7 +468,7 @@ class CCSM_Customizer {
 		/* Setting - Coming Soon - Social Links Twitter*/
 		$wp_customize->add_setting( 'ccsm_settings[colorlib_coming_soon_social_twitter]', array(
 			'default'           => 'https://www.twitter.com/',
-			'sanitize_callback' => 'ccsm_sanitize_text',
+			'sanitize_callback' => 'esc_url_raw',
 			'type'              => 'option'
 		) );
 
@@ -491,7 +491,7 @@ class CCSM_Customizer {
 		/* Setting - Coming Soon - Social Links Email*/
 		$wp_customize->add_setting( 'ccsm_settings[colorlib_coming_soon_social_email]', array(
 			'default'           => 'you@domain.com',
-			'sanitize_callback' => 'ccsm_sanitize_text',
+			'sanitize_callback' => 'sanitize_email',
 			'type'              => 'option'
 		) );
 
@@ -513,7 +513,7 @@ class CCSM_Customizer {
 		/* Setting - Coming Soon - Social Links Youtube*/
 		$wp_customize->add_setting( 'ccsm_settings[colorlib_coming_soon_social_youtube]', array(
 			'default'           => 'https://youtube.com/',
-			'sanitize_callback' => 'ccsm_sanitize_text',
+			'sanitize_callback' => 'esc_url_raw',
 			'type'              => 'option'
 		) );
 
@@ -535,7 +535,7 @@ class CCSM_Customizer {
 		/* Setting - Coming Soon - Social Links Pinteres*/
 		$wp_customize->add_setting( 'ccsm_settings[colorlib_coming_soon_social_pinterest]', array(
 			'default'           => 'https://pinterest.com/',
-			'sanitize_callback' => 'ccsm_sanitize_text',
+			'sanitize_callback' => 'esc_url_raw',
 			'type'              => 'option'
 		) );
 
@@ -557,7 +557,7 @@ class CCSM_Customizer {
 		/* Setting - Coming Soon - Social Links Instagram*/
 		$wp_customize->add_setting( 'ccsm_settings[colorlib_coming_soon_social_instagram]', array(
 			'default'           => 'https://instagram.com/',
-			'sanitize_callback' => 'ccsm_sanitize_text',
+			'sanitize_callback' => 'esc_url_raw',
 			'type'              => 'option'
 		) );
 
@@ -643,8 +643,57 @@ function ccsm_sanitize_text( $input ) {
 	return wp_kses_post( force_balance_tags( $input ) );
 }
 
+/**
+ * Sanitize a Google Analytics / Tag Manager measurement ID.
+ *
+ * Stores the raw ID rather than an escaped one: escaping belongs at output.
+ *
+ * @param string $input Raw value.
+ * @return string Valid measurement ID, or '' .
+ */
 function ccsm_sanitize_google_analytics( $input ) {
-	return esc_html( $input );
+	$input = trim( (string) $input );
+
+	return preg_match( '/^(G|UA|GT|AW|DC)-[A-Z0-9\-]+$/i', $input ) ? $input : '';
+}
+
+/**
+ * Sanitize the Custom CSS field.
+ *
+ * wp_kses_post() mangles valid CSS (it eats "&gt;" child selectors), so strip
+ * tags instead — the value is only ever printed inside a <style> block.
+ *
+ * @param string $input Raw CSS.
+ * @return string
+ */
+function ccsm_sanitize_css( $input ) {
+	return wp_strip_all_tags( (string) $input );
+}
+
+/**
+ * Sanitize the selected template against the shipped list.
+ *
+ * @param string $input Raw value.
+ * @return string A known template slug.
+ */
+function ccsm_sanitize_template( $input ) {
+	return in_array( $input, ccsm_allowed_templates(), true ) ? $input : 'template_01';
+}
+
+/**
+ * Sanitize the countdown target datetime.
+ *
+ * @param string $input Raw value.
+ * @return string A 'Y-m-d H:i:s' string.
+ */
+function ccsm_sanitize_datetime( $input ) {
+	$date = DateTime::createFromFormat( 'Y-m-d H:i:s', (string) $input );
+
+	if ( $date instanceof DateTime && $date->format( 'Y-m-d H:i:s' ) === $input ) {
+		return $input;
+	}
+
+	return gmdate( 'Y-m-d H:i:s', strtotime( '+1 month' ) );
 }
 
 /**

@@ -47,7 +47,11 @@ if ( version_compare( PHP_VERSION, '7.4', '<' ) ) {
 	add_action( 'admin_notices', function () {
 		printf(
 			'<div class="notice notice-error"><p>%s</p></div>',
-			esc_html__( 'Coming Soon and Maintenance by Colorlib requires PHP 7.4 or higher. Your server is running PHP ' . PHP_VERSION . '.', 'colorlib-coming-soon-maintenance' )
+			sprintf(
+				/* translators: %s: current PHP version. */
+				esc_html__( 'Coming Soon and Maintenance by Colorlib requires PHP 7.4 or higher. Your server is running PHP %s.', 'colorlib-coming-soon-maintenance' ),
+				esc_html( PHP_VERSION )
+			)
 		);
 	} );
 	return;
@@ -127,7 +131,22 @@ function ccsm_is_active_for_visitor() {
 		return false;
 	}
 
-	return ! is_user_logged_in();
+	if ( ! is_user_logged_in() ) {
+		return true;
+	}
+
+	/**
+	 * Filters the capability that lets a logged-in user through to the real site.
+	 *
+	 * The gate used to be a bare is_user_logged_in() check, so on a site with
+	 * open registration every subscriber saw straight through it. Return
+	 * 'read' to restore the old behaviour.
+	 *
+	 * @param string $capability Capability required to bypass the page.
+	 */
+	$capability = apply_filters( 'ccsm_bypass_capability', 'edit_posts' );
+
+	return ! current_user_can( $capability );
 }
 
 /**
@@ -646,7 +665,7 @@ function ccsm_customizer_preview_scripts() {
 	wp_register_script( 'colorlib-ccsm-customizer-preview', CCSM_URL . 'assets/js/customizer-preview.js', array(
 		'jquery',
 		'customize-preview'
-	), '', true );
+	), CCSM_VERSION, true );
 	wp_enqueue_script( 'colorlib-ccsm-customizer-preview' );
 	wp_enqueue_script( 'customize-selective-refresh' );
 }
@@ -654,9 +673,9 @@ function ccsm_customizer_preview_scripts() {
 
 function ccsm_customizer_scripts() {
 	wp_enqueue_editor();
-	wp_register_script( 'colorlib-ccsm-customizer-js', CCSM_URL . 'assets/js/customizer.js', array( 'customize-controls' ) );
+	wp_register_script( 'colorlib-ccsm-customizer-js', CCSM_URL . 'assets/js/customizer.js', array( 'jquery', 'customize-controls' ), CCSM_VERSION, true );
 	wp_enqueue_script( 'colorlib-ccsm-customizer-js' );
-	wp_register_style( 'colorlib-ccsm-custom-controls-css', CCSM_URL . 'assets/css/ccsm-custom-controls.css', array(), '1.0', 'all' );
+	wp_register_style( 'colorlib-ccsm-custom-controls-css', CCSM_URL . 'assets/css/ccsm-custom-controls.css', array(), CCSM_VERSION, 'all' );
 	wp_enqueue_style( 'colorlib-ccsm-custom-controls-css' );
 	wp_localize_script(
 		'colorlib-ccsm-customizer-js', 'CCSMurls', array(
@@ -677,6 +696,34 @@ function ccsm_customizer_scripts() {
  * @param string $classes Extra CSS classes to add to the <svg> element.
  * @return string SVG markup, or an empty string for an unknown icon.
  */
+/**
+ * Tags allowed when printing the inline SVG returned by ccsm_icon().
+ *
+ * The markup is generated from a hard-coded table, but templates echo it, so
+ * run it through wp_kses() with this allowlist to keep the output escaped.
+ *
+ * @return array
+ */
+function ccsm_svg_allowed_html() {
+	return array(
+		'svg'  => array(
+			'class'       => true,
+			'viewbox'     => true,
+			'width'       => true,
+			'height'      => true,
+			'fill'        => true,
+			'role'        => true,
+			'aria-label'  => true,
+			'aria-hidden' => true,
+			'focusable'   => true,
+		),
+		'path' => array(
+			'd'    => true,
+			'fill' => true,
+		),
+	);
+}
+
 function ccsm_icon( $name, $classes = '' ) {
 	$icons = array(
 		'facebook'          => array( 24, 'M9.101 23.691v-7.98H6.627v-3.667h2.474v-1.58c0-4.085 1.848-5.978 5.858-5.978.401 0 .955.042 1.468.103a8.68 8.68 0 0 1 1.141.195v3.325a8.623 8.623 0 0 0-.653-.036 26.805 26.805 0 0 0-.733-.009c-.707 0-1.259.096-1.675.309a1.686 1.686 0 0 0-.679.622c-.258.42-.374.995-.374 1.752v1.297h3.919l-.386 2.103-.287 1.564h-3.246v8.245C19.396 23.238 24 18.179 24 12.044c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.628 3.874 10.35 9.101 11.647Z' ),
@@ -803,33 +850,97 @@ register_activation_hook( __FILE__, 'ccsm_check_on_activation' );
 
 function ccsm_check_on_activation() {
 	if ( false === get_option( 'ccsm_settings' ) ) {
-		$defaultSets = array(
-			'colorlib_coming_soon_activation'            => '1',
-			'colorlib_coming_soon_mode'                  => 'coming_soon',
-			'colorlib_coming_soon_noindex'               => '',
-			'colorlib_coming_soon_timer_activation'      => '1',
-			'colorlib_coming_soon_subscribe'             => '',
-			'colorlib_coming_soon_template_selection'    => 'template_01',
-			'colorlib_coming_soon_timer_option'          => gmdate( 'Y-m-d H:i:s', strtotime( '+1 month' ) ),
-			'colorlib_coming_soon_plugin_logo'           => CCSM_URL . 'assets/images/logo.jpg',
-			'colorlib_coming_soon_page_heading'          => 'Something <strong>really good</strong> is coming <strong>very soon</strong>',
-			'colorlib_coming_soon_page_content'          => 'If you have something new you\'re looking to launch, you\'re going to want to start building a community of people interested in what you\'re launching.',
-			'colorlib_coming_soon_page_footer'           => 'And don\'t worry, we hate spam too! You can unsubscribe at any time.',
-			'colorlib_coming_soon_social_facebook'       => 'https://facebook.com/',
-			'colorlib_coming_soon_social_twitter'        => 'https://twitter.com/',
-			'colorlib_coming_soon_social_youtube'        => 'https://youtube.com/',
-			'colorlib_coming_soon_social_email'          => 'you@domain.com',
-			'colorlib_coming_soon_social_pinterest'      => 'https://pinterest.com/',
-			'colorlib_coming_soon_social_instagram'      => 'https://instagram.com/',
-			'colorlib_coming_soon_page_custom_css'       => '',
-			'colorlib_coming_soon_background_image'      => CCSM_URL . 'assets/images/logo.jpg',
-			'colorlib_coming_soon_background_color'      => '',
-			'colorlib_coming_soon_text_color'            => '',
-			'colorlib_coming_soon_subscribe_form_url'    => '',
-			'colorlib_coming_soon_subscribe_form_other'  => ''
-		);
-		update_option( 'ccsm_settings', $defaultSets );
+		update_option( 'ccsm_settings', ccsm_defaults() );
 	}
+}
+
+/**
+ * Default value for every setting the plugin reads.
+ *
+ * @return array
+ */
+function ccsm_defaults() {
+	return array(
+		'colorlib_coming_soon_activation'            => '1',
+		'colorlib_coming_soon_mode'                  => 'coming_soon',
+		'colorlib_coming_soon_noindex'               => '',
+		'colorlib_coming_soon_timer_activation'      => '1',
+		'colorlib_coming_soon_subscribe'             => '',
+		'colorlib_coming_soon_template_selection'    => 'template_01',
+		'colorlib_coming_soon_timer_option'          => gmdate( 'Y-m-d H:i:s', strtotime( '+1 month' ) ),
+		'colorlib_coming_soon_plugin_logo'           => CCSM_URL . 'assets/images/logo.jpg',
+		'colorlib_coming_soon_page_heading'          => 'Something <strong>really good</strong> is coming <strong>very soon</strong>',
+		'colorlib_coming_soon_page_content'          => 'If you have something new you\'re looking to launch, you\'re going to want to start building a community of people interested in what you\'re launching.',
+		'colorlib_coming_soon_page_footer'           => 'And don\'t worry, we hate spam too! You can unsubscribe at any time.',
+		'colorlib_coming_soon_social_facebook'       => '',
+		'colorlib_coming_soon_social_twitter'        => '',
+		'colorlib_coming_soon_social_youtube'        => '',
+		'colorlib_coming_soon_social_email'          => '',
+		'colorlib_coming_soon_social_pinterest'      => '',
+		'colorlib_coming_soon_social_instagram'      => '',
+		'colorlib_coming_soon_page_custom_css'       => '',
+		'colorlib_coming_soon_background_image'      => CCSM_URL . 'assets/images/logo.jpg',
+		'colorlib_coming_soon_background_color'      => '',
+		'colorlib_coming_soon_text_color'            => '',
+		'colorlib_coming_soon_google_analytics_id'   => '',
+		'colorlib_coming_soon_subscribe_form_url'    => '',
+		'colorlib_coming_soon_subscribe_form_other'  => ''
+	);
+}
+
+/**
+ * Read the settings with every key guaranteed to exist.
+ *
+ * Templates read a dozen keys directly. On a site upgraded from an older
+ * version, or after a partial update_option(), the missing ones raised PHP 8
+ * warnings that leaked absolute paths when display_errors was on.
+ *
+ * @return array
+ */
+function ccsm_get_options() {
+	$options = get_option( 'ccsm_settings' );
+
+	if ( ! is_array( $options ) ) {
+		$options = array();
+	}
+
+	return wp_parse_args( $options, ccsm_defaults() );
+}
+
+/**
+ * Sanitize a value for use in a CSS color context.
+ *
+ * esc_html()/esc_attr()/wp_kses_post() are HTML escapers: none of them touch
+ * ";", "{" or "}", so a stored value could inject whole CSS rules. Anything
+ * that is not a plain hex color is dropped.
+ *
+ * @param mixed $value Stored color value.
+ * @return string Hex color, or '' when the value is unusable.
+ */
+function ccsm_hex_color( $value ) {
+	if ( ! is_string( $value ) || '' === $value ) {
+		return '';
+	}
+
+	$color = sanitize_hex_color( $value );
+
+	return is_string( $color ) ? $color : '';
+}
+
+/**
+ * The template slugs the plugin ships.
+ *
+ * Single source of truth for the settings sanitizer and the include guard in
+ * includes/colorlib-template.php.
+ *
+ * @return array
+ */
+function ccsm_allowed_templates() {
+	return array(
+		'template_01', 'template_02', 'template_03', 'template_04', 'template_05',
+		'template_06', 'template_07', 'template_08', 'template_09', 'template_10',
+		'template_11', 'template_12', 'template_13', 'template_14', 'template_15',
+	);
 }
 
 function ccsm_get_selected_template() {
