@@ -22,12 +22,39 @@
 		});
 	}
 
+	/*
+	 * An element can only be updated in place if it is already on the page.
+	 * A social link that was empty renders no anchor at all, and a template
+	 * without a footer renders no footer, so going from empty to a value has
+	 * to re-render rather than patch. Ask the Customizer for a refresh, debounced
+	 * so typing does not queue one per keystroke.
+	 */
+	var refreshTimer = null;
+	function requestRefresh() {
+		clearTimeout(refreshTimer);
+		refreshTimer = setTimeout(function () {
+			if (wp.customize.preview) {
+				wp.customize.preview.send('refresh');
+			}
+		}, 500);
+	}
+
+	/** Update the matched element, or fall back to a refresh when it is absent. */
+	function updateOrRefresh(selector, apply) {
+		var el = $(selector);
+		if (!el.length) {
+			requestRefresh();
+			return;
+		}
+		apply(el);
+	}
+
 	/* Rich-text fields: rendered server-side with wp_kses_post(). */
 	['colorlib_coming_soon_page_heading',
 	 'colorlib_coming_soon_page_content',
 	 'colorlib_coming_soon_page_footer'].forEach(function (key) {
 		bind(key, function (value) {
-			$('#' + key).html(value);
+			updateOrRefresh('#' + key, function (el) { el.html(value); });
 		});
 	});
 
@@ -38,12 +65,24 @@
 	 'colorlib_coming_soon_social_pinterest',
 	 'colorlib_coming_soon_social_instagram'].forEach(function (key) {
 		bind(key, function (value) {
-			$('#' + key).attr('href', value);
+			// Clearing a link removes the anchor server-side, so that needs a
+			// render too.
+			if (!value) {
+				requestRefresh();
+				return;
+			}
+			updateOrRefresh('#' + key, function (el) { el.attr('href', value); });
 		});
 	});
 
 	bind('colorlib_coming_soon_social_email', function (value) {
-		$('#colorlib_coming_soon_social_email').attr('href', 'mailto:' + value);
+		if (!value) {
+			requestRefresh();
+			return;
+		}
+		updateOrRefresh('#colorlib_coming_soon_social_email', function (el) {
+			el.attr('href', 'mailto:' + value);
+		});
 	});
 
 	/*
