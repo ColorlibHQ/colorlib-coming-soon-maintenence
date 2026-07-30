@@ -163,11 +163,13 @@ function ccsm_is_active_for_visitor() {
  * @return string
  */
 function ccsm_get_bypass_token() {
-	$options = get_option( 'ccsm_settings' );
+	$token = ccsm_read_bypass_token();
 
-	if ( is_array( $options ) && ! empty( $options['colorlib_coming_soon_bypass_token'] ) ) {
-		return $options['colorlib_coming_soon_bypass_token'];
+	if ( '' !== $token ) {
+		return $token;
 	}
+
+	$options = get_option( 'ccsm_settings' );
 
 	if ( ! is_array( $options ) ) {
 		return '';
@@ -177,6 +179,24 @@ function ccsm_get_bypass_token() {
 	update_option( 'ccsm_settings', $options );
 
 	return $options['colorlib_coming_soon_bypass_token'];
+}
+
+/**
+ * Read the bypass token without ever creating one.
+ *
+ * Front-end code must use this rather than ccsm_get_bypass_token(): the latter
+ * writes an option, and it is reached from a cookie and a query argument that
+ * any logged-out visitor controls. Minting the secret is an admin action, so
+ * it happens when the settings screen asks for the link.
+ *
+ * @return string Token, or '' when none has been generated yet.
+ */
+function ccsm_read_bypass_token() {
+	$options = get_option( 'ccsm_settings' );
+
+	return ( is_array( $options ) && ! empty( $options['colorlib_coming_soon_bypass_token'] ) )
+		? $options['colorlib_coming_soon_bypass_token']
+		: '';
 }
 
 /**
@@ -198,7 +218,7 @@ function ccsm_has_bypass_cookie() {
 		return false;
 	}
 
-	$token = ccsm_get_bypass_token();
+	$token = ccsm_read_bypass_token();
 
 	if ( '' === $token ) {
 		return false;
@@ -216,7 +236,7 @@ function ccsm_maybe_grant_bypass() {
 		return;
 	}
 
-	$token = ccsm_get_bypass_token();
+	$token = ccsm_read_bypass_token();
 	$given = sanitize_text_field( wp_unslash( $_GET['ccsm_bypass'] ) ); // phpcs:ignore WordPress.Security.NonceVerification.Recommended
 
 	if ( '' === $token || ! hash_equals( $token, $given ) ) {
