@@ -120,6 +120,32 @@ rendering with one `h1`, a `main` landmark and **zero PHP warnings**, and screen
 
 ---
 
+## Browser testing
+
+Playwright is not a plugin dependency, but sibling projects have it installed with browsers
+cached, so the interactive surfaces were driven for real. Suite lives in `tests/e2e/`
+(excluded from the release archive); see its README for how to run it.
+
+- **Front end, 21 checks** — focus outline on Tab, label association, `type="email"`, the whole
+  invalid-submit path (message, `role="alert"`, `aria-invalid`, focus move), error clearing,
+  modal open on Enter with `aria-modal` and an accessible name, focus entering and staying
+  trapped over twelve tabs, Escape closing with focus restored, transitions suppressed under
+  `prefers-reduced-motion`, clean console.
+- **Customizer, 10 checks** — 24 settings registered in the UI, heading updating live, a social
+  link going empty → set making the icon appear via the refresh fallback, an existing link
+  updating in place, colours written to the live stylesheet, clean console.
+
+**Three real bugs surfaced on the first run**, none of which static analysis or screenshots
+would have caught:
+
+1. `type="email"` handed validation to the browser, which blocks submit before the form's submit
+   event, so a malformed address bypassed the accessible error path entirely — while an empty
+   field still used it. Forms are now `novalidate`.
+2. Moving focus to the first invalid field fired the focus handler, which wiped the message that
+   move was meant to announce. Errors now clear on input.
+3. A duplicate `customize-selective-refresh` enqueue loaded the script without core's exported
+   data, logging `_customizePartialRefreshExports is not defined` on every preview refresh.
+
 ## Deferred
 
 - **Standalone settings UI replacing the Customizer.** The new admin page is the entry point, but
@@ -132,6 +158,9 @@ rendering with one `h1`, a `main` landmark and **zero PHP warnings**, and screen
   image. Not statically decidable — needs a per-template design pass.
 - **`WP_Customize_Date_Time_Control`** is core-internal with no deprecation path; ship a copy or a
   plain `datetime-local` control.
+- **PHP 7.4**, the declared minimum, is still untested at runtime: Local ships 8.2 and lint runs
+  on 8.5. A static scan found no 8.0-only syntax.
+- **Multisite** and a **real MailChimp POST** remain untested.
 - **Heading order in template_04**: the modal heading stays `<h3>` under the page `<h1>`, so the
   document skips `<h2>`. Best-practice issue, not a WCAG A/AA failure.
 
