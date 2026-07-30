@@ -14,9 +14,9 @@ $ccsm_options = ccsm_get_options();
     <?php /* No maximum-scale: it blocks pinch zoom (WCAG 1.4.4). */ ?>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 	<?php
-	$site_description = get_bloginfo( 'description', 'display' );
-	if ( '' !== $site_description ) {
-		printf( '<meta name="description" content="%s">' . "\n", esc_attr( $site_description ) );
+	$ccsm_site_description = get_bloginfo( 'description', 'display' );
+	if ( '' !== $ccsm_site_description ) {
+		printf( '<meta name="description" content="%s">' . "\n", esc_attr( $ccsm_site_description ) );
 	}
 
 	// The theme never loads here, so the Site Icon has to be printed by hand.
@@ -31,7 +31,16 @@ $ccsm_options = ccsm_get_options();
     if ( isset( $ccsm_options['colorlib_coming_soon_google_analytics_id'] ) && '' !== $ccsm_options['colorlib_coming_soon_google_analytics_id'] ) {
      ?>
         <link rel="preconnect" href="https://www.googletagmanager.com">
-        <script async src="<?php echo esc_url( 'https://www.googletagmanager.com/gtag/js?id=' . $ccsm_options['colorlib_coming_soon_google_analytics_id'] ); ?>"></script>
+		<?php
+		// wp_print_script_tag() rather than a literal <script src>: it escapes
+		// the attributes and keeps the tag out of the NonEnqueuedScript sniff.
+		wp_print_script_tag(
+			array(
+				'src'   => 'https://www.googletagmanager.com/gtag/js?id=' . $ccsm_options['colorlib_coming_soon_google_analytics_id'],
+				'async' => true,
+			)
+		);
+		?>
         <script>
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
@@ -42,20 +51,20 @@ $ccsm_options = ccsm_get_options();
      <?php
     }
 
-	$template = isset( $ccsm_options['colorlib_coming_soon_template_selection'] ) ? $ccsm_options['colorlib_coming_soon_template_selection'] : 'template_01';
+	$ccsm_template = isset( $ccsm_options['colorlib_coming_soon_template_selection'] ) ? $ccsm_options['colorlib_coming_soon_template_selection'] : 'template_01';
 
 	// Validate template name to prevent path traversal
-	if ( ! in_array( $template, ccsm_allowed_templates(), true ) ) {
-		$template = 'template_01';
+	if ( ! in_array( $ccsm_template, ccsm_allowed_templates(), true ) ) {
+		$ccsm_template = 'template_01';
 	}
 
-	$counterActivation = $ccsm_options['colorlib_coming_soon_timer_activation'];
-	do_action( 'ccsm_header', $template );
+	$ccsm_counter_activation = $ccsm_options['colorlib_coming_soon_timer_activation'];
+	do_action( 'ccsm_header', $ccsm_template );
 	ccsm_preload_background( $ccsm_options );
 
 	?>
     <style>
-        <?php if( $counterActivation !== '1' ) { ?>
+        <?php if( $ccsm_counter_activation !== '1' ) { ?>
         .cd100 {
             display: none !important;
         }
@@ -100,11 +109,11 @@ $ccsm_options = ccsm_get_options();
 
 <main id="ccsm-main">
 <?php
-include CCSM_PATH . 'templates/' . $template . '/' . $template . '.php';
+include CCSM_PATH . 'templates/' . $ccsm_template . '/' . $ccsm_template . '.php';
 ?>
 </main>
 <?php
-do_action( 'ccsm_footer', $template );
+do_action( 'ccsm_footer', $ccsm_template );
 ?>
 
 </body>

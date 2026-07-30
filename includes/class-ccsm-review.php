@@ -24,6 +24,7 @@ class CCSM_Review {
 		$this->value = $this->value();
 
 		$this->messages = array(
+			/* translators: %s: number of days the plugin has been installed. */
 			'notice'  => __( "Hey, I noticed you have installed our plugin for %s day - that's awesome! Could you please do me a BIG favor and give it a 5-star rating on WordPress? Just to help us spread the word and boost our motivation.", 'colorlib-coming-soon-maintenance' ),
 			'rate'    => __( 'Ok, you deserve it', 'colorlib-coming-soon-maintenance' ),
 			'rated'   => __( 'I already did', 'colorlib-coming-soon-maintenance' ),

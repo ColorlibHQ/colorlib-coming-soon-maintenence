@@ -6,21 +6,21 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 
 $ccsm_options      = ccsm_get_options();
-$counterActivation = $ccsm_options['colorlib_coming_soon_timer_activation'];
-$template          = $ccsm_options['colorlib_coming_soon_template_selection'];
-$counter           = $ccsm_options['colorlib_coming_soon_timer_option'];
-$dates             = ccsm_counter_dates( $counter );
-$bcg_url           = ($ccsm_options['colorlib_coming_soon_background_image']) ? $ccsm_options['colorlib_coming_soon_background_image'] : '';
-$logo_url          = ($ccsm_options['colorlib_coming_soon_plugin_logo']) ? $ccsm_options['colorlib_coming_soon_plugin_logo'] : false;
+$ccsm_counter_activation = $ccsm_options['colorlib_coming_soon_timer_activation'];
+$ccsm_template          = $ccsm_options['colorlib_coming_soon_template_selection'];
+$ccsm_counter           = $ccsm_options['colorlib_coming_soon_timer_option'];
+$ccsm_dates             = ccsm_counter_dates( $ccsm_counter );
+$ccsm_bcg_url           = ($ccsm_options['colorlib_coming_soon_background_image']) ? $ccsm_options['colorlib_coming_soon_background_image'] : '';
+$ccsm_logo_url          = ($ccsm_options['colorlib_coming_soon_plugin_logo']) ? $ccsm_options['colorlib_coming_soon_plugin_logo'] : false;
 
 if ( is_ssl()  ) {
 
-	if(!empty($bcg_url)){
-		$bcg_url = str_replace( 'http://', 'https://', $ccsm_options['colorlib_coming_soon_background_image'] );
+	if(!empty($ccsm_bcg_url)){
+		$ccsm_bcg_url = str_replace( 'http://', 'https://', $ccsm_options['colorlib_coming_soon_background_image'] );
 	}
 
-	if ( $logo_url ) {
-		$logo_url = str_replace( 'http://', 'https://', $logo_url );
+	if ( $ccsm_logo_url ) {
+		$ccsm_logo_url = str_replace( 'http://', 'https://', $ccsm_logo_url );
 	}
 }
 
@@ -36,26 +36,26 @@ if ( ccsm_template_has_text_color() ) {
 ?>
 <div class="size1 bg0 where1-parent">
     <div class="flex-c-m bg-img1 size2 where1 overlay1 where2 respon2 wrap-pic1"
-         style="background-image: url('<?php echo esc_url($bcg_url); ?>')">
-		<?php if ( $counterActivation == '1' ) { ?>
+         style="background-image: url('<?php echo esc_url($ccsm_bcg_url); ?>')">
+		<?php if ( $ccsm_counter_activation == '1' ) { ?>
             <div class="wsize2 flex-w flex-c-m cd100 js-tilt">
                 <div class="flex-col-c-m size6 bor2 m-l-10 m-r-10 m-t-15">
-                    <span class="l2-txt1 p-b-9 days"><?php echo esc_html( $dates['template']['days'] ); ?></span>
+                    <span class="l2-txt1 p-b-9 days"><?php echo esc_html( $ccsm_dates['template']['days'] ); ?></span>
                     <span class="s2-txt4"><?php echo esc_html__( 'Days', 'colorlib-coming-soon-maintenance' ); ?></span>
                 </div>
 
                 <div class="flex-col-c-m size6 bor2 m-l-10 m-r-10 m-t-15">
-                    <span class="l2-txt1 p-b-9 hours"><?php echo esc_html( $dates['template']['hours'] ); ?></span>
+                    <span class="l2-txt1 p-b-9 hours"><?php echo esc_html( $ccsm_dates['template']['hours'] ); ?></span>
                     <span class="s2-txt4"><?php echo esc_html__( 'Hours', 'colorlib-coming-soon-maintenance' ); ?></span>
                 </div>
 
                 <div class="flex-col-c-m size6 bor2 m-l-10 m-r-10 m-t-15">
-                    <span class="l2-txt1 p-b-9 minutes"><?php echo esc_html( $dates['template']['minutes'] ); ?></span>
+                    <span class="l2-txt1 p-b-9 minutes"><?php echo esc_html( $ccsm_dates['template']['minutes'] ); ?></span>
                     <span class="s2-txt4"><?php echo esc_html__( 'Minutes', 'colorlib-coming-soon-maintenance' ); ?></span>
                 </div>
 
                 <div class="flex-col-c-m size6 bor2 m-l-10 m-r-10 m-t-15">
-                    <span class="l2-txt1 p-b-9 seconds"><?php echo esc_html( $dates['template']['seconds'] ); ?></span>
+                    <span class="l2-txt1 p-b-9 seconds"><?php echo esc_html( $ccsm_dates['template']['seconds'] ); ?></span>
                     <span class="s2-txt4"><?php echo esc_html__( 'Seconds', 'colorlib-coming-soon-maintenance' ); ?></span>
                 </div>
             </div>
@@ -64,10 +64,10 @@ if ( ccsm_template_has_text_color() ) {
 
     <div class="size3 flex-col-sb flex-w p-l-75 p-r-75 p-t-45 p-b-45 respon1">
         <div class="wrap-pic1">
-			<?php if ( $logo_url ) {
+			<?php if ( $ccsm_logo_url ) {
 				?>
                 <a href="<?php echo esc_url( site_url() ); ?>" class="logo-link"><img
-                            src="<?php echo esc_url( $logo_url ); ?>"
+                            src="<?php echo esc_url( $ccsm_logo_url ); ?>"
                             alt="<?php echo esc_attr( get_bloginfo( 'name' ) ); ?>"></a>
 				<?php
 			}
@@ -79,6 +79,7 @@ if ( ccsm_template_has_text_color() ) {
 				<?php echo wp_kses_post( $ccsm_options['colorlib_coming_soon_page_heading'] ); ?>
             </h1>
 			<?php 
+			    // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound -- public hook since 1.0; renaming would break sites that use it.
 			    do_action('colorlib_coming_soon_before_forms'); 
  			    if ( $ccsm_options['colorlib_coming_soon_subscribe'] != '1' ) {  
 			?>
@@ -188,16 +189,16 @@ if ( is_customize_preview() ) {
 	<?php
 }
 ?>
-<?php if ( $counterActivation == '1' && $dates['script'] != false ) {
+<?php if ( $ccsm_counter_activation == '1' && $ccsm_dates['script'] != false ) {
 	?>
     <script>
         window.CCSM_COUNTDOWN = {
-            year: <?php echo wp_json_encode( $dates['script']['year'] ); ?>,
-            month: <?php echo wp_json_encode( $dates['script']['month'] ); ?>,
-            day: <?php echo wp_json_encode( $dates['script']['day'] ); ?>,
-            hour: <?php echo wp_json_encode( $dates['script']['hour'] ); ?>,
-            minute: <?php echo wp_json_encode( $dates['script']['minute'] ); ?>,
-            second: <?php echo wp_json_encode( $dates['script']['second'] ); ?>
+            year: <?php echo wp_json_encode( $ccsm_dates['script']['year'] ); ?>,
+            month: <?php echo wp_json_encode( $ccsm_dates['script']['month'] ); ?>,
+            day: <?php echo wp_json_encode( $ccsm_dates['script']['day'] ); ?>,
+            hour: <?php echo wp_json_encode( $ccsm_dates['script']['hour'] ); ?>,
+            minute: <?php echo wp_json_encode( $ccsm_dates['script']['minute'] ); ?>,
+            second: <?php echo wp_json_encode( $ccsm_dates['script']['second'] ); ?>
         };
     </script>
 <?php } ?>

@@ -768,7 +768,7 @@ class CCSM_Customizer {
 
 }
 
-$cl = new CCSM_Customizer();
+new CCSM_Customizer();
 
 function ccsm_sanitize_text( $input ) {
 	return wp_kses_post( force_balance_tags( $input ) );
@@ -826,7 +826,11 @@ function ccsm_sanitize_setting( $key, $value ) {
 		return '';
 	}
 
-	return call_user_func( $sanitizers[ $key ], $value );
+	$clean = call_user_func( $sanitizers[ $key ], $value );
+
+	// sanitize_hex_color() returns null for an invalid colour; store '' so the
+	// option array never holds nulls.
+	return null === $clean ? '' : $clean;
 }
 
 /**

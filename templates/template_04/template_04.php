@@ -5,10 +5,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 $ccsm_options      = ccsm_get_options();
-$counterActivation = $ccsm_options['colorlib_coming_soon_timer_activation'];
-$template          = $ccsm_options['colorlib_coming_soon_template_selection'];
-$counter           = $ccsm_options['colorlib_coming_soon_timer_option'];
-$dates             = ccsm_counter_dates( $counter );
+$ccsm_counter_activation = $ccsm_options['colorlib_coming_soon_timer_activation'];
+$ccsm_template          = $ccsm_options['colorlib_coming_soon_template_selection'];
+$ccsm_counter           = $ccsm_options['colorlib_coming_soon_timer_option'];
+$ccsm_dates             = ccsm_counter_dates( $ccsm_counter );
 
 ?>
     <div class="bg-g1 size1 flex-w flex-col-c-sb p-l-15 p-r-15 p-t-55 p-b-35 respon1">
@@ -21,30 +21,31 @@ $dates             = ccsm_counter_dates( $counter );
             <p class="txt-center l1-txt2 p-b-60" id="colorlib_coming_soon_page_content">
 				<?php echo wp_kses_post( $ccsm_options['colorlib_coming_soon_page_content'] ); ?>
             </p>
-			<?php if ( $counterActivation == '1' ) { ?>
+			<?php if ( $ccsm_counter_activation == '1' ) { ?>
                 <div class="flex-w flex-c cd100 p-b-82">
                     <div class="flex-col-c-m size2 how-countdown">
-                        <span class="l1-txt3 p-b-9 days"><?php echo esc_html( $dates['template']['days'] ); ?></span>
+                        <span class="l1-txt3 p-b-9 days"><?php echo esc_html( $ccsm_dates['template']['days'] ); ?></span>
                         <span class="s1-txt1"><?php echo esc_html__( 'Days', 'colorlib-coming-soon-maintenance' ); ?></span>
                     </div>
 
                     <div class="flex-col-c-m size2 how-countdown">
-                        <span class="l1-txt3 p-b-9 hours"><?php echo esc_html( $dates['template']['hours'] ); ?></span>
+                        <span class="l1-txt3 p-b-9 hours"><?php echo esc_html( $ccsm_dates['template']['hours'] ); ?></span>
                         <span class="s1-txt1"><?php echo esc_html__( 'Hours', 'colorlib-coming-soon-maintenance' ); ?></span>
                     </div>
 
                     <div class="flex-col-c-m size2 how-countdown">
-                        <span class="l1-txt3 p-b-9 minutes"><?php echo esc_html( $dates['template']['minutes'] ); ?></span>
+                        <span class="l1-txt3 p-b-9 minutes"><?php echo esc_html( $ccsm_dates['template']['minutes'] ); ?></span>
                         <span class="s1-txt1"><?php echo esc_html__( 'Minutes', 'colorlib-coming-soon-maintenance' ); ?></span>
                     </div>
 
                     <div class="flex-col-c-m size2 how-countdown">
-                        <span class="l1-txt3 p-b-9 seconds"><?php echo esc_html( $dates['template']['seconds'] ); ?></span>
+                        <span class="l1-txt3 p-b-9 seconds"><?php echo esc_html( $ccsm_dates['template']['seconds'] ); ?></span>
                         <span class="s1-txt1"><?php echo esc_html__( 'Seconds', 'colorlib-coming-soon-maintenance' ); ?></span>
                     </div>
                 </div>
 			<?php } ?>
 			<?php 
+			    // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound -- public hook since 1.0; renaming would break sites that use it.
 			    do_action('colorlib_coming_soon_before_forms'); 
  			    if ( $ccsm_options['colorlib_coming_soon_subscribe'] != '1' ) {  
 			?>
@@ -62,6 +63,7 @@ $dates             = ccsm_counter_dates( $counter );
 
     </div>
 <?php 
+    // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound -- public hook since 1.0; renaming would break sites that use it.
     do_action('colorlib_coming_soon_before_forms'); 
      if ( $ccsm_options['colorlib_coming_soon_subscribe'] != '1' ) {  
 ?>
@@ -130,15 +132,15 @@ if ( is_customize_preview() ) {
 	<?php
 }
 ?>
-<?php if ( $counterActivation == '1' && $dates['script'] != false ) { ?>
+<?php if ( $ccsm_counter_activation == '1' && $ccsm_dates['script'] != false ) { ?>
     <script>
         window.CCSM_COUNTDOWN = {
-            year: <?php echo wp_json_encode( $dates['script']['year'] ); ?>,
-            month: <?php echo wp_json_encode( $dates['script']['month'] ); ?>,
-            day: <?php echo wp_json_encode( $dates['script']['day'] ); ?>,
-            hour: <?php echo wp_json_encode( $dates['script']['hour'] ); ?>,
-            minute: <?php echo wp_json_encode( $dates['script']['minute'] ); ?>,
-            second: <?php echo wp_json_encode( $dates['script']['second'] ); ?>
+            year: <?php echo wp_json_encode( $ccsm_dates['script']['year'] ); ?>,
+            month: <?php echo wp_json_encode( $ccsm_dates['script']['month'] ); ?>,
+            day: <?php echo wp_json_encode( $ccsm_dates['script']['day'] ); ?>,
+            hour: <?php echo wp_json_encode( $ccsm_dates['script']['hour'] ); ?>,
+            minute: <?php echo wp_json_encode( $ccsm_dates['script']['minute'] ); ?>,
+            second: <?php echo wp_json_encode( $ccsm_dates['script']['second'] ); ?>
         };
     </script>
 <?php } ?>

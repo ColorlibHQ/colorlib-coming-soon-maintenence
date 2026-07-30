@@ -1,6 +1,6 @@
 <?php
 /**
-* Plugin Name: Coming Soon and Maintenance by Colorlib
+* Plugin Name: Coming Soon & Maintenance Mode by Colorlib
 * Plugin URI: https://colorlib.com/
 * Description: Colorlib Coming Soon and Maintenance is a responsive coming soon WordPress plugin that comes with well designed coming soon page and lots of useful features including customization via Live Customizer, MailChimp integration, custom forms, and more.
 * Version: 1.4.0
@@ -57,7 +57,6 @@ if ( version_compare( PHP_VERSION, '7.4', '<' ) ) {
 	return;
 }
 
-add_action( 'plugins_loaded', 'ccsm_load_plugin_textdomain' );
 add_filter( 'plugin_action_links', 'ccsm_add_settings_link', 10, 2 );
 add_action( 'customize_controls_enqueue_scripts', 'ccsm_customizer_scripts', 30 );
 add_action( 'customize_preview_init', 'ccsm_customizer_preview_scripts', 30 );
@@ -76,10 +75,11 @@ add_action( 'template_redirect', 'ccsm_template_redirect', 0 );
 add_action( 'init', 'ccsm_guard_front_doors', 0 );
 add_filter( 'robots_txt', 'ccsm_robots_txt', 10, 2 );
 
-//loads the text domain for translation
-function ccsm_load_plugin_textdomain() {
-	load_plugin_textdomain( 'colorlib-coming-soon-maintenance', false, basename( dirname( __FILE__ ) ) . '/languages/' );
-}
+/*
+ * No load_plugin_textdomain() call: WordPress has loaded translations for
+ * wordpress.org-hosted plugins automatically since 4.6, and this plugin
+ * requires 6.0.
+ */
 
 //add settings and support links on wordpress plugin page
 function ccsm_add_settings_link( $actions, $plugin_file ) {
@@ -715,6 +715,9 @@ function ccsm_style_enqueue( $template_name ) {
 	foreach ( $global_styles as $global_style ) {
 
 		if ( isset( $global_style['font'] ) && $global_style['font'] === 'true' ) {
+			// No version on the Google Fonts URL: a ?ver= query would be sent to
+			// Google and is meaningless there.
+			// phpcs:ignore WordPress.WP.EnqueuedResourceParameters.MissingVersion
 			wp_register_style( $global_style['name'], $global_style['location'] . '&display=swap', array(), null );
 			wp_print_styles( $global_style['name'] );
 		} else {
@@ -732,6 +735,7 @@ function ccsm_style_enqueue( $template_name ) {
 	if ( ! empty( $encript_styles ) ) {
 		foreach ( $encript_styles as $encript_style ) {
 			if ( isset( $encript_style['font'] ) && $encript_style['font'] === 'true' ) {
+				// phpcs:ignore WordPress.WP.EnqueuedResourceParameters.MissingVersion -- external Google Fonts URL.
 				wp_register_style( $encript_style['name'], $encript_style['location'] . '&display=swap', array(), null );
 				wp_print_styles( $encript_style['name'] );
 			} elseif ( isset( $encript_style['shared'] ) && 'true' === $encript_style['shared'] ) {
@@ -1244,7 +1248,11 @@ function ccsm_google_analytics_notice() {
 		return;
 	}
 
-	$message = sprintf( __('For security reasons we have changed the Google Analytics setting. Please update your settings <a href="%s">here</a> in order to correctly use the Google Analytics script.', 'colorlib-coming-soon-maintenance'), esc_url( admin_url( 'customize.php?autofocus[panel]=colorlib_coming_soon_general_panel' ) ));
+	$message = sprintf(
+		/* translators: %s: URL of the plugin's Customizer panel. */
+		__('For security reasons we have changed the Google Analytics setting. Please update your settings <a href="%s">here</a> in order to correctly use the Google Analytics script.', 'colorlib-coming-soon-maintenance'),
+		esc_url( admin_url( 'customize.php?autofocus[panel]=colorlib_coming_soon_general_panel' ) )
+	);
 	printf('<div id="ccsm-ga-notice" class="notice notice-warning is-dismissible"><p>%1$s</p></div>', wp_kses_post( $message ) );
 }
 
