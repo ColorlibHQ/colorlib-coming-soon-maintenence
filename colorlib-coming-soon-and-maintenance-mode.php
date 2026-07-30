@@ -356,16 +356,12 @@ function ccsm_style_enqueue( $template_name ) {
 			),
 			array(
 				'name'     => 'util',
-				'location' => 'css/util.css'
+				'location' => 'assets/css/ccsm-util.css',
+				'shared'   => 'true'
 			),
 			array(
-				'name'     => 'Poppins',
-				'location' => 'https://fonts.googleapis.com/css?family=Poppins:400,700',
-				'font'     => 'true'
-			),
-			array(
-				'name'     => 'Lato',
-				'location' => 'https://fonts.googleapis.com/css?family=Lato:400,700',
+				'name'     => 'Poppins-Lato',
+				'location' => 'https://fonts.googleapis.com/css?family=Poppins:400,700|Lato:400,700',
 				'font'     => 'true'
 			)
 		),
@@ -376,16 +372,12 @@ function ccsm_style_enqueue( $template_name ) {
 			),
 			array(
 				'name'     => 'util',
-				'location' => 'css/util.css',
+				'location' => 'assets/css/ccsm-util.css',
+				'shared'   => 'true',
 			),
 			array(
-				'name'     => 'Poppins',
-				'location' => 'https://fonts.googleapis.com/css?family=Poppins:400,700',
-				'font'     => 'true'
-			),
-			array(
-				'name'     => 'Lato',
-				'location' => 'https://fonts.googleapis.com/css?family=Lato:300,400,700',
+				'name'     => 'Poppins-Lato',
+				'location' => 'https://fonts.googleapis.com/css?family=Poppins:400,700|Lato:300,400,700',
 				'font'     => 'true'
 			)
 		),
@@ -396,7 +388,8 @@ function ccsm_style_enqueue( $template_name ) {
 			),
 			array(
 				'name'     => 'util',
-				'location' => 'css/util.css',
+				'location' => 'assets/css/ccsm-util.css',
+				'shared'   => 'true',
 			),
 			array(
 				'name'     => 'Barlow',
@@ -411,7 +404,8 @@ function ccsm_style_enqueue( $template_name ) {
 			),
 			array(
 				'name'     => 'util',
-				'location' => 'css/util.css',
+				'location' => 'assets/css/ccsm-util.css',
+				'shared'   => 'true',
 			),
 			array(
 				'name'     => 'Montserrat',
@@ -426,7 +420,8 @@ function ccsm_style_enqueue( $template_name ) {
 			),
 			array(
 				'name'     => 'util',
-				'location' => 'css/util.css',
+				'location' => 'assets/css/ccsm-util.css',
+				'shared'   => 'true',
 			),
 			array(
 				'name'     => 'Ubuntu',
@@ -440,18 +435,14 @@ function ccsm_style_enqueue( $template_name ) {
 				'location' => 'css/main.css',
 			),
 			array(
-				'name'     => 'Aldrich',
-				'location' => 'https://fonts.googleapis.com/css?family=Aldrich',
+				'name'     => 'Aldrich-Poppins',
+				'location' => 'https://fonts.googleapis.com/css?family=Aldrich|Poppins:400,700',
 				'font'     => 'true'
 			),
 			array(
 				'name'     => 'Util',
-				'location' => 'css/util.css',
-			),
-			array(
-				'name'     => 'Poppins',
-				'location' => 'https://fonts.googleapis.com/css?family=Poppins:400,700',
-				'font'     => 'true'
+				'location' => 'assets/css/ccsm-util.css',
+				'shared'   => 'true',
 			),
 		),
 		'template_07' => array(
@@ -461,16 +452,12 @@ function ccsm_style_enqueue( $template_name ) {
 			),
 			array(
 				'name'     => 'util',
-				'location' => 'css/util.css',
+				'location' => 'assets/css/ccsm-util.css',
+				'shared'   => 'true',
 			),
 			array(
-				'name'     => 'Poppins',
-				'location' => 'https://fonts.googleapis.com/css?family=Poppins:400,700',
-				'font'     => 'true'
-			),
-			array(
-				'name'     => 'Lato',
-				'location' => 'https://fonts.googleapis.com/css?family=Lato',
+				'name'     => 'Poppins-Lato',
+				'location' => 'https://fonts.googleapis.com/css?family=Poppins:400,700|Lato',
 				'font'     => 'true'
 			)
 		),
@@ -481,16 +468,12 @@ function ccsm_style_enqueue( $template_name ) {
 			),
 			array(
 				'name'     => 'util',
-				'location' => 'css/util.css',
+				'location' => 'assets/css/ccsm-util.css',
+				'shared'   => 'true',
 			),
 			array(
-				'name'     => 'Poppins',
-				'location' => 'https://fonts.googleapis.com/css?family=Poppins:300,400,700',
-				'font'     => 'true'
-			),
-			array(
-				'name'     => 'Playfair-Display',
-				'location' => 'https://fonts.googleapis.com/css?family=Playfair+Display:400,400i',
+				'name'     => 'Poppins-Playfair',
+				'location' => 'https://fonts.googleapis.com/css?family=Poppins:300,400,700|Playfair+Display:400,400i',
 				'font'     => 'true'
 			)
 		),
@@ -501,7 +484,8 @@ function ccsm_style_enqueue( $template_name ) {
 			),
 			array(
 				'name'     => 'util',
-				'location' => 'css/util.css',
+				'location' => 'assets/css/ccsm-util.css',
+				'shared'   => 'true',
 			),
 			array(
 				'name'     => 'Poppins',
@@ -516,7 +500,8 @@ function ccsm_style_enqueue( $template_name ) {
 			),
 			array(
 				'name'     => 'util',
-				'location' => 'css/util.css',
+				'location' => 'assets/css/ccsm-util.css',
+				'shared'   => 'true',
 			),
 			array(
 				'name'     => 'Poppins-Playfair',
@@ -531,7 +516,8 @@ function ccsm_style_enqueue( $template_name ) {
 			),
 			array(
 				'name'     => 'util',
-				'location' => 'css/util.css',
+				'location' => 'assets/css/ccsm-util.css',
+				'shared'   => 'true',
 			),
 			array(
 				'name'     => 'Lato-Playrfair',
@@ -546,7 +532,8 @@ function ccsm_style_enqueue( $template_name ) {
 			),
 			array(
 				'name'     => 'util',
-				'location' => 'css/util.css',
+				'location' => 'assets/css/ccsm-util.css',
+				'shared'   => 'true',
 			),
 			array(
 				'name'     => 'Poppins-Playfair',
@@ -561,23 +548,20 @@ function ccsm_style_enqueue( $template_name ) {
 			),
 			array(
 				'name'     => 'util',
-				'location' => 'css/util.css',
+				'location' => 'assets/css/ccsm-util.css',
+				'shared'   => 'true',
 			),
 			array(
-				'name'     => 'Montserrat',
-				'location' => 'https://fonts.googleapis.com/css?family=Montserrat:400,600',
-				'font'     => 'true'
-			),
-			array(
-				'name'     => 'Dancing-script',
-				'location' => 'https://fonts.googleapis.com/css?family=Dancing+Script',
+				'name'     => 'Montserrat-DancingScript',
+				'location' => 'https://fonts.googleapis.com/css?family=Montserrat:400,600|Dancing+Script',
 				'font'     => 'true'
 			)
 		),
 		'template_14' => array(
 			array(
 				'name'     => 'util',
-				'location' => 'css/util.css',
+				'location' => 'assets/css/ccsm-util.css',
+				'shared'   => 'true',
 			),
 			array(
 				'name'     => 'main',
@@ -596,7 +580,8 @@ function ccsm_style_enqueue( $template_name ) {
 			),
 			array(
 				'name'     => 'util',
-				'location' => 'css/util.css',
+				'location' => 'assets/css/ccsm-util.css',
+				'shared'   => 'true',
 			),
 			array(
 				'name'     => 'Montserrat-Quantico',
@@ -639,10 +624,9 @@ function ccsm_style_enqueue( $template_name ) {
 		}
 	}
 
-	//print global scripts
+	//register global scripts (printed before </body> by ccsm_footer_scripts)
 	foreach ( $global_scripts as $global_script ) {
 		wp_register_script( $global_script['name'], CCSM_URL . 'assets/' . $global_script['location'], array(), CCSM_VERSION, true );
-		wp_print_scripts( $global_script['name'] );
 	}
 
 	//print styles depending on template
@@ -651,6 +635,10 @@ function ccsm_style_enqueue( $template_name ) {
 			if ( isset( $encript_style['font'] ) && $encript_style['font'] === 'true' ) {
 				wp_register_style( $encript_style['name'], $encript_style['location'] . '&display=swap', array(), null );
 				wp_print_styles( $encript_style['name'] );
+			} elseif ( isset( $encript_style['shared'] ) && 'true' === $encript_style['shared'] ) {
+				// One shared copy for every template, resolved from assets/.
+				wp_register_style( 'ccsm-' . $encript_style['name'], CCSM_URL . $encript_style['location'], array(), CCSM_VERSION );
+				wp_print_styles( 'ccsm-' . $encript_style['name'] );
 			} else {
 				wp_register_style( $template_name . '-' . $encript_style['name'], CCSM_URL . 'templates/' . $template_name . '/' . $encript_style['location'], array(), CCSM_VERSION );
 				wp_print_styles( $template_name . '-' . $encript_style['name'] );
@@ -658,6 +646,45 @@ function ccsm_style_enqueue( $template_name ) {
 		}
 	}
 
+}
+
+/**
+ * Print the front-end script before </body>.
+ *
+ * It used to be printed from the ccsm_header action, and wp_print_scripts()
+ * with an explicit handle emits immediately, so the $in_footer flag on the
+ * registration was ignored and 6.5 KB of parser-blocking JS sat in the <head>.
+ */
+function ccsm_footer_scripts() {
+	wp_print_scripts( 'ccsm-frontend' );
+}
+add_action( 'ccsm_footer', 'ccsm_footer_scripts' );
+
+/**
+ * Preload the background image the active template is about to use.
+ *
+ * The image is applied through an inline style attribute deep in the body, so
+ * without this hint the browser only discovers the LCP image once the CSS has
+ * parsed.
+ *
+ * @param array $ccsm_options Plugin settings.
+ */
+function ccsm_preload_background( $ccsm_options ) {
+	if ( ! ccsm_template_has_background_image() ) {
+		return;
+	}
+
+	$bcg_url = isset( $ccsm_options['colorlib_coming_soon_background_image'] ) ? $ccsm_options['colorlib_coming_soon_background_image'] : '';
+
+	if ( '' === $bcg_url ) {
+		return;
+	}
+
+	if ( is_ssl() ) {
+		$bcg_url = str_replace( 'http://', 'https://', $bcg_url );
+	}
+
+	printf( '<link rel="preload" as="image" href="%s">' . "\n", esc_url( $bcg_url ) );
 }
 
 

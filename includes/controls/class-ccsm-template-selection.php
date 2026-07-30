@@ -32,7 +32,9 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
 							?>
                             <label class="colorlib-single-template-wrapper <?php echo esc_attr( $active ); ?>">
                             	<input class="colorlib-template-radio" type="radio" name="<?php echo esc_attr( $this->id ); ?>" value="<?php echo esc_attr( $key ); ?>" <?php $this->link(); ?> <?php checked( esc_attr( $key ), $this->value() ); ?>/>
-                                <img src="<?php echo esc_url( CCSM_URL ) . 'templates/' . esc_attr( $key ) . '/' . esc_attr( $key ) . '.jpg' ?>">
+                                <img src="<?php echo esc_url( CCSM_URL . 'templates/' . $key . '/' . $key . '.jpg' ); ?>"
+                                     alt="" loading="lazy" decoding="async" width="370" height="240">
+                                <span class="colorlib-template-name"><?php echo esc_html( $value ); ?></span>
                             </label>
 						<?php } ?>
                     </div>

@@ -40,6 +40,7 @@ $ccsm_options = ccsm_get_options();
 
 	$counterActivation = $ccsm_options['colorlib_coming_soon_timer_activation'];
 	do_action( 'ccsm_header', $template );
+	ccsm_preload_background( $ccsm_options );
 
 	?>
     <style>
@@ -80,7 +81,11 @@ $ccsm_options = ccsm_get_options();
 </head>
 <body>
 
-<?php include( CCSM_PATH . 'templates/' . $template . '/' . $template . '.php' ); ?>
+<?php
+include CCSM_PATH . 'templates/' . $template . '/' . $template . '.php';
+
+do_action( 'ccsm_footer', $template );
+?>
 
 </body>
 </html>
