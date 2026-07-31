@@ -4,7 +4,7 @@ Tags: coming soon, maintenance mode, under construction, countdown timer, landin
 Requires at least: 6.0
 Tested up to: 7.0
 Requires PHP: 7.4
-Stable tag: 1.3.0
+Stable tag: 1.4.0
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -32,12 +32,12 @@ Logged-in users can browse and edit the site normally while non-logged-in visito
 - **REST API protection** — blocks public API access while the site is under construction
 - **Developer friendly** — use the `ccsm_skip_redirect` and `ccsm_force_redirect` filters to control redirect behavior
 - **Works with all WordPress themes** — self-contained templates run independently of your active theme
-- **GDPR compliant** — collect visitor information while respecting privacy regulations
+- **Privacy conscious** — no tracking of its own. Note that enabling the optional Google Analytics field, and the Google Fonts each template loads, involve requests to Google, which you may need to disclose depending on your jurisdiction
 
 = How It Works =
 
 1. Install and activate the plugin
-2. Go to Appearance > Customize > Colorlib Coming Soon Settings
+2. Go to Coming Soon (in the WordPress admin menu)
 3. Pick a template and customize the content, colors, images, and countdown timer
 4. Enable coming soon mode — visitors see your launch page, you keep working
 
@@ -65,7 +65,7 @@ This plugin is developed and maintained by <a href="https://colorlib.com/">Color
 
 = After Activation =
 
-1. Navigate to Appearance > Customize > Colorlib Coming Soon Settings
+1. Navigate to Coming Soon (in the WordPress admin menu)
 2. Select a coming soon template from the Templates section
 3. Customize the heading, logo, background image, countdown timer, and social links
 4. Toggle "Activate Coming Soon" to enable the coming soon page for visitors
@@ -76,7 +76,7 @@ This plugin is developed and maintained by <a href="https://colorlib.com/">Color
 
 = How do I enable or disable the coming soon page? =
 
-Go to Appearance > Customize > Colorlib Coming Soon Settings > General and toggle the "Activate Coming Soon" option. You can also deactivate the plugin entirely under Plugins to disable the coming soon page.
+Go to Coming Soon (in the WordPress admin menu) > General and toggle the "Activate Coming Soon" option. You can also deactivate the plugin entirely under Plugins to disable the coming soon page.
 
 = Who can see the coming soon page? =
 
@@ -84,31 +84,31 @@ Only visitors who are not logged in to WordPress will see the coming soon page. 
 
 = How do I change the coming soon page template? =
 
-Navigate to Appearance > Customize > Colorlib Coming Soon Settings > Templates. You will see a visual preview of all 15 available templates. Click on the one you want to use and the preview will update immediately.
+Navigate to Coming Soon (in the WordPress admin menu) > Templates. You will see a visual preview of all 15 available templates. Click on the one you want to use and the preview will update immediately.
 
 = How do I set up the countdown timer? =
 
-Go to Appearance > Customize > Colorlib Coming Soon Settings > General and enable "Activate Timer Countdown." Then set your launch date and time using the date picker. The timer supports both 12-hour and 24-hour formats. Note that templates 12 and 14 do not display a countdown timer.
+Go to Coming Soon (in the WordPress admin menu) > General and enable "Activate Timer Countdown." Then set your launch date and time using the date picker. The timer supports both 12-hour and 24-hour formats. Note that templates 12 and 14 do not display a countdown timer.
 
 = How do I connect MailChimp for email subscriptions? =
 
-Go to Appearance > Customize > Colorlib Coming Soon Settings > Subscribe Form and paste your MailChimp signup form action URL. You can find this URL in your MailChimp account under Lists > Signup Forms > Embedded Forms. Copy the URL from the form's action attribute.
+Go to Coming Soon (in the WordPress admin menu) > Subscribe Form and paste your MailChimp signup form action URL. You can find this URL in your MailChimp account under Lists > Signup Forms > Embedded Forms. Copy the URL from the form's action attribute.
 
 = Can I add social media links? =
 
-Yes. Go to Appearance > Customize > Colorlib Coming Soon Settings > Social Links and enter your profile URLs for Facebook, Twitter, YouTube, Pinterest, Instagram, or an email address. Social links are supported on most templates (all except templates 2, 5, and 8).
+Yes. Go to Coming Soon (in the WordPress admin menu) > Social Links and enter your profile URLs for Facebook, Twitter, YouTube, Pinterest, Instagram, or an email address. Social links are supported on most templates (all except templates 2, 5, and 8).
 
 = Can I customize the logo and background image? =
 
-Yes. Under Appearance > Customize > Colorlib Coming Soon Settings > General you can upload a custom logo image (recommended size: 80x80px) and a background image. Most templates support both options, though a few templates use fixed layouts without background images.
+Yes. Under Coming Soon (in the WordPress admin menu) > General you can upload a custom logo image (recommended size: 80x80px) and a background image. Most templates support both options, though a few templates use fixed layouts without background images.
 
 = Can I add custom CSS to the coming soon page? =
 
-Yes. Go to Appearance > Customize > Colorlib Coming Soon Settings > Custom CSS. This provides a code editor where you can add CSS that applies only to the coming soon page without affecting the rest of your site.
+Yes. Go to Coming Soon (in the WordPress admin menu) > Custom CSS. This provides a code editor where you can add CSS that applies only to the coming soon page without affecting the rest of your site.
 
 = How do I add Google Analytics tracking? =
 
-Go to Appearance > Customize > Colorlib Coming Soon Settings > General and enter your Google Analytics 4 measurement ID (e.g., G-XXXXXXXXXX) in the tracking code field.
+Go to Coming Soon (in the WordPress admin menu) > General and enter your Google Analytics 4 measurement ID (e.g., G-XXXXXXXXXX) in the tracking code field.
 
 = Does the plugin work with caching plugins? =
 
@@ -132,7 +132,7 @@ Both modes display a full-screen page to visitors and block access to the rest o
 
 = Can I use a countdown timer on the coming soon page? =
 
-Yes. The countdown timer can be enabled under Appearance > Customize > Colorlib Coming Soon Settings > General. Set your launch date and time and the countdown will display days, hours, minutes, and seconds until your site goes live. Most templates support the countdown timer.
+Yes. The countdown timer can be enabled under Coming Soon (in the WordPress admin menu) > General. Set your launch date and time and the countdown will display days, hours, minutes, and seconds until your site goes live. Most templates support the countdown timer.
 
 = Is the plugin free to use? =
 
@@ -161,6 +161,39 @@ Yes. All 15 coming soon page templates are fully responsive and work on desktops
 15. Template 15 — City skyline with purple overlay, countdown timer, and social icons
 
 == Changelog ==
+
+= 1.4.0 - 30.07.2026 =
+Security: Fixed a leak where XML sitemaps served every post URL and author slug while the coming soon page was active
+Security: Fixed a leak where /?p=123 style URLs answered with a redirect to the real permalink, exposing post slugs and usernames
+Security: XML-RPC, wp-links-opml.php and other plugins' logged-out admin-ajax handlers are now blocked while the site is closed
+Security: Any logged-in user, including subscribers, could previously bypass the page; it now requires the edit_posts capability (filterable with ccsm_bypass_capability)
+Security: Each setting is now sanitized for its own data type instead of sharing one HTML sanitizer
+Security: Colors are validated as hex values before being printed into CSS
+Security: Added direct-access guards to the 24 files that lacked them
+New: Maintenance mode, which answers HTTP 503 with Retry-After so search engines treat downtime as temporary and your rankings survive
+New: Optional noindex tag, plus automatic crawler blocking through robots.txt in maintenance mode
+New: Shareable preview link that lets a client see the real site without an account
+New: Export and import your settings as JSON
+New: A real settings screen, reachable from the Coming Soon admin menu (the Customizer has no menu entry on block themes)
+Improved: Per-page CSS dropped from about 93 KB to 19 KB; the utility stylesheet was 80 KB duplicated across all 15 templates and 99% unused
+Improved: The front-end script no longer blocks rendering from the page head
+Improved: The background image is preloaded, and six templates no longer make two Google Fonts requests where one will do
+Improved: The coming soon page now sends no-cache headers, so page caches cannot keep serving it after you reopen the site
+Fixed: Keyboard focus is visible again; every template removed the focus outline and replaced it with nothing
+Fixed: Subscribe form errors are now announced and visible; the message previously appeared only on hover on wide screens
+Fixed: Email validation never actually ran, so any non-empty text was accepted
+Fixed: The subscribe modal now traps focus, restores it on close, and is announced as a dialog
+Fixed: Every template now has a real heading, email fields use the email keyboard, and inputs have labels
+Fixed: Template 4 showed the days value in the seconds slot of the countdown
+Fixed: Template 10's YouTube and Instagram links were prefixed with mailto:
+Fixed: Template 3 hid the social links and footer whenever the subscribe form was turned off
+Fixed: The Settings link on the Plugins screen returned a permissions error
+Fixed: Opening the Coming Soon menu logged a PHP fatal error on every visit
+Fixed: The Customizer live preview did nothing at all; colors, images, text and social links now update as you type
+Fixed: The subscribe form no longer appears until you configure where it should submit
+Improved: Text contrast raised to meet WCAG AA on placeholder and secondary text
+Improved: Animations respect the reduced-motion system setting
+Improved: Removed about 3 MB of unused files and switched translation building to WP-CLI
 
 = 1.3.0 - 22.06.2026 =
 Improved: Removed Bootstrap and jQuery from the front end — coming-soon pages are now framework-free and load dramatically faster
@@ -261,3 +294,8 @@ Fixed: Double dots on template 15 ( https://github.com/ColorlibHQ/colorlib-comin
 
 = 1.0.0 =
 * Initial release
+
+== Upgrade Notice ==
+
+= 1.4.0 =
+Important security release. Fixes leaks that exposed your post URLs and usernames through XML sitemaps and redirects while the coming soon page was active. Also adds maintenance mode with a proper 503 status, a shareable client preview link, and large accessibility and performance improvements.

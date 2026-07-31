@@ -265,19 +265,19 @@ Primary use:
  HOW HOW HOW HOW HOW HOW HOW HOW HOW HOW HOW HOW HOW HOW HOW HOW HOW 
 ==================================================================*/
 .placeholder0::-webkit-input-placeholder {
-    color: #999999;
+    color: #6e6e6e;
 }
 
 .placeholder0:-moz-placeholder {
-    color: #999999;
+    color: #6e6e6e;
 }
 
 .placeholder0::-moz-placeholder {
-    color: #999999;
+    color: #6e6e6e;
 }
 
 .placeholder0:-ms-input-placeholder {
-    color: #999999;
+    color: #6e6e6e;
 }
 
 /*---------------------------------------------*/
@@ -352,7 +352,7 @@ Primary use:
 
 /*---------------------------------------------*/
 .how-social {
-    color: #999999;
+    color: #5f5f5f;
     font-size: 18px;
 
     background-color: #fff;

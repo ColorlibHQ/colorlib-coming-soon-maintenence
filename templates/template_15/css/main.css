@@ -53,10 +53,6 @@ Primary use:
     line-height: unset;
 }
 
-.flip-clock-wrapper ul li a div {
-    outline: none;
-}
-
 .flip-clock-wrapper ul li a div div.inn {
     font-family: 'Quantico', sans-serif;
     color: #fff;
@@ -284,19 +280,19 @@ Primary use:
  HOW HOW HOW HOW HOW HOW HOW HOW HOW HOW HOW HOW HOW HOW HOW HOW HOW 
 ==================================================================*/
 .placeholder0::-webkit-input-placeholder {
-    color: #999999;
+    color: #6e6e6e;
 }
 
 .placeholder0:-moz-placeholder {
-    color: #999999;
+    color: #6e6e6e;
 }
 
 .placeholder0::-moz-placeholder {
-    color: #999999;
+    color: #6e6e6e;
 }
 
 .placeholder0:-ms-input-placeholder {
-    color: #999999;
+    color: #6e6e6e;
 }
 
 /*---------------------------------------------*/

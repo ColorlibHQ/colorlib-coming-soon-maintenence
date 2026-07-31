@@ -1,4 +1,9 @@
 <?php
+// Exit if accessed directly
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 
 class CCSM_Review {
 
@@ -19,6 +24,7 @@ class CCSM_Review {
 		$this->value = $this->value();
 
 		$this->messages = array(
+			/* translators: %s: number of days the plugin has been installed. */
 			'notice'  => __( "Hey, I noticed you have installed our plugin for %s day - that's awesome! Could you please do me a BIG favor and give it a 5-star rating on WordPress? Just to help us spread the word and boost our motivation.", 'colorlib-coming-soon-maintenance' ),
 			'rate'    => __( 'Ok, you deserve it', 'colorlib-coming-soon-maintenance' ),
 			'rated'   => __( 'I already did', 'colorlib-coming-soon-maintenance' ),
@@ -127,6 +133,12 @@ class CCSM_Review {
 
 		$options = get_option( 'ccsm_settings', array() );
 
+		// A corrupted option can come back as a scalar; writing an offset on it
+		// is a TypeError on PHP 8.
+		if ( ! is_array( $options ) ) {
+			$options = array();
+		}
+
 		if ( isset( $_POST['epsilon-review'] ) ) { // phpcs:ignore WordPress.Security.ValidatedSanitizedInput
 			$options['givemereview'] = 'already-rated';
 		} else {
@@ -150,9 +162,9 @@ class CCSM_Review {
 		?>
 
         <script type="text/javascript">
-            jQuery(document).ready(function ($) {
+            jQuery(function ($) {
 
-                $('.epsilon-review-button').click(function (evt) {
+                $('.epsilon-review-button').on('click', function (evt) {
                     var href = $(this).attr('href'),
                         id = $(this).attr('id');
 
@@ -180,7 +192,7 @@ class CCSM_Review {
 
                 });
 
-	            $('#colorlib-coming-soon-maintenance-epsilon-review-notice .notice-dismiss').click(function(){
+	            $('#colorlib-coming-soon-maintenance-epsilon-review-notice .notice-dismiss').on('click', function () {
 
 		            var data = {
 			            action: 'ccsm_epsilon_review',

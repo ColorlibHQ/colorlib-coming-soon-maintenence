@@ -1,9 +1,9 @@
 <?php
 /**
-* Plugin Name: Coming Soon and Maintenance by Colorlib
+* Plugin Name: Coming Soon & Maintenance Mode by Colorlib
 * Plugin URI: https://colorlib.com/
 * Description: Colorlib Coming Soon and Maintenance is a responsive coming soon WordPress plugin that comes with well designed coming soon page and lots of useful features including customization via Live Customizer, MailChimp integration, custom forms, and more.
-* Version: 1.3.0
+* Version: 1.4.0
 * Author: Colorlib
 * Author URI: https://colorlib.com/
 * Tested up to: 7.0
@@ -40,34 +40,46 @@ define( 'CCSM_PATH', plugin_dir_path( __FILE__ ) );
 define( 'CCSM_URL', plugin_dir_url( __FILE__ ) );
 define( 'CCSM_PLUGIN_BASE', plugin_basename( __FILE__ ) );
 define( 'CCSM_FILE_', __FILE__ );
-define( 'CCSM_VERSION', '1.3.0' );
+define( 'CCSM_VERSION', '1.4.0' );
 
 // PHP version check
 if ( version_compare( PHP_VERSION, '7.4', '<' ) ) {
 	add_action( 'admin_notices', function () {
 		printf(
 			'<div class="notice notice-error"><p>%s</p></div>',
-			esc_html__( 'Coming Soon and Maintenance by Colorlib requires PHP 7.4 or higher. Your server is running PHP ' . PHP_VERSION . '.', 'colorlib-coming-soon-maintenance' )
+			sprintf(
+				/* translators: %s: current PHP version. */
+				esc_html__( 'Coming Soon and Maintenance by Colorlib requires PHP 7.4 or higher. Your server is running PHP %s.', 'colorlib-coming-soon-maintenance' ),
+				esc_html( PHP_VERSION )
+			)
 		);
 	} );
 	return;
 }
 
-add_action( 'init', 'ccsm_skip_redirect_on_login' );
-add_action( 'plugins_loaded', 'ccsm_load_plugin_textdomain' );
-add_filter( 'plugin_action_links', 'ccsm_add_settings_link', 10, 5 );
+add_filter( 'plugin_action_links', 'ccsm_add_settings_link', 10, 2 );
 add_action( 'customize_controls_enqueue_scripts', 'ccsm_customizer_scripts', 30 );
 add_action( 'customize_preview_init', 'ccsm_customizer_preview_scripts', 30 );
 add_action( 'ccsm_header', 'ccsm_style_enqueue', 20 );
-add_action( 'ccsm_header', 'wp_print_scripts' );
 add_filter( 'ccsm_skip_redirect', 'ccsm_skip_redirect' );
 add_filter( 'ccsm_force_redirect', 'ccsm_force_redirect' );
 add_filter( 'rest_pre_dispatch', 'ccsm_rest_restrict', 10, 3 );
 
-//loads the text domain for translation
-function ccsm_load_plugin_textdomain() {
-	load_plugin_textdomain( 'colorlib-coming-soon-maintenance', false, basename( dirname( __FILE__ ) ) . '/languages/' );
-}
+/*
+ * The front-end guard has to run before core's own template_redirect callbacks.
+ * redirect_canonical() (priority 10) answers /?p=N probes with a 301 to the
+ * pretty permalink, and WP_Sitemaps renders wp-sitemap*.xml and exits — both
+ * leak the site's content inventory before a default-priority callback runs.
+ */
+add_action( 'template_redirect', 'ccsm_template_redirect', 0 );
+add_action( 'init', 'ccsm_guard_front_doors', 0 );
+add_filter( 'robots_txt', 'ccsm_robots_txt', 10, 2 );
+
+/*
+ * No load_plugin_textdomain() call: WordPress has loaded translations for
+ * wordpress.org-hosted plugins automatically since 4.6, and this plugin
+ * requires 6.0.
+ */
 
 //add settings and support links on wordpress plugin page
 function ccsm_add_settings_link( $actions, $plugin_file ) {
@@ -79,7 +91,9 @@ function ccsm_add_settings_link( $actions, $plugin_file ) {
 	}
 	if ( $plugin === $plugin_file ) {
 
-		$settings  = array( 'settings' => '<a href="'.admin_url('options-general.php?page=ccsm_settings').'">' . __( 'Settings', 'colorlib-coming-soon-maintenance' ) . '</a>' );
+		// The settings page is registered as a top-level menu, so it lives under
+		// admin.php — options-general.php?page=… fails the capability check.
+		$settings  = array( 'settings' => '<a href="'.esc_url( admin_url( 'admin.php?page=ccsm_settings' ) ).'">' . __( 'Settings', 'colorlib-coming-soon-maintenance' ) . '</a>' );
 		$site_link = array( 'support' => '<a href="https://colorlib.com/wp/forums" target="_blank">' . __( 'Support', 'colorlib-coming-soon-maintenance' ) . '</a>' );
 
 		$actions = array_merge( $settings, $actions );
@@ -87,16 +101,6 @@ function ccsm_add_settings_link( $actions, $plugin_file ) {
 	}
 
 	return $actions;
-}
-
-/* Redirect code that checks if on WP login page */
-function ccsm_skip_redirect_on_login() {
-	global $pagenow;
-	if ( 'wp-login.php' === $pagenow ) {
-		return;
-	} else {
-		add_action( 'template_redirect', 'ccsm_template_redirect' );
-	}
 }
 
 function ccsm_skip_redirect($should_skip=false){
@@ -107,22 +111,271 @@ function ccsm_force_redirect($should_force=false){
 	return $should_force;
 }
 
+/**
+ * Whether the coming soon page should replace the site for the current visitor.
+ *
+ * This is the single source of truth for every guard in the plugin (the
+ * template redirect, the REST block and the entry points closed in
+ * ccsm_guard_front_doors()), so they can never disagree about who is locked out.
+ *
+ * @return bool
+ */
+function ccsm_is_active_for_visitor() {
+	$ccsm_options = get_option( 'ccsm_settings' );
+
+	if ( ! is_array( $ccsm_options ) ) {
+		return false;
+	}
+
+	if ( ! isset( $ccsm_options['colorlib_coming_soon_activation'] ) || '1' !== $ccsm_options['colorlib_coming_soon_activation'] ) {
+		return false;
+	}
+
+	// A client holding the secret preview link sees the real site.
+	if ( ccsm_has_bypass_cookie() ) {
+		return false;
+	}
+
+	if ( ! is_user_logged_in() ) {
+		return true;
+	}
+
+	/**
+	 * Filters the capability that lets a logged-in user through to the real site.
+	 *
+	 * The gate used to be a bare is_user_logged_in() check, so on a site with
+	 * open registration every subscriber saw straight through it. Return
+	 * 'read' to restore the old behaviour.
+	 *
+	 * @param string $capability Capability required to bypass the page.
+	 */
+	$capability = apply_filters( 'ccsm_bypass_capability', 'edit_posts' );
+
+	return ! current_user_can( $capability );
+}
+
+/**
+ * The secret token that unlocks the site through a shareable link.
+ *
+ * Generated once, on demand, so sites upgrading from an older version get one
+ * without needing to reactivate the plugin.
+ *
+ * @return string
+ */
+function ccsm_get_bypass_token() {
+	$token = ccsm_read_bypass_token();
+
+	if ( '' !== $token ) {
+		return $token;
+	}
+
+	$options = get_option( 'ccsm_settings' );
+
+	if ( ! is_array( $options ) ) {
+		return '';
+	}
+
+	$options['colorlib_coming_soon_bypass_token'] = wp_generate_password( 24, false );
+	update_option( 'ccsm_settings', $options );
+
+	return $options['colorlib_coming_soon_bypass_token'];
+}
+
+/**
+ * Read the bypass token without ever creating one.
+ *
+ * Front-end code must use this rather than ccsm_get_bypass_token(): the latter
+ * writes an option, and it is reached from a cookie and a query argument that
+ * any logged-out visitor controls. Minting the secret is an admin action, so
+ * it happens when the settings screen asks for the link.
+ *
+ * @return string Token, or '' when none has been generated yet.
+ */
+function ccsm_read_bypass_token() {
+	$options = get_option( 'ccsm_settings' );
+
+	return ( is_array( $options ) && ! empty( $options['colorlib_coming_soon_bypass_token'] ) )
+		? $options['colorlib_coming_soon_bypass_token']
+		: '';
+}
+
+/**
+ * The shareable link that lets a client preview the real site.
+ *
+ * @return string
+ */
+function ccsm_get_bypass_url() {
+	return add_query_arg( 'ccsm_bypass', ccsm_get_bypass_token(), home_url( '/' ) );
+}
+
+/**
+ * Whether this visitor already redeemed the bypass link.
+ *
+ * @return bool
+ */
+function ccsm_has_bypass_cookie() {
+	if ( empty( $_COOKIE['ccsm_bypass'] ) ) {
+		return false;
+	}
+
+	$token = ccsm_read_bypass_token();
+
+	if ( '' === $token ) {
+		return false;
+	}
+
+	return hash_equals( $token, sanitize_text_field( wp_unslash( $_COOKIE['ccsm_bypass'] ) ) );
+}
+
+/**
+ * Redeem ?ccsm_bypass=<token>: store the cookie, then drop the token from the URL
+ * so it does not end up in referrers, logs or shared screenshots.
+ */
+function ccsm_maybe_grant_bypass() {
+	if ( empty( $_GET['ccsm_bypass'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+		return;
+	}
+
+	$token = ccsm_read_bypass_token();
+	$given = sanitize_text_field( wp_unslash( $_GET['ccsm_bypass'] ) ); // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+
+	if ( '' === $token || ! hash_equals( $token, $given ) ) {
+		return;
+	}
+
+	setcookie( 'ccsm_bypass', $token, time() + WEEK_IN_SECONDS, COOKIEPATH ? COOKIEPATH : '/', COOKIE_DOMAIN, is_ssl(), true );
+
+	wp_safe_redirect( remove_query_arg( 'ccsm_bypass' ) );
+	exit;
+}
+add_action( 'init', 'ccsm_maybe_grant_bypass', 1 );
+
+/**
+ * Return the configured display mode: 'coming_soon' (HTTP 200) or 'maintenance' (HTTP 503).
+ *
+ * @return string
+ */
+function ccsm_get_mode() {
+	$ccsm_options = get_option( 'ccsm_settings' );
+	$mode         = is_array( $ccsm_options ) && isset( $ccsm_options['colorlib_coming_soon_mode'] )
+		? $ccsm_options['colorlib_coming_soon_mode']
+		: 'coming_soon';
+
+	return 'maintenance' === $mode ? 'maintenance' : 'coming_soon';
+}
+
+/**
+ * Close the front-end entry points that never reach template_redirect.
+ *
+ * template_redirect only covers requests that go through the template loader.
+ * XML-RPC, admin-ajax.php, admin-post.php and wp-links-opml.php bypass it
+ * entirely and keep serving data while the site is supposed to be closed.
+ */
+function ccsm_guard_front_doors() {
+	if ( ! ccsm_is_active_for_visitor() ) {
+		return;
+	}
+
+	// Rendered from an init callback that exits before template_redirect runs.
+	add_filter( 'wp_sitemaps_enabled', '__return_false' );
+
+	// xmlrpc_enabled only gates the authenticated methods, so drop the pingback
+	// ones as well: they are the SSRF / amplification surface.
+	add_filter( 'xmlrpc_enabled', '__return_false' );
+	add_filter( 'xmlrpc_methods', 'ccsm_filter_xmlrpc_methods' );
+
+	// wp-links-opml.php prints the blogroll and the WordPress version.
+	if ( isset( $GLOBALS['pagenow'] ) && 'wp-links-opml.php' === $GLOBALS['pagenow'] ) {
+		ccsm_deny_request();
+	}
+
+	// admin-ajax.php and admin-post.php both fire admin_init while logged out,
+	// so any other plugin's nopriv handler stays reachable without this.
+	add_action( 'admin_init', 'ccsm_guard_admin_entry_points', 0 );
+}
+
+/**
+ * Remove the pingback XML-RPC methods while the site is closed.
+ *
+ * @param array $methods Registered XML-RPC methods.
+ * @return array
+ */
+function ccsm_filter_xmlrpc_methods( $methods ) {
+	unset( $methods['pingback.ping'], $methods['pingback.extensions.getPingbacks'] );
+
+	return $methods;
+}
+
+/**
+ * Block logged-out admin-ajax.php / admin-post.php actions while the site is closed.
+ */
+function ccsm_guard_admin_entry_points() {
+	if ( ! ccsm_is_active_for_visitor() ) {
+		return;
+	}
+
+	$action = isset( $_REQUEST['action'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['action'] ) ) : ''; // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+
+	/**
+	 * Filters the nopriv admin-ajax.php / admin-post.php actions that stay
+	 * reachable for logged-out visitors while the coming soon page is active.
+	 *
+	 * @param array $actions Allowed action names.
+	 */
+	$allowed = apply_filters( 'ccsm_allowed_nopriv_actions', array() );
+
+	if ( in_array( $action, (array) $allowed, true ) ) {
+		return;
+	}
+
+	ccsm_deny_request();
+}
+
+/**
+ * Send a 403 for a request that must not be served while the site is closed.
+ */
+function ccsm_deny_request() {
+	nocache_headers();
+	wp_die(
+		esc_html__( 'Sorry, this content is restricted!', 'colorlib-coming-soon-maintenance' ),
+		esc_html__( 'Restricted', 'colorlib-coming-soon-maintenance' ),
+		array( 'response' => 403 )
+	);
+}
+
+/**
+ * Ask crawlers to stay away while the site is in maintenance mode.
+ *
+ * Coming soon mode keeps the default rules: that page is often meant to be
+ * indexed. Maintenance mode is a temporary outage, so nothing should be crawled.
+ *
+ * @param string $output robots.txt content.
+ * @param bool   $public Whether the site is asking to be indexed.
+ * @return string
+ */
+function ccsm_robots_txt( $output, $public ) {
+	if ( ! ccsm_is_active_for_visitor() || 'maintenance' !== ccsm_get_mode() ) {
+		return $output;
+	}
+
+	return "User-agent: *\nDisallow: /\n";
+}
+
 /* Coming Soon Redirect to Template */
 function ccsm_template_redirect() {
-    global $wp_customize;
-    $ccsm_options = get_option( 'ccsm_settings' );
 
-    if ( ! is_array( $ccsm_options ) ) {
+    // robots.txt and favicon.ico have to keep working: crawlers need the former
+    // to read the Disallow rules added while the site is closed.
+    if ( is_robots() || is_favicon() ) {
         return;
     }
 
     // allow plugins & themes to control whether to force the check, regardless of any other settings
     $force = apply_filters('ccsm_force_redirect', false);
 
-    // Checks for if user is logged in and CCSM is activated  OR if customizer is open on CCSM customization panel
-    $is_active    = ! is_user_logged_in() && isset( $ccsm_options['colorlib_coming_soon_activation'] ) && '1' === $ccsm_options['colorlib_coming_soon_activation'];
-    $in_customizer = is_customize_preview() && isset( $_REQUEST['colorlib-coming-soon-customization'] );
-    $activated    = $is_active || $in_customizer;
+    // Checks whether CCSM is activated for this visitor OR the customizer is open on the CCSM panel
+    $in_customizer = is_customize_preview() && isset( $_REQUEST['colorlib-coming-soon-customization'] ); // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+    $activated     = ccsm_is_active_for_visitor() || $in_customizer;
 
     // If something "forced" it - but not in customizer -, or the default case was met, we might redirect
     if ($force && !is_customize_preview() || $activated) {
@@ -131,6 +384,24 @@ function ccsm_template_redirect() {
         $skip = apply_filters('ccsm_skip_redirect', false);
 
         if ($force || !$skip) {
+
+            // Never let a page cache or CDN keep serving the placeholder after
+            // the site reopens.
+            nocache_headers();
+
+            // A maintenance window is a temporary outage: 503 + Retry-After keeps
+            // search engines from treating the placeholder as the site's content.
+            if ( 'maintenance' === ccsm_get_mode() && ! $in_customizer ) {
+                status_header( 503 );
+
+                /**
+                 * Filters the Retry-After header (seconds) sent in maintenance mode.
+                 *
+                 * @param int $seconds Defaults to one hour.
+                 */
+                header( 'Retry-After: ' . (int) apply_filters( 'ccsm_retry_after', HOUR_IN_SECONDS ) );
+            }
+
             $file = plugin_dir_path(__FILE__) . 'includes/colorlib-template.php'; //get path of our coming soon display page and redirecting
             include($file);
             exit();
@@ -156,14 +427,7 @@ function ccsm_rest_restrict( $result, $server, $request ) {
 		return $result;
 	}
 
-	// If user is logged in, don't restrict content
-	if ( is_user_logged_in() ) {
-		return $result;
-	}
-
-	$ccsm_options = get_option( 'ccsm_settings' );
-
-	if ( isset( $ccsm_options['colorlib_coming_soon_activation'] ) && "1" === $ccsm_options['colorlib_coming_soon_activation'] ) {
+	if ( ccsm_is_active_for_visitor() ) {
 		return new WP_Error(
 			'rest_forbidden',
 			__( 'Sorry, this content is restricted!', 'colorlib-coming-soon-maintenance' ),
@@ -172,6 +436,24 @@ function ccsm_rest_restrict( $result, $server, $request ) {
 	}
 
 	return $result;
+}
+
+/**
+ * Resolve a stylesheet URL, preferring the minified sibling when the build
+ * produced one ("grunt mincss").
+ *
+ * @param string $relative Path relative to the plugin root, e.g. 'assets/css/x.css'.
+ * @return string
+ */
+function ccsm_style_url( $relative ) {
+	if ( '.min.css' !== substr( $relative, -8 ) ) {
+		$min = substr( $relative, 0, -4 ) . '.min.css';
+		if ( file_exists( CCSM_PATH . $min ) ) {
+			$relative = $min;
+		}
+	}
+
+	return CCSM_URL . $relative;
 }
 
 // enqueue template styles
@@ -193,16 +475,12 @@ function ccsm_style_enqueue( $template_name ) {
 			),
 			array(
 				'name'     => 'util',
-				'location' => 'css/util.css'
+				'location' => 'assets/css/ccsm-util.css',
+				'shared'   => 'true'
 			),
 			array(
-				'name'     => 'Poppins',
-				'location' => 'https://fonts.googleapis.com/css?family=Poppins:400,700',
-				'font'     => 'true'
-			),
-			array(
-				'name'     => 'Lato',
-				'location' => 'https://fonts.googleapis.com/css?family=Lato:400,700',
+				'name'     => 'Poppins-Lato',
+				'location' => 'https://fonts.googleapis.com/css?family=Poppins:400,700|Lato:400,700',
 				'font'     => 'true'
 			)
 		),
@@ -213,16 +491,12 @@ function ccsm_style_enqueue( $template_name ) {
 			),
 			array(
 				'name'     => 'util',
-				'location' => 'css/util.css',
+				'location' => 'assets/css/ccsm-util.css',
+				'shared'   => 'true',
 			),
 			array(
-				'name'     => 'Poppins',
-				'location' => 'https://fonts.googleapis.com/css?family=Poppins:400,700',
-				'font'     => 'true'
-			),
-			array(
-				'name'     => 'Lato',
-				'location' => 'https://fonts.googleapis.com/css?family=Lato:300,400,700',
+				'name'     => 'Poppins-Lato',
+				'location' => 'https://fonts.googleapis.com/css?family=Poppins:400,700|Lato:300,400,700',
 				'font'     => 'true'
 			)
 		),
@@ -233,7 +507,8 @@ function ccsm_style_enqueue( $template_name ) {
 			),
 			array(
 				'name'     => 'util',
-				'location' => 'css/util.css',
+				'location' => 'assets/css/ccsm-util.css',
+				'shared'   => 'true',
 			),
 			array(
 				'name'     => 'Barlow',
@@ -248,7 +523,8 @@ function ccsm_style_enqueue( $template_name ) {
 			),
 			array(
 				'name'     => 'util',
-				'location' => 'css/util.css',
+				'location' => 'assets/css/ccsm-util.css',
+				'shared'   => 'true',
 			),
 			array(
 				'name'     => 'Montserrat',
@@ -263,7 +539,8 @@ function ccsm_style_enqueue( $template_name ) {
 			),
 			array(
 				'name'     => 'util',
-				'location' => 'css/util.css',
+				'location' => 'assets/css/ccsm-util.css',
+				'shared'   => 'true',
 			),
 			array(
 				'name'     => 'Ubuntu',
@@ -277,18 +554,14 @@ function ccsm_style_enqueue( $template_name ) {
 				'location' => 'css/main.css',
 			),
 			array(
-				'name'     => 'Aldrich',
-				'location' => 'https://fonts.googleapis.com/css?family=Aldrich',
+				'name'     => 'Aldrich-Poppins',
+				'location' => 'https://fonts.googleapis.com/css?family=Aldrich|Poppins:400,700',
 				'font'     => 'true'
 			),
 			array(
 				'name'     => 'Util',
-				'location' => 'css/util.css',
-			),
-			array(
-				'name'     => 'Poppins',
-				'location' => 'https://fonts.googleapis.com/css?family=Poppins:400,700',
-				'font'     => 'true'
+				'location' => 'assets/css/ccsm-util.css',
+				'shared'   => 'true',
 			),
 		),
 		'template_07' => array(
@@ -298,16 +571,12 @@ function ccsm_style_enqueue( $template_name ) {
 			),
 			array(
 				'name'     => 'util',
-				'location' => 'css/util.css',
+				'location' => 'assets/css/ccsm-util.css',
+				'shared'   => 'true',
 			),
 			array(
-				'name'     => 'Poppins',
-				'location' => 'https://fonts.googleapis.com/css?family=Poppins:400,700',
-				'font'     => 'true'
-			),
-			array(
-				'name'     => 'Lato',
-				'location' => 'https://fonts.googleapis.com/css?family=Lato',
+				'name'     => 'Poppins-Lato',
+				'location' => 'https://fonts.googleapis.com/css?family=Poppins:400,700|Lato',
 				'font'     => 'true'
 			)
 		),
@@ -318,16 +587,12 @@ function ccsm_style_enqueue( $template_name ) {
 			),
 			array(
 				'name'     => 'util',
-				'location' => 'css/util.css',
+				'location' => 'assets/css/ccsm-util.css',
+				'shared'   => 'true',
 			),
 			array(
-				'name'     => 'Poppins',
-				'location' => 'https://fonts.googleapis.com/css?family=Poppins:300,400,700',
-				'font'     => 'true'
-			),
-			array(
-				'name'     => 'Playfair-Display',
-				'location' => 'https://fonts.googleapis.com/css?family=Playfair+Display:400,400i',
+				'name'     => 'Poppins-Playfair',
+				'location' => 'https://fonts.googleapis.com/css?family=Poppins:300,400,700|Playfair+Display:400,400i',
 				'font'     => 'true'
 			)
 		),
@@ -338,7 +603,8 @@ function ccsm_style_enqueue( $template_name ) {
 			),
 			array(
 				'name'     => 'util',
-				'location' => 'css/util.css',
+				'location' => 'assets/css/ccsm-util.css',
+				'shared'   => 'true',
 			),
 			array(
 				'name'     => 'Poppins',
@@ -353,7 +619,8 @@ function ccsm_style_enqueue( $template_name ) {
 			),
 			array(
 				'name'     => 'util',
-				'location' => 'css/util.css',
+				'location' => 'assets/css/ccsm-util.css',
+				'shared'   => 'true',
 			),
 			array(
 				'name'     => 'Poppins-Playfair',
@@ -368,7 +635,8 @@ function ccsm_style_enqueue( $template_name ) {
 			),
 			array(
 				'name'     => 'util',
-				'location' => 'css/util.css',
+				'location' => 'assets/css/ccsm-util.css',
+				'shared'   => 'true',
 			),
 			array(
 				'name'     => 'Lato-Playrfair',
@@ -383,7 +651,8 @@ function ccsm_style_enqueue( $template_name ) {
 			),
 			array(
 				'name'     => 'util',
-				'location' => 'css/util.css',
+				'location' => 'assets/css/ccsm-util.css',
+				'shared'   => 'true',
 			),
 			array(
 				'name'     => 'Poppins-Playfair',
@@ -398,23 +667,20 @@ function ccsm_style_enqueue( $template_name ) {
 			),
 			array(
 				'name'     => 'util',
-				'location' => 'css/util.css',
+				'location' => 'assets/css/ccsm-util.css',
+				'shared'   => 'true',
 			),
 			array(
-				'name'     => 'Montserrat',
-				'location' => 'https://fonts.googleapis.com/css?family=Montserrat:400,600',
-				'font'     => 'true'
-			),
-			array(
-				'name'     => 'Dancing-script',
-				'location' => 'https://fonts.googleapis.com/css?family=Dancing+Script',
+				'name'     => 'Montserrat-DancingScript',
+				'location' => 'https://fonts.googleapis.com/css?family=Montserrat:400,600|Dancing+Script',
 				'font'     => 'true'
 			)
 		),
 		'template_14' => array(
 			array(
 				'name'     => 'util',
-				'location' => 'css/util.css',
+				'location' => 'assets/css/ccsm-util.css',
+				'shared'   => 'true',
 			),
 			array(
 				'name'     => 'main',
@@ -433,7 +699,8 @@ function ccsm_style_enqueue( $template_name ) {
 			),
 			array(
 				'name'     => 'util',
-				'location' => 'css/util.css',
+				'location' => 'assets/css/ccsm-util.css',
+				'shared'   => 'true',
 			),
 			array(
 				'name'     => 'Montserrat-Quantico',
@@ -455,8 +722,7 @@ function ccsm_style_enqueue( $template_name ) {
 
 	// Per-template JS is now handled by the single shared ccsm-frontend.js
 	// global script, so only template-specific styles remain.
-	$encript_styles  = array();
-	$encript_scripts = array();
+	$encript_styles = array();
 	if ( $template_name && isset( $template_styles[ $template_name ] ) ) {
 		$encript_styles = $template_styles[ $template_name ];
 	}
@@ -469,38 +735,79 @@ function ccsm_style_enqueue( $template_name ) {
 	foreach ( $global_styles as $global_style ) {
 
 		if ( isset( $global_style['font'] ) && $global_style['font'] === 'true' ) {
+			// No version on the Google Fonts URL: a ?ver= query would be sent to
+			// Google and is meaningless there.
+			// phpcs:ignore WordPress.WP.EnqueuedResourceParameters.MissingVersion
 			wp_register_style( $global_style['name'], $global_style['location'] . '&display=swap', array(), null );
 			wp_print_styles( $global_style['name'] );
 		} else {
-			wp_register_style( $global_style['name'], CCSM_URL . 'assets/' . $global_style['location'], array(), CCSM_VERSION );
+			wp_register_style( $global_style['name'], ccsm_style_url( 'assets/' . $global_style['location'] ), array(), CCSM_VERSION );
 			wp_print_styles( $global_style['name'] );
 		}
 	}
 
-	//print global scripts
+	//register global scripts (printed before </body> by ccsm_footer_scripts)
 	foreach ( $global_scripts as $global_script ) {
 		wp_register_script( $global_script['name'], CCSM_URL . 'assets/' . $global_script['location'], array(), CCSM_VERSION, true );
-		wp_print_scripts( $global_script['name'] );
 	}
 
 	//print styles depending on template
 	if ( ! empty( $encript_styles ) ) {
 		foreach ( $encript_styles as $encript_style ) {
 			if ( isset( $encript_style['font'] ) && $encript_style['font'] === 'true' ) {
+				// phpcs:ignore WordPress.WP.EnqueuedResourceParameters.MissingVersion -- external Google Fonts URL.
 				wp_register_style( $encript_style['name'], $encript_style['location'] . '&display=swap', array(), null );
 				wp_print_styles( $encript_style['name'] );
+			} elseif ( isset( $encript_style['shared'] ) && 'true' === $encript_style['shared'] ) {
+				// One shared copy for every template, resolved from assets/.
+				wp_register_style( 'ccsm-' . $encript_style['name'], ccsm_style_url( $encript_style['location'] ), array(), CCSM_VERSION );
+				wp_print_styles( 'ccsm-' . $encript_style['name'] );
 			} else {
-				wp_register_style( $template_name . '-' . $encript_style['name'], CCSM_URL . 'templates/' . $template_name . '/' . $encript_style['location'], array(), CCSM_VERSION );
+				wp_register_style( $template_name . '-' . $encript_style['name'], ccsm_style_url( 'templates/' . $template_name . '/' . $encript_style['location'] ), array(), CCSM_VERSION );
 				wp_print_styles( $template_name . '-' . $encript_style['name'] );
 			}
 		}
 	}
 
-	//print scripts depending on template
-	foreach ( $encript_scripts as $encript_script ) {
-		wp_register_script( $template_name . '-' . $encript_script['name'], CCSM_URL . 'templates/' . $template_name . '/' . $encript_script['location'] );
-		wp_print_scripts( $template_name . '-' . $encript_script['name'] );
+}
+
+/**
+ * Print the front-end script before </body>.
+ *
+ * It used to be printed from the ccsm_header action, and wp_print_scripts()
+ * with an explicit handle emits immediately, so the $in_footer flag on the
+ * registration was ignored and 6.5 KB of parser-blocking JS sat in the <head>.
+ */
+function ccsm_footer_scripts() {
+	wp_print_scripts( 'ccsm-frontend' );
+}
+add_action( 'ccsm_footer', 'ccsm_footer_scripts' );
+
+/**
+ * Preload the background image the active template is about to use.
+ *
+ * The image is applied through an inline style attribute deep in the body, so
+ * without this hint the browser only discovers the LCP image once the CSS has
+ * parsed.
+ *
+ * @param array $ccsm_options Plugin settings.
+ */
+function ccsm_preload_background( $ccsm_options ) {
+	if ( ! ccsm_template_has_background_image() ) {
+		return;
 	}
+
+	$bcg_url = isset( $ccsm_options['colorlib_coming_soon_background_image'] ) ? $ccsm_options['colorlib_coming_soon_background_image'] : '';
+
+	if ( '' === $bcg_url ) {
+		return;
+	}
+
+	if ( is_ssl() ) {
+		$bcg_url = str_replace( 'http://', 'https://', $bcg_url );
+	}
+
+	printf( '<link rel="preload" as="image" href="%s">' . "\n", esc_url( $bcg_url ) );
 }
 
 
@@ -508,21 +815,25 @@ function ccsm_customizer_preview_scripts() {
 	wp_register_script( 'colorlib-ccsm-customizer-preview', CCSM_URL . 'assets/js/customizer-preview.js', array(
 		'jquery',
 		'customize-preview'
-	), '', true );
+	), CCSM_VERSION, true );
 	wp_enqueue_script( 'colorlib-ccsm-customizer-preview' );
-	wp_enqueue_script( 'customize-selective-refresh' );
+	// Not enqueued here: core adds customize-selective-refresh in the preview
+	// itself when partials are registered, together with the data the script
+	// expects. Enqueuing it separately loaded it without that data.
 }
 
 
 function ccsm_customizer_scripts() {
 	wp_enqueue_editor();
-	wp_register_script( 'colorlib-ccsm-customizer-js', CCSM_URL . 'assets/js/customizer.js', array( 'customize-controls' ) );
+	wp_register_script( 'colorlib-ccsm-customizer-js', CCSM_URL . 'assets/js/customizer.js', array( 'jquery', 'customize-controls' ), CCSM_VERSION, true );
 	wp_enqueue_script( 'colorlib-ccsm-customizer-js' );
-	wp_register_style( 'colorlib-ccsm-custom-controls-css', CCSM_URL . 'assets/css/ccsm-custom-controls.css', array(), '1.0', 'all' );
+	wp_register_style( 'colorlib-ccsm-custom-controls-css', CCSM_URL . 'assets/css/ccsm-custom-controls.css', array(), CCSM_VERSION, 'all' );
 	wp_enqueue_style( 'colorlib-ccsm-custom-controls-css' );
 	wp_localize_script(
 		'colorlib-ccsm-customizer-js', 'CCSMurls', array(
-			'siteurl' => get_option( 'siteurl' ),
+			// home_url(), not siteurl: they differ when WordPress lives in a
+			// subdirectory, and the preview has to point at the site address.
+			'siteurl' => home_url( '/' ),
 		)
 	);
 }
@@ -539,7 +850,40 @@ function ccsm_customizer_scripts() {
  * @param string $classes Extra CSS classes to add to the <svg> element.
  * @return string SVG markup, or an empty string for an unknown icon.
  */
-function ccsm_icon( $name, $classes = '' ) {
+/**
+ * Tags allowed when printing the inline SVG returned by ccsm_icon().
+ *
+ * The markup is generated from a hard-coded table, but templates echo it, so
+ * run it through wp_kses() with this allowlist to keep the output escaped.
+ *
+ * @return array
+ */
+function ccsm_svg_allowed_html() {
+	return array(
+		'svg'  => array(
+			'class'       => true,
+			'viewbox'     => true,
+			'width'       => true,
+			'height'      => true,
+			'fill'        => true,
+			'role'        => true,
+			'aria-label'  => true,
+			'aria-hidden' => true,
+			'focusable'   => true,
+		),
+		'path' => array(
+			'd'    => true,
+			'fill' => true,
+		),
+	);
+}
+
+/**
+ * @param string $label Accessible name. Pass one whenever the icon is the only
+ *                      content of a link or button, otherwise that control has
+ *                      no accessible name at all.
+ */
+function ccsm_icon( $name, $classes = '', $label = '' ) {
 	$icons = array(
 		'facebook'          => array( 24, 'M9.101 23.691v-7.98H6.627v-3.667h2.474v-1.58c0-4.085 1.848-5.978 5.858-5.978.401 0 .955.042 1.468.103a8.68 8.68 0 0 1 1.141.195v3.325a8.623 8.623 0 0 0-.653-.036 26.805 26.805 0 0 0-.733-.009c-.707 0-1.259.096-1.675.309a1.686 1.686 0 0 0-.679.622c-.258.42-.374.995-.374 1.752v1.297h3.919l-.386 2.103-.287 1.564h-3.246v8.245C19.396 23.238 24 18.179 24 12.044c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.628 3.874 10.35 9.101 11.647Z' ),
 		'twitter'           => array( 24, 'M21.543 7.104c.015.211.015.423.015.636 0 6.507-4.954 14.01-14.01 14.01v-.003A13.94 13.94 0 0 1 0 19.539a9.88 9.88 0 0 0 7.287-2.041 4.93 4.93 0 0 1-4.6-3.42 4.916 4.916 0 0 0 2.223-.084A4.926 4.926 0 0 1 .96 9.167v-.062a4.887 4.887 0 0 0 2.235.616A4.928 4.928 0 0 1 1.67 3.148 13.98 13.98 0 0 0 11.82 8.292a4.929 4.929 0 0 1 8.39-4.49 9.868 9.868 0 0 0 3.128-1.196 4.941 4.941 0 0 1-2.165 2.724A9.828 9.828 0 0 0 24 4.555a10.019 10.019 0 0 1-2.457 2.549z' ),
@@ -580,7 +924,9 @@ function ccsm_icon( $name, $classes = '' ) {
 		'instagram' => 'Instagram',
 		'envelope'  => 'Email',
 	);
-	$label = isset( $labels[ $name ] ) ? $labels[ $name ] : '';
+	if ( '' === $label ) {
+		$label = isset( $labels[ $name ] ) ? $labels[ $name ] : '';
+	}
 
 	$a11y = ( '' !== $label )
 		? ' role="img" aria-label="' . esc_attr( $label ) . '"'
@@ -665,31 +1011,111 @@ register_activation_hook( __FILE__, 'ccsm_check_on_activation' );
 
 function ccsm_check_on_activation() {
 	if ( false === get_option( 'ccsm_settings' ) ) {
-		$defaultSets = array(
-			'colorlib_coming_soon_activation'            => '1',
-			'colorlib_coming_soon_timer_activation'      => '1',
-			'colorlib_coming_soon_subscribe'             => '',
-			'colorlib_coming_soon_template_selection'    => 'template_01',
-			'colorlib_coming_soon_timer_option'          => gmdate( 'Y-m-d H:i:s', strtotime( '+1 month' ) ),
-			'colorlib_coming_soon_plugin_logo'           => CCSM_URL . 'assets/images/logo.jpg',
-			'colorlib_coming_soon_page_heading'          => 'Something <strong>really good</strong> is coming <strong>very soon</strong>',
-			'colorlib_coming_soon_page_content'          => 'If you have something new you\'re looking to launch, you\'re going to want to start building a community of people interested in what you\'re launching.',
-			'colorlib_coming_soon_page_footer'           => 'And don\'t worry, we hate spam too! You can unsubscribe at any time.',
-			'colorlib_coming_soon_social_facebook'       => 'https://facebook.com/',
-			'colorlib_coming_soon_social_twitter'        => 'https://twitter.com/',
-			'colorlib_coming_soon_social_youtube'        => 'https://youtube.com/',
-			'colorlib_coming_soon_social_email'          => 'you@domain.com',
-			'colorlib_coming_soon_social_pinterest'      => 'https://pinterest.com/',
-			'colorlib_coming_soon_social_instagram'      => 'https://instagram.com/',
-			'colorlib_coming_soon_page_custom_css'       => '',
-			'colorlib_coming_soon_background_image'      => CCSM_URL . 'assets/images/logo.jpg',
-			'colorlib_coming_soon_background_color'      => '',
-			'colorlib_coming_soon_text_color'            => '',
-			'colorlib_coming_soon_subscribe_form_url'    => '',
-			'colorlib_coming_soon_subscribe_form_other'  => ''
-		);
-		update_option( 'ccsm_settings', $defaultSets );
+		update_option( 'ccsm_settings', ccsm_defaults() );
 	}
+}
+
+/**
+ * Default value for every setting the plugin reads.
+ *
+ * @return array
+ */
+function ccsm_defaults() {
+	return array(
+		'colorlib_coming_soon_activation'            => '1',
+		'colorlib_coming_soon_mode'                  => 'coming_soon',
+		'colorlib_coming_soon_noindex'               => '',
+		'colorlib_coming_soon_bypass_token'          => '',
+		'colorlib_coming_soon_timer_activation'      => '1',
+		'colorlib_coming_soon_subscribe'             => '',
+		'colorlib_coming_soon_template_selection'    => 'template_01',
+		'colorlib_coming_soon_timer_option'          => gmdate( 'Y-m-d H:i:s', strtotime( '+1 month' ) ),
+		'colorlib_coming_soon_plugin_logo'           => CCSM_URL . 'assets/images/logo.jpg',
+		'colorlib_coming_soon_page_heading'          => 'Something <strong>really good</strong> is coming <strong>very soon</strong>',
+		'colorlib_coming_soon_page_content'          => 'If you have something new you\'re looking to launch, you\'re going to want to start building a community of people interested in what you\'re launching.',
+		'colorlib_coming_soon_page_footer'           => 'And don\'t worry, we hate spam too! You can unsubscribe at any time.',
+		'colorlib_coming_soon_social_facebook'       => '',
+		'colorlib_coming_soon_social_twitter'        => '',
+		'colorlib_coming_soon_social_youtube'        => '',
+		'colorlib_coming_soon_social_email'          => '',
+		'colorlib_coming_soon_social_pinterest'      => '',
+		'colorlib_coming_soon_social_instagram'      => '',
+		'colorlib_coming_soon_page_custom_css'       => '',
+		'colorlib_coming_soon_background_image'      => CCSM_URL . 'assets/images/logo.jpg',
+		'colorlib_coming_soon_background_color'      => '',
+		'colorlib_coming_soon_text_color'            => '',
+		'colorlib_coming_soon_google_analytics_id'   => '',
+		'colorlib_coming_soon_subscribe_form_url'    => '',
+		'colorlib_coming_soon_subscribe_form_other'  => ''
+	);
+}
+
+/**
+ * Read the settings with every key guaranteed to exist.
+ *
+ * Templates read a dozen keys directly. On a site upgraded from an older
+ * version, or after a partial update_option(), the missing ones raised PHP 8
+ * warnings that leaked absolute paths when display_errors was on.
+ *
+ * @return array
+ */
+function ccsm_get_options() {
+	$options = get_option( 'ccsm_settings' );
+
+	if ( ! is_array( $options ) ) {
+		$options = array();
+	}
+
+	$options = wp_parse_args( $options, ccsm_defaults() );
+
+	/*
+	 * With no action URL configured the subscribe form posts back to the coming
+	 * soon page itself, so a fresh install shows a form that silently reloads
+	 * and looks broken. Hide it until an action URL is set - but keep it visible
+	 * in the Customizer preview, where the admin needs to see what they are
+	 * configuring. Templates read the 'subscribe' key as "hide the form".
+	 */
+	if ( '' === trim( (string) $options['colorlib_coming_soon_subscribe_form_url'] ) && ! is_customize_preview() ) {
+		$options['colorlib_coming_soon_subscribe'] = '1';
+	}
+
+	return $options;
+}
+
+/**
+ * Sanitize a value for use in a CSS color context.
+ *
+ * esc_html()/esc_attr()/wp_kses_post() are HTML escapers: none of them touch
+ * ";", "{" or "}", so a stored value could inject whole CSS rules. Anything
+ * that is not a plain hex color is dropped.
+ *
+ * @param mixed $value Stored color value.
+ * @return string Hex color, or '' when the value is unusable.
+ */
+function ccsm_hex_color( $value ) {
+	if ( ! is_string( $value ) || '' === $value ) {
+		return '';
+	}
+
+	$color = sanitize_hex_color( $value );
+
+	return is_string( $color ) ? $color : '';
+}
+
+/**
+ * The template slugs the plugin ships.
+ *
+ * Single source of truth for the settings sanitizer and the include guard in
+ * includes/colorlib-template.php.
+ *
+ * @return array
+ */
+function ccsm_allowed_templates() {
+	return array(
+		'template_01', 'template_02', 'template_03', 'template_04', 'template_05',
+		'template_06', 'template_07', 'template_08', 'template_09', 'template_10',
+		'template_11', 'template_12', 'template_13', 'template_14', 'template_15',
+	);
 }
 
 function ccsm_get_selected_template() {
@@ -840,11 +1266,33 @@ add_action( 'admin_init', 'ccsm_check_for_review' );
  * @return void
  */
 function ccsm_google_analytics_notice() {
-    $options = get_option( 'ccsm_settings' );
-	if ( ! get_option( 'ccsm_ga_notice' ) && isset( $options['colorlib_coming_soon_google_analytics'] ) && '' !== $options['colorlib_coming_soon_google_analytics'] ) {
-		$message = sprintf( __('For security reasons we have changed the Google Analytics setting. Please update your settings <a href="%s">here</a> in order to correctly use the Google Analytics script.', 'colorlib-coming-soon-maintenance'), esc_url( admin_url( 'customize.php?autofocus[panel]=colorlib_coming_soon_general_panel' ) ));
-		printf('<div id="ccsm-ga-notice" class="notice notice-warning is-dismissible"><p>%1$s</p></div>', wp_kses_post( $message ) );
+	if ( ! current_user_can( 'manage_options' ) || ! ccsm_should_show_ga_notice() ) {
+		return;
 	}
+
+	$message = sprintf(
+		/* translators: %s: URL of the plugin's Customizer panel. */
+		__('For security reasons we have changed the Google Analytics setting. Please update your settings <a href="%s">here</a> in order to correctly use the Google Analytics script.', 'colorlib-coming-soon-maintenance'),
+		esc_url( admin_url( 'customize.php?autofocus[panel]=colorlib_coming_soon_general_panel' ) )
+	);
+	printf('<div id="ccsm-ga-notice" class="notice notice-warning is-dismissible"><p>%1$s</p></div>', wp_kses_post( $message ) );
+}
+
+/**
+ * Whether the legacy Google Analytics migration notice still applies.
+ *
+ * @return bool
+ */
+function ccsm_should_show_ga_notice() {
+	if ( get_option( 'ccsm_ga_notice' ) ) {
+		return false;
+	}
+
+	$options = get_option( 'ccsm_settings' );
+
+	return is_array( $options )
+		&& isset( $options['colorlib_coming_soon_google_analytics'] )
+		&& '' !== $options['colorlib_coming_soon_google_analytics'];
 }
 add_action( 'admin_notices', 'ccsm_google_analytics_notice' );
 
@@ -855,12 +1303,17 @@ add_action( 'admin_notices', 'ccsm_google_analytics_notice' );
  */
 function ccsm_ajax_dismiss_script() {
 
+	// Only the users who can see (and act on) the notice need its nonce.
+	if ( ! current_user_can( 'manage_options' ) || ! ccsm_should_show_ga_notice() ) {
+		return;
+	}
+
 	$ajax_nonce = wp_create_nonce( 'ccsm-ga-notice' );
 
 	?>
 
 	<script type="text/javascript">
-        jQuery( document ).ready( function( $ ){
+        jQuery( function( $ ) {
 
             $(document).on('click','#ccsm-ga-notice .notice-dismiss', function( ){
                 var data = {
@@ -892,6 +1345,11 @@ add_action( 'admin_print_footer_scripts', 'ccsm_ajax_dismiss_script' );
 function ccsm_ajax_dismiss_ga() {
 
 	check_ajax_referer( 'ccsm-ga-notice', 'security' );
+
+	if ( ! current_user_can( 'manage_options' ) ) {
+		wp_die( -1, 403 );
+	}
+
 	update_option('ccsm_ga_notice', true );
 	wp_die( 'ok' );
 

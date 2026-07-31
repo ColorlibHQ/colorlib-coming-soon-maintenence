@@ -1,0 +1,618 @@
+# Copyright (C) 2026 Colorlib
+# This file is distributed under the GPLv3 or later.
+msgid ""
+msgstr ""
+"Project-Id-Version: Coming Soon & Maintenance Mode by Colorlib 1.4.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/colorlib-coming-soon-maintenence\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2026-07-30T13:14:02+00:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: WP-CLI 2.12.0\n"
+"X-Domain: colorlib-coming-soon-maintenance\n"
+
+#. Plugin Name of the plugin
+#: colorlib-coming-soon-and-maintenance-mode.php
+msgid "Coming Soon & Maintenance Mode by Colorlib"
+msgstr ""
+
+#. Plugin URI of the plugin
+#. Author URI of the plugin
+#: colorlib-coming-soon-and-maintenance-mode.php
+msgid "https://colorlib.com/"
+msgstr ""
+
+#. Description of the plugin
+#: colorlib-coming-soon-and-maintenance-mode.php
+msgid "Colorlib Coming Soon and Maintenance is a responsive coming soon WordPress plugin that comes with well designed coming soon page and lots of useful features including customization via Live Customizer, MailChimp integration, custom forms, and more."
+msgstr ""
+
+#. Author of the plugin
+#: colorlib-coming-soon-and-maintenance-mode.php
+msgid "Colorlib"
+msgstr ""
+
+#. translators: %s: current PHP version.
+#: colorlib-coming-soon-and-maintenance-mode.php:52
+#, php-format
+msgid "Coming Soon and Maintenance by Colorlib requires PHP 7.4 or higher. Your server is running PHP %s."
+msgstr ""
+
+#: colorlib-coming-soon-and-maintenance-mode.php:96
+msgid "Settings"
+msgstr ""
+
+#: colorlib-coming-soon-and-maintenance-mode.php:97
+msgid "Support"
+msgstr ""
+
+#: colorlib-coming-soon-and-maintenance-mode.php:340
+#: colorlib-coming-soon-and-maintenance-mode.php:433
+msgid "Sorry, this content is restricted!"
+msgstr ""
+
+#: colorlib-coming-soon-and-maintenance-mode.php:341
+msgid "Restricted"
+msgstr ""
+
+#. translators: %s: URL of the plugin's Customizer panel.
+#: colorlib-coming-soon-and-maintenance-mode.php:1273
+#, php-format
+msgid "For security reasons we have changed the Google Analytics setting. Please update your settings <a href=\"%s\">here</a> in order to correctly use the Google Analytics script."
+msgstr ""
+
+#: includes/class-ccsm-customizer.php:75
+msgid "Colorlib Coming Soon Settings"
+msgstr ""
+
+#: includes/class-ccsm-customizer.php:82
+msgid "Templates"
+msgstr ""
+
+#: includes/class-ccsm-customizer.php:89
+msgid "General"
+msgstr ""
+
+#: includes/class-ccsm-customizer.php:98
+msgid "Subscribe Form"
+msgstr ""
+
+#: includes/class-ccsm-customizer.php:106
+msgid "Social Links"
+msgstr ""
+
+#: includes/class-ccsm-customizer.php:116
+msgid "Custom CSS"
+msgstr ""
+
+#: includes/class-ccsm-customizer.php:141
+msgid "Activate Colorlib Coming Soon Page?"
+msgstr ""
+
+#: includes/class-ccsm-customizer.php:156
+msgid "Page Mode"
+msgstr ""
+
+#: includes/class-ccsm-customizer.php:157
+msgid "Coming Soon answers with HTTP 200, so search engines may index the page. Maintenance answers with HTTP 503 and Retry-After, which tells search engines the downtime is temporary and keeps your existing rankings."
+msgstr ""
+
+#: includes/class-ccsm-customizer.php:162
+msgid "Coming Soon (new site)"
+msgstr ""
+
+#: includes/class-ccsm-customizer.php:163
+msgid "Maintenance (existing site, temporary)"
+msgstr ""
+
+#: includes/class-ccsm-customizer.php:177
+msgid "Discourage search engines from indexing this page?"
+msgstr ""
+
+#: includes/class-ccsm-customizer.php:178
+msgid "Adds a noindex robots tag. Maintenance mode also blocks crawlers via robots.txt."
+msgstr ""
+
+#: includes/class-ccsm-customizer.php:193
+msgid "Activate Timer Countdown?"
+msgstr ""
+
+#: includes/class-ccsm-customizer.php:208
+msgid "Custom CSS on Coming Soon Page"
+msgstr ""
+
+#: includes/class-ccsm-customizer.php:227
+msgid "Select Template"
+msgstr ""
+
+#: includes/class-ccsm-customizer.php:231
+msgid "Template 1"
+msgstr ""
+
+#: includes/class-ccsm-customizer.php:232
+msgid "Template 2"
+msgstr ""
+
+#: includes/class-ccsm-customizer.php:233
+msgid "Template 3"
+msgstr ""
+
+#: includes/class-ccsm-customizer.php:234
+msgid "Template 4"
+msgstr ""
+
+#: includes/class-ccsm-customizer.php:235
+msgid "Template 5"
+msgstr ""
+
+#: includes/class-ccsm-customizer.php:236
+msgid "Template 6"
+msgstr ""
+
+#: includes/class-ccsm-customizer.php:237
+msgid "Template 7"
+msgstr ""
+
+#: includes/class-ccsm-customizer.php:238
+msgid "Template 8"
+msgstr ""
+
+#: includes/class-ccsm-customizer.php:239
+msgid "Template 9"
+msgstr ""
+
+#: includes/class-ccsm-customizer.php:240
+msgid "Template 10"
+msgstr ""
+
+#: includes/class-ccsm-customizer.php:241
+msgid "Template 11"
+msgstr ""
+
+#: includes/class-ccsm-customizer.php:242
+msgid "Template 12"
+msgstr ""
+
+#: includes/class-ccsm-customizer.php:243
+msgid "Template 13"
+msgstr ""
+
+#: includes/class-ccsm-customizer.php:244
+msgid "Template 14"
+msgstr ""
+
+#: includes/class-ccsm-customizer.php:245
+msgid "Template 15"
+msgstr ""
+
+#: includes/class-ccsm-customizer.php:259
+msgid "Time to opening"
+msgstr ""
+
+#: includes/class-ccsm-customizer.php:283
+msgid "Logo Image"
+msgstr ""
+
+#: includes/class-ccsm-customizer.php:284
+msgid "Recommended size: 80px by 80px"
+msgstr ""
+
+#: includes/class-ccsm-customizer.php:307
+msgid "Background Image"
+msgstr ""
+
+#: includes/class-ccsm-customizer.php:323
+msgid "Background Color"
+msgstr ""
+
+#: includes/class-ccsm-customizer.php:339
+msgid "Text Color"
+msgstr ""
+
+#: includes/class-ccsm-customizer.php:355
+msgid "Heading"
+msgstr ""
+
+#: includes/class-ccsm-customizer.php:378
+msgid "Main Content"
+msgstr ""
+
+#: includes/class-ccsm-customizer.php:394
+msgid "Google Analytics tracking code ID"
+msgstr ""
+
+#: includes/class-ccsm-customizer.php:398
+msgid "G-XXXXXXXXXX"
+msgstr ""
+
+#: includes/class-ccsm-customizer.php:420
+msgid "Footer Text"
+msgstr ""
+
+#: includes/class-ccsm-customizer.php:443
+msgid "Hide the subscribe form"
+msgstr ""
+
+#: includes/class-ccsm-customizer.php:444
+msgid "Turn this on to remove the email sign-up form from the page."
+msgstr ""
+
+#: includes/class-ccsm-customizer.php:459
+msgid "Subscribe Form Action URL"
+msgstr ""
+
+#: includes/class-ccsm-customizer.php:460
+msgid "You can get your form action URL by creating a sign-up form and copying the form action=\"\" field.: <a href=\"https://mailchimp.com/help/add-a-signup-form-to-your-website/\" target=\"_blank\">https://mailchimp.com/help/add-a-signup-form-to-your-website/</a>"
+msgstr ""
+
+#: includes/class-ccsm-customizer.php:482
+msgid "Sign Up Button Link"
+msgstr ""
+
+#: includes/class-ccsm-customizer.php:483
+msgid "Where the Sign Up button sends visitors. Separate from the subscribe form above."
+msgstr ""
+
+#: includes/class-ccsm-customizer.php:508
+msgid "Facebook"
+msgstr ""
+
+#: includes/class-ccsm-customizer.php:532
+msgid "Twitter"
+msgstr ""
+
+#: includes/class-ccsm-customizer.php:556
+#: templates/template_04/template_04.php:100
+#: templates/template_04/template_04.php:103
+#: templates/template_05/template_05.php:65
+#: templates/template_05/template_05.php:68
+#: templates/template_06/template_06.php:153
+#: templates/template_06/template_06.php:156
+msgid "Email"
+msgstr ""
+
+#: includes/class-ccsm-customizer.php:579
+msgid "Youtube"
+msgstr ""
+
+#: includes/class-ccsm-customizer.php:602
+msgid "Pinterest"
+msgstr ""
+
+#: includes/class-ccsm-customizer.php:625
+msgid "Instagram"
+msgstr ""
+
+#: includes/class-ccsm-customizer.php:643
+msgid "Colorlib Coming Soon"
+msgstr ""
+
+#: includes/class-ccsm-customizer.php:643
+msgid "Coming Soon"
+msgstr ""
+
+#: includes/class-ccsm-customizer.php:673
+msgid "Settings imported."
+msgstr ""
+
+#: includes/class-ccsm-customizer.php:674
+msgid "Could not import those settings. Paste the exact JSON produced by Export."
+msgstr ""
+
+#: includes/class-ccsm-customizer.php:675
+msgid "A new preview link was generated. The previous one no longer works."
+msgstr ""
+
+#: includes/class-ccsm-customizer.php:679
+msgid "Coming Soon and Maintenance"
+msgstr ""
+
+#: includes/class-ccsm-customizer.php:689
+msgid "Maintenance mode is on."
+msgstr ""
+
+#: includes/class-ccsm-customizer.php:690
+msgid "Visitors get the maintenance page with an HTTP 503 status."
+msgstr ""
+
+#: includes/class-ccsm-customizer.php:692
+msgid "Coming soon mode is on."
+msgstr ""
+
+#: includes/class-ccsm-customizer.php:693
+msgid "Visitors get the coming soon page."
+msgstr ""
+
+#: includes/class-ccsm-customizer.php:695
+msgid "The coming soon page is off."
+msgstr ""
+
+#: includes/class-ccsm-customizer.php:696
+msgid "Your site is visible to everyone."
+msgstr ""
+
+#: includes/class-ccsm-customizer.php:702
+msgid "Edit the page and settings"
+msgstr ""
+
+#: includes/class-ccsm-customizer.php:708
+msgid "Share a preview with a client"
+msgstr ""
+
+#: includes/class-ccsm-customizer.php:710
+msgid "Anyone who opens this link sees the real site for a week, without an account. Treat it as a password."
+msgstr ""
+
+#: includes/class-ccsm-customizer.php:720
+msgid "Generate a new link"
+msgstr ""
+
+#: includes/class-ccsm-customizer.php:725
+msgid "Export and import"
+msgstr ""
+
+#: includes/class-ccsm-customizer.php:727
+msgid "Copy these settings to another site. The preview link is not included."
+msgstr ""
+
+#: includes/class-ccsm-customizer.php:730
+msgid "Export"
+msgstr ""
+
+#: includes/class-ccsm-customizer.php:735
+msgid "Import"
+msgstr ""
+
+#: includes/class-ccsm-customizer.php:740
+msgid "Settings JSON"
+msgstr ""
+
+#: includes/class-ccsm-customizer.php:742
+msgid "Paste exported settings here"
+msgstr ""
+
+#: includes/class-ccsm-customizer.php:744
+msgid "Import settings"
+msgstr ""
+
+#. translators: %s: number of days the plugin has been installed.
+#: includes/class-ccsm-review.php:28
+#, php-format
+msgid "Hey, I noticed you have installed our plugin for %s day - that's awesome! Could you please do me a BIG favor and give it a 5-star rating on WordPress? Just to help us spread the word and boost our motivation."
+msgstr ""
+
+#: includes/class-ccsm-review.php:29
+msgid "Ok, you deserve it"
+msgstr ""
+
+#: includes/class-ccsm-review.php:30
+msgid "I already did"
+msgstr ""
+
+#: includes/class-ccsm-review.php:31
+msgid "No, not good enough"
+msgstr ""
+
+#: includes/controls/class-ccsm-template-section.php:20
+#: includes/controls/class-ccsm-template-section.php:36
+msgid "Change"
+msgstr ""
+
+#: includes/controls/class-ccsm-template-section.php:34
+msgid "Active Template"
+msgstr ""
+
+#: includes/controls/class-ccsm-template-section.php:36
+msgid "Change Template"
+msgstr ""
+
+#: includes/controls/class-ccsm-template-section.php:42
+msgid "Back"
+msgstr ""
+
+#: includes/controls/class-ccsm-template-section.php:51
+msgid "Help"
+msgstr ""
+
+#: templates/template_01/template_01.php:44
+#: templates/template_02/template_02.php:48
+#: templates/template_03/template_03.php:56
+#: templates/template_04/template_04.php:28
+#: templates/template_05/template_05.php:19
+#: templates/template_06/template_06.php:112
+#: templates/template_07/template_07.php:137
+#: templates/template_08/template_08.php:39
+#: templates/template_09/template_09.php:72
+#: templates/template_10/template_10.php:97
+#: templates/template_11/template_11.php:70
+#: templates/template_13/template_13.php:58
+#: templates/template_15/template_15.php:52
+msgid "Days"
+msgstr ""
+
+#: templates/template_01/template_01.php:49
+#: templates/template_02/template_02.php:53
+#: templates/template_03/template_03.php:61
+#: templates/template_04/template_04.php:33
+#: templates/template_05/template_05.php:24
+#: templates/template_06/template_06.php:116
+#: templates/template_07/template_07.php:142
+#: templates/template_08/template_08.php:46
+#: templates/template_09/template_09.php:77
+#: templates/template_10/template_10.php:102
+#: templates/template_11/template_11.php:77
+#: templates/template_13/template_13.php:63
+#: templates/template_15/template_15.php:56
+msgid "Hours"
+msgstr ""
+
+#: templates/template_01/template_01.php:54
+#: templates/template_02/template_02.php:58
+#: templates/template_03/template_03.php:66
+#: templates/template_04/template_04.php:38
+#: templates/template_05/template_05.php:29
+#: templates/template_06/template_06.php:120
+#: templates/template_07/template_07.php:147
+#: templates/template_08/template_08.php:53
+#: templates/template_09/template_09.php:82
+#: templates/template_10/template_10.php:107
+#: templates/template_11/template_11.php:84
+#: templates/template_13/template_13.php:68
+#: templates/template_15/template_15.php:60
+msgid "Minutes"
+msgstr ""
+
+#: templates/template_01/template_01.php:59
+#: templates/template_02/template_02.php:63
+#: templates/template_03/template_03.php:71
+#: templates/template_04/template_04.php:43
+#: templates/template_05/template_05.php:34
+#: templates/template_06/template_06.php:124
+#: templates/template_07/template_07.php:152
+#: templates/template_08/template_08.php:60
+#: templates/template_09/template_09.php:87
+#: templates/template_10/template_10.php:112
+#: templates/template_11/template_11.php:91
+#: templates/template_13/template_13.php:73
+#: templates/template_15/template_15.php:64
+msgid "Seconds"
+msgstr ""
+
+#: templates/template_01/template_01.php:89
+#: templates/template_04/template_04.php:90
+#: templates/template_05/template_05.php:56
+#: templates/template_06/template_06.php:143
+msgid "Name is required"
+msgstr ""
+
+#: templates/template_01/template_01.php:90
+#: templates/template_01/template_01.php:93
+msgid "Your Name"
+msgstr ""
+
+#: templates/template_01/template_01.php:98
+#: templates/template_03/template_03.php:81
+#: templates/template_04/template_04.php:99
+#: templates/template_05/template_05.php:64
+#: templates/template_08/template_08.php:72
+#: templates/template_10/template_10.php:79
+#: templates/template_12/template_12.php:57
+#: templates/template_13/template_13.php:162
+#: templates/template_14/template_14.php:60
+msgid "Email is required: ex@abc.xyz"
+msgstr ""
+
+#: templates/template_01/template_01.php:99
+#: templates/template_01/template_01.php:102
+#: templates/template_07/template_07.php:114
+#: templates/template_07/template_07.php:117
+#: templates/template_08/template_08.php:73
+#: templates/template_08/template_08.php:76
+#: templates/template_10/template_10.php:80
+#: templates/template_10/template_10.php:83
+#: templates/template_12/template_12.php:58
+#: templates/template_12/template_12.php:60
+#: templates/template_13/template_13.php:163
+#: templates/template_13/template_13.php:165
+#: templates/template_14/template_14.php:61
+#: templates/template_14/template_14.php:63
+msgid "Email Address"
+msgstr ""
+
+#: templates/template_01/template_01.php:108
+#: templates/template_02/template_02.php:85
+#: templates/template_04/template_04.php:80
+#: templates/template_06/template_06.php:161
+#: templates/template_07/template_07.php:123
+#: templates/template_10/template_10.php:86
+#: templates/template_12/template_12.php:63
+#: templates/template_13/template_13.php:168
+#: templates/template_14/template_14.php:66
+msgid "Subscribe"
+msgstr ""
+
+#: templates/template_01/template_01.php:176
+#: templates/template_02/template_02.php:89
+#: templates/template_03/template_03.php:156
+#: templates/template_04/template_04.php:61
+#: templates/template_05/template_05.php:80
+#: templates/template_06/template_06.php:170
+#: templates/template_07/template_07.php:156
+#: templates/template_08/template_08.php:86
+#: templates/template_09/template_09.php:150
+#: templates/template_10/template_10.php:177
+#: templates/template_11/template_11.php:154
+#: templates/template_12/template_12.php:136
+#: templates/template_13/template_13.php:174
+#: templates/template_14/template_14.php:139
+#: templates/template_15/template_15.php:126
+msgid "Coming Soon Template designed by"
+msgstr ""
+
+#: templates/template_02/template_02.php:76
+#: templates/template_06/template_06.php:152
+#: templates/template_07/template_07.php:113
+msgid "Valid email is required: ex@abc.xyz"
+msgstr ""
+
+#: templates/template_02/template_02.php:77
+#: templates/template_02/template_02.php:80
+msgid "Enter Email Address"
+msgstr ""
+
+#: templates/template_03/template_03.php:82
+#: templates/template_03/template_03.php:83
+msgid "Your Email"
+msgstr ""
+
+#: templates/template_03/template_03.php:89
+msgid "Get Notified"
+msgstr ""
+
+#: templates/template_04/template_04.php:75
+msgid "Close"
+msgstr ""
+
+#: templates/template_04/template_04.php:84
+msgid "Follow us for update now!"
+msgstr ""
+
+#: templates/template_04/template_04.php:91
+#: templates/template_04/template_04.php:94
+#: templates/template_05/template_05.php:57
+#: templates/template_05/template_05.php:60
+#: templates/template_06/template_06.php:144
+#: templates/template_06/template_06.php:147
+msgid "Name"
+msgstr ""
+
+#: templates/template_04/template_04.php:109
+#: templates/template_05/template_05.php:72
+msgid "Get Updates"
+msgstr ""
+
+#: templates/template_06/template_06.php:136
+msgid "Newsletter"
+msgstr ""
+
+#: templates/template_08/template_08.php:81
+msgid "Notify Me"
+msgstr ""
+
+#: templates/template_09/template_09.php:58
+#: templates/template_10/template_10.php:56
+#: templates/template_11/template_11.php:56
+#: templates/template_13/template_13.php:81
+msgid "Sign Up"
+msgstr ""
+
+#: templates/template_14/template_14.php:70
+msgid "Subscribe Now"
+msgstr ""
+
+#: templates/template_14/template_14.php:80
+msgid "Follow us"
+msgstr ""

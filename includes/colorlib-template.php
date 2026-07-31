@@ -1,48 +1,70 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <title><?php bloginfo( 'name' );
-		$site_description = get_bloginfo( 'description' ); ?></title>
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-	<?php
-	$ccsm_options = get_option( 'ccsm_settings' );
+<?php
+// Exit if accessed directly
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 
-	if ( ! is_array( $ccsm_options ) ) {
-		return;
+$ccsm_options = ccsm_get_options();
+?>
+<!DOCTYPE html>
+<html <?php language_attributes(); ?>>
+<head>
+    <meta charset="<?php bloginfo( 'charset' ); ?>">
+    <title><?php bloginfo( 'name' ); ?></title>
+    <?php /* No maximum-scale: it blocks pinch zoom (WCAG 1.4.4). */ ?>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<?php
+	$ccsm_site_description = get_bloginfo( 'description', 'display' );
+	if ( '' !== $ccsm_site_description ) {
+		printf( '<meta name="description" content="%s">' . "\n", esc_attr( $ccsm_site_description ) );
+	}
+
+	// The theme never loads here, so the Site Icon has to be printed by hand.
+	if ( function_exists( 'wp_site_icon' ) && has_site_icon() ) {
+		wp_site_icon();
+	}
+
+	if ( ! empty( $ccsm_options['colorlib_coming_soon_noindex'] ) || 'maintenance' === ccsm_get_mode() ) {
+		echo '<meta name="robots" content="noindex, nofollow">' . "\n";
 	}
 
     if ( isset( $ccsm_options['colorlib_coming_soon_google_analytics_id'] ) && '' !== $ccsm_options['colorlib_coming_soon_google_analytics_id'] ) {
      ?>
-        <script async src="https://www.googletagmanager.com/gtag/js?id=<?php echo esc_html( str_replace(array('\'', '"'), '', $ccsm_options['colorlib_coming_soon_google_analytics_id']) ); ?>"></script>
+        <link rel="preconnect" href="https://www.googletagmanager.com">
+		<?php
+		// wp_print_script_tag() rather than a literal <script src>: it escapes
+		// the attributes and keeps the tag out of the NonEnqueuedScript sniff.
+		wp_print_script_tag(
+			array(
+				'src'   => 'https://www.googletagmanager.com/gtag/js?id=' . $ccsm_options['colorlib_coming_soon_google_analytics_id'],
+				'async' => true,
+			)
+		);
+		?>
         <script>
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
 
-        gtag('config', '<?php echo esc_html( str_replace(array('\'', '"'), '', $ccsm_options['colorlib_coming_soon_google_analytics_id']) ); ?>');
+        gtag('config', <?php echo wp_json_encode( $ccsm_options['colorlib_coming_soon_google_analytics_id'] ); ?>);
         </script>
      <?php
     }
 
-	$template = isset( $ccsm_options['colorlib_coming_soon_template_selection'] ) ? $ccsm_options['colorlib_coming_soon_template_selection'] : 'template_01';
+	$ccsm_template = isset( $ccsm_options['colorlib_coming_soon_template_selection'] ) ? $ccsm_options['colorlib_coming_soon_template_selection'] : 'template_01';
 
 	// Validate template name to prevent path traversal
-	$allowed_templates = array(
-		'template_01', 'template_02', 'template_03', 'template_04', 'template_05',
-		'template_06', 'template_07', 'template_08', 'template_09', 'template_10',
-		'template_11', 'template_12', 'template_13', 'template_14', 'template_15',
-	);
-	if ( ! in_array( $template, $allowed_templates, true ) ) {
-		$template = 'template_01';
+	if ( ! in_array( $ccsm_template, ccsm_allowed_templates(), true ) ) {
+		$ccsm_template = 'template_01';
 	}
 
-	$counterActivation = isset( $ccsm_options['colorlib_coming_soon_timer_activation'] ) ? $ccsm_options['colorlib_coming_soon_timer_activation'] : '1';
-	do_action( 'ccsm_header', $template );
+	$ccsm_counter_activation = $ccsm_options['colorlib_coming_soon_timer_activation'];
+	do_action( 'ccsm_header', $ccsm_template );
+	ccsm_preload_background( $ccsm_options );
 
 	?>
     <style>
-        <?php if( $counterActivation !== '1' ) { ?>
+        <?php if( $ccsm_counter_activation !== '1' ) { ?>
         .cd100 {
             display: none !important;
         }
@@ -53,14 +75,14 @@
     if(ccsm_template_has_background_color()){
         ?>
         body {
-            background-color: <?php echo wp_kses_post( $ccsm_options['colorlib_coming_soon_background_color'] ); ?> !important;
+            background-color: <?php echo esc_attr( sanitize_hex_color( $ccsm_options['colorlib_coming_soon_background_color'] ) ); ?> !important;
         }
 
         <?php
     }
 	?>
 
-        <?php echo wp_kses_post( isset( $ccsm_options['colorlib_coming_soon_page_custom_css'] ) ? $ccsm_options['colorlib_coming_soon_page_custom_css'] : '' ); ?>
+        <?php echo wp_strip_all_tags( $ccsm_options['colorlib_coming_soon_page_custom_css'] ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- CSS context, tags stripped. ?>
         .colorlib-copyright {
             text-align: center;
             left: 0;
@@ -74,12 +96,25 @@
 
         .colorlib-copyright a {
             opacity: 1;
+            /* Templates that need a specific colour set one inline; the rest
+               should follow the surrounding text rather than fall back to the
+               browser's default link blue. Keep the underline: it is the only
+               remaining affordance that this is a link. */
+            color: inherit;
+            text-decoration: underline;
         }
     </style>
 </head>
 <body>
 
-<?php include( CCSM_PATH . 'templates/' . $template . '/' . $template . '.php' ); ?>
+<main id="ccsm-main">
+<?php
+include CCSM_PATH . 'templates/' . $ccsm_template . '/' . $ccsm_template . '.php';
+?>
+</main>
+<?php
+do_action( 'ccsm_footer', $ccsm_template );
+?>
 
 </body>
 </html>

@@ -11,60 +11,6 @@ module.exports = function( grunt ) {
 			css: '/assets/css',
 			js: '/assets/js'
 		},
-		checktextdomain: {
-			standard: {
-				options: {
-					text_domain: [ 'colorlib-coming-soon-maintenance' ], //Specify allowed domain(s)
-					create_report_file: 'true',
-					keywords: [ //List keyword specifications
-						'__:1,2d',
-						'_e:1,2d',
-						'_x:1,2c,3d',
-						'esc_html__:1,2d',
-						'esc_html_e:1,2d',
-						'esc_html_x:1,2c,3d',
-						'esc_attr__:1,2d',
-						'esc_attr_e:1,2d',
-						'esc_attr_x:1,2c,3d',
-						'_ex:1,2c,3d',
-						'_n:1,2,4d',
-						'_nx:1,2,4c,5d',
-						'_n_noop:1,2,3d',
-						'_nx_noop:1,2,3c,4d'
-					]
-				},
-				files: [
-					{
-						src: [
-							'**/*.php',
-							'!**/node_modules/**',
-						], //all php
-						expand: true
-					}
-				]
-			}
-		},
-        makepot: {
-	        target: {
-	            options: {
-	                cwd: '',                          // Directory of files to internationalize.
-	                domainPath: 'languages/',         // Where to save the POT file.
-	                exclude: [],                      // List of files or directories to ignore.
-	                include: [],                      // List of files or directories to include.
-	                mainFile: 'colorlib-coming-soon-and-maintenance-mode.php',                     // Main project file.
-	                potComments: '',                  // The copyright at the beginning of the POT file.
-	                potFilename: 'colorlib-coming-soon-maintenance.po',                  // Name of the POT file.
-	                potHeaders: {
-	                    poedit: true,                 // Includes common Poedit headers.
-	                    'x-poedit-keywordslist': true // Include a list of all possible gettext functions.
-	                },                                // Headers to add to the generated POT file.
-	                processPot: null,                 // A callback function for manipulating the POT file.
-	                type: 'wp-plugin',                // Type of project (wp-plugin or wp-theme).
-	                updateTimestamp: true,            // Whether the POT-Creation-Date should be updated without other changes.
-	                updatePoFiles: false              // Whether to update PO files in the same directory as the POT file.
-	            }
-	        }
-	    },
 		cssmin: {
 			target: {
 				files: [
@@ -74,12 +20,22 @@ module.exports = function( grunt ) {
 						src: [ '*.css', '!*.min.css' ],
 						dest: 'assets/css',
 						ext: '.min.css'
+					},
+					// The per-template CSS is the bulk of the front-end payload,
+					// so minify it too - ccsm_style_url() serves .min.css
+					// whenever the minified sibling exists.
+					{
+						expand: true,
+						cwd: 'templates',
+						src: [ '*/css/*.css', '!*/css/*.min.css' ],
+						dest: 'templates',
+						ext: '.min.css'
 					}
 				]
 			}
 		},
 		clean: {
-			css: [ 'assets/css/*.min.css', '!assets/css/jquery-ui.min.css' ],
+			css: [ 'assets/css/*.min.css', 'templates/*/css/*.min.css' ],
 			init: {
 				src: [ 'build/' ]
 			},
@@ -103,7 +59,13 @@ module.exports = function( grunt ) {
 					'!composer.lock',
 					'!set_tags.sh',
 					'!*.zip',
-					'!nbproject/**'
+					'!nbproject/**',
+					'!CLAUDE.md',
+					'!MODERNIZATION_PLAN.md',
+					'!.gitignore',
+					'!.git/**',
+					'!.claude/**',
+					'!tests/**'
 				],
 				dest: 'build/'
 			}
@@ -127,18 +89,22 @@ module.exports = function( grunt ) {
 	grunt.loadNpmTasks( 'grunt-contrib-clean' );
 	grunt.loadNpmTasks( 'grunt-contrib-cssmin' );
 
-	grunt.registerTask( 'textdomain', [
-		'checktextdomain'
-	] );
-	grunt.registerTask( 'i18n', ['checktextdomain', 'makepot']);
+	// Translations are generated with WP-CLI, the wp.org standard toolchain:
+	//   npm run i18n
+	// grunt-wp-i18n and grunt-checktextdomain were both unmaintained and could
+	// not see strings in JS.
+	grunt.registerTask( 'i18n', function () {
+		grunt.log.writeln( 'Run "npm run i18n" (requires WP-CLI) to regenerate languages/colorlib-coming-soon-maintenance.pot.' );
+	} );
+
 	grunt.registerTask( 'mincss', [  // Minify CSS
 		'clean:css',
 		'cssmin'
 	] );
-	// Build task
+	// Build task. Run "npm run i18n" first if the strings changed.
 	grunt.registerTask( 'build-archive', [
-		'i18n',
 		'clean:init',
+		'mincss',
 		'copy',
 		'compress:build',
 		'clean:init'

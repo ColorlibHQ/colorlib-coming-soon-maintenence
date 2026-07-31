@@ -1,0 +1,484 @@
+/*! Shared utility styles - purged from the per-template util.css copies. */
+*,
+*:before,
+*:after {
+	margin: 0px; 
+	padding: 0px; 
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+body,
+html {
+	font-family: Arial, sans-serif;
+	font-size: 15px;
+	color: #666666;
+
+	height: 100%;
+	background-color: #fff;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+a:hover {text-decoration: none;}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {margin: 0px;}
+ul,
+li {
+	margin: 0px;
+	list-style-type: none;
+}
+input,
+textarea,
+label {
+	display: block;
+	border: none;
+}
+button {
+	border: none;
+	background: transparent;
+	cursor: pointer;
+}
+iframe {border: none;}
+.fs-15 {font-size: 15px;}
+.fs-16 {font-size: 16px;}
+.fs-25 {font-size: 25px;}
+.fs-26 {font-size: 26px;}
+.fs-30 {font-size: 30px;}
+.fs-60 {font-size: 60px;}
+.p-t-5 {padding-top: 5px;}
+.p-t-10 {padding-top: 10px;}
+.p-t-15 {padding-top: 15px;}
+.p-t-18 {padding-top: 18px;}
+.p-t-20 {padding-top: 20px;}
+.p-t-22 {padding-top: 22px;}
+.p-t-24 {padding-top: 24px;}
+.p-t-25 {padding-top: 25px;}
+.p-t-30 {padding-top: 30px;}
+.p-t-33 {padding-top: 33px;}
+.p-t-34 {padding-top: 34px;}
+.p-t-37 {padding-top: 37px;}
+.p-t-42 {padding-top: 42px;}
+.p-t-45 {padding-top: 45px;}
+.p-t-50 {padding-top: 50px;}
+.p-t-54 {padding-top: 54px;}
+.p-t-55 {padding-top: 55px;}
+.p-t-70 {padding-top: 70px;}
+.p-t-80 {padding-top: 80px;}
+.p-t-100 {padding-top: 100px;}
+.p-t-116 {padding-top: 116px;}
+.p-t-160 {padding-top: 160px;}
+.p-t-175 {padding-top: 175px;}
+.p-b-2 {padding-bottom: 2px;}
+.p-b-4 {padding-bottom: 4px;}
+.p-b-6 {padding-bottom: 6px;}
+.p-b-7 {padding-bottom: 7px;}
+.p-b-9 {padding-bottom: 9px;}
+.p-b-10 {padding-bottom: 10px;}
+.p-b-15 {padding-bottom: 15px;}
+.p-b-18 {padding-bottom: 18px;}
+.p-b-22 {padding-bottom: 22px;}
+.p-b-23 {padding-bottom: 23px;}
+.p-b-25 {padding-bottom: 25px;}
+.p-b-30 {padding-bottom: 30px;}
+.p-b-33 {padding-bottom: 33px;}
+.p-b-34 {padding-bottom: 34px;}
+.p-b-35 {padding-bottom: 35px;}
+.p-b-36 {padding-bottom: 36px;}
+.p-b-37 {padding-bottom: 37px;}
+.p-b-40 {padding-bottom: 40px;}
+.p-b-43 {padding-bottom: 43px;}
+.p-b-45 {padding-bottom: 45px;}
+.p-b-46 {padding-bottom: 46px;}
+.p-b-48 {padding-bottom: 48px;}
+.p-b-50 {padding-bottom: 50px;}
+.p-b-52 {padding-bottom: 52px;}
+.p-b-55 {padding-bottom: 55px;}
+.p-b-60 {padding-bottom: 60px;}
+.p-b-67 {padding-bottom: 67px;}
+.p-b-68 {padding-bottom: 68px;}
+.p-b-80 {padding-bottom: 80px;}
+.p-b-82 {padding-bottom: 82px;}
+.p-b-90 {padding-bottom: 90px;}
+.p-b-100 {padding-bottom: 100px;}
+.p-b-120 {padding-bottom: 120px;}
+.p-b-165 {padding-bottom: 165px;}
+.p-b-175 {padding-bottom: 175px;}
+.p-b-185 {padding-bottom: 185px;}
+.p-b-215 {padding-bottom: 215px;}
+.p-l-15 {padding-left: 15px;}
+.p-l-35 {padding-left: 35px;}
+.p-l-45 {padding-left: 45px;}
+.p-l-48 {padding-left: 48px;}
+.p-l-50 {padding-left: 50px;}
+.p-l-58 {padding-left: 58px;}
+.p-l-65 {padding-left: 65px;}
+.p-l-70 {padding-left: 70px;}
+.p-l-75 {padding-left: 75px;}
+.p-l-80 {padding-left: 80px;}
+.p-r-15 {padding-right: 15px;}
+.p-r-20 {padding-right: 20px;}
+.p-r-36 {padding-right: 36px;}
+.p-r-40 {padding-right: 40px;}
+.p-r-45 {padding-right: 45px;}
+.p-r-46 {padding-right: 46px;}
+.p-r-50 {padding-right: 50px;}
+.p-r-60 {padding-right: 60px;}
+.p-r-74 {padding-right: 74px;}
+.p-r-75 {padding-right: 75px;}
+.p-r-80 {padding-right: 80px;}
+.p-r-200 {padding-right: 200px;}
+.m-t-3 {margin-top: 3px;}
+.m-t-5 {margin-top: 5px;}
+.m-t-8 {margin-top: 8px;}
+.m-t-10 {margin-top: 10px;}
+.m-t-15 {margin-top: 15px;}
+.m-b-3 {margin-bottom: 3px;}
+.m-b-5 {margin-bottom: 5px;}
+.m-b-8 {margin-bottom: 8px;}
+.m-b-10 {margin-bottom: 10px;}
+.m-b-15 {margin-bottom: 15px;}
+.m-b-20 {margin-bottom: 20px;}
+.m-b-30 {margin-bottom: 30px;}
+.m-b-40 {margin-bottom: 40px;}
+.m-l-3 {margin-left: 3px;}
+.m-l-10 {margin-left: 10px;}
+.m-l-15 {margin-left: 15px;}
+.m-r-3 {margin-right: 3px;}
+.m-r-5 {margin-right: 5px;}
+.m-r-6 {margin-right: 6px;}
+.m-r-10 {margin-right: 10px;}
+.m-r-15 {margin-right: 15px;}
+.m-r-22 {margin-right: 22px;}
+.m-r-30 {margin-right: 30px;}
+.m-lr-auto {
+	margin-left: auto;	
+	margin-right: auto;
+}
+.txt-center {text-align: center;}
+.w-full {width: 100%;}
+.trans-04 {
+	-webkit-transition: all 0.4s;
+    -o-transition: all 0.4s;
+    -moz-transition: all 0.4s;
+    transition: all 0.4s;
+}
+.flex-w,
+.flex-c,
+.flex-sa,
+.flex-sb,
+.flex-b,
+.flex-m,
+.flex-str,
+.flex-c-m,
+.flex-sa-m,
+.flex-sb-m,
+.flex-col-c,
+.flex-col-sb,
+.flex-col-c-m,
+.flex-col-c-sb,
+.flex-row-rev,
+.flex-col {
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -moz-box;
+	display: -ms-flexbox;
+	display: flex;
+}
+.flex-w {
+	-webkit-flex-wrap: wrap;
+	-moz-flex-wrap: wrap;
+	-ms-flex-wrap: wrap;
+	-o-flex-wrap: wrap;
+	flex-wrap: wrap;
+}
+.flex-c {
+	justify-content: center;
+}
+.flex-sa {
+	justify-content: space-around;
+}
+.flex-sb {
+	justify-content: space-between;
+}
+.flex-b {
+	-ms-align-items: flex-end;
+	align-items: flex-end;
+}
+.flex-m {
+	-ms-align-items: center;
+	align-items: center;
+}
+.flex-str {
+	-ms-align-items: stretch;
+	align-items: stretch;
+}
+.flex-c-m {
+	justify-content: center;
+	-ms-align-items: center;
+	align-items: center;
+}
+.flex-sa-m {
+	justify-content: space-around;
+	-ms-align-items: center;
+	align-items: center;
+}
+.flex-sb-m {
+	justify-content: space-between;
+	-ms-align-items: center;
+	align-items: center;
+}
+.flex-col-c {
+	-ms-align-items: center;
+	align-items: center;
+}
+.flex-col-sb {
+	justify-content: space-between;
+}
+.flex-col-c-m {
+	-ms-align-items: center;
+	align-items: center;
+	justify-content: center;
+}
+.flex-col-c-sb {
+	justify-content: space-between;
+	-ms-align-items: center;
+	align-items: center;
+}
+.flex-row-rev {
+	-webkit-flex-direction: row-reverse;
+	-moz-flex-direction: row-reverse;
+	-ms-flex-direction: row-reverse;
+	-o-flex-direction: row-reverse;
+	flex-direction: row-reverse;
+}
+.flex-col-c,
+.flex-col-sb,
+.flex-col-c-m,
+.flex-col-c-sb,
+.flex-col {
+	-webkit-flex-direction: column;
+	-moz-flex-direction: column;
+	-ms-flex-direction: column;
+	-o-flex-direction: column;
+	flex-direction: column;
+}
+.ab-t-l {
+	position: absolute;
+	left: 0px;
+	top: 0px;
+}
+.ab-t-r {
+	position: absolute;
+	right: 0px;
+	top: 0px;
+}
+
+/*
+ * Retained utility classes: font sizes, text alignment and colours.
+ * These are not used by any shipped template, so the purge would drop them,
+ * but they are the classes a site owner may have typed by hand into the
+ * heading / content / footer rich-text fields. Their styling lives in that
+ * site's database, where a build-time purge cannot see it.
+ */
+.fs-1 {font-size: 1px;}
+.fs-2 {font-size: 2px;}
+.fs-3 {font-size: 3px;}
+.fs-4 {font-size: 4px;}
+.fs-5 {font-size: 5px;}
+.fs-6 {font-size: 6px;}
+.fs-7 {font-size: 7px;}
+.fs-8 {font-size: 8px;}
+.fs-9 {font-size: 9px;}
+.fs-10 {font-size: 10px;}
+.fs-11 {font-size: 11px;}
+.fs-12 {font-size: 12px;}
+.fs-13 {font-size: 13px;}
+.fs-14 {font-size: 14px;}
+.fs-17 {font-size: 17px;}
+.fs-18 {font-size: 18px;}
+.fs-19 {font-size: 19px;}
+.fs-20 {font-size: 20px;}
+.fs-21 {font-size: 21px;}
+.fs-22 {font-size: 22px;}
+.fs-23 {font-size: 23px;}
+.fs-24 {font-size: 24px;}
+.fs-27 {font-size: 27px;}
+.fs-28 {font-size: 28px;}
+.fs-29 {font-size: 29px;}
+.fs-31 {font-size: 31px;}
+.fs-32 {font-size: 32px;}
+.fs-33 {font-size: 33px;}
+.fs-34 {font-size: 34px;}
+.fs-35 {font-size: 35px;}
+.fs-36 {font-size: 36px;}
+.fs-37 {font-size: 37px;}
+.fs-38 {font-size: 38px;}
+.fs-39 {font-size: 39px;}
+.fs-40 {font-size: 40px;}
+.fs-41 {font-size: 41px;}
+.fs-42 {font-size: 42px;}
+.fs-43 {font-size: 43px;}
+.fs-44 {font-size: 44px;}
+.fs-45 {font-size: 45px;}
+.fs-46 {font-size: 46px;}
+.fs-47 {font-size: 47px;}
+.fs-48 {font-size: 48px;}
+.fs-49 {font-size: 49px;}
+.fs-50 {font-size: 50px;}
+.fs-51 {font-size: 51px;}
+.fs-52 {font-size: 52px;}
+.fs-53 {font-size: 53px;}
+.fs-54 {font-size: 54px;}
+.fs-55 {font-size: 55px;}
+.fs-56 {font-size: 56px;}
+.fs-57 {font-size: 57px;}
+.fs-58 {font-size: 58px;}
+.fs-59 {font-size: 59px;}
+.fs-61 {font-size: 61px;}
+.fs-62 {font-size: 62px;}
+.fs-63 {font-size: 63px;}
+.fs-64 {font-size: 64px;}
+.fs-65 {font-size: 65px;}
+.fs-66 {font-size: 66px;}
+.fs-67 {font-size: 67px;}
+.fs-68 {font-size: 68px;}
+.fs-69 {font-size: 69px;}
+.fs-70 {font-size: 70px;}
+.fs-71 {font-size: 71px;}
+.fs-72 {font-size: 72px;}
+.fs-73 {font-size: 73px;}
+.fs-74 {font-size: 74px;}
+.fs-75 {font-size: 75px;}
+.fs-76 {font-size: 76px;}
+.fs-77 {font-size: 77px;}
+.fs-78 {font-size: 78px;}
+.fs-79 {font-size: 79px;}
+.fs-80 {font-size: 80px;}
+.fs-81 {font-size: 81px;}
+.fs-82 {font-size: 82px;}
+.fs-83 {font-size: 83px;}
+.fs-84 {font-size: 84px;}
+.fs-85 {font-size: 85px;}
+.fs-86 {font-size: 86px;}
+.fs-87 {font-size: 87px;}
+.fs-88 {font-size: 88px;}
+.fs-89 {font-size: 89px;}
+.fs-90 {font-size: 90px;}
+.fs-91 {font-size: 91px;}
+.fs-92 {font-size: 92px;}
+.fs-93 {font-size: 93px;}
+.fs-94 {font-size: 94px;}
+.fs-95 {font-size: 95px;}
+.fs-96 {font-size: 96px;}
+.fs-97 {font-size: 97px;}
+.fs-98 {font-size: 98px;}
+.fs-99 {font-size: 99px;}
+.fs-100 {font-size: 100px;}
+.fs-101 {font-size: 101px;}
+.fs-102 {font-size: 102px;}
+.fs-103 {font-size: 103px;}
+.fs-104 {font-size: 104px;}
+.fs-105 {font-size: 105px;}
+.fs-106 {font-size: 106px;}
+.fs-107 {font-size: 107px;}
+.fs-108 {font-size: 108px;}
+.fs-109 {font-size: 109px;}
+.fs-110 {font-size: 110px;}
+.fs-111 {font-size: 111px;}
+.fs-112 {font-size: 112px;}
+.fs-113 {font-size: 113px;}
+.fs-114 {font-size: 114px;}
+.fs-115 {font-size: 115px;}
+.fs-116 {font-size: 116px;}
+.fs-117 {font-size: 117px;}
+.fs-118 {font-size: 118px;}
+.fs-119 {font-size: 119px;}
+.fs-120 {font-size: 120px;}
+.fs-121 {font-size: 121px;}
+.fs-122 {font-size: 122px;}
+.fs-123 {font-size: 123px;}
+.fs-124 {font-size: 124px;}
+.fs-125 {font-size: 125px;}
+.fs-126 {font-size: 126px;}
+.fs-127 {font-size: 127px;}
+.fs-128 {font-size: 128px;}
+.fs-129 {font-size: 129px;}
+.fs-130 {font-size: 130px;}
+.fs-131 {font-size: 131px;}
+.fs-132 {font-size: 132px;}
+.fs-133 {font-size: 133px;}
+.fs-134 {font-size: 134px;}
+.fs-135 {font-size: 135px;}
+.fs-136 {font-size: 136px;}
+.fs-137 {font-size: 137px;}
+.fs-138 {font-size: 138px;}
+.fs-139 {font-size: 139px;}
+.fs-140 {font-size: 140px;}
+.fs-141 {font-size: 141px;}
+.fs-142 {font-size: 142px;}
+.fs-143 {font-size: 143px;}
+.fs-144 {font-size: 144px;}
+.fs-145 {font-size: 145px;}
+.fs-146 {font-size: 146px;}
+.fs-147 {font-size: 147px;}
+.fs-148 {font-size: 148px;}
+.fs-149 {font-size: 149px;}
+.fs-150 {font-size: 150px;}
+.fs-151 {font-size: 151px;}
+.fs-152 {font-size: 152px;}
+.fs-153 {font-size: 153px;}
+.fs-154 {font-size: 154px;}
+.fs-155 {font-size: 155px;}
+.fs-156 {font-size: 156px;}
+.fs-157 {font-size: 157px;}
+.fs-158 {font-size: 158px;}
+.fs-159 {font-size: 159px;}
+.fs-160 {font-size: 160px;}
+.fs-161 {font-size: 161px;}
+.fs-162 {font-size: 162px;}
+.fs-163 {font-size: 163px;}
+.fs-164 {font-size: 164px;}
+.fs-165 {font-size: 165px;}
+.fs-166 {font-size: 166px;}
+.fs-167 {font-size: 167px;}
+.fs-168 {font-size: 168px;}
+.fs-169 {font-size: 169px;}
+.fs-170 {font-size: 170px;}
+.fs-171 {font-size: 171px;}
+.fs-172 {font-size: 172px;}
+.fs-173 {font-size: 173px;}
+.fs-174 {font-size: 174px;}
+.fs-175 {font-size: 175px;}
+.fs-176 {font-size: 176px;}
+.fs-177 {font-size: 177px;}
+.fs-178 {font-size: 178px;}
+.fs-179 {font-size: 179px;}
+.fs-180 {font-size: 180px;}
+.fs-181 {font-size: 181px;}
+.fs-182 {font-size: 182px;}
+.fs-183 {font-size: 183px;}
+.fs-184 {font-size: 184px;}
+.fs-185 {font-size: 185px;}
+.fs-186 {font-size: 186px;}
+.fs-187 {font-size: 187px;}
+.fs-188 {font-size: 188px;}
+.fs-189 {font-size: 189px;}
+.fs-190 {font-size: 190px;}
+.fs-191 {font-size: 191px;}
+.fs-192 {font-size: 192px;}
+.fs-193 {font-size: 193px;}
+.fs-194 {font-size: 194px;}
+.fs-195 {font-size: 195px;}
+.fs-196 {font-size: 196px;}
+.fs-197 {font-size: 197px;}
+.fs-198 {font-size: 198px;}
+.fs-199 {font-size: 199px;}
+.fs-200 {font-size: 200px;}
+.txt-left {text-align: left;}
+.txt-right {text-align: right;}

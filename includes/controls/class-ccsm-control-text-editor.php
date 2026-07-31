@@ -1,4 +1,9 @@
 <?php
+// Exit if accessed directly
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 if ( class_exists( 'WP_Customize_Control' ) ) {
 
 	if ( ! class_exists( 'CCSM_Control_Text_Editor' ) ) {

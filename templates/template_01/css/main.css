@@ -164,9 +164,6 @@ input.input100 {
 /*//////////////////////////////////////////////////////////////////
 [ S-Text 0 - 15 ]*/
 
-.s1-txt1 {
-}
-
 /*---------------------------------------------*/
 .s2-txt1 {
     font-family: 'Lato', sans-serif;
@@ -188,7 +185,7 @@ input.input100 {
     font-family: 'Lato', sans-serif;
     font-size: 14px;
     line-height: 1.5;
-    color: #999999;
+    color: #6e6e6e;
 }
 
 .s2-txt4 {
@@ -219,9 +216,6 @@ input.input100 {
 
 /*//////////////////////////////////////////////////////////////////
 [ L-Text >= 26 ]*/
-
-.l1-txt1 {
-}
 
 /*---------------------------------------------*/
 .l2-txt1 {
@@ -379,19 +373,19 @@ input.input100 {
 
 /*---------------------------------------------*/
 .placeholder0::-webkit-input-placeholder {
-    color: #999999;
+    color: #6e6e6e;
 }
 
 .placeholder0:-moz-placeholder {
-    color: #999999;
+    color: #6e6e6e;
 }
 
 .placeholder0::-moz-placeholder {
-    color: #999999;
+    color: #6e6e6e;
 }
 
 .placeholder0:-ms-input-placeholder {
-    color: #999999;
+    color: #6e6e6e;
 }
 
 /*---------------------------------------------*/
