@@ -29,7 +29,7 @@ if ( is_ssl()  ) {
             <div class="wrappic1">
 				<?php if ( $ccsm_logo_url ) {
 					?>
-                    <a href="<?php echo esc_url( site_url() ); ?>" class="logo-link"><img
+                    <a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="logo-link"><img
                                 src="<?php echo esc_url( $ccsm_logo_url ); ?>"
                                 alt="<?php echo esc_attr( get_bloginfo( 'name' ) ); ?>"></a>
 					<?php
