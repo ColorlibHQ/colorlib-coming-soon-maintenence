@@ -10,7 +10,20 @@
 	/* ----------------------------------------------------------------------
 	 * Subscribe form validation
 	 * -------------------------------------------------------------------- */
-	var EMAIL_RE = /^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{1,5}|[0-9]{1,3})(\]?)$/;
+	/*
+	 * Deliberately loose: something@something.tld. The previous pattern
+	 * rejected real addresses - plus-addressing (name+news@gmail.com) and any
+	 * TLD longer than five letters (.agency, .studio, .online). The mailing
+	 * list provider does the real validation.
+	 */
+	var EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+
+	/* Translated strings, printed by ccsm_footer_scripts(). */
+	var I18N = window.CCSM_I18N || {};
+
+	function t(key, fallback) {
+		return typeof I18N[key] === 'string' ? I18N[key] : fallback;
+	}
 
 	function isEmailField(input) {
 		// Templates use name="EMAIL", so compare case-insensitively.
@@ -55,7 +68,7 @@
 
 		var region = errorRegion(input);
 		if (region) {
-			region.textContent = (wrap && wrap.getAttribute('data-validate')) || 'This field is required.';
+			region.textContent = (wrap && wrap.getAttribute('data-validate')) || t('required', 'This field is required.');
 			input.setAttribute('aria-describedby', region.id);
 		}
 
@@ -333,7 +346,7 @@
 
 			var note = document.createElement('p');
 			note.className = 'ccsm-sr-only ccsm-launch-date';
-			note.textContent = 'Launching on ' + launchText + '.';
+			note.textContent = t('launching', 'Launching on %s.').replace('%s', launchText);
 			if (clock.parentNode) {
 				clock.parentNode.insertBefore(note, clock);
 			}

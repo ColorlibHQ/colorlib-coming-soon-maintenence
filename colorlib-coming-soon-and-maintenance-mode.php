@@ -790,6 +790,15 @@ function ccsm_style_enqueue( $template_name ) {
  * registration was ignored and 6.5 KB of parser-blocking JS sat in the <head>.
  */
 function ccsm_footer_scripts() {
+	wp_localize_script(
+		'ccsm-frontend',
+		'CCSM_I18N',
+		array(
+			'required'  => __( 'This field is required.', 'colorlib-coming-soon-maintenance' ),
+			/* translators: %s: the launch date, formatted in the visitor's locale, e.g. "December 25, 2026". */
+			'launching' => __( 'Launching on %s.', 'colorlib-coming-soon-maintenance' ),
+		)
+	);
 	wp_print_scripts( 'ccsm-frontend' );
 }
 add_action( 'ccsm_footer', 'ccsm_footer_scripts' );
