@@ -30,6 +30,15 @@ class CCSM_Customizer {
 		$action = sanitize_text_field( wp_unslash( $_POST['ccsm_action'] ) );
 		$notice = '';
 
+		if ( 'toggle_activation' === $action ) {
+			$options = wp_parse_args( (array) get_option( 'ccsm_settings', array() ), ccsm_defaults() );
+			$turn_on = '1' !== $options['colorlib_coming_soon_activation'];
+
+			$options['colorlib_coming_soon_activation'] = $turn_on ? '1' : '';
+			update_option( 'ccsm_settings', $options );
+			$notice = $turn_on ? 'activated' : 'deactivated';
+		}
+
 		if ( 'regenerate_token' === $action ) {
 			$options = get_option( 'ccsm_settings' );
 			if ( is_array( $options ) ) {
@@ -686,6 +695,8 @@ class CCSM_Customizer {
 			'imported'      => array( 'success', __( 'Settings imported.', 'colorlib-coming-soon-maintenance' ) ),
 			'import_failed' => array( 'error', __( 'Could not import those settings. Paste the exact JSON produced by Export.', 'colorlib-coming-soon-maintenance' ) ),
 			'token'         => array( 'success', __( 'A new preview link was generated. The previous one no longer works.', 'colorlib-coming-soon-maintenance' ) ),
+			'activated'     => array( 'success', __( 'The coming soon page is on. If you use a page cache, clear it so visitors get the new page.', 'colorlib-coming-soon-maintenance' ) ),
+			'deactivated'   => array( 'success', __( 'The coming soon page is off. If you use a page cache, clear it so visitors get your site.', 'colorlib-coming-soon-maintenance' ) ),
 		);
 		?>
 		<div class="wrap">
@@ -710,11 +721,27 @@ class CCSM_Customizer {
 				<?php endif; ?>
 			</p>
 
-			<p>
-				<a class="button button-primary button-hero" href="<?php echo esc_url( $customizer ); ?>">
-					<?php esc_html_e( 'Edit the page and settings', 'colorlib-coming-soon-maintenance' ); ?>
-				</a>
-			</p>
+			<form method="post">
+				<?php wp_nonce_field( 'ccsm_tools' ); ?>
+				<input type="hidden" name="ccsm_action" value="toggle_activation">
+				<p>
+					<a class="button button-primary button-hero" href="<?php echo esc_url( $customizer ); ?>">
+						<?php esc_html_e( 'Edit the page and settings', 'colorlib-coming-soon-maintenance' ); ?>
+					</a>
+					<?php
+					// Switching the page off used to mean opening the Customizer
+					// and finding the toggle.
+					submit_button(
+						$active
+							? __( 'Turn off the coming soon page', 'colorlib-coming-soon-maintenance' )
+							: __( 'Turn on the coming soon page', 'colorlib-coming-soon-maintenance' ),
+						'secondary button-hero',
+						'submit',
+						false
+					);
+					?>
+				</p>
+			</form>
 
 			<hr>
 

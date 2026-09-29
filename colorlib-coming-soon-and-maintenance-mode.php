@@ -112,6 +112,19 @@ function ccsm_force_redirect($should_force=false){
 }
 
 /**
+ * Whether the coming soon page is switched on at all, whoever is looking.
+ *
+ * @return bool
+ */
+function ccsm_is_enabled() {
+	$ccsm_options = get_option( 'ccsm_settings' );
+
+	return is_array( $ccsm_options )
+		&& isset( $ccsm_options['colorlib_coming_soon_activation'] )
+		&& '1' === $ccsm_options['colorlib_coming_soon_activation'];
+}
+
+/**
  * Whether the coming soon page should replace the site for the current visitor.
  *
  * This is the single source of truth for every guard in the plugin (the
@@ -121,13 +134,7 @@ function ccsm_force_redirect($should_force=false){
  * @return bool
  */
 function ccsm_is_active_for_visitor() {
-	$ccsm_options = get_option( 'ccsm_settings' );
-
-	if ( ! is_array( $ccsm_options ) ) {
-		return false;
-	}
-
-	if ( ! isset( $ccsm_options['colorlib_coming_soon_activation'] ) || '1' !== $ccsm_options['colorlib_coming_soon_activation'] ) {
+	if ( ! ccsm_is_enabled() ) {
 		return false;
 	}
 
@@ -366,6 +373,54 @@ function ccsm_robots_txt( $output, $public ) {
 
 	return "User-agent: *\nDisallow: /\n";
 }
+
+/**
+ * Say in the admin bar that visitors are getting the placeholder page.
+ *
+ * Editors see straight through the page, so nothing else on screen tells
+ * them the site is still closed: it is easy to forget to reopen it, or to
+ * wonder why nobody else can see a change.
+ *
+ * @param WP_Admin_Bar $wp_admin_bar Admin bar instance.
+ */
+function ccsm_admin_bar_status( $wp_admin_bar ) {
+	if ( ! ccsm_is_enabled() || ccsm_is_active_for_visitor() ) {
+		return;
+	}
+
+	$title = 'maintenance' === ccsm_get_mode()
+		? __( 'Maintenance mode is on', 'colorlib-coming-soon-maintenance' )
+		: __( 'Coming soon page is on', 'colorlib-coming-soon-maintenance' );
+
+	$wp_admin_bar->add_node(
+		array(
+			'id'    => 'ccsm-status',
+			'title' => esc_html( $title ),
+			'href'  => current_user_can( 'manage_options' ) ? admin_url( 'admin.php?page=ccsm_settings' ) : false,
+			'meta'  => array( 'class' => 'ccsm-status' ),
+		)
+	);
+}
+add_action( 'admin_bar_menu', 'ccsm_admin_bar_status', 100 );
+
+/**
+ * Colour the admin bar status item so it reads as a warning.
+ */
+function ccsm_admin_bar_style() {
+	if ( ! is_admin_bar_showing() || ! ccsm_is_enabled() ) {
+		return;
+	}
+
+	// Selectors mirror core's .ab-top-menu > li rules so they win on hover too.
+	wp_add_inline_style(
+		'admin-bar',
+		'#wpadminbar .ab-top-menu > li.ccsm-status > .ab-item{background:#b32d2e;color:#fff}'
+		. '#wpadminbar .ab-top-menu > li.ccsm-status:hover > .ab-item,'
+		. '#wpadminbar .ab-top-menu > li.ccsm-status > .ab-item:focus{background:#8a2424;color:#fff}'
+	);
+}
+add_action( 'wp_enqueue_scripts', 'ccsm_admin_bar_style' );
+add_action( 'admin_enqueue_scripts', 'ccsm_admin_bar_style' );
 
 /* Coming Soon Redirect to Template */
 function ccsm_template_redirect() {
