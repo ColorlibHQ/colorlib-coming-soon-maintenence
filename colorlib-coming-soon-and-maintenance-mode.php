@@ -793,9 +793,23 @@ function ccsm_style_enqueue( $template_name ) {
 		$encript_styles = $template_styles[ $template_name ];
 	}
 
-	// Preconnect to the Google Fonts hosts (fonts are loaded per template below).
-	echo '<link rel="preconnect" href="https://fonts.googleapis.com">' . "\n";
-	echo '<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>' . "\n";
+	/**
+	 * Filters whether the template loads its Google Fonts.
+	 *
+	 * Return false to keep visitors' browsers from contacting Google (a GDPR
+	 * concern in the EU); the templates then fall back to system fonts, or to
+	 * fonts you self-host through the Custom CSS field.
+	 *
+	 * @param bool   $load          Whether to load Google Fonts. Default true.
+	 * @param string $template_name Active template slug.
+	 */
+	$load_fonts = (bool) apply_filters( 'ccsm_google_fonts', true, $template_name );
+
+	if ( $load_fonts ) {
+		// Preconnect to the Google Fonts hosts (fonts are loaded per template below).
+		echo '<link rel="preconnect" href="https://fonts.googleapis.com">' . "\n";
+		echo '<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>' . "\n";
+	}
 
 	//print global styles
 	foreach ( $global_styles as $global_style ) {
@@ -821,9 +835,16 @@ function ccsm_style_enqueue( $template_name ) {
 	if ( ! empty( $encript_styles ) ) {
 		foreach ( $encript_styles as $encript_style ) {
 			if ( isset( $encript_style['font'] ) && $encript_style['font'] === 'true' ) {
+				if ( ! $load_fonts ) {
+					continue;
+				}
+				// Printed non-blocking by ccsm_async_font_tag(): the text renders
+				// in a fallback font straight away and swaps when the font lands,
+				// which display=swap already asked for.
+				$font_handle = 'ccsm-font-' . strtolower( $encript_style['name'] );
 				// phpcs:ignore WordPress.WP.EnqueuedResourceParameters.MissingVersion -- external Google Fonts URL.
-				wp_register_style( $encript_style['name'], $encript_style['location'] . '&display=swap', array(), null );
-				wp_print_styles( $encript_style['name'] );
+				wp_register_style( $font_handle, $encript_style['location'] . '&display=swap', array(), null );
+				wp_print_styles( $font_handle );
 			} elseif ( isset( $encript_style['shared'] ) && 'true' === $encript_style['shared'] ) {
 				// One shared copy for every template, resolved from assets/.
 				wp_register_style( 'ccsm-' . $encript_style['name'], ccsm_style_url( $encript_style['location'] ), array(), CCSM_VERSION );
@@ -836,6 +857,29 @@ function ccsm_style_enqueue( $template_name ) {
 	}
 
 }
+
+/**
+ * Load the Google Fonts stylesheet without blocking the first paint.
+ *
+ * It is the only render-blocking request left on the page that leaves the
+ * site's own server. The print-media trick downloads it at low priority and
+ * applies it once loaded; <noscript> keeps it for visitors without JS.
+ *
+ * @param string $tag    The <link> tag.
+ * @param string $handle Style handle.
+ * @return string
+ */
+function ccsm_async_font_tag( $tag, $handle ) {
+	if ( 0 !== strpos( $handle, 'ccsm-font-' ) ) {
+		return $tag;
+	}
+
+	$async    = preg_replace( '/media=([\'"])all\1/', 'media="print" onload="this.media=\'all\'"', $tag, 1 );
+	$fallback = preg_replace( '/ id=([\'"])[^\'"]*\1/', '', trim( $tag ), 1 );
+
+	return $async . '<noscript>' . $fallback . "</noscript>\n";
+}
+add_filter( 'style_loader_tag', 'ccsm_async_font_tag', 10, 2 );
 
 /**
  * Print the front-end script before </body>.
