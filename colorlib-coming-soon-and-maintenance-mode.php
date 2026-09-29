@@ -285,7 +285,13 @@ function ccsm_guard_front_doors() {
 	add_filter( 'xmlrpc_methods', 'ccsm_filter_xmlrpc_methods' );
 
 	// wp-links-opml.php prints the blogroll and the WordPress version.
-	if ( isset( $GLOBALS['pagenow'] ) && 'wp-links-opml.php' === $GLOBALS['pagenow'] ) {
+	// wp-comments-post.php accepts a comment on any post ID and answers with a
+	// redirect to that post's permalink, so it both collects spam and
+	// enumerates the content the page is meant to hide. wp-trackback.php
+	// accepts pings the same way.
+	$closed_files = array( 'wp-links-opml.php', 'wp-comments-post.php', 'wp-trackback.php' );
+
+	if ( isset( $GLOBALS['pagenow'] ) && in_array( $GLOBALS['pagenow'], $closed_files, true ) ) {
 		ccsm_deny_request();
 	}
 
@@ -386,8 +392,13 @@ function ccsm_template_redirect() {
         if ($force || !$skip) {
 
             // Never let a page cache or CDN keep serving the placeholder after
-            // the site reopens.
+            // the site reopens. The headers cover proxies and CDNs; page cache
+            // plugins (WP Super Cache, W3 Total Cache, LiteSpeed and others)
+            // look for the constant instead.
             nocache_headers();
+            if ( ! defined( 'DONOTCACHEPAGE' ) ) {
+                define( 'DONOTCACHEPAGE', true );
+            }
 
             // A maintenance window is a temporary outage: 503 + Retry-After keeps
             // search engines from treating the placeholder as the site's content.
