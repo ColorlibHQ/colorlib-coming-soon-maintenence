@@ -945,6 +945,7 @@ function ccsm_customizer_preview_scripts() {
 
 function ccsm_customizer_scripts() {
 	wp_enqueue_editor();
+	add_action( 'customize_controls_print_footer_scripts', 'ccsm_print_editor_scripts', 50 );
 	wp_register_script( 'colorlib-ccsm-customizer-js', CCSM_URL . 'assets/js/customizer.js', array( 'jquery', 'customize-controls' ), CCSM_VERSION, true );
 	wp_enqueue_script( 'colorlib-ccsm-customizer-js' );
 	wp_register_style( 'colorlib-ccsm-custom-controls-css', CCSM_URL . 'assets/css/ccsm-custom-controls.css', array(), CCSM_VERSION, 'all' );
@@ -956,6 +957,28 @@ function ccsm_customizer_scripts() {
 			'siteurl' => home_url( '/' ),
 		)
 	);
+}
+
+/**
+ * Print TinyMCE and the classic editor settings in the Customizer.
+ *
+ * wp_enqueue_editor() prints them on admin_print_footer_scripts, which
+ * customize.php never fires. Core's widgets panel fires it for its own
+ * reasons, so the Heading, Content and Footer editors only worked on themes
+ * with widget areas; on block themes they were a bare textarea of raw HTML.
+ */
+function ccsm_print_editor_scripts() {
+	// The widgets panel already printed them; doing it twice loads TinyMCE twice.
+	if ( did_action( 'admin_print_footer_scripts' ) ) {
+		return;
+	}
+
+	if ( ! class_exists( '_WP_Editors', false ) || ! method_exists( '_WP_Editors', 'print_default_editor_scripts' ) ) {
+		return;
+	}
+
+	_WP_Editors::force_uncompressed_tinymce();
+	_WP_Editors::print_default_editor_scripts();
 }
 
 /**
