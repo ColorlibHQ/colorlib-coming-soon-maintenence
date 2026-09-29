@@ -302,16 +302,14 @@
 			return;
 		}
 
-		var target = new Date(
-			Number(config.year),
-			Number(config.month) - 1,
-			Number(config.day),
-			Number(config.hour),
-			Number(config.minute),
-			Number(config.second)
-		).getTime();
+		/*
+		 * An absolute instant (ms since the epoch) computed in the site's
+		 * timezone. Building a Date from year/month/day parts, as this used
+		 * to, reads them in the visitor's timezone instead.
+		 */
+		var target = Number(config.target);
 
-		if (isNaN(target)) {
+		if (!target || isNaN(target)) {
 			return;
 		}
 

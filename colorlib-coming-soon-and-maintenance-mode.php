@@ -953,68 +953,85 @@ function ccsm_icon( $name, $classes = '', $label = '' ) {
 	);
 }
 
-// Timer and countdown date display function
-function ccsm_counter_dates( $timerDate ) {
-	if ( $timerDate ) {
-		$date = DateTime::createFromFormat( 'Y-m-d H:i:s', $timerDate );
-	} else {
-		$date = DateTime::createFromFormat( 'Y-m-d H:i:s', gmdate( 'Y-m-d H:i:s', strtotime( '+1 month' ) ) );
+/**
+ * Countdown values for the configured launch date.
+ *
+ * The Customizer's date control is labelled with the site's timezone, so the
+ * stored value is site-local time. It used to be compared with UTC on the
+ * server and rebuilt in each visitor's own timezone in the browser, so the
+ * countdown ended at a different moment for every visitor, and at the wrong
+ * one for all of them unless the site ran on UTC.
+ *
+ * @param string $timer_date 'Y-m-d H:i:s' in the site's timezone.
+ * @return array {
+ *     @type array      $template Initial digits: days, hours, minutes, seconds.
+ *     @type array|bool $script   array( 'target' => ms since the epoch ), or false once passed.
+ *     @type bool       $expired  Whether the launch date has passed.
+ * }
+ */
+function ccsm_counter_dates( $timer_date ) {
+	$date = $timer_date ? DateTimeImmutable::createFromFormat( 'Y-m-d H:i:s', (string) $timer_date, wp_timezone() ) : false;
+
+	// createFromFormat() returns false on a malformed stored timer value.
+	if ( ! $date instanceof DateTimeImmutable ) {
+		$date = new DateTimeImmutable( '+1 month', wp_timezone() );
 	}
 
-	// createFromFormat() returns false on a malformed stored timer value;
-	// passing false to DateTime::diff() is a fatal TypeError on PHP 8+.
-	if ( ! $date instanceof DateTime ) {
-		$date = new DateTime( gmdate( 'Y-m-d H:i:s', strtotime( '+1 month' ) ) );
+	// Plain seconds rather than DateTime::diff(), which miscounts hours across
+	// a DST change in some PHP versions. This is the same arithmetic the
+	// front-end script runs every second.
+	$remaining = $date->getTimestamp() - time();
+
+	if ( $remaining <= 0 ) {
+		return array(
+			'template' => array(
+				'days'    => '0',
+				'hours'   => '00',
+				'minutes' => '00',
+				'seconds' => '00',
+			),
+			'script'   => false,
+			'expired'  => true,
+		);
 	}
 
-	$cDate = new DateTime( gmdate( 'Y-m-d H:i:s' ) );
+	return array(
+		'template' => array(
+			'days'    => (string) intdiv( $remaining, DAY_IN_SECONDS ),
+			'hours'   => sprintf( '%02d', intdiv( $remaining % DAY_IN_SECONDS, HOUR_IN_SECONDS ) ),
+			'minutes' => sprintf( '%02d', intdiv( $remaining % HOUR_IN_SECONDS, MINUTE_IN_SECONDS ) ),
+			'seconds' => sprintf( '%02d', $remaining % MINUTE_IN_SECONDS ),
+		),
+		// An absolute instant, so every visitor counts down to the same moment.
+		'script'   => array( 'target' => $date->getTimestamp() * 1000 ),
+		'expired'  => false,
+	);
+}
 
-	$interval = $cDate->diff( $date );
-
-	if ( $date > $cDate ) {
-
-		//template needed info
-		$days    = $interval->format( '%a' );
-		$hours   = $interval->format( '%H' );
-		$minutes = $interval->format( '%I' );
-		$seconds = $interval->format( '%S' );
-		//script needed info
-		$year  = $date->format( 'Y' );
-		$month = $date->format( 'm' );
-		$day   = $date->format( 'd' );
-		$hour = $date->format('H');
-		$minute = $date->format('i');
-        $second = $date->format('s');
-
-		$dates['template'] = array(
-			'days'    => $days,
-			'hours'   => $hours,
-			'minutes' => $minutes,
-			'seconds' => $seconds
-		);
-
-		$dates['script'] = array(
-			'year'   => $year,
-			'month'  => $month,
-			'day'    => $day,
-			'hour'   => $hour,
-			'minute' => $minute,
-			'second' => $second
-		);
-
-
-	} else {
-		$dates['template'] = array(
-			'days'    => '0',
-			'hours'   => '0',
-			'minutes' => '0',
-			'seconds' => '0'
-		);
-		$dates['script']   = false;
-
+/**
+ * Print the countdown target for ccsm-frontend.js.
+ *
+ * @param string $activation   The timer activation setting ('1' when on).
+ * @param array  $dates        Return value of ccsm_counter_dates().
+ */
+function ccsm_countdown_script( $activation, $dates ) {
+	if ( '1' !== $activation || empty( $dates['script'] ) ) {
+		return;
 	}
 
-	return $dates;
+	printf( "<script>window.CCSM_COUNTDOWN = %s;</script>\n", wp_json_encode( $dates['script'] ) );
+}
+
+/**
+ * A launch date one month from now, in the site's timezone.
+ *
+ * Used as the default and as the fallback for an unparseable value. It used
+ * to be built with gmdate(), then read back as site-local time.
+ *
+ * @return string 'Y-m-d H:i:s'.
+ */
+function ccsm_default_launch_date() {
+	return wp_date( 'Y-m-d H:i:s', strtotime( '+1 month' ) );
 }
 
 //check if default settings are stored in db, else store them
@@ -1040,7 +1057,7 @@ function ccsm_defaults() {
 		'colorlib_coming_soon_timer_activation'      => '1',
 		'colorlib_coming_soon_subscribe'             => '',
 		'colorlib_coming_soon_template_selection'    => 'template_01',
-		'colorlib_coming_soon_timer_option'          => gmdate( 'Y-m-d H:i:s', strtotime( '+1 month' ) ),
+		'colorlib_coming_soon_timer_option'          => ccsm_default_launch_date(),
 		'colorlib_coming_soon_plugin_logo'           => CCSM_URL . 'assets/images/logo.jpg',
 		'colorlib_coming_soon_page_heading'          => 'Something <strong>really good</strong> is coming <strong>very soon</strong>',
 		'colorlib_coming_soon_page_content'          => 'If you have something new you\'re looking to launch, you\'re going to want to start building a community of people interested in what you\'re launching.',

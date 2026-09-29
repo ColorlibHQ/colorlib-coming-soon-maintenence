@@ -149,15 +149,4 @@ if ( is_customize_preview() ) {
 	<?php
 }
 ?>
-<?php if ( $ccsm_counter_activation == '1' && $ccsm_dates['script'] != false ) { ?>
-    <script>
-        window.CCSM_COUNTDOWN = {
-            year: <?php echo wp_json_encode( $ccsm_dates['script']['year'] ); ?>,
-            month: <?php echo wp_json_encode( $ccsm_dates['script']['month'] ); ?>,
-            day: <?php echo wp_json_encode( $ccsm_dates['script']['day'] ); ?>,
-            hour: <?php echo wp_json_encode( $ccsm_dates['script']['hour'] ); ?>,
-            minute: <?php echo wp_json_encode( $ccsm_dates['script']['minute'] ); ?>,
-            second: <?php echo wp_json_encode( $ccsm_dates['script']['second'] ); ?>
-        };
-    </script>
-<?php } ?>
+<?php ccsm_countdown_script( $ccsm_counter_activation, $ccsm_dates ); ?>

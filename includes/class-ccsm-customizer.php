@@ -250,7 +250,7 @@ class CCSM_Customizer {
 
 		/*Settings - General - Timer*/
 		$wp_customize->add_setting( 'ccsm_settings[colorlib_coming_soon_timer_option]', array(
-			'default'           => gmdate( 'Y-m-d H:i:s', strtotime( '+1 month' ) ),
+			'default'           => ccsm_default_launch_date(),
 			'sanitize_callback' => 'ccsm_sanitize_datetime',
 			'type'              => 'option'
 		) );
@@ -883,7 +883,7 @@ function ccsm_sanitize_datetime( $input ) {
 		return $input;
 	}
 
-	return gmdate( 'Y-m-d H:i:s', strtotime( '+1 month' ) );
+	return ccsm_default_launch_date();
 }
 
 /**

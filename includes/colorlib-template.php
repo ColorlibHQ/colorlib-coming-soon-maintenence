@@ -59,6 +59,17 @@ $ccsm_options = ccsm_get_options();
 	}
 
 	$ccsm_counter_activation = $ccsm_options['colorlib_coming_soon_timer_activation'];
+
+	// A countdown frozen at zero reads as a broken page, so drop it once the
+	// launch date has passed. The Customizer keeps showing it: that is where
+	// the admin notices the date needs moving.
+	if ( '1' === $ccsm_counter_activation && ! is_customize_preview() ) {
+		$ccsm_launch = ccsm_counter_dates( $ccsm_options['colorlib_coming_soon_timer_option'] );
+		if ( $ccsm_launch['expired'] ) {
+			$ccsm_counter_activation = '';
+		}
+	}
+
 	do_action( 'ccsm_header', $ccsm_template );
 	ccsm_preload_background( $ccsm_options );
 
