@@ -3,10 +3,10 @@
 * Plugin Name: Coming Soon & Maintenance Mode by Colorlib
 * Plugin URI: https://colorlib.com/
 * Description: Colorlib Coming Soon and Maintenance is a responsive coming soon WordPress plugin that comes with well designed coming soon page and lots of useful features including customization via Live Customizer, MailChimp integration, custom forms, and more.
-* Version: 1.4.0
+* Version: 1.4.1
 * Author: Colorlib
 * Author URI: https://colorlib.com/
-* Tested up to: 7.0
+* Tested up to: 7.1
 * Requires at least: 6.0
 * License: GPLv3 or later
 * License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -40,7 +40,7 @@ define( 'CCSM_PATH', plugin_dir_path( __FILE__ ) );
 define( 'CCSM_URL', plugin_dir_url( __FILE__ ) );
 define( 'CCSM_PLUGIN_BASE', plugin_basename( __FILE__ ) );
 define( 'CCSM_FILE_', __FILE__ );
-define( 'CCSM_VERSION', '1.4.0' );
+define( 'CCSM_VERSION', '1.4.1' );
 
 // PHP version check
 if ( version_compare( PHP_VERSION, '7.4', '<' ) ) {
@@ -452,7 +452,7 @@ function ccsm_template_redirect() {
             // look for the constant instead.
             nocache_headers();
             if ( ! defined( 'DONOTCACHEPAGE' ) ) {
-                define( 'DONOTCACHEPAGE', true );
+                define( 'DONOTCACHEPAGE', true ); // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedConstantFound -- name fixed by the cache plugins that read it.
             }
 
             // A maintenance window is a temporary outage: 503 + Retry-After keeps

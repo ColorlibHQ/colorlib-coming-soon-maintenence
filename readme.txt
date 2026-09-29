@@ -2,9 +2,9 @@
 Contributors: silkalns
 Tags: coming soon, maintenance mode, under construction, countdown timer, landing page
 Requires at least: 6.0
-Tested up to: 7.0
+Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 1.4.0
+Stable tag: 1.4.1
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -16,23 +16,23 @@ Create a coming soon page or maintenance mode screen with 15 responsive template
 
 Choose from **15 fully responsive coming soon templates**, each pre-designed with modern layouts and fully customizable through the Customizer. Add your own logo, background image, heading text, countdown timer, and social media links. Collect email subscribers with the built-in MailChimp integration so you can build your audience before launch day.
 
-Logged-in users can browse and edit the site normally while non-logged-in visitors see only the coming soon or maintenance page. The plugin also blocks the WordPress REST API for visitors to prevent content exposure while your site is under construction.
+Administrators and editors keep browsing and editing the site normally, with a reminder in the admin bar, while everyone else sees only the coming soon or maintenance page. The plugin also blocks the WordPress REST API for visitors to prevent content exposure while your site is under construction.
 
 = Why Choose This Coming Soon Plugin? =
 
 - **100% free** — no premium version, no ads, no feature restrictions
 - **15 responsive templates** — professionally designed coming soon, maintenance mode, and under construction page layouts
 - **Live Customizer** — customize everything in real time without touching code
-- **Countdown timer** — display a launch countdown with configurable date and 12/24-hour format
+- **Countdown timer** — count down to your launch date, in your site's timezone, for every visitor
 - **MailChimp subscribe form** — collect emails and grow your list while in maintenance mode
 - **Social media integration** — add links to Facebook, Twitter, Instagram, YouTube, Pinterest, and email
 - **Custom logo and background** — upload your brand logo and a custom background image
 - **Google Analytics 4** — track visitors to your coming soon page with GA4
 - **Custom CSS** — add your own styles for advanced customization
 - **REST API protection** — blocks public API access while the site is under construction
-- **Developer friendly** — use the `ccsm_skip_redirect` and `ccsm_force_redirect` filters to control redirect behavior
+- **Developer friendly** — filters such as `ccsm_skip_redirect`, `ccsm_force_redirect`, `ccsm_bypass_capability` and `ccsm_google_fonts` control who sees the page and what it loads
 - **Works with all WordPress themes** — self-contained templates run independently of your active theme
-- **Privacy conscious** — no tracking of its own. Note that enabling the optional Google Analytics field, and the Google Fonts each template loads, involve requests to Google, which you may need to disclose depending on your jurisdiction
+- **Privacy conscious** — no tracking of its own. Note that enabling the optional Google Analytics field, and the Google Fonts each template loads, involve requests to Google, which you may need to disclose depending on your jurisdiction. Developers can turn the fonts off with the `ccsm_google_fonts` filter
 
 = How It Works =
 
@@ -76,11 +76,11 @@ This plugin is developed and maintained by <a href="https://colorlib.com/">Color
 
 = How do I enable or disable the coming soon page? =
 
-Go to Coming Soon (in the WordPress admin menu) > General and toggle the "Activate Coming Soon" option. You can also deactivate the plugin entirely under Plugins to disable the coming soon page.
+Go to Coming Soon in the WordPress admin menu and click "Turn on" or "Turn off the coming soon page". The same switch is in the Customizer under General. While the page is on, a red item in the admin bar reminds you. Deactivating the plugin also turns the page off.
 
 = Who can see the coming soon page? =
 
-Only visitors who are not logged in to WordPress will see the coming soon page. Logged-in administrators and editors can browse the site normally while working on it. The login page at wp-login.php is always accessible.
+Everyone except users who can edit posts (administrators, editors, authors and contributors) sees the coming soon page, including logged-in subscribers and customers. Developers can change the required capability with the `ccsm_bypass_capability` filter. To show the real site to a client without an account, share the preview link from the Coming Soon admin page. The login page at wp-login.php is always accessible.
 
 = How do I change the coming soon page template? =
 
@@ -88,7 +88,7 @@ Navigate to Coming Soon (in the WordPress admin menu) > Templates. You will see 
 
 = How do I set up the countdown timer? =
 
-Go to Coming Soon (in the WordPress admin menu) > General and enable "Activate Timer Countdown." Then set your launch date and time using the date picker. The timer supports both 12-hour and 24-hour formats. Note that templates 12 and 14 do not display a countdown timer.
+Go to Coming Soon (in the WordPress admin menu) > General and enable "Activate Timer Countdown." Then set your launch date and time using the date picker, in your site's timezone (Settings > General). Every visitor counts down to the same moment, wherever they are. Once the date has passed the countdown is hidden rather than left at zero. Note that templates 12 and 14 do not display a countdown timer.
 
 = How do I connect MailChimp for email subscriptions? =
 
@@ -96,7 +96,7 @@ Go to Coming Soon (in the WordPress admin menu) > Subscribe Form and paste your 
 
 = Can I add social media links? =
 
-Yes. Go to Coming Soon (in the WordPress admin menu) > Social Links and enter your profile URLs for Facebook, Twitter, YouTube, Pinterest, Instagram, or an email address. Social links are supported on most templates (all except templates 2, 5, and 8).
+Yes. Go to Coming Soon (in the WordPress admin menu) > Social Links and enter your profile URLs for Facebook, Twitter, YouTube, Pinterest, Instagram, or an email address. Social links are supported on most templates (all except templates 2, 4, 5, and 8).
 
 = Can I customize the logo and background image? =
 
@@ -112,7 +112,7 @@ Go to Coming Soon (in the WordPress admin menu) > General and enter your Google 
 
 = Does the plugin work with caching plugins? =
 
-Most caching plugins will not interfere because the coming soon page is served via a template redirect before caching occurs. If you experience issues, exclude the front page from your caching plugin or clear the cache after enabling or disabling coming soon mode.
+The coming soon page is sent with no-cache headers and tells caching plugins (WP Super Cache, W3 Total Cache, LiteSpeed Cache and others) not to store it, so it will not linger after you reopen the site. Pages your cache stored before you turned the coming soon page on can still be served, so clear your cache whenever you turn it on or off.
 
 = Can I allow specific pages to bypass the coming soon page? =
 
@@ -161,6 +161,25 @@ Yes. All 15 coming soon page templates are fully responsive and work on desktops
 15. Template 15 — City skyline with purple overlay, countdown timer, and social icons
 
 == Changelog ==
+
+= 1.4.1 - 29.09.2026 =
+Security: Comments and trackbacks could still be posted while the site was closed, and the comment form's redirect revealed the address of any post by its ID
+Fixed: The countdown ended at a different moment for every visitor. It read the launch date in each visitor's own timezone instead of the site's
+Fixed: A countdown whose launch date has passed is hidden instead of sitting at zero
+Fixed: Real email addresses such as name+news@gmail.com or anything at a .agency or .studio domain were rejected by the subscribe form
+Fixed: On block themes the Heading, Content and Footer fields showed raw HTML instead of the visual editor
+Fixed: The Customizer preview threw a JavaScript error when another plugin loaded core's selective refresh script
+Fixed: The explanations under the Customizer's on/off switches never appeared, and the switches had no accessible name
+Fixed: Importing settings that included a preview token broke the client preview link
+Fixed: The logo linked to the WordPress install directory instead of the home page on sites that keep WordPress in a subfolder
+Fixed: The review request was shown to editors, who could not dismiss it
+New: The admin bar shows when the coming soon or maintenance page is on
+New: Turn the page on or off from the Coming Soon admin screen, without opening the Customizer
+New: ccsm_google_fonts filter to stop templates loading Google Fonts
+Improved: Google Fonts no longer block the first paint
+Improved: Page cache plugins are told not to store the coming soon page
+Improved: The front-end messages can now be translated
+Improved: Social link fields use URL and email inputs with examples
 
 = 1.4.0 - 30.07.2026 =
 Security: Fixed a leak where XML sitemaps served every post URL and author slug while the coming soon page was active

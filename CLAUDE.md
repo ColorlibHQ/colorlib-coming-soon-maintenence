@@ -4,10 +4,10 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-WordPress plugin: **Coming Soon and Maintenance by Colorlib** (v1.4.0). Displays a coming soon or maintenance mode page to visitors without editing rights, using one of 15 selectable templates. Content is configured in the WordPress Live Customizer; the plugin's own admin page (**Coming Soon** in the admin menu) holds the status, the client preview link and settings export/import.
+WordPress plugin: **Coming Soon and Maintenance by Colorlib** (v1.4.1). Displays a coming soon or maintenance mode page to visitors without editing rights, using one of 15 selectable templates. Content is configured in the WordPress Live Customizer; the plugin's own admin page (**Coming Soon** in the admin menu) holds the status with an on/off button, the client preview link and settings export/import. While the page is on, users who bypass it see a red status item in the admin bar (`ccsm_admin_bar_status()`).
 
 - **Requires:** WordPress 6.0+, PHP 7.4+
-- **Tested up to:** WordPress 7.0
+- **Tested up to:** WordPress 7.1
 - **Text Domain:** `colorlib-coming-soon-maintenance`
 - **Main plugin file:** `colorlib-coming-soon-and-maintenance-mode.php`
 
@@ -53,10 +53,26 @@ the shareable preview cookie set by `?ccsm_bypass=<token>`.
 
 **Other front-end guards:**
 - `ccsm_rest_restrict()` (`rest_pre_dispatch`) returns `403 rest_forbidden`.
-- `ccsm_guard_front_doors()` (`init`, priority 0) closes what `template_redirect` cannot reach: XML sitemaps, XML-RPC (including the pingback methods), `wp-links-opml.php`, and logged-out `admin-ajax.php` / `admin-post.php` actions (allowlist filter: `ccsm_allowed_nopriv_actions`).
+- `ccsm_guard_front_doors()` (`init`, priority 0) closes what `template_redirect` cannot reach: XML sitemaps, XML-RPC (including the pingback methods), `wp-links-opml.php`, `wp-comments-post.php` (its redirect leaks any post's permalink by ID), `wp-trackback.php`, and logged-out `admin-ajax.php` / `admin-post.php` actions (allowlist filter: `ccsm_allowed_nopriv_actions`).
 - `wp-login.php` never reaches `template_redirect`, so it stays reachable with no special case.
 
 The activation toggle (`colorlib_coming_soon_activation`) is the master on/off switch — distinct from `colorlib_coming_soon_mode` (coming soon = 200, maintenance = 503) and from `colorlib_coming_soon_template_selection`, which only chooses *which* template renders.
+
+### The shell never calls `wp_head()` — consequences
+
+`includes/colorlib-template.php` deliberately skips `wp_head()` so theme and plugin
+assets stay off the page. Anything core registers from `wp_enqueue_scripts` therefore
+never happens there. Two places depend on working around that:
+
+- **Selective refresh data.** Core hooks `_customizePartialRefreshExports` from
+  `wp_enqueue_scripts`; other plugins load `customize-selective-refresh` in every
+  preview, so the shell hooks `export_preview_data` itself. The plugin registers **no**
+  selective-refresh partials: they could never initialise here, and with no render
+  callback they would only full-reload. `assets/js/customizer-preview.js` does live updates.
+- **TinyMCE in the Customizer.** `wp_enqueue_editor()` prints on
+  `admin_print_footer_scripts`, which `customize.php` never fires (only core's widgets
+  panel does, on classic themes). `ccsm_print_editor_scripts()` prints it from
+  `customize_controls_print_footer_scripts` unless that already happened.
 
 ### Key Files
 
@@ -94,7 +110,7 @@ The front end was stripped of all frameworks. There is **no Bootstrap, no jQuery
 - **Front-end JS:** one shared, dependency-free `assets/js/ccsm-frontend.js` (~6 KB). Feature-detected modules: form validation, background slideshow (cross-fade), subscribe modal, tilt effect, and the countdown timer (native `Date`). There are no per-template JS files anymore.
 - **Front-end CSS:** global `assets/css/ccsm-frontend.css` (SVG-icon + `.ccsm-cd` countdown styles) plus each template's self-contained `css/main.css` + `css/util.css` (each `util.css` ships its own reset/reboot, so no framework CSS is needed).
 - **Icons:** inline SVG via the `ccsm_icon( $name, $classes )` helper in the main plugin file (Simple Icons for brands, Bootstrap Icons for UI glyphs). No icon fonts, no CDNs. Icons inherit color via `currentColor` and scale with font-size.
-- **Countdown:** `ccsm_counter_dates()` emits a per-page `window.CCSM_COUNTDOWN` config; `ccsm-frontend.js` runs it. Templates 06 & 15 (formerly jQuery FlipClock) use the same `.ccsm-cd` digit layout as the rest.
+- **Countdown:** the stored launch date is **site-local time** (the Customizer's date control is labelled with the site timezone). `ccsm_counter_dates()` parses it with `wp_timezone()` and `ccsm_countdown_script()` emits `window.CCSM_COUNTDOWN = { target: <ms since epoch> }`. Never rebuild the date from parts in JS: `new Date(y, m, d…)` reads them in the visitor's timezone. An expired countdown is hidden by the shell (except in the Customizer preview). Templates 06 & 15 (formerly jQuery FlipClock) use the same `.ccsm-cd` digit layout as the rest.
 - **Google Fonts:** loaded per-template with `<link rel="preconnect">` + `&display=swap`.
 - **Admin/Customizer JS** (`assets/js/customizer*.js`, `assets/js/main.js`) **still uses jQuery** — WordPress bundles jQuery in wp-admin, so this is intentional and entirely separate from the front end.
 
@@ -108,7 +124,7 @@ All settings are stored in a single option: `ccsm_settings`. Keys follow the pat
 - `CCSM_URL` — plugin directory URL
 - `CCSM_PLUGIN_BASE` — plugin basename for hooks
 - `CCSM_FILE_` — main plugin file path (note the trailing underscore)
-- `CCSM_VERSION` — current version string (`1.3.0`); keep in sync with the plugin header, `readme.txt` `Stable tag`, and `package.json`
+- `CCSM_VERSION` — current version string (`1.4.1`); keep in sync with the plugin header, `readme.txt` `Stable tag`, and `package.json`
 
 ## Filters
 
@@ -117,6 +133,7 @@ All settings are stored in a single option: `ccsm_settings`. Keys follow the pat
 - `ccsm_bypass_capability` — capability a logged-in user needs to see the real site (default `edit_posts`; return `read` for the pre-1.4.0 "any logged-in user" behaviour)
 - `ccsm_allowed_nopriv_actions` — array of `admin-ajax.php` / `admin-post.php` actions that stay reachable for logged-out visitors
 - `ccsm_retry_after` — seconds sent in the `Retry-After` header in maintenance mode (default 1 hour)
+- `ccsm_google_fonts` — return `false` to stop templates loading Google Fonts (GDPR); fonts otherwise load non-blocking via `ccsm_async_font_tag()`
 
 ## Release Build Notes
 

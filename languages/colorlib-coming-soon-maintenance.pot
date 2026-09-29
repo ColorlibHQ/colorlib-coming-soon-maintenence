@@ -2,14 +2,14 @@
 # This file is distributed under the GPLv3 or later.
 msgid ""
 msgstr ""
-"Project-Id-Version: Coming Soon & Maintenance Mode by Colorlib 1.4.0\n"
+"Project-Id-Version: Coming Soon & Maintenance Mode by Colorlib 1.4.1\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/colorlib-coming-soon-maintenence\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-07-30T13:14:02+00:00\n"
+"POT-Creation-Date: 2026-09-29T13:06:03+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: colorlib-coming-soon-maintenance\n"
@@ -49,222 +49,240 @@ msgstr ""
 msgid "Support"
 msgstr ""
 
-#: colorlib-coming-soon-and-maintenance-mode.php:340
-#: colorlib-coming-soon-and-maintenance-mode.php:433
+#: colorlib-coming-soon-and-maintenance-mode.php:353
+#: colorlib-coming-soon-and-maintenance-mode.php:499
 msgid "Sorry, this content is restricted!"
 msgstr ""
 
-#: colorlib-coming-soon-and-maintenance-mode.php:341
+#: colorlib-coming-soon-and-maintenance-mode.php:354
 msgid "Restricted"
 msgstr ""
 
+#: colorlib-coming-soon-and-maintenance-mode.php:392
+msgid "Maintenance mode is on"
+msgstr ""
+
+#: colorlib-coming-soon-and-maintenance-mode.php:393
+msgid "Coming soon page is on"
+msgstr ""
+
+#: colorlib-coming-soon-and-maintenance-mode.php:896
+msgid "This field is required."
+msgstr ""
+
+#. translators: %s: the launch date, formatted in the visitor's locale, e.g. "December 25, 2026".
+#: colorlib-coming-soon-and-maintenance-mode.php:898
+#, php-format
+msgid "Launching on %s."
+msgstr ""
+
 #. translators: %s: URL of the plugin's Customizer panel.
-#: colorlib-coming-soon-and-maintenance-mode.php:1273
+#: colorlib-coming-soon-and-maintenance-mode.php:1435
 #, php-format
 msgid "For security reasons we have changed the Google Analytics setting. Please update your settings <a href=\"%s\">here</a> in order to correctly use the Google Analytics script."
 msgstr ""
 
-#: includes/class-ccsm-customizer.php:75
+#: includes/class-ccsm-customizer.php:86
 msgid "Colorlib Coming Soon Settings"
 msgstr ""
 
-#: includes/class-ccsm-customizer.php:82
+#: includes/class-ccsm-customizer.php:93
 msgid "Templates"
 msgstr ""
 
-#: includes/class-ccsm-customizer.php:89
+#: includes/class-ccsm-customizer.php:100
 msgid "General"
 msgstr ""
 
-#: includes/class-ccsm-customizer.php:98
+#: includes/class-ccsm-customizer.php:109
 msgid "Subscribe Form"
 msgstr ""
 
-#: includes/class-ccsm-customizer.php:106
+#: includes/class-ccsm-customizer.php:117
 msgid "Social Links"
 msgstr ""
 
-#: includes/class-ccsm-customizer.php:116
+#: includes/class-ccsm-customizer.php:127
 msgid "Custom CSS"
 msgstr ""
 
-#: includes/class-ccsm-customizer.php:141
+#: includes/class-ccsm-customizer.php:157
 msgid "Activate Colorlib Coming Soon Page?"
 msgstr ""
 
-#: includes/class-ccsm-customizer.php:156
+#: includes/class-ccsm-customizer.php:172
 msgid "Page Mode"
 msgstr ""
 
-#: includes/class-ccsm-customizer.php:157
+#: includes/class-ccsm-customizer.php:173
 msgid "Coming Soon answers with HTTP 200, so search engines may index the page. Maintenance answers with HTTP 503 and Retry-After, which tells search engines the downtime is temporary and keeps your existing rankings."
 msgstr ""
 
-#: includes/class-ccsm-customizer.php:162
+#: includes/class-ccsm-customizer.php:178
 msgid "Coming Soon (new site)"
 msgstr ""
 
-#: includes/class-ccsm-customizer.php:163
+#: includes/class-ccsm-customizer.php:179
 msgid "Maintenance (existing site, temporary)"
 msgstr ""
 
-#: includes/class-ccsm-customizer.php:177
+#: includes/class-ccsm-customizer.php:193
 msgid "Discourage search engines from indexing this page?"
 msgstr ""
 
-#: includes/class-ccsm-customizer.php:178
+#: includes/class-ccsm-customizer.php:194
 msgid "Adds a noindex robots tag. Maintenance mode also blocks crawlers via robots.txt."
 msgstr ""
 
-#: includes/class-ccsm-customizer.php:193
+#: includes/class-ccsm-customizer.php:209
 msgid "Activate Timer Countdown?"
 msgstr ""
 
-#: includes/class-ccsm-customizer.php:208
+#: includes/class-ccsm-customizer.php:224
 msgid "Custom CSS on Coming Soon Page"
 msgstr ""
 
-#: includes/class-ccsm-customizer.php:227
+#: includes/class-ccsm-customizer.php:243
 msgid "Select Template"
 msgstr ""
 
-#: includes/class-ccsm-customizer.php:231
+#: includes/class-ccsm-customizer.php:247
 msgid "Template 1"
 msgstr ""
 
-#: includes/class-ccsm-customizer.php:232
+#: includes/class-ccsm-customizer.php:248
 msgid "Template 2"
 msgstr ""
 
-#: includes/class-ccsm-customizer.php:233
+#: includes/class-ccsm-customizer.php:249
 msgid "Template 3"
 msgstr ""
 
-#: includes/class-ccsm-customizer.php:234
+#: includes/class-ccsm-customizer.php:250
 msgid "Template 4"
 msgstr ""
 
-#: includes/class-ccsm-customizer.php:235
+#: includes/class-ccsm-customizer.php:251
 msgid "Template 5"
 msgstr ""
 
-#: includes/class-ccsm-customizer.php:236
+#: includes/class-ccsm-customizer.php:252
 msgid "Template 6"
 msgstr ""
 
-#: includes/class-ccsm-customizer.php:237
+#: includes/class-ccsm-customizer.php:253
 msgid "Template 7"
 msgstr ""
 
-#: includes/class-ccsm-customizer.php:238
+#: includes/class-ccsm-customizer.php:254
 msgid "Template 8"
 msgstr ""
 
-#: includes/class-ccsm-customizer.php:239
+#: includes/class-ccsm-customizer.php:255
 msgid "Template 9"
 msgstr ""
 
-#: includes/class-ccsm-customizer.php:240
+#: includes/class-ccsm-customizer.php:256
 msgid "Template 10"
 msgstr ""
 
-#: includes/class-ccsm-customizer.php:241
+#: includes/class-ccsm-customizer.php:257
 msgid "Template 11"
 msgstr ""
 
-#: includes/class-ccsm-customizer.php:242
+#: includes/class-ccsm-customizer.php:258
 msgid "Template 12"
 msgstr ""
 
-#: includes/class-ccsm-customizer.php:243
+#: includes/class-ccsm-customizer.php:259
 msgid "Template 13"
 msgstr ""
 
-#: includes/class-ccsm-customizer.php:244
+#: includes/class-ccsm-customizer.php:260
 msgid "Template 14"
 msgstr ""
 
-#: includes/class-ccsm-customizer.php:245
+#: includes/class-ccsm-customizer.php:261
 msgid "Template 15"
 msgstr ""
 
-#: includes/class-ccsm-customizer.php:259
+#: includes/class-ccsm-customizer.php:275
 msgid "Time to opening"
 msgstr ""
 
-#: includes/class-ccsm-customizer.php:283
+#: includes/class-ccsm-customizer.php:293
 msgid "Logo Image"
 msgstr ""
 
-#: includes/class-ccsm-customizer.php:284
+#: includes/class-ccsm-customizer.php:294
 msgid "Recommended size: 80px by 80px"
 msgstr ""
 
-#: includes/class-ccsm-customizer.php:307
+#: includes/class-ccsm-customizer.php:311
 msgid "Background Image"
 msgstr ""
 
-#: includes/class-ccsm-customizer.php:323
+#: includes/class-ccsm-customizer.php:327
 msgid "Background Color"
 msgstr ""
 
-#: includes/class-ccsm-customizer.php:339
+#: includes/class-ccsm-customizer.php:343
 msgid "Text Color"
 msgstr ""
 
-#: includes/class-ccsm-customizer.php:355
+#: includes/class-ccsm-customizer.php:359
 msgid "Heading"
 msgstr ""
 
-#: includes/class-ccsm-customizer.php:378
+#: includes/class-ccsm-customizer.php:376
 msgid "Main Content"
 msgstr ""
 
-#: includes/class-ccsm-customizer.php:394
+#: includes/class-ccsm-customizer.php:392
 msgid "Google Analytics tracking code ID"
 msgstr ""
 
-#: includes/class-ccsm-customizer.php:398
+#: includes/class-ccsm-customizer.php:396
 msgid "G-XXXXXXXXXX"
 msgstr ""
 
-#: includes/class-ccsm-customizer.php:420
+#: includes/class-ccsm-customizer.php:412
 msgid "Footer Text"
 msgstr ""
 
-#: includes/class-ccsm-customizer.php:443
+#: includes/class-ccsm-customizer.php:429
 msgid "Hide the subscribe form"
 msgstr ""
 
-#: includes/class-ccsm-customizer.php:444
+#: includes/class-ccsm-customizer.php:430
 msgid "Turn this on to remove the email sign-up form from the page."
 msgstr ""
 
-#: includes/class-ccsm-customizer.php:459
+#: includes/class-ccsm-customizer.php:445
 msgid "Subscribe Form Action URL"
 msgstr ""
 
-#: includes/class-ccsm-customizer.php:460
+#: includes/class-ccsm-customizer.php:446
 msgid "You can get your form action URL by creating a sign-up form and copying the form action=\"\" field.: <a href=\"https://mailchimp.com/help/add-a-signup-form-to-your-website/\" target=\"_blank\">https://mailchimp.com/help/add-a-signup-form-to-your-website/</a>"
 msgstr ""
 
-#: includes/class-ccsm-customizer.php:482
+#: includes/class-ccsm-customizer.php:462
 msgid "Sign Up Button Link"
 msgstr ""
 
-#: includes/class-ccsm-customizer.php:483
+#: includes/class-ccsm-customizer.php:463
 msgid "Where the Sign Up button sends visitors. Separate from the subscribe form above."
 msgstr ""
 
-#: includes/class-ccsm-customizer.php:508
+#: includes/class-ccsm-customizer.php:482
 msgid "Facebook"
 msgstr ""
 
-#: includes/class-ccsm-customizer.php:532
+#: includes/class-ccsm-customizer.php:501
 msgid "Twitter"
 msgstr ""
 
-#: includes/class-ccsm-customizer.php:556
+#: includes/class-ccsm-customizer.php:520
 #: templates/template_04/template_04.php:100
 #: templates/template_04/template_04.php:103
 #: templates/template_05/template_05.php:65
@@ -274,107 +292,123 @@ msgstr ""
 msgid "Email"
 msgstr ""
 
-#: includes/class-ccsm-customizer.php:579
-msgid "Youtube"
+#: includes/class-ccsm-customizer.php:538
+msgid "YouTube"
 msgstr ""
 
-#: includes/class-ccsm-customizer.php:602
+#: includes/class-ccsm-customizer.php:556
 msgid "Pinterest"
 msgstr ""
 
-#: includes/class-ccsm-customizer.php:625
+#: includes/class-ccsm-customizer.php:574
 msgid "Instagram"
 msgstr ""
 
-#: includes/class-ccsm-customizer.php:643
+#: includes/class-ccsm-customizer.php:587
 msgid "Colorlib Coming Soon"
 msgstr ""
 
-#: includes/class-ccsm-customizer.php:643
+#: includes/class-ccsm-customizer.php:587
 msgid "Coming Soon"
 msgstr ""
 
-#: includes/class-ccsm-customizer.php:673
+#: includes/class-ccsm-customizer.php:617
 msgid "Settings imported."
 msgstr ""
 
-#: includes/class-ccsm-customizer.php:674
+#: includes/class-ccsm-customizer.php:618
 msgid "Could not import those settings. Paste the exact JSON produced by Export."
 msgstr ""
 
-#: includes/class-ccsm-customizer.php:675
+#: includes/class-ccsm-customizer.php:619
 msgid "A new preview link was generated. The previous one no longer works."
 msgstr ""
 
-#: includes/class-ccsm-customizer.php:679
+#: includes/class-ccsm-customizer.php:620
+msgid "The coming soon page is on. If you use a page cache, clear it so visitors get the new page."
+msgstr ""
+
+#: includes/class-ccsm-customizer.php:621
+msgid "The coming soon page is off. If you use a page cache, clear it so visitors get your site."
+msgstr ""
+
+#: includes/class-ccsm-customizer.php:625
 msgid "Coming Soon and Maintenance"
 msgstr ""
 
-#: includes/class-ccsm-customizer.php:689
+#: includes/class-ccsm-customizer.php:635
 msgid "Maintenance mode is on."
 msgstr ""
 
-#: includes/class-ccsm-customizer.php:690
+#: includes/class-ccsm-customizer.php:636
 msgid "Visitors get the maintenance page with an HTTP 503 status."
 msgstr ""
 
-#: includes/class-ccsm-customizer.php:692
+#: includes/class-ccsm-customizer.php:638
 msgid "Coming soon mode is on."
 msgstr ""
 
-#: includes/class-ccsm-customizer.php:693
+#: includes/class-ccsm-customizer.php:639
 msgid "Visitors get the coming soon page."
 msgstr ""
 
-#: includes/class-ccsm-customizer.php:695
+#: includes/class-ccsm-customizer.php:641
 msgid "The coming soon page is off."
 msgstr ""
 
-#: includes/class-ccsm-customizer.php:696
+#: includes/class-ccsm-customizer.php:642
 msgid "Your site is visible to everyone."
 msgstr ""
 
-#: includes/class-ccsm-customizer.php:702
+#: includes/class-ccsm-customizer.php:651
 msgid "Edit the page and settings"
 msgstr ""
 
-#: includes/class-ccsm-customizer.php:708
+#: includes/class-ccsm-customizer.php:658
+msgid "Turn off the coming soon page"
+msgstr ""
+
+#: includes/class-ccsm-customizer.php:659
+msgid "Turn on the coming soon page"
+msgstr ""
+
+#: includes/class-ccsm-customizer.php:670
 msgid "Share a preview with a client"
 msgstr ""
 
-#: includes/class-ccsm-customizer.php:710
+#: includes/class-ccsm-customizer.php:672
 msgid "Anyone who opens this link sees the real site for a week, without an account. Treat it as a password."
 msgstr ""
 
-#: includes/class-ccsm-customizer.php:720
+#: includes/class-ccsm-customizer.php:682
 msgid "Generate a new link"
 msgstr ""
 
-#: includes/class-ccsm-customizer.php:725
+#: includes/class-ccsm-customizer.php:687
 msgid "Export and import"
 msgstr ""
 
-#: includes/class-ccsm-customizer.php:727
+#: includes/class-ccsm-customizer.php:689
 msgid "Copy these settings to another site. The preview link is not included."
 msgstr ""
 
-#: includes/class-ccsm-customizer.php:730
+#: includes/class-ccsm-customizer.php:692
 msgid "Export"
 msgstr ""
 
-#: includes/class-ccsm-customizer.php:735
+#: includes/class-ccsm-customizer.php:697
 msgid "Import"
 msgstr ""
 
-#: includes/class-ccsm-customizer.php:740
+#: includes/class-ccsm-customizer.php:702
 msgid "Settings JSON"
 msgstr ""
 
-#: includes/class-ccsm-customizer.php:742
+#: includes/class-ccsm-customizer.php:704
 msgid "Paste exported settings here"
 msgstr ""
 
-#: includes/class-ccsm-customizer.php:744
+#: includes/class-ccsm-customizer.php:706
 msgid "Import settings"
 msgstr ""
 
