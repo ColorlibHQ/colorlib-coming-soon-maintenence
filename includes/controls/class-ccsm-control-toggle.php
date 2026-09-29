@@ -70,12 +70,13 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
                     <div class="checkbox_switch">
                         <div>
                             <div class="cf toggle-wrapper">
-                                <span><strong>{{{ data.label }}}</strong></span>
+                                <?php /* A real <label for>: the bare <span> left the checkbox with no accessible name. */ ?>
+                                <label for="{{ data.id }}"><strong>{{{ data.label }}}</strong></label>
                                 <div class="epsilon-toggle">
-                                    <input class="epsilon-toggle__input" type="checkbox" id="{{{ data.id }}}"
-                                           name="{{{ data.id }}}" value="{{{ data.value }}}" {{{ data.link }}} <#
-                                    if(
-                                    data.value ) { #> checked="checked" <# } #> >
+                                    <input class="epsilon-toggle__input" type="checkbox" id="{{ data.id }}"
+                                           name="{{ data.id }}" value="{{ data.value }}" {{{ data.link }}}
+                                           <# if ( data.description ) { #> aria-describedby="{{ data.id }}-description" <# } #>
+                                           <# if ( data.value ) { #> checked="checked" <# } #> >
                                     <div class="epsilon-toggle__items">
                                         <span class="epsilon-toggle__track"></span>
                                         <span class="epsilon-toggle__thumb"></span>
@@ -90,6 +91,9 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
                                     </div>
                                 </div>
                             </div>
+                            <# if ( data.description ) { #>
+                                <span id="{{ data.id }}-description" class="description customize-control-description">{{{ data.description }}}</span>
+                            <# } #>
                         </div>
                     </div>
                 </div>

@@ -33,7 +33,7 @@ if (class_exists('WP_Customize_Section')) {
                 <h3 class="accordion-section-title">
                     <span class="customize-action"><?php esc_html_e( 'Active Template','colorlib-coming-soon-maintenance' ); ?></span>
                     <span class="ccsm-active_template">{{ data.active_template }}</span>
-                    <button type="button" class="button change-theme" aria-label="<?php esc_html_e( 'Change Template','colorlib-coming-soon-maintenance' ); ?>"><?php esc_html_e( 'Change','colorlib-coming-soon-maintenance' ); ?></button>
+                    <button type="button" class="button change-theme" aria-label="<?php esc_attr_e( 'Change Template','colorlib-coming-soon-maintenance' ); ?>"><?php esc_html_e( 'Change','colorlib-coming-soon-maintenance' ); ?></button>
                 </h3>
                 <ul class="accordion-section-content">
                     <li class="customize-section-description-container section-meta <# if ( data.description_hidden ) { #>customize-info<# } #>">

@@ -203,3 +203,9 @@ body .epsilon-toggle > input.epsilon-toggle__input[type=checkbox]:checked + .eps
     outline: 2px solid #2271b1;
     outline-offset: 2px;
 }
+
+/* Toggle descriptions sit under the label/switch row. */
+.colorlib_csmm .customize-control-description {
+    display: block;
+    margin-top: 6px;
+}

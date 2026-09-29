@@ -54,7 +54,9 @@ class CCSM_Review {
 
 		add_action( 'wp_ajax_ccsm_epsilon_review', array( $this, 'ajax' ) );
 
-		if ( $this->check() ) {
+		// Only users who can dismiss it: the AJAX handler requires
+		// manage_options, so editors saw a notice whose buttons did nothing.
+		if ( current_user_can( 'manage_options' ) && $this->check() ) {
 			add_action( 'admin_notices', array( $this, 'five_star_wp_rate_notice' ) );
 			add_action( 'admin_enqueue_scripts', array( $this, 'enqueue' ) );
 			add_action( 'admin_print_footer_scripts', array( $this, 'ajax_script' ) );

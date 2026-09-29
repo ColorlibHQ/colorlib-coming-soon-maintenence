@@ -1394,4 +1394,4 @@ function ccsm_ajax_dismiss_ga() {
 add_action( 'wp_ajax_ccsm-ga-notice_dismiss', 'ccsm_ajax_dismiss_ga' );
 
 //Loading Plugin Theme Customizer Options
-require_once( 'includes/class-ccsm-customizer.php' );
+require_once CCSM_PATH . 'includes/class-ccsm-customizer.php';

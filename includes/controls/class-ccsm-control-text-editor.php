@@ -18,11 +18,16 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
 				$id = str_replace( '[', '', $this->id );
 				$id = str_replace( ']', '', $id );
 				?>
-                <label><span class="customize-control-title"><?php echo esc_html($this->label); ?></span></label>
-                <span class="description customize-control-description"><?php echo wp_kses_post($this->description); ?></span>
-                </span>
-                <textarea id="<?php echo esc_attr($id); ?>"
-                          class="widefat text wp-editor-area js-ccsm-editor" <?php echo esc_attr( $this->link() ); ?>><?php echo esc_textarea($this->value()); ?> </textarea>
+                <label for="<?php echo esc_attr( $id ); ?>"><span class="customize-control-title"><?php echo esc_html( $this->label ); ?></span></label>
+				<?php if ( ! empty( $this->description ) ) : ?>
+                <span class="description customize-control-description"><?php echo wp_kses_post( $this->description ); ?></span>
+				<?php endif; ?>
+				<?php
+				// link() prints the attribute itself. The closing tag follows the
+				// value directly: a space before it became part of the value.
+				?>
+                <textarea id="<?php echo esc_attr( $id ); ?>"
+                          class="widefat text wp-editor-area js-ccsm-editor" <?php $this->link(); ?>><?php echo esc_textarea( $this->value() ); ?></textarea>
 				<?php
 			}
 		}
