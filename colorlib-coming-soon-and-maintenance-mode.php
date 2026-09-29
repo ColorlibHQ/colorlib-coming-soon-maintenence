@@ -892,9 +892,10 @@ function ccsm_customizer_preview_scripts() {
 		'customize-preview'
 	), CCSM_VERSION, true );
 	wp_enqueue_script( 'colorlib-ccsm-customizer-preview' );
-	// Not enqueued here: core adds customize-selective-refresh in the preview
-	// itself when partials are registered, together with the data the script
-	// expects. Enqueuing it separately loaded it without that data.
+	// No selective refresh partials: the page is rendered without wp_head(),
+	// so core's selective refresh never initialises here, and partials with
+	// no render callback would only fall back to a full reload anyway.
+	// customizer-preview.js updates the page in place instead.
 }
 
 

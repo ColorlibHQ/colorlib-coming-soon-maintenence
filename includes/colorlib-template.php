@@ -5,6 +5,16 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 $ccsm_options = ccsm_get_options();
+
+/*
+ * This shell never calls wp_head(), so wp_enqueue_scripts never fires in the
+ * Customizer preview - and that is where core hooks the data its selective
+ * refresh script reads. Other plugins load that script in every preview, and
+ * without the data it throws a ReferenceError. Export the data ourselves.
+ */
+if ( is_customize_preview() && isset( $GLOBALS['wp_customize'] ) ) {
+	add_action( 'wp_footer', array( $GLOBALS['wp_customize']->selective_refresh, 'export_preview_data' ), 1000 );
+}
 ?>
 <!DOCTYPE html>
 <html <?php language_attributes(); ?>>

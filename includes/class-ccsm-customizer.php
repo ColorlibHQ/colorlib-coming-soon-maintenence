@@ -279,12 +279,6 @@ class CCSM_Customizer {
             'active_callback'    => 'ccsm_template_has_timer',
 		) ) );
 
-		$wp_customize->selective_refresh->add_partial(
-			'ccsm_settings[colorlib_coming_soon_timer_option]',
-			array(
-				'selector' => '.cd100',
-			)
-		);
 
 
 		/* Setting - General - Site Logo */
@@ -304,12 +298,6 @@ class CCSM_Customizer {
 			) )
 		);
 
-		$wp_customize->selective_refresh->add_partial(
-			'ccsm_settings[colorlib_coming_soon_plugin_logo]',
-			array(
-				'selector' => '.logo-link',
-			)
-		);
 
 		/* Setting - General - Site Background Image */
 		$wp_customize->add_setting( 'ccsm_settings[colorlib_coming_soon_background_image]', array(
@@ -374,12 +362,6 @@ class CCSM_Customizer {
 			) )
 		);
 
-		$wp_customize->selective_refresh->add_partial(
-			'ccsm_settings[colorlib_coming_soon_page_heading]',
-			array(
-				'selector' => '#colorlib_coming_soon_page_heading',
-			)
-		);
 
 
 		/* Setting - Coming Soon - Page Content */
@@ -416,12 +398,6 @@ class CCSM_Customizer {
 		) );
 	
 
-		$wp_customize->selective_refresh->add_partial(
-			'ccsm_settings[colorlib_coming_soon_page_content]',
-			array(
-				'selector' => '#colorlib_coming_soon_page_content',
-			)
-		);
 
 
 		/* Setting - Coming Soon - Page Footers */
@@ -440,12 +416,6 @@ class CCSM_Customizer {
 			) )
 		);
 
-		$wp_customize->selective_refresh->add_partial(
-			'ccsm_settings[colorlib_coming_soon_page_footer]',
-			array(
-				'selector' => '#colorlib_coming_soon_page_footer',
-			)
-		);
 
 
 		/* Setting - Coming Soon - Subscribe Form Activation */
@@ -481,12 +451,6 @@ class CCSM_Customizer {
 			)
 		);
 
-		$wp_customize->selective_refresh->add_partial(
-			'ccsm_settings[colorlib_coming_soon_subscribe_form_url]',
-			array(
-				'selector' => 'form',
-			)
-		);
 
 		/* Setting - Coming Soon - Subscribe Form Other */
 		$wp_customize->add_setting( 'ccsm_settings[colorlib_coming_soon_subscribe_form_other]', array(
@@ -504,12 +468,6 @@ class CCSM_Customizer {
 			)
 		);
 
-		$wp_customize->selective_refresh->add_partial(
-			'ccsm_settings[colorlib_coming_soon_subscribe_form_other]',
-			array(
-				'selector' => '.sign-up',
-			)
-		);
 
 
 		/* Setting - Coming Soon - Social Links  Facebook*/
@@ -529,12 +487,6 @@ class CCSM_Customizer {
 			)
 		);
 
-		$wp_customize->selective_refresh->add_partial(
-			'ccsm_settings[colorlib_coming_soon_social_facebook]',
-			array(
-				'selector' => '#colorlib_coming_soon_social_facebook',
-			)
-		);
 
 
 		/* Setting - Coming Soon - Social Links Twitter*/
@@ -554,12 +506,6 @@ class CCSM_Customizer {
 			)
 		);
 
-		$wp_customize->selective_refresh->add_partial(
-			'ccsm_settings[colorlib_coming_soon_social_twitter]',
-			array(
-				'selector' => '#colorlib_coming_soon_social_twitter',
-			)
-		);
 
 
 		/* Setting - Coming Soon - Social Links Email*/
@@ -579,12 +525,6 @@ class CCSM_Customizer {
 			)
 		);
 
-		$wp_customize->selective_refresh->add_partial(
-			'ccsm_settings[colorlib_coming_soon_social_email]',
-			array(
-				'selector' => '#colorlib_coming_soon_social_email',
-			)
-		);
 
 		/* Setting - Coming Soon - Social Links Youtube*/
 		$wp_customize->add_setting( 'ccsm_settings[colorlib_coming_soon_social_youtube]', array(
@@ -603,12 +543,6 @@ class CCSM_Customizer {
 			)
 		);
 
-		$wp_customize->selective_refresh->add_partial(
-			'ccsm_settings[colorlib_coming_soon_social_youtube]',
-			array(
-				'selector' => '#colorlib_coming_soon_social_youtube',
-			)
-		);
 
 		/* Setting - Coming Soon - Social Links Pinteres*/
 		$wp_customize->add_setting( 'ccsm_settings[colorlib_coming_soon_social_pinterest]', array(
@@ -627,12 +561,6 @@ class CCSM_Customizer {
 			)
 		);
 
-		$wp_customize->selective_refresh->add_partial(
-			'ccsm_settings[colorlib_coming_soon_social_pinterest]',
-			array(
-				'selector' => '#colorlib_coming_soon_social_pinterest',
-			)
-		);
 
 		/* Setting - Coming Soon - Social Links Instagram*/
 		$wp_customize->add_setting( 'ccsm_settings[colorlib_coming_soon_social_instagram]', array(
@@ -651,12 +579,6 @@ class CCSM_Customizer {
 			)
 		);
 
-		$wp_customize->selective_refresh->add_partial(
-			'ccsm_settings[colorlib_coming_soon_social_instagram]',
-			array(
-				'selector' => '#colorlib_coming_soon_social_instagram',
-			)
-		);
 
 	}
 

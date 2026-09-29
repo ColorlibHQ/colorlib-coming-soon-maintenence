@@ -61,8 +61,16 @@ const check = (n, ok, d) => { console.log(`  ${ok ? 'PASS' : 'FAIL'}  ${n}${d ? 
   const headingAfter = await preview.locator('#colorlib_coming_soon_page_heading').first().innerText().catch(() => '');
   check('heading updates live in the preview', headingAfter.includes('Launch Day Is Near'), headingAfter.slice(0, 40));
 
-  // ---- 2. refresh fallback: a social link that renders no element yet
-  const socialBefore = await preview.locator('#colorlib_coming_soon_social_facebook').count();
+  // ---- 2. refresh fallback: a social link that renders no element yet.
+  // Clear it first so the check does not depend on what the site has saved;
+  // clearing is itself a refresh.
+  await page.evaluate(() => {
+    wp.customize('ccsm_settings[colorlib_coming_soon_social_facebook]').set('');
+  });
+  await page.waitForTimeout(9000);
+  const fh1 = await page.$('#customize-preview iframe, .wp-full-overlay-main iframe');
+  const preview1 = fh1 ? await fh1.contentFrame() : preview;
+  const socialBefore = await preview1.locator('#colorlib_coming_soon_social_facebook').count().catch(() => -1);
   await page.evaluate(() => {
     wp.customize('ccsm_settings[colorlib_coming_soon_social_facebook]').set('https://facebook.com/colorlib');
   });
