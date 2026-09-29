@@ -43,6 +43,12 @@ const check = (n, ok, d) => { console.log(`  ${ok ? 'PASS' : 'FAIL'}  ${n}${d ? 
   });
   check('our settings registered in the UI', settingCount === 24, `${settingCount} settings`);
 
+  // TinyMCE is printed on a hook customize.php never fires itself; on a block
+  // theme these used to fall back to a bare textarea.
+  const editors = await page.evaluate(() => (window.tinymce ? tinymce.editors : [])
+    .filter(e => /ccsm/.test(e.id) && e.initialized).length);
+  check('rich-text editors initialise', editors === 3, `${editors} of 3`);
+
   // ---- the preview iframe
   const frameHandle = await page.$('#customize-preview iframe, .wp-full-overlay-main iframe');
   const preview = frameHandle ? await frameHandle.contentFrame() : null;

@@ -19,7 +19,7 @@ export CCSM_SITE=http://local-wp.local
 # Front end: 21 checks. Changes the active template as it goes.
 node tests/e2e/frontend.js
 
-# Customizer: 10 checks. Needs an admin login.
+# Customizer: 11 checks. Needs an admin login.
 CCSM_USER=admin CCSM_PASS=secret node tests/e2e/customizer.js
 ```
 
