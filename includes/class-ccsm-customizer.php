@@ -45,10 +45,12 @@ class CCSM_Customizer {
 			$notice   = 'import_failed';
 
 			if ( is_array( $imported ) ) {
-				// Only accept keys the plugin actually defines, and run each
-				// through the same sanitizer the Customizer uses.
+				// Only accept keys that have a Customizer setting, and run each
+				// through the same sanitizer. Iterating ccsm_defaults() instead
+				// let an old export carrying the bypass token blank it, which
+				// silently broke the client preview link.
 				$clean = array();
-				foreach ( ccsm_defaults() as $key => $default ) {
+				foreach ( array_keys( ccsm_setting_sanitizers() ) as $key ) {
 					if ( array_key_exists( $key, $imported ) ) {
 						$clean[ $key ] = ccsm_sanitize_setting( $key, $imported[ $key ] );
 					}
@@ -128,11 +130,16 @@ class CCSM_Customizer {
 		require_once( CCSM_PATH . 'includes/controls/class-ccsm-control-text-editor.php' );
 		require_once( CCSM_PATH . 'includes/controls/class-ccsm-control-toggle.php' );
 		require_once( CCSM_PATH . 'includes/controls/class-ccsm-template-selection.php' );
-		
+
+		// One source of defaults. These used to be repeated here with different
+		// values (the social links defaulted to bare network URLs), so on a site
+		// whose stored option lacked a key the Customizer showed a link the
+		// page itself did not render.
+		$defaults = ccsm_defaults();
 
 		/* Setting - Coming Soon - Activation */
 		$wp_customize->add_setting( 'ccsm_settings[colorlib_coming_soon_activation]', array(
-			'default'           => '1',
+			'default'           => $defaults['colorlib_coming_soon_activation'],
 			'sanitize_callback' => 'ccsm_sanitize_checkbox',
 			'type'              => 'option',
 		) );
@@ -147,7 +154,7 @@ class CCSM_Customizer {
 
 		/* Setting - Coming Soon - Mode */
 		$wp_customize->add_setting( 'ccsm_settings[colorlib_coming_soon_mode]', array(
-			'default'           => 'coming_soon',
+			'default'           => $defaults['colorlib_coming_soon_mode'],
 			'sanitize_callback' => 'ccsm_sanitize_mode',
 			'type'              => 'option',
 		) );
@@ -168,7 +175,7 @@ class CCSM_Customizer {
 
 		/* Setting - Coming Soon - Discourage search engines */
 		$wp_customize->add_setting( 'ccsm_settings[colorlib_coming_soon_noindex]', array(
-			'default'           => '',
+			'default'           => $defaults['colorlib_coming_soon_noindex'],
 			'sanitize_callback' => 'ccsm_sanitize_checkbox',
 			'type'              => 'option',
 		) );
@@ -184,7 +191,7 @@ class CCSM_Customizer {
 
 		/* Setting - Coming Soon - Timer Activation */
 		$wp_customize->add_setting( 'ccsm_settings[colorlib_coming_soon_timer_activation]', array(
-			'default'           => '1',
+			'default'           => $defaults['colorlib_coming_soon_timer_activation'],
 			'sanitize_callback' => 'ccsm_sanitize_checkbox',
 			'type'              => 'option',
 		) );
@@ -218,7 +225,7 @@ class CCSM_Customizer {
 
 		/* Setting - Coming Soon - Templates Selection */
 		$wp_customize->add_setting( 'ccsm_settings[colorlib_coming_soon_template_selection]', array(
-			'default'           => 'template_01',
+			'default'           => $defaults['colorlib_coming_soon_template_selection'],
 			'sanitize_callback' => 'ccsm_sanitize_template',
 			'type'              => 'option'
 		) );
@@ -250,7 +257,7 @@ class CCSM_Customizer {
 
 		/*Settings - General - Timer*/
 		$wp_customize->add_setting( 'ccsm_settings[colorlib_coming_soon_timer_option]', array(
-			'default'           => ccsm_default_launch_date(),
+			'default'           => $defaults['colorlib_coming_soon_timer_option'],
 			'sanitize_callback' => 'ccsm_sanitize_datetime',
 			'type'              => 'option'
 		) );
@@ -273,7 +280,7 @@ class CCSM_Customizer {
 
 		/* Setting - General - Site Logo */
 		$wp_customize->add_setting( 'ccsm_settings[colorlib_coming_soon_plugin_logo]', array(
-			'default'           => CCSM_URL . 'assets/images/logo.jpg',
+			'default'           => $defaults['colorlib_coming_soon_plugin_logo'],
 			'sanitize_callback' => 'esc_url_raw',
 			'type'              => 'option',
 			'transport'         => 'postMessage',
@@ -297,7 +304,7 @@ class CCSM_Customizer {
 
 		/* Setting - General - Site Background Image */
 		$wp_customize->add_setting( 'ccsm_settings[colorlib_coming_soon_background_image]', array(
-			'default'           => CCSM_URL . 'assets/images/logo.jpg',
+			'default'           => $defaults['colorlib_coming_soon_background_image'],
 			'sanitize_callback' => 'esc_url_raw',
 			'type'              => 'option',
 			'transport'         => 'postMessage',
@@ -313,7 +320,7 @@ class CCSM_Customizer {
 
 		/* Setting - General - Site Background Color */
 		$wp_customize->add_setting( 'ccsm_settings[colorlib_coming_soon_background_color]', array(
-			'default'           => '',
+			'default'           => $defaults['colorlib_coming_soon_background_color'],
 			'sanitize_callback' => 'sanitize_hex_color',
 			'type'              => 'option',
 			'transport'         => 'postMessage',
@@ -329,7 +336,7 @@ class CCSM_Customizer {
 
 		/* Setting - General - Site Text Color */
 		$wp_customize->add_setting( 'ccsm_settings[colorlib_coming_soon_text_color]', array(
-			'default'           => '',
+			'default'           => $defaults['colorlib_coming_soon_text_color'],
 			'sanitize_callback' => 'sanitize_hex_color',
 			'type'              => 'option',
 			'transport'         => 'postMessage',
@@ -345,7 +352,7 @@ class CCSM_Customizer {
 
 		/* Setting - Coming Soon - Page Heading */
 		$wp_customize->add_setting( 'ccsm_settings[colorlib_coming_soon_page_heading]', array(
-			'default'           => 'Something <strong>really good</strong> is coming <strong>very soon</strong>',
+			'default'           => $defaults['colorlib_coming_soon_page_heading'],
 			'sanitize_callback' => 'ccsm_sanitize_text',
 			'transport'         => 'postMessage',
 			'type'              => 'option'
@@ -368,7 +375,7 @@ class CCSM_Customizer {
 
 		/* Setting - Coming Soon - Page Content */
 		$wp_customize->add_setting( 'ccsm_settings[colorlib_coming_soon_page_content]', array(
-			'default'           => 'If you have something new you’re looking to launch, you’re going to want to start building a community of people interested in what you’re launching.',
+			'default'           => $defaults['colorlib_coming_soon_page_content'],
 			'sanitize_callback' => 'ccsm_sanitize_text',
 			'transport'         => 'postMessage',
 			'type'              => 'option'
@@ -410,7 +417,7 @@ class CCSM_Customizer {
 
 		/* Setting - Coming Soon - Page Footers */
 		$wp_customize->add_setting( 'ccsm_settings[colorlib_coming_soon_page_footer]', array(
-			'default'           => 'And don\'t worry, we hate spam too! You can unsubscribe at any time.',
+			'default'           => $defaults['colorlib_coming_soon_page_footer'],
 			'sanitize_callback' => 'ccsm_sanitize_text',
 			'transport'         => 'postMessage',
 			'type'              => 'option'
@@ -498,7 +505,7 @@ class CCSM_Customizer {
 
 		/* Setting - Coming Soon - Social Links  Facebook*/
 		$wp_customize->add_setting( 'ccsm_settings[colorlib_coming_soon_social_facebook]', array(
-			'default'           => 'https://www.facebook.com/',
+			'default'           => $defaults['colorlib_coming_soon_social_facebook'],
 			'sanitize_callback' => 'esc_url_raw',
 			'type'              => 'option',
 			'transport'         => 'postMessage',
@@ -507,7 +514,8 @@ class CCSM_Customizer {
 		$wp_customize->add_control( 'ccsm_settings[colorlib_coming_soon_social_facebook]', array(
 				'label'    => esc_html__( 'Facebook', 'colorlib-coming-soon-maintenance' ),
 				'section'  => 'colorlib_coming_soon_section_social_settings',
-				'type'     => 'text',
+				'type'     => 'url',
+				'input_attrs' => array( 'placeholder' => 'https://facebook.com/yourpage' ),
 				'priority' => 10,
 			)
 		);
@@ -522,7 +530,7 @@ class CCSM_Customizer {
 
 		/* Setting - Coming Soon - Social Links Twitter*/
 		$wp_customize->add_setting( 'ccsm_settings[colorlib_coming_soon_social_twitter]', array(
-			'default'           => 'https://www.twitter.com/',
+			'default'           => $defaults['colorlib_coming_soon_social_twitter'],
 			'sanitize_callback' => 'esc_url_raw',
 			'type'              => 'option',
 			'transport'         => 'postMessage',
@@ -531,7 +539,8 @@ class CCSM_Customizer {
 		$wp_customize->add_control( 'ccsm_settings[colorlib_coming_soon_social_twitter]', array(
 				'label'    => esc_html__( 'Twitter', 'colorlib-coming-soon-maintenance' ),
 				'section'  => 'colorlib_coming_soon_section_social_settings',
-				'type'     => 'text',
+				'type'     => 'url',
+				'input_attrs' => array( 'placeholder' => 'https://x.com/yourhandle' ),
 				'priority' => 20,
 			)
 		);
@@ -546,7 +555,7 @@ class CCSM_Customizer {
 
 		/* Setting - Coming Soon - Social Links Email*/
 		$wp_customize->add_setting( 'ccsm_settings[colorlib_coming_soon_social_email]', array(
-			'default'           => 'you@domain.com',
+			'default'           => $defaults['colorlib_coming_soon_social_email'],
 			'sanitize_callback' => 'sanitize_email',
 			'type'              => 'option',
 			'transport'         => 'postMessage',
@@ -555,7 +564,8 @@ class CCSM_Customizer {
 		$wp_customize->add_control( 'ccsm_settings[colorlib_coming_soon_social_email]', array(
 				'label'    => esc_html__( 'Email', 'colorlib-coming-soon-maintenance' ),
 				'section'  => 'colorlib_coming_soon_section_social_settings',
-				'type'     => 'text',
+				'type'     => 'email',
+				'input_attrs' => array( 'placeholder' => 'you@example.com' ),
 				'priority' => 30,
 			)
 		);
@@ -569,16 +579,17 @@ class CCSM_Customizer {
 
 		/* Setting - Coming Soon - Social Links Youtube*/
 		$wp_customize->add_setting( 'ccsm_settings[colorlib_coming_soon_social_youtube]', array(
-			'default'           => 'https://youtube.com/',
+			'default'           => $defaults['colorlib_coming_soon_social_youtube'],
 			'sanitize_callback' => 'esc_url_raw',
 			'type'              => 'option',
 			'transport'         => 'postMessage',
 		) );
 
 		$wp_customize->add_control( 'ccsm_settings[colorlib_coming_soon_social_youtube]', array(
-				'label'    => esc_html__( 'Youtube', 'colorlib-coming-soon-maintenance' ),
+				'label'    => esc_html__( 'YouTube', 'colorlib-coming-soon-maintenance' ),
 				'section'  => 'colorlib_coming_soon_section_social_settings',
-				'type'     => 'text',
+				'type'     => 'url',
+				'input_attrs' => array( 'placeholder' => 'https://youtube.com/@yourchannel' ),
 				'priority' => 40,
 			)
 		);
@@ -592,7 +603,7 @@ class CCSM_Customizer {
 
 		/* Setting - Coming Soon - Social Links Pinteres*/
 		$wp_customize->add_setting( 'ccsm_settings[colorlib_coming_soon_social_pinterest]', array(
-			'default'           => 'https://pinterest.com/',
+			'default'           => $defaults['colorlib_coming_soon_social_pinterest'],
 			'sanitize_callback' => 'esc_url_raw',
 			'type'              => 'option',
 			'transport'         => 'postMessage',
@@ -601,7 +612,8 @@ class CCSM_Customizer {
 		$wp_customize->add_control( 'ccsm_settings[colorlib_coming_soon_social_pinterest]', array(
 				'label'    => esc_html__( 'Pinterest', 'colorlib-coming-soon-maintenance' ),
 				'section'  => 'colorlib_coming_soon_section_social_settings',
-				'type'     => 'text',
+				'type'     => 'url',
+				'input_attrs' => array( 'placeholder' => 'https://pinterest.com/yourprofile' ),
 				'priority' => 50,
 			)
 		);
@@ -615,7 +627,7 @@ class CCSM_Customizer {
 
 		/* Setting - Coming Soon - Social Links Instagram*/
 		$wp_customize->add_setting( 'ccsm_settings[colorlib_coming_soon_social_instagram]', array(
-			'default'           => 'https://instagram.com/',
+			'default'           => $defaults['colorlib_coming_soon_social_instagram'],
 			'sanitize_callback' => 'esc_url_raw',
 			'type'              => 'option',
 			'transport'         => 'postMessage',
@@ -624,7 +636,8 @@ class CCSM_Customizer {
 		$wp_customize->add_control( 'ccsm_settings[colorlib_coming_soon_social_instagram]', array(
 				'label'    => esc_html__( 'Instagram', 'colorlib-coming-soon-maintenance' ),
 				'section'  => 'colorlib_coming_soon_section_social_settings',
-				'type'     => 'text',
+				'type'     => 'url',
+				'input_attrs' => array( 'placeholder' => 'https://instagram.com/yourprofile' ),
 				'priority' => 60,
 			)
 		);
