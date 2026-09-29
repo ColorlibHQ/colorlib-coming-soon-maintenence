@@ -1,25 +1,31 @@
 {
   "name": "colorlib-coming-soon-maintenance",
-  "main": "Gruntfile.js",
   "version": "1.4.1",
+  "private": true,
+  "description": "Coming soon and maintenance mode pages for WordPress, with 15 templates configured in the Customizer.",
+  "homepage": "https://colorlib.com/",
   "author": "Colorlib",
-  "license": "GPL v3",
-  "repository": "https://github.com/ColorlibHQ/colorlib-coming-soon-maintenance",
+  "license": "GPL-3.0-or-later",
+  "repository": "https://github.com/ColorlibHQ/colorlib-coming-soon-maintenence",
   "engines": {
     "node": ">=18"
   },
   "scripts": {
-    "i18n": "wp i18n make-pot . languages/colorlib-coming-soon-maintenance.pot --exclude=build,node_modules,assets/screenshots",
+    "i18n": "wp i18n make-pot . languages/colorlib-coming-soon-maintenance.pot --exclude=build,node_modules,assets/screenshots,tests",
     "mincss": "grunt mincss",
     "build": "npm run i18n && grunt build-archive"
   },
   "devDependencies": {
-    "grunt": "^1.6.1",
+    "grunt": "^1.6.3",
     "grunt-cli": "^1.5.0",
     "grunt-contrib-clean": "^2.0.1",
     "grunt-contrib-compress": "^2.0.0",
     "grunt-contrib-copy": "^1.0.0",
     "grunt-contrib-cssmin": "^5.0.0",
     "load-grunt-tasks": "^5.1.0"
+  },
+  "overrides": {
+    "adm-zip": "^0.6.1",
+    "js-yaml": "^3.15.2"
   }
 }
