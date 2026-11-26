@@ -19,7 +19,9 @@ const check = (n, ok, d) => { console.log(`  ${ok ? 'PASS' : 'FAIL'}  ${n}${d ? 
 
   const jsErrors = [];
   page.on('pageerror', e => jsErrors.push('controls: ' + e.message));
-  page.on('console', m => { if (m.type() === 'error' && !/favicon|net::ERR/.test(m.text())) jsErrors.push('console: ' + m.text()); });
+  // Core's TinyMCE registers an unload listener, which current Chrome reports as a
+  // permissions-policy error on every Customizer load, with or without this plugin.
+  page.on('console', m => { if (m.type() === 'error' && !/favicon|net::ERR|Permissions policy violation: unload/.test(m.text())) jsErrors.push('console: ' + m.text()); });
 
   // ---- log in
   await page.goto(`${BASE}/wp-login.php`, { waitUntil: 'domcontentloaded' });

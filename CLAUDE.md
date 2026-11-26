@@ -7,7 +7,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 WordPress plugin: **Coming Soon and Maintenance by Colorlib** (v1.4.1). Displays a coming soon or maintenance mode page to visitors without editing rights, using one of 15 selectable templates. Content is configured in the WordPress Live Customizer; the plugin's own admin page (**Coming Soon** in the admin menu) holds the status with an on/off button, the client preview link and settings export/import. While the page is on, users who bypass it see a red status item in the admin bar (`ccsm_admin_bar_status()`).
 
 - **Requires:** WordPress 6.0+, PHP 7.4+
-- **Tested up to:** WordPress 7.1
+- **Tested up to:** WordPress 7.2
 - **Text Domain:** `colorlib-coming-soon-maintenance`
 - **Main plugin file:** `colorlib-coming-soon-and-maintenance-mode.php`
 
