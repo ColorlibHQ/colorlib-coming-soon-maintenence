@@ -14,6 +14,11 @@ $ccsm_options = ccsm_get_options();
  */
 if ( is_customize_preview() && isset( $GLOBALS['wp_customize'] ) ) {
 	add_action( 'wp_footer', array( $GLOBALS['wp_customize']->selective_refresh, 'export_preview_data' ), 1000 );
+
+	// wp_enqueue_scripts is also where core unhooks the deprecated
+	// the_block_template_skip_link(); left hooked, it logs a notice on every
+	// preview load under a block theme.
+	remove_action( 'wp_footer', 'the_block_template_skip_link' );
 }
 ?>
 <!DOCTYPE html>
