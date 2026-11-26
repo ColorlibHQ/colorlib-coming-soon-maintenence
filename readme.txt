@@ -4,7 +4,7 @@ Tags: coming soon, maintenance mode, under construction, countdown timer, landin
 Requires at least: 6.0
 Tested up to: 7.2
 Requires PHP: 7.4
-Stable tag: 1.4.1
+Stable tag: 1.4.2
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -161,6 +161,10 @@ Yes. All 15 coming soon page templates are fully responsive and work on desktops
 15. Template 15 — City skyline with purple overlay, countdown timer, and social icons
 
 == Changelog ==
+
+= 1.4.2 - 26.11.2026 =
+Compatibility: Tested up to WordPress 7.2 and PHP 8.6
+Fixed: The Customizer preview no longer logs a "the_block_template_skip_link is deprecated" notice on every load when a block theme is active
 
 = 1.4.1 - 29.09.2026 =
 Security: Comments and trackbacks could still be posted while the site was closed, and the comment form's redirect revealed the address of any post by its ID

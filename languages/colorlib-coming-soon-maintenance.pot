@@ -2,14 +2,14 @@
 # This file is distributed under the GPLv3 or later.
 msgid ""
 msgstr ""
-"Project-Id-Version: Coming Soon & Maintenance Mode by Colorlib 1.4.1\n"
+"Project-Id-Version: Coming Soon & Maintenance Mode by Colorlib 1.4.2\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/colorlib-coming-soon-maintenence\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-09-29T13:06:03+00:00\n"
+"POT-Creation-Date: 2026-11-26T14:13:33+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: colorlib-coming-soon-maintenance\n"
@@ -36,48 +36,48 @@ msgid "Colorlib"
 msgstr ""
 
 #. translators: %s: current PHP version.
-#: colorlib-coming-soon-and-maintenance-mode.php:52
+#: colorlib-coming-soon-and-maintenance-mode.php:51
 #, php-format
 msgid "Coming Soon and Maintenance by Colorlib requires PHP 7.4 or higher. Your server is running PHP %s."
 msgstr ""
 
-#: colorlib-coming-soon-and-maintenance-mode.php:96
+#: colorlib-coming-soon-and-maintenance-mode.php:95
 msgid "Settings"
 msgstr ""
 
-#: colorlib-coming-soon-and-maintenance-mode.php:97
+#: colorlib-coming-soon-and-maintenance-mode.php:96
 msgid "Support"
 msgstr ""
 
-#: colorlib-coming-soon-and-maintenance-mode.php:353
-#: colorlib-coming-soon-and-maintenance-mode.php:499
+#: colorlib-coming-soon-and-maintenance-mode.php:352
+#: colorlib-coming-soon-and-maintenance-mode.php:498
 msgid "Sorry, this content is restricted!"
 msgstr ""
 
-#: colorlib-coming-soon-and-maintenance-mode.php:354
+#: colorlib-coming-soon-and-maintenance-mode.php:353
 msgid "Restricted"
 msgstr ""
 
-#: colorlib-coming-soon-and-maintenance-mode.php:392
+#: colorlib-coming-soon-and-maintenance-mode.php:391
 msgid "Maintenance mode is on"
 msgstr ""
 
-#: colorlib-coming-soon-and-maintenance-mode.php:393
+#: colorlib-coming-soon-and-maintenance-mode.php:392
 msgid "Coming soon page is on"
 msgstr ""
 
-#: colorlib-coming-soon-and-maintenance-mode.php:896
+#: colorlib-coming-soon-and-maintenance-mode.php:895
 msgid "This field is required."
 msgstr ""
 
 #. translators: %s: the launch date, formatted in the visitor's locale, e.g. "December 25, 2026".
-#: colorlib-coming-soon-and-maintenance-mode.php:898
+#: colorlib-coming-soon-and-maintenance-mode.php:897
 #, php-format
 msgid "Launching on %s."
 msgstr ""
 
 #. translators: %s: URL of the plugin's Customizer panel.
-#: colorlib-coming-soon-and-maintenance-mode.php:1435
+#: colorlib-coming-soon-and-maintenance-mode.php:1434
 #, php-format
 msgid "For security reasons we have changed the Google Analytics setting. Please update your settings <a href=\"%s\">here</a> in order to correctly use the Google Analytics script."
 msgstr ""
