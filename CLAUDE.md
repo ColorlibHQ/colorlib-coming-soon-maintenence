@@ -124,7 +124,7 @@ All settings are stored in a single option: `ccsm_settings`. Keys follow the pat
 - `CCSM_URL` — plugin directory URL
 - `CCSM_PLUGIN_BASE` — plugin basename for hooks
 - `CCSM_FILE_` — main plugin file path (note the trailing underscore)
-- `CCSM_VERSION` — current version string (`1.4.1`); keep in sync with the plugin header, `readme.txt` `Stable tag`, and `package.json`
+- `CCSM_VERSION` — current version string (`1.4.2`); keep in sync with the plugin header, `readme.txt` `Stable tag`, and `package.json`
 
 ## Filters
 
